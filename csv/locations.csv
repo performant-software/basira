@@ -1,4 +1,4 @@
-Group,Location Name,Location City,Location State/Province,Location Country,Location GIS Coordinates,Location URL,Authorized Vocabulary,URL/Database value (if applicable),Comment
+ tate State / Province,Location Name,Location City,Location State/Province,Location Country,Location GIS Coordinates,Location URL,Authorized Vocabulary,URL/Database value (if applicable),Comment
 Location,Abtei Marienstatt,Marienstatt,,Germany,"50.684734, 7.802771",,Getty CONA,700000192,Name is that used by Repository itself
 Location,Alte Pinakothek,Munich,,Germany,"48.148456, 11.570049",,,,Most repositories are not in CONA.
 Location,Art Institute of Chicago,"Chicago, IL",,USA,,,,,"In these cases, the name used by the institution is used"
