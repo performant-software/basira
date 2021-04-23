@@ -33,3 +33,6 @@
 
 # Ignore public
 /public
+
+# Ignore env
+.env
