@@ -38,14 +38,12 @@ const Home = (props: Props) => {
         >
           <Header
             content={props.t('Common.title')}
-            inverted
             size='huge'
             subheader={props.t('Home.subtitle')}
           />
           <Button
             basic
             onClick={() => setModal(true)}
-            inverted
             size='big'
           >
             { props.t('Home.buttons.login') }

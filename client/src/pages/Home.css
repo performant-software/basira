@@ -1,6 +1,5 @@
 .home {
   align-items: center;
-  background-image: linear-gradient(to right top, #2185d0, #2d9bd4, #50b0d5, #77c2d6, #9ed4da, #a1d3d5, #a5d2d0, #a9d1cc, #8bbeb8, #6eaca5, #4e9992, #28877f);
   display: flex;
   flex-direction: column;
   height: 100vh;
