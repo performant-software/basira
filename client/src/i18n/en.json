@@ -12,6 +12,10 @@
     }
   },
   "Common": {
+    "buttons": {
+      "cancel": "Cancel",
+      "save": "Save"
+    },
     "title": "BASIRA"
   },
   "Home": {

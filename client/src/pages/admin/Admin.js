@@ -15,13 +15,14 @@ import {
   Menu,
   Segment
 } from 'semantic-ui-react';
-import Authentication from '../../services/Authentication';
-import Session from '../../services/Session';
+import Artwork from './Artwork';
 import Artworks from './Artworks';
+import Authentication from '../../services/Authentication';
 import People from './People';
 import Places from './Places';
-import ValueLists from './ValueLists';
+import Session from '../../services/Session';
 import Users from './Users';
+import ValueLists from './ValueLists';
 import './Admin.css';
 
 import type { Routeable } from '../../types/Routeable';
@@ -107,6 +108,10 @@ const Admin = (props: Props) => (
       </Menu>
     </Segment>
     <Switch>
+      <Route
+        path='/admin/artworks/:id'
+        component={Artwork}
+      />
       <Route
         path='/admin/artworks'
         component={Artworks}
