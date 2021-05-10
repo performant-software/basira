@@ -10,10 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_23_114124) do
+ActiveRecord::Schema.define(version: 2021_04_30_161451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "artwork_titles", force: :cascade do |t|
+    t.bigint "artwork_id", null: false
+    t.string "title"
+    t.string "title_type"
+    t.boolean "primary", default: false, null: false
+    t.jsonb "notes", default: {}, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artwork_id"], name: "index_artwork_titles_on_artwork_id"
+  end
+
+  create_table "artworks", force: :cascade do |t|
+    t.string "date_descriptor"
+    t.date "date"
+    t.integer "height", default: 0, null: false
+    t.integer "width", default: 0, null: false
+    t.integer "depth", default: 0, null: false
+    t.jsonb "notes", default: {}, null: false
+    t.boolean "published", default: false, null: false
+    t.string "repository_work_url"
+    t.string "accession_number"
+    t.integer "airtable_id"
+    t.datetime "airtable_timestamp"
+    t.string "airtable_aws_url"
+    t.string "airtable_aws_filename"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -45,4 +95,6 @@ ActiveRecord::Schema.define(version: 2021_04_23_114124) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "artwork_titles", "artworks"
 end
