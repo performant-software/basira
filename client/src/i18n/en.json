@@ -1,0 +1,23 @@
+{
+  "Admin": {
+    "buttons": {
+      "logout": "Logout"
+    },
+    "menu": {
+      "artworks": "Artworks",
+      "people": "People",
+      "places": "Places",
+      "users": "Users",
+      "valueLists": "Value Lists"
+    }
+  },
+  "Common": {
+    "title": "BASIRA"
+  },
+  "Home": {
+    "buttons": {
+      "login": "Login"
+    },
+    "subtitle": "The BASIRA Project, a digital humanities research effort, explores interconnections of book history and European art during the Renaissance. As a database of visual images, tagged with structured details, the project may be useful for studies of art history, material culture, religious history, printing technology, iconography, and history of literacy."
+  }
+}

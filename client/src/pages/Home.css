@@ -1,0 +1,17 @@
+.home {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.home .ui.header.huge {
+  font-size: 4em;
+}
+
+.home .ui.header.huge .sub.header {
+  font-size: 0.3em;
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
