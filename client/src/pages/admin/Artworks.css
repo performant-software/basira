@@ -1,5 +1,5 @@
 .artworks .ui.cards > .card > .image,
-.artworks .ui.items > .item > .image {
+.artworks .ui.items > .item > .image:not(.ui) {
   width: unset;
 }
 
