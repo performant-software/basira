@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_161451) do
+ActiveRecord::Schema.define(version: 2021_05_10_210159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_161451) do
     t.string "title"
     t.string "title_type"
     t.boolean "primary", default: false, null: false
-    t.jsonb "notes", default: {}, null: false
+    t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["artwork_id"], name: "index_artwork_titles_on_artwork_id"
@@ -49,20 +49,31 @@ ActiveRecord::Schema.define(version: 2021_04_30_161451) do
 
   create_table "artworks", force: :cascade do |t|
     t.string "date_descriptor"
-    t.date "date"
+    t.integer "date_start"
+    t.integer "date_end"
     t.integer "height", default: 0, null: false
     t.integer "width", default: 0, null: false
     t.integer "depth", default: 0, null: false
-    t.jsonb "notes", default: {}, null: false
+    t.text "notes_external"
+    t.text "notes_internal"
     t.boolean "published", default: false, null: false
     t.string "repository_work_url"
     t.string "accession_number"
     t.integer "airtable_id"
     t.datetime "airtable_timestamp"
-    t.string "airtable_aws_url"
-    t.string "airtable_aws_filename"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.string "attachable_type", null: false
+    t.bigint "attachable_id", null: false
+    t.boolean "primary", default: false, null: false
+    t.integer "airtable_id"
+    t.datetime "airtable_timestamp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
   end
 
   create_table "users", force: :cascade do |t|
