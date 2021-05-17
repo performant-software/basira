@@ -1,7 +1,11 @@
 class ArtworksSerializer < BaseSerializer
-  index_attributes :id, :date, :date_descriptor, :published, :image_url
-  index_attributes(:title) { |artwork| artwork.primary_title.title }
+  # Includes
+  include AttachableSerializer
+  include Rails.application.routes.url_helpers
 
-  show_attributes :id, :date, :date_descriptor, :published, :image_url, :height, :width, :depth, :notes,
-                  :repository_work_url, :accession_number, artwork_titles: [:id, :title, :title_type, :notes, :primary]
+  index_attributes :id, :date_start, :date_end, :date_descriptor, :published, primary_title: [:id, :title, :title_type]
+
+  show_attributes :id, :date_start, :date_end, :date_descriptor, :published, :height, :width, :depth,
+                  :notes_external, :notes_internal, :repository_work_url, :accession_number,
+                  artwork_titles: [:id, :title, :title_type, :notes, :primary]
 end
