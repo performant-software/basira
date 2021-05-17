@@ -1,14 +1,21 @@
 // @flow
 
-export type Artwork = {
+import type { ArtworkTitle } from './ArtworkTitle';
+import type { Attachable } from './concerns/Attachable';
+
+export type Artwork = Attachable & {
   id: number,
-  date: any,
+  date_start: number,
+  date_end: number,
   date_descriptor: string,
   height: number,
   width: number,
   depth: number,
-  notes: string,
+  notes_external: string,
+  notes_internal: string,
   published: boolean,
   repository_work_url: string,
-  accession_number
+  accession_number: string,
+
+  artwork_titles: Array<ArtworkTitle>
 };

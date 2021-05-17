@@ -1,6 +1,7 @@
 // @flow
 
 import ArtworkTitles from './ArtworkTitles';
+import Attachments from './Attachments';
 import FormDataTransform from './FormDataTransform';
 
 import type { Artwork as ArtworkType } from '../types/Artwork';
@@ -25,12 +26,14 @@ class Artwork extends FormDataTransform {
    */
   getPayloadKeys() {
     return [
-      'date',
+      'date_start',
+      'date_end',
       'date_descriptor',
       'height',
       'width',
       'depth',
-      'notes',
+      'notes_external',
+      'notes_internal',
       'published',
       'repository_work_url',
       'accession_number'
@@ -48,6 +51,7 @@ class Artwork extends FormDataTransform {
     const formData = super.toPayload(artwork);
 
     ArtworkTitles.appendFormData(formData, this.getParameterName(), artwork);
+    Attachments.appendFormData(formData, this.getParameterName(), artwork);
 
     return formData;
   }

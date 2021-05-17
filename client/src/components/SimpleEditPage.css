@@ -1,0 +1,8 @@
+.simple-edit-page.ui.container {
+  height: 100%;
+}
+
+.simple-edit-page .tabs-menu.ui.menu {
+  background-color: white;
+  margin-bottom: 1em;
+}

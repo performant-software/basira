@@ -1,65 +1,56 @@
 // @flow
 
-import React from 'react';
+import React, { type ComponentType } from 'react';
 import { useEditContainer } from 'react-components';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
-import { Button, Container, Segment } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
+import _ from 'underscore';
 
-const useEditPage = (WrappedComponent, config) => (props) => {
-  const { id } = useParams();
-  const { t } = useTranslation();
-  const history = useHistory();
+type Config = {
+  onLoad: (params: any) => Promise<any>,
+  onSave: (item: any) => Promise<any>,
+  validate: (item: any) => any
+};
 
-  const EditPage = (innerProps) => {
-    const { pathname } = innerProps.history.location;
-    const url = pathname.substring(0, pathname.lastIndexOf('/'));
-    const { item } = innerProps;
+const useEditPage = (WrappedComponent: ComponentType<any>, config: Config) => (
+  (props: any) => {
+    const { id } = useParams();
+    const { t } = useTranslation();
+    const history = useHistory();
 
-    return (
+    const EditPage = (innerProps) => (
       <Container>
-        <Segment
-          basic
-          textAlign='right'
-        >
-          <Button
-            content={t('Common.buttons.save')}
-            onClick={() => {
-              config
-                .onSave(item)
-                .then(() => history.replace({
-                  pathname: url,
-                  state: {
-                    saved: true
-                  }
-                }));
-            }}
-            primary
-          />
-          <Button
-            content={t('Common.buttons.cancel')}
-            inverted
-            onClick={() => history.goBack()}
-            primary
-          />
-        </Segment>
         <WrappedComponent
           {...innerProps}
           t={t}
         />
       </Container>
     );
-  };
 
-  const Component = useEditContainer(EditPage);
+    const EditContainer = useEditContainer(EditPage);
+    const { pathname } = history.location;
+    const url = pathname.substring(0, pathname.lastIndexOf('/'));
 
-  return (
-    <Component
-      {...props}
-      item={{ id }}
-      onInitialize={config.onLoad}
-    />
-  );
-};
+    return (
+      <EditContainer
+        {...props}
+        {..._.pick(config, 'defaults', 'required', 'validate')}
+        item={{ id }}
+        onInitialize={config.onLoad}
+        onSave={(item) => (
+          config
+            .onSave(item)
+            .then(() => history.replace({
+              pathname: url,
+              state: {
+                saved: true
+              }
+            }))
+        )}
+      />
+    );
+  }
+);
 
 export default useEditPage;

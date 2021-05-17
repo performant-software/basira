@@ -11,10 +11,52 @@
       "valueLists": "Value Lists"
     }
   },
+  "Artwork": {
+    "errors": {
+      "dateNumeric": "{{name}} must be a valid numeric year"
+    },
+    "labels": {
+      "creationDate": "Creation date",
+      "dateDescription": "Description",
+      "endDate": "End date",
+      "notes": "Notes",
+      "startDate": "Start date",
+      "titles": "Titles"
+    },
+    "tabs": {
+      "details": "Details",
+      "images": "Images"
+    },
+    "titles": {
+      "columns": {
+        "primary": "Primary",
+        "title": "Title",
+        "titleType": "Type"
+      }
+    }
+  },
+  "ArtworkTitleModal": {
+    "labels": {
+      "notes": "Notes",
+      "primary": "Primary",
+      "title": "Title",
+      "type": "Type"
+    },
+    "title": {
+      "add": "Add Title",
+      "edit": "Edit Title"
+    }
+  },
   "Common": {
     "buttons": {
       "cancel": "Cancel",
       "save": "Save"
+    },
+    "errors": {
+      "header": "Oops!"
+    },
+    "messages": {
+      "loading": "Loading"
     },
     "title": "BASIRA"
   },
@@ -23,5 +65,11 @@
       "login": "Login"
     },
     "subtitle": "The BASIRA Project, a digital humanities research effort, explores interconnections of book history and European art during the Renaissance. As a database of visual images, tagged with structured details, the project may be useful for studies of art history, material culture, religious history, printing technology, iconography, and history of literacy."
+  },
+  "Images": {
+    "buttons": {
+      "close": "Close",
+      "upload": "Upload images"
+    }
   }
 }
