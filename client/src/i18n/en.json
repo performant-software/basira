@@ -71,5 +71,8 @@
       "close": "Close",
       "upload": "Upload images"
     }
+  },
+  "NotesModal": {
+    "title": "Internal Notes"
   }
 }

@@ -38,7 +38,9 @@ const Artwork = (props: Props) => (
         header={ArtworkUtils.getPrimaryTitle(props.item)}
         image={ArtworkUtils.getPrimaryImage(props.item)}
         meta={props.item.date_descriptor}
+        notes={props.item.notes_internal}
         published={props.item.published}
+        onNotesChange={props.onTextInputChange.bind(this, 'notes_internal')}
         onPublish={props.onCheckboxInputChange.bind(this, 'published')}
       />
     </SimpleEditPage.Header>

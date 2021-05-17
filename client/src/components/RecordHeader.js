@@ -9,6 +9,7 @@ import {
   Popup
 } from 'semantic-ui-react';
 import _ from 'underscore';
+import NotesModal from './NotesModal';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { Translateable } from '../types/Translateable';
@@ -100,6 +101,14 @@ const RecordHeader = (props: Props) => {
                 />
               )}
             />
+            { notesModal && (
+              <NotesModal
+                notes={props.notes}
+                onClose={() => setNotesModal(false)}
+                onSave={props.onNotesChange.bind(this)}
+                open
+              />
+            )}
             {/*{ notesModal && (*/}
             {/*  <NotesModal*/}
             {/*    notes={props.item.admin_notes}*/}
