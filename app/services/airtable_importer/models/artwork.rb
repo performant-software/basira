@@ -25,43 +25,29 @@ module AirtableImporter
           type: :custom_array,
           build_attributes: -> (airtable_id, title) do
             return nil if title.nil? || title.empty?
-
-            ::ArtworkTitle
-              .joins(:artwork)
-              .where(artworks: { airtable_id: airtable_id })
-              .where(title: title)
-              .where(primary: false)
-              .first_or_create
+            artwork = ::Artwork.find_by(airtable_id: airtable_id)
+            ::ArtworkTitle.find_or_initialize_by(artwork: artwork, title: title, primary: false)
           end
         }, {
           attribute_name: :date_descriptor,
           airtable_name: 'Date_Created'
         }, {
-          attribute_name: :airtable_aws_url,
-          airtable_name: 'AWS File Path'
+          attribute_name: :attachments,
+          airtable_name: 'Image',
+          type: :foreign_keys,
+          resolve: -> (airtable_id, image) do
+            attachment = ::Attachment.new(airtable_id: image['id'], primary: true)
+            attachment.file.attach(io: URI.open(image['url']), filename: image['filename']) unless attachment.file.attached?
+            attachment
+          end
         }, {
-          attribute_name: :airtable_aws_filename,
-          airtable_name: 'image_container_filename'
-        }]
+          attribute_name: :notes_external,
+          airtable_name: 'Info'
+         }]
       end
 
       def model_class
         ::Artwork
-      end
-
-      def post_process
-        ::Artwork
-          .where.not(airtable_aws_url: nil)
-          .each do |artwork|
-            next if artwork.image.attached?
-
-            begin
-              artwork.image.attach(io: URI.open(artwork.airtable_aws_url), filename: artwork.airtable_aws_filename)
-            rescue StandardError => e
-              puts "Artwork ID: #{artwork.id}"
-              puts e.inspect
-            end
-        end
       end
 
       def query(app_id, api_key)

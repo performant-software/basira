@@ -42,9 +42,6 @@ module AirtableImporter
           puts e.inspect
         end
 
-        # Create data field option records based on the imported data
-        create_enums
-
         # Call the hook to perform any post-process functions
         post_process
       end
@@ -97,14 +94,6 @@ module AirtableImporter
           case type
           when :boolean
             attributes[attribute_name] = TRUE_VALUES.include?(record[airtable_name])
-          when :multiselect
-            @enums[attribute_name] ||= Set.new
-            @enums[attribute_name] += record[airtable_name] unless record[airtable_name].nil?
-            attributes[attribute_name] = record[airtable_name]
-          when :select
-            @enums[attribute_name] ||= Set.new
-            @enums[attribute_name] << record[airtable_name] unless record[airtable_name].nil?
-            attributes[attribute_name] = record[airtable_name]
           when :foreign_key
             related_record = find_related(record, column)
             attributes[attribute_name] = related_record.id unless related_record.nil?
@@ -116,21 +105,6 @@ module AirtableImporter
             end
           when :array
             attributes[attribute_name] = [record[airtable_name]]
-          when :fuzzy_date
-            if record[airtable_name].present?
-              dateable = model_class.find_by(airtable_id: record.id)
-              fuzzy_date = ::FuzzyDate.find_or_initialize_by(dateable: dateable, date_type: attribute_name.to_s)
-              calendar = column[:calendar] || Helpers::FuzzyDate::CALENDAR_GREGORIAN
-
-              begin
-                date = Helpers::FuzzyDate.resolve_date(calendar, record[airtable_name])
-                fuzzy_date.assign_attributes(accuracy: ::FuzzyDate.accuraries[:year], start_date: date, end_date: date + 1.year)
-              rescue
-                fuzzy_date.description = record[airtable_name]
-              end
-
-              attributes[attribute_name] = fuzzy_date
-            end
           when :custom
             value = column[:build_attributes].call(record.id, record[airtable_name])
             attributes[attribute_name] = value unless value.nil?
@@ -144,13 +118,6 @@ module AirtableImporter
         end
 
         attributes
-      end
-
-      # Creates the data field option records for all select and multiselect attribute types
-      def create_enums
-        @enums.keys.each do |attribute_name|
-          DataField.create_options(model_class, attribute_name, *@enums[attribute_name])
-        end
       end
 
       def log_errors(model)
