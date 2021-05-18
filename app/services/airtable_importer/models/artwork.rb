@@ -36,7 +36,7 @@ module AirtableImporter
           airtable_name: 'Image',
           type: :foreign_keys,
           resolve: -> (airtable_id, image) do
-            attachment = ::Attachment.new(airtable_id: image['id'], primary: true)
+            attachment = ::Attachment.find_or_initialize_by(airtable_id: image['id'], primary: true)
             attachment.file.attach(io: URI.open(image['url']), filename: image['filename']) unless attachment.file.attached?
             attachment
           end
