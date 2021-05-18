@@ -109,6 +109,10 @@ const Admin = (props: Props) => (
     </Segment>
     <Switch>
       <Route
+        path='/admin/artworks/new'
+        component={Artwork}
+      />
+      <Route
         path='/admin/artworks/:id'
         component={Artwork}
       />
