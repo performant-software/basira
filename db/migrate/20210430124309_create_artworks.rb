@@ -13,7 +13,7 @@ class CreateArtworks < ActiveRecord::Migration[6.0]
       t.string :repository_work_url
       t.string :accession_number
 
-      t.integer :airtable_id
+      t.string :airtable_id
       t.timestamp :airtable_timestamp
 
       t.timestamps

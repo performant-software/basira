@@ -4,7 +4,7 @@ class CreateAttachments < ActiveRecord::Migration[6.0]
       t.references :attachable, polymorphic: true, null: false, index: true
       t.boolean :primary, null: false, default: false
 
-      t.integer :airtable_id
+      t.string :airtable_id
       t.timestamp :airtable_timestamp
 
       t.timestamps

@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2021_05_10_210159) do
     t.boolean "published", default: false, null: false
     t.string "repository_work_url"
     t.string "accession_number"
-    t.integer "airtable_id"
+    t.string "airtable_id"
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_05_10_210159) do
     t.string "attachable_type", null: false
     t.bigint "attachable_id", null: false
     t.boolean "primary", default: false, null: false
-    t.integer "airtable_id"
+    t.string "airtable_id"
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
