@@ -5,3 +5,7 @@
 .record-header .lazy-image.ui.segment {
   margin-top: 0;
 }
+
+.record-header .button-container {
+  margin-top: 1em;
+}

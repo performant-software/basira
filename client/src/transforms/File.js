@@ -13,7 +13,7 @@ class File {
    *
    * @returns Attachment
    */
-  toAttachment(file: any) {
+  toAttachment(file: any, primary?: boolean = false) {
     const url = URL.createObjectURL(file);
 
     return {
@@ -22,7 +22,8 @@ class File {
       size: file.size,
       file,
       file_url: url,
-      thumbnail_url: url
+      thumbnail_url: url,
+      primary
     };
   }
 }
