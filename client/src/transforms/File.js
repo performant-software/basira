@@ -14,12 +14,15 @@ class File {
    * @returns Attachment
    */
   toAttachment(file: any) {
+    const url = URL.createObjectURL(file);
+
     return {
       uid: v4(),
       name: file.name,
       size: file.size,
       file,
-      file_url: URL.createObjectURL(file)
+      file_url: url,
+      thumbnail_url: url
     };
   }
 }

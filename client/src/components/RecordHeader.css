@@ -1,0 +1,7 @@
+.record-header .image-container {
+  margin-bottom: 1em;
+}
+
+.record-header .lazy-image.ui.segment {
+  margin-top: 0;
+}

@@ -1,7 +1,6 @@
 // @flow
 
 import React, { useState, type Element } from 'react';
-import { LazyImage } from 'react-components';
 import { withTranslation } from 'react-i18next';
 import {
   Button,
@@ -10,6 +9,8 @@ import {
 } from 'semantic-ui-react';
 import _ from 'underscore';
 import NotesModal from './NotesModal';
+import Thumbnail from './Thumbnail';
+import './RecordHeader.css';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { Translateable } from '../types/Translateable';
@@ -42,10 +43,13 @@ const RecordHeader = (props: Props) => {
     <Card.Content
       className='record-header'
     >
-      <LazyImage
-        src={props.image}
-      />
-      { props.renderImage && props.renderImage() }
+      <div
+        className='image-container'
+      >
+        <Thumbnail
+          src={props.image}
+        />
+      </div>
       { props.header && (
         <Card.Header
           content={props.header}

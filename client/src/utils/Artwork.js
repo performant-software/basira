@@ -13,7 +13,7 @@ import type { Artwork } from '../types/Artwork';
  */
 const getPrimaryImage = (artwork: Artwork) => {
   const primary = _.find(artwork.attachments, { primary: true });
-  return primary && primary.file_url;
+  return primary && primary.thumbnail_url;
 };
 
 /**

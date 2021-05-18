@@ -9,10 +9,10 @@ import {
   Grid,
   Header,
   Icon,
-  Image,
   Transition
 } from 'semantic-ui-react';
 import _ from 'underscore';
+import Thumbnail from './Thumbnail';
 
 import type { ListProps } from 'react-components/types';
 
@@ -79,8 +79,8 @@ const ArtworksAccordion = (props: Props) => {
               width={2}
             >
               { item.primary_attachment && (
-                <Image
-                  src={item.primary_attachment.file_url}
+                <Thumbnail
+                  src={item.primary_attachment.thumbnail_url}
                   style={{
                     height: '100px',
                     objectFit: 'cover',

@@ -152,7 +152,7 @@ const Artwork = (props: Props) => (
         onFilesAdded={(files) => {
           _.each(files, (file) => props.onSaveChildAssociation('attachments', File.toAttachment(file)));
         }}
-        renderImage={(item) => item.file_url}
+        renderImage={(item) => item.thumbnail_url}
       />
     </SimpleEditPage.Tab>
   </SimpleEditPage>
