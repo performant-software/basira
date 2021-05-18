@@ -2,7 +2,8 @@
   "name": "BASIRA",
   "license": "MIT",
   "engines": {
-    "node": "14.5.0"
+    "node": "14.5.0",
+    "yarn": "1.x"
   },
   "scripts": {
     "build": "cd client && yarn install && yarn run build && cd ..",
