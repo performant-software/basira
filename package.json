@@ -8,6 +8,7 @@
   "scripts": {
     "build": "yarn --cwd client install && yarn --cwd client run build && cd ..",
     "deploy": "cp -a client/build/. public/",
-    "heroku-prebuild": "bash ./scripts/preinstall.sh"
+    "heroku-prebuild": "bash ./scripts/preinstall.sh",
+    "heroku-postbuild": "yarn build && yarn deploy"
   }
 }
