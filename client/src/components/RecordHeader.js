@@ -36,7 +36,6 @@ type Props = Translateable & {
 const POPUP_DELAY = 1000;
 
 const RecordHeader = (props: Props) => {
-  const [infoModal, setInfoModal] = useState(false);
   const [notesModal, setNotesModal] = useState(false);
 
   return (
@@ -113,39 +112,6 @@ const RecordHeader = (props: Props) => {
                 open
               />
             )}
-            {/*{ notesModal && (*/}
-            {/*  <NotesModal*/}
-            {/*    notes={props.item.admin_notes}*/}
-            {/*    onClose={() => setNotesModal(false)}*/}
-            {/*    onDelete={props.onDeleteChildAssociation.bind(this, 'admin_notes')}*/}
-            {/*    onSave={(notes) => props.onSetState({ admin_notes: notes })}*/}
-            {/*  />*/}
-            {/*)}*/}
-          </>
-        )}
-        { props.includeInfoButton && (
-          <>
-            <Popup
-              content={props.t('RecordHeader.popups.info.content')}
-              header={props.t('RecordHeader.popups.info.header')}
-              hideOnScroll
-              mouseEnterDelay={POPUP_DELAY}
-              position='top right'
-              trigger={(
-                <Button
-                  basic
-                  icon='info'
-                  onClick={() => setInfoModal(true)}
-                />
-              )}
-            />
-            {/*{ infoModal && (*/}
-            {/*  <InfoModal*/}
-            {/*    header={props.header}*/}
-            {/*    item={props.item}*/}
-            {/*    onClose={() => setInfoModal(false)}*/}
-            {/*  />*/}
-            {/*)}*/}
           </>
         )}
       </Card.Content>

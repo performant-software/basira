@@ -171,7 +171,7 @@ const Artwork = (props: Props) => {
       </SimpleEditPage.Tab>
     </SimpleEditPage>
   );
-}
+};
 
 export default useEditPage(Artwork, {
   onLoad: (id) => ArtworksService.fetchOne(id).then(({ data }) => data.artwork),
