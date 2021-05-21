@@ -5,6 +5,6 @@ export type Routeable = {
     pathname: string
   },
   history: {
-    push: (route: string) => void
+    push: (route: string, state?: any) => void
   }
 };

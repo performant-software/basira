@@ -1,0 +1,13 @@
+.images {
+  margin-top: 1em;
+}
+
+.images .ui.cards {
+  margin-top: 1em;
+}
+
+.images .ui.cards > .card > .image {
+  height: 275px;
+  object-fit: cover;
+  width: 275px;
+}

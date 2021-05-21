@@ -15,7 +15,7 @@ class Authentication {
    * @returns {Promise<AxiosResponse<any>>}
    */
   login(email: ?string, password: ?string) {
-    return axios.post('/api/auth/sign_in', { email, password });
+    return axios.post('/auth/sign_in', { email, password });
   }
 
   /**
@@ -24,7 +24,7 @@ class Authentication {
    * @returns {Promise<AxiosResponse<T>>}
    */
   logout() {
-    return axios.delete('/api/auth/sign_out');
+    return axios.delete('/auth/sign_out');
   }
 }
 

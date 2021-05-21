@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import { useDragDrop } from 'react-components';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import Admin from './pages/admin/Admin';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
@@ -14,4 +15,4 @@ const App = () => (
   </Router>
 );
 
-export default App;
+export default useDragDrop(App);
