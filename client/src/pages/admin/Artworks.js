@@ -10,6 +10,7 @@ import './Artworks.css';
 
 import type { ListProps } from 'react-components/types';
 import type { Routeable } from '../../types/Routeable';
+import withMenuBar from '../../hooks/MenuBar';
 
 type Props = ListProps & Routeable;
 
@@ -54,4 +55,4 @@ const Artworks = (props: Props) => (
   </Container>
 );
 
-export default withRouter(Artworks);
+export default withRouter(withMenuBar(Artworks));

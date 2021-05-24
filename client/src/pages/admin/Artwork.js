@@ -16,6 +16,7 @@ import useEditPage from './EditPage';
 import type { EditContainerProps } from 'react-components/types';
 import type { Artwork as ArtworkType } from '../../types/Artwork';
 import type { Translateable } from '../../types/Translateable';
+import withMenuBar from '../../hooks/MenuBar';
 
 type Props = EditContainerProps & Translateable & {
   item: ArtworkType
@@ -39,6 +40,7 @@ const Artwork = (props: Props) => {
 
   return (
     <SimpleEditPage
+      artworkId={props.item.id}
       errors={props.errors}
       loading={props.loading}
       onSave={props.onSave}
@@ -56,7 +58,7 @@ const Artwork = (props: Props) => {
       </SimpleEditPage.Header>
       <SimpleEditPage.Tab
         key={Tabs.details}
-        name={props.t('Artwork.tabs.details')}
+        name={props.t('Common.tabs.details')}
       >
         <Header
           content={props.t('Artwork.labels.titles')}
@@ -173,7 +175,8 @@ const Artwork = (props: Props) => {
   );
 };
 
-export default useEditPage(Artwork, {
+export default useEditPage(withMenuBar(Artwork), {
+  getArtworkId: (item) => item.id,
   onLoad: (id) => ArtworksService.fetchOne(id).then(({ data }) => data.artwork),
   onSave: (artwork) => ArtworksService.save(artwork),
   required: ['date_descriptor'],

@@ -2,30 +2,24 @@
 
 import React, { type ComponentType } from 'react';
 import { useEditContainer } from 'react-components';
-import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
-import { Container } from 'semantic-ui-react';
 import _ from 'underscore';
 
 type Config = {
   onLoad: (params: any) => Promise<any>,
   onSave: (item: any) => Promise<any>,
-  validate: (item: any) => any
+  validate?: (item: any) => any
 };
 
 const useEditPage = (WrappedComponent: ComponentType<any>, config: Config) => (
   (props: any) => {
     const { id } = useParams();
-    const { t } = useTranslation();
     const history = useHistory();
 
     const EditPage = (innerProps) => (
-      <Container>
-        <WrappedComponent
-          {...innerProps}
-          t={t}
-        />
-      </Container>
+      <WrappedComponent
+        {...innerProps}
+      />
     );
 
     const EditContainer = useEditContainer(EditPage);
@@ -35,7 +29,7 @@ const useEditPage = (WrappedComponent: ComponentType<any>, config: Config) => (
     return (
       <EditContainer
         {...props}
-        {..._.pick(config, 'defaults', 'required', 'validate')}
+        {..._.pick(config, 'defaults', 'getArtworkId', 'required', 'validate')}
         item={{ id }}
         onInitialize={config.onLoad}
         onSave={(item) => (

@@ -2,8 +2,10 @@
 
 import React from 'react';
 
+import withMenuBar from '../../hooks/MenuBar';
+
 const ValueLists = () => (
   <div>ValueLists</div>
 );
 
-export default ValueLists;
+export default withMenuBar(ValueLists);

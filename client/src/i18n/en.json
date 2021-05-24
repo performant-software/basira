@@ -24,7 +24,6 @@
       "titles": "Titles"
     },
     "tabs": {
-      "details": "Details",
       "images": "Images"
     },
     "titles": {
@@ -58,6 +57,9 @@
     "messages": {
       "loading": "Loading"
     },
+    "tabs": {
+      "details": "Details"
+    },
     "title": "BASIRA"
   },
   "Home": {
@@ -74,5 +76,13 @@
   },
   "NotesModal": {
     "title": "Internal Notes"
+  },
+  "PhysicalComponent": {
+    "labels": {
+      "depth": "Depth",
+      "height": "Height",
+      "name": "Name",
+      "width": "Width"
+    }
   }
 }

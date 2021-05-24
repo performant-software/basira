@@ -209,6 +209,9 @@ class SimpleEditPage extends Component<Props, State> {
       >
         <Grid
           columns={2}
+          style={{
+            marginLeft: '50px'
+          }}
         >
           <Grid.Column
             style={{
@@ -220,6 +223,10 @@ class SimpleEditPage extends Component<Props, State> {
           </Grid.Column>
           <Grid.Column
             className='five wide computer four wide large screen four wide widescreen column'
+            style={{
+              marginTop: '0.5em',
+              marginBottom: '0.5em'
+            }}
           >
             <Sticky
               context={this.contextRef}

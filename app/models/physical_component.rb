@@ -6,5 +6,5 @@ class PhysicalComponent < ApplicationRecord
   belongs_to :artwork
 
   # Resourceable parameters
-  allow_params :name, :height, :width, :depth
+  allow_params :artwork_id, :name, :height, :width, :depth
 end
