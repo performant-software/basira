@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_10_210159) do
+ActiveRecord::Schema.define(version: 2021_05_19_185806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,20 @@ ActiveRecord::Schema.define(version: 2021_05_10_210159) do
     t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
   end
 
+  create_table "physical_components", force: :cascade do |t|
+    t.bigint "artwork_id", null: false
+    t.string "name"
+    t.integer "height"
+    t.integer "width"
+    t.integer "depth"
+    t.string "notes"
+    t.string "airtable_id"
+    t.datetime "airtable_timestamp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artwork_id"], name: "index_physical_components_on_artwork_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -108,4 +122,5 @@ ActiveRecord::Schema.define(version: 2021_05_10_210159) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artwork_titles", "artworks"
+  add_foreign_key "physical_components", "artworks"
 end

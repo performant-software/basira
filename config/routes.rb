@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :artworks
     resources :home, only: :index
+    resources :physical_components, except: :index
   end
 
   # Default route for static front-end
