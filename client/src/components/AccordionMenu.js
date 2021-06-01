@@ -16,6 +16,7 @@ import _ from 'underscore';
 import ArtworksService from '../services/Artworks';
 import ItemLabel from './ItemLabel';
 import PhysicalComponentsService from '../services/PhysicalComponents';
+import VisualContextsService from '../services/VisualContexts';
 import './AccordionMenu.css';
 
 import type { Routeable } from '../types/Routeable';
@@ -192,30 +193,12 @@ const AccordionMenu = (props: Props) => {
   );
 
   /**
-   * Transforms the passed physical component to a nested structure.
-   *
-   * @param pc
-   *
-   * @returns {{image: (*|string|string), path: string, color: string, level: number, name, id, type: string}}
-   */
-  const transformPhysicalComponent = (parent, pc) => ({
-    id: pc.id,
-    name: pc.name,
-    image: pc.primary_attachment && pc.primary_attachment.thumbnail_url,
-    type: 'Physical Component',
-    level: 1,
-    path: `/admin/physical_components/${pc.id}`,
-    parent,
-    onDelete: () => PhysicalComponentsService.delete(pc)
-  });
-
-  /**
    * Transforms the passed artwork to a  nested structure.
    *
    * @param a
    *
-   * @returns {{image: (*|string|string), path: string, color: string, level: number,
-   * children, name: *, id, type: string}}
+   * @returns {{image: (*|string|string), path: string, onDelete: (function(): Q.Promise<AxiosResponse<T>>),
+   * level: number, children, name: *, id, type: string, onAdd: (function(): *)}}
    */
   const transformArtwork = (a) => ({
     id: a.id,
@@ -227,6 +210,48 @@ const AccordionMenu = (props: Props) => {
     onAdd: () => props.history.push('/admin/physical_components/new', { artwork_id: a.id }),
     onDelete: () => ArtworksService.delete(a),
     children: _.map(a.physical_components, transformPhysicalComponent.bind(this, a))
+  });
+
+  /**
+   * Transforms the passed physical component to a nested structure.
+   *
+   * @param parent
+   * @param pc
+   *
+   * @returns {{image: (*|string|string), path: string, parent, onDelete: (function(): Q.Promise<AxiosResponse<T>>),
+   * level: number, children, name, id, type: string, onAdd: (function(): *)}}
+   */
+  const transformPhysicalComponent = (parent, pc) => ({
+    id: pc.id,
+    name: pc.name,
+    image: pc.primary_attachment && pc.primary_attachment.thumbnail_url,
+    type: 'Physical Component',
+    level: 1,
+    path: `/admin/physical_components/${pc.id}`,
+    parent,
+    onAdd: () => props.history.push('/admin/visual_contexts/new', { physical_component_id: pc.id }),
+    onDelete: () => PhysicalComponentsService.delete(pc),
+    children: _.map(pc.visual_contexts, transformVisualContexts.bind(this, pc))
+  });
+
+  /**
+   * Transforms the passed visual context to a nested structure.
+   *
+   * @param parent
+   * @param vc
+   *
+   * @returns {{image: (*|string|string), path: string, parent, onDelete: (function(): Q.Promise<AxiosResponse<T>>),
+   * level: number, name, id, type: string}}
+   */
+  const transformVisualContexts = (parent, vc) => ({
+    id: vc.id,
+    name: vc.name,
+    image: vc.primary_attachment && vc.primary_attachment.thumbnail_url,
+    type: 'Visual Context',
+    level: 2,
+    path: `/admin/visual_contexts/${vc.id}`,
+    parent,
+    onDelete: () => VisualContextsService.delete(vc)
   });
 
   /**

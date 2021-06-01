@@ -15,6 +15,7 @@ import PhysicalComponent from './PhysicalComponent';
 import Places from './Places';
 import Users from './Users';
 import ValueLists from './ValueLists';
+import VisualContext from './VisualContext';
 import './Admin.css';
 
 const Admin = () => (
@@ -50,6 +51,14 @@ const Admin = () => (
     <Route
       path='/admin/value_lists'
       component={ValueLists}
+    />
+    <Route
+      path='/admin/visual_contexts/new'
+      component={VisualContext}
+    />
+    <Route
+      path='/admin/visual_contexts/:id'
+      component={VisualContext}
     />
     <Route
       path='/admin/users'
