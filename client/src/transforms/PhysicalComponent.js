@@ -29,7 +29,8 @@ class PhysicalComponent extends FormDataTransform {
       'name',
       'height',
       'width',
-      'depth'
+      'depth',
+      'notes'
     ];
   }
 

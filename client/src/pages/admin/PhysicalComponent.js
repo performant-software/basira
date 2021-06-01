@@ -82,13 +82,14 @@ const PhysicalComponent = (props: Props) => {
           )}
           header={props.item.name}
           image={getImageUrl()}
-          includeNotesButton={false}
           includePublishButton={false}
+          notes={props.item.notes}
           onFileDelete={onDeleteImage}
           onFileUpload={(files) => {
             onDeleteImage();
             props.onSaveChildAssociation('attachments', File.toAttachment(_.first(files), true));
           }}
+          onNotesChange={props.onTextInputChange.bind(this, 'notes')}
         />
       </SimpleEditPage.Header>
       <SimpleEditPage.Tab
