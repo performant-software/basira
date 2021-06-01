@@ -1,11 +1,3 @@
-.home {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: center;
-}
-
 .home .ui.header.huge {
   font-size: 4em;
 }
@@ -14,4 +6,58 @@
   font-size: 0.3em;
   padding-bottom: 1em;
   padding-top: 1em;
+}
+
+.home .image-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 200px;
+  grid-gap: 10px;
+}
+
+.home .image-container > .image {
+  border-radius: 0.28571429rem;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.hidden-image {
+  visibility: hidden;
+}
+
+.fade-in-image {
+  animation: fadeIn 3s;
+  -webkit-animation: fadeIn 3s;
+  -moz-animation: fadeIn 3s;
+  -o-animation: fadeIn 3s;
+  -ms-animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+  0% { opacity:0; }
+  100% { opacity:1; }
+}
+
+@-moz-keyframes fadeIn {
+  0% { opacity:0; }
+  100% { opacity:1; }
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity:0; }
+  100% { opacity:1; }
+}
+
+@-o-keyframes fadeIn {
+  0% { opacity:0; }
+  100% { opacity:1; }
+}
+
+@-ms-keyframes fadeIn {
+  0% { opacity:0; }
+  100% { opacity:1; }
 }

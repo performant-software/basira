@@ -10,7 +10,9 @@ import './App.css';
 
 const App = () => (
   <Router>
-    <Route exact path='/' component={Home} />
+    <Route exact path='/'>
+      <Home images={6} />
+    </Route>
     <AuthenticatedRoute path='/admin' component={Admin} />
   </Router>
 );

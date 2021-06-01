@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { LoginModal } from 'react-components';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
@@ -9,22 +9,61 @@ import {
   Container,
   Header,
   Icon,
+  Image,
   Segment
 } from 'semantic-ui-react';
 import Authentication from '../services/Authentication';
+import HomeService from '../services/Home';
 import Session from '../services/Session';
 import './Home.css';
 
 import type { Translateable } from '../types/Translateable';
 import type { Routeable } from '../types/Routeable';
+import _ from 'underscore';
 
-type Props = Routeable & Translateable;
+type Props = Routeable & Translateable & {
+  images: number
+};
 
 const Home = (props: Props) => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [loginFailed, setLoginFailed] = useState(false);
   const [modal, setModal] = useState(false);
+  const [images, setImages] = useState([]);
+  const [loadedImages, setLoadedImages] = useState([]);
+
+  useEffect(() => {
+    HomeService
+      .fetchAll({ limit: props.images })
+      .then(({ data }) => {
+        setImages(_.map(data.homes, (item) => item.primary_attachment.thumbnail_url));
+      });
+  }, [props.images]);
+
+  /**
+   * Returns the class name for the passed image.
+   *
+   * @type {function(*=): string}
+   */
+  const getClassName = useCallback((image) => {
+    let className = 'hidden-image';
+
+    if (_.contains(loadedImages, image)) {
+      className = 'fade-in-image';
+    }
+
+    return className;
+  }, [loadedImages]);
+
+  /**
+   * Tracks that the passed image has been loaded.
+   *
+   * @param image
+   */
+  const onImageLoad = (image) => {
+    setLoadedImages((prevLoadedImages) => [...prevLoadedImages, image]);
+  };
 
   return (
     <div
@@ -36,14 +75,27 @@ const Home = (props: Props) => {
         <Segment
           basic
         >
+          <div
+            className='image-container'
+          >
+            { _.map(images, (image, index) => (
+              <Image
+                className={getClassName(image)}
+                key={index}
+                onError={() => onImageLoad(image)}
+                onLoad={() => onImageLoad(image)}
+                src={image}
+              />
+            ))}
+          </div>
           <Header
             content={props.t('Common.title')}
             size='huge'
             subheader={props.t('Home.subtitle')}
           />
           <Button
-            basic
             onClick={() => setModal(true)}
+            primary
             size='big'
           >
             { props.t('Home.buttons.login') }
