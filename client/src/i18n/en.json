@@ -58,6 +58,10 @@
     "errors": {
       "header": "Oops!"
     },
+    "labels": {
+      "artwork": "Artwork",
+      "physicalComponent": "Physical Component"
+    },
     "messages": {
       "loading": "Loading"
     },
@@ -87,6 +91,11 @@
       "height": "Height",
       "name": "Name",
       "width": "Width"
+    }
+  },
+  "SimpleEditPage": {
+    "labels": {
+      "add": "Add New {{type}}"
     }
   }
 }

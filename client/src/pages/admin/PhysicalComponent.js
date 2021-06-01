@@ -3,17 +3,19 @@
 import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Form } from 'semantic-ui-react';
+import ItemLabel from '../../components/ItemLabel';
 import withMenuBar from '../../hooks/MenuBar';
 import SimpleEditPage from '../../components/SimpleEditPage';
+import PhysicalComponentsService from '../../services/PhysicalComponents';
 import RecordHeader from '../../components/RecordHeader';
 import useEditPage from './EditPage';
-import PhysicalComponentsService from '../../services/PhysicalComponents';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { PhysicalComponent as PhysicalComponentType } from '../../types/PhysicalComponent';
 import type { Translateable } from '../../types/Translateable';
+import type { Routeable } from '../../types/Routeable';
 
-type Props = EditContainerProps & Translateable & {
+type Props = EditContainerProps & Routeable & Translateable & {
   item: PhysicalComponentType
 };
 
@@ -24,7 +26,7 @@ const Tabs = {
 const PhysicalComponent = (props: Props) => {
   useEffect(() => {
     if (props.location.state && props.location.state.artwork_id) {
-      props.onSetState({ artwork_id: props.location.state.artworkId });
+      props.onSetState({ artwork_id: props.location.state.artwork_id });
     }
   }, []);
 
@@ -34,9 +36,16 @@ const PhysicalComponent = (props: Props) => {
       errors={props.errors}
       loading={props.loading}
       onSave={props.onSave}
+      type={props.item.id ? undefined : props.t('Common.labels.physicalComponent')}
     >
       <SimpleEditPage.Header>
         <RecordHeader
+          description={(
+            <ItemLabel
+              content={props.t('Common.labels.physicalComponent')}
+              level={1}
+            />
+          )}
           header={props.item.name}
           image={props.item.primary_attachment && props.item.primary_attachment.thumbnail_url}
           includeNotesButton={false}
@@ -47,8 +56,6 @@ const PhysicalComponent = (props: Props) => {
         key={Tabs.details}
         name={props.t('Common.tabs.details')}
       >
-        <div>{props.artwork_id}</div>
-        <div>{props.location.state && props.location.state.artwork_id}</div>
         <Form.Input
           error={props.isError('name')}
           label={props.t('PhysicalComponent.labels.name')}

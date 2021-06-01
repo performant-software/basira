@@ -2,7 +2,8 @@
 
 export type Routeable = {
   location: {
-    pathname: string
+    pathname: string,
+    state: any
   },
   history: {
     push: (route: string, state?: any) => void

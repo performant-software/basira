@@ -9,14 +9,15 @@ import ArtworksService from '../../services/Artworks';
 import File from '../../transforms/File';
 import i18n from '../../i18n/i18n';
 import Images from '../../components/Images';
+import ItemLabel from '../../components/ItemLabel';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import useEditPage from './EditPage';
+import withMenuBar from '../../hooks/MenuBar';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { Artwork as ArtworkType } from '../../types/Artwork';
 import type { Translateable } from '../../types/Translateable';
-import withMenuBar from '../../hooks/MenuBar';
 
 type Props = EditContainerProps & Translateable & {
   item: ArtworkType
@@ -44,9 +45,16 @@ const Artwork = (props: Props) => {
       errors={props.errors}
       loading={props.loading}
       onSave={props.onSave}
+      type={props.item.id ? undefined : props.t('Common.labels.artwork')}
     >
       <SimpleEditPage.Header>
         <RecordHeader
+          description={(
+            <ItemLabel
+              content={props.t('Common.labels.artwork')}
+              level={0}
+            />
+          )}
           header={getTitle()}
           image={getImage()}
           meta={props.item.date_descriptor}
