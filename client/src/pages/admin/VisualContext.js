@@ -1,23 +1,23 @@
 // @flow
 
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Form } from 'semantic-ui-react';
-import _ from 'underscore';
-import File from '../../transforms/File';
 import ItemLabel from '../../components/ItemLabel';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import useEditPage from './EditPage';
 import VisualContextsService from '../../services/VisualContexts';
 import withMenuBar from '../../hooks/MenuBar';
+import withSingleImage from '../../hooks/Image';
 
 import type { EditContainerProps } from 'react-components/types';
+import type { ImageProps } from '../../hooks/Image';
 import type { VisualContext as VisualContextType } from '../../types/VisualContext';
 import type { Translateable } from '../../types/Translateable';
 import type { Routeable } from '../../types/Routeable';
 
-type Props = EditContainerProps & Routeable & Translateable & {
+type Props = EditContainerProps & ImageProps & Routeable & Translateable & {
   item: VisualContextType
 };
 
@@ -27,37 +27,8 @@ const Tabs = {
 
 const VisualContext = (props: Props) => {
   /**
-   * Deletes the attached image.
-   *
-   * @type {function(): void}
+   * Sets the physical_component_id from the state.
    */
-  const onDeleteImage = useCallback(() => {
-    const image = getImage();
-    if (image) {
-      props.onDeleteChildAssociation('attachments', image);
-    }
-  }, [props.onDeleteChildAssociation]);
-
-  /**
-   * Returns the first primary, non-deleted image attachment.
-   *
-   * @type {function(): *}
-   */
-  const getImage = useCallback(
-    () => _.find(props.item.attachments, (a) => a.primary && !a._destroy),
-    [props.item.attachments]
-  );
-
-  /**
-   * Returns the primary image URL.
-   *
-   * @returns {*|string|string}
-   */
-  const getImageUrl = () => {
-    const image = getImage();
-    return image && image.file_url;
-  };
-
   useEffect(() => {
     if (props.location.state && props.location.state.physical_component_id) {
       props.onSetState({ physical_component_id: props.location.state.physical_component_id });
@@ -81,14 +52,11 @@ const VisualContext = (props: Props) => {
             />
           )}
           header={props.item.name}
-          image={getImageUrl()}
+          image={props.image && props.image.file_url}
           includeNotesButton={false}
           includePublishButton={false}
-          onFileDelete={onDeleteImage}
-          onFileUpload={(files) => {
-            onDeleteImage();
-            props.onSaveChildAssociation('attachments', File.toAttachment(_.first(files), true));
-          }}
+          onFileDelete={props.onDeleteImage}
+          onFileUpload={props.onSaveImage}
         />
       </SimpleEditPage.Header>
       <SimpleEditPage.Tab
@@ -135,7 +103,7 @@ const VisualContext = (props: Props) => {
   );
 };
 
-export default useEditPage(withRouter(withMenuBar(VisualContext)), {
+export default useEditPage(withRouter(withMenuBar(withSingleImage(VisualContext))), {
   getArtworkId: (item) => item.artwork_id,
   onLoad: (id) => VisualContextsService.fetchOne(id).then(({ data }) => data.visual_context),
   onSave: (pc) => VisualContextsService.save(pc)
