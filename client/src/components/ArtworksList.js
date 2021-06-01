@@ -3,12 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDataList, useList, SORT_ASCENDING } from 'react-components';
 import {
-  Accordion,
   Button,
   Divider,
   Grid,
   Header,
-  Icon,
   Transition
 } from 'semantic-ui-react';
 import _ from 'underscore';
@@ -28,10 +26,12 @@ type Props = ListProps & {
   sortDirection: string
 };
 
-const ArtworksAccordion = (props: Props) => {
-  const [activeIndexes, setActiveIndexes] = useState([]);
+const ArtworksList = (props: Props) => {
   const [hoverIndex, setHoverIndex] = useState(-1);
 
+  /**
+   * Sorts the list by the selected sort column.
+   */
   useEffect(() => {
     const { page, sortDirection = SORT_ASCENDING } = props;
 
@@ -45,32 +45,16 @@ const ArtworksAccordion = (props: Props) => {
     props.onSort(sortColumn, sortDirection, page);
   }, []);
 
-  const isActive = (index) => _.contains(activeIndexes, index);
-
-  const onItemClick = (item, index) => {
-    if (isActive(index)) {
-      setActiveIndexes((prevActive) => _.filter(prevActive, (i) => i !== index));
-    } else {
-      setActiveIndexes((prevActive) => [...prevActive, index]);
-    }
-  };
-
   return (
-    <Accordion
-      as={Grid}
+    <Grid
+      className='artworks-list'
       fluid
-      style={{
-        marginTop: '1em'
-      }}
     >
       { _.map(props.items, (item, index) => (
         <>
-          <Accordion.Title
-            active={isActive(index)}
-            as={Grid.Row}
-            columns={3}
-            index={index}
-            onClick={onItemClick.bind(this, item, index)}
+          <Grid.Row
+            columns={2}
+            key={index}
             onMouseEnter={() => setHoverIndex(index)}
             onMouseLeave={() => setHoverIndex(-1)}
             verticalAlign='middle'
@@ -119,44 +103,14 @@ const ArtworksAccordion = (props: Props) => {
                 </Transition>
               )}
             </Grid.Column>
-            <Grid.Column
-              width={1}
-            >
-              <Icon
-                name={isActive(index) ? 'angle down' : 'angle right'}
-                size='big'
-                style={{
-                  color: 'rgba(0, 0, 0, 0.6)'
-                }}
-              />
-            </Grid.Column>
-          </Accordion.Title>
-          <Transition
-            duration={200}
-            visible={isActive(index)}
-          >
-            <Accordion.Content
-              active={isActive(index)}
-              as={Grid.Row}
-              columns={2}
-            >
-              <Grid.Column
-                width={2}
-              />
-              <Grid.Column
-                width={14}
-              >
-                Child content!
-              </Grid.Column>
-            </Accordion.Content>
-          </Transition>
+          </Grid.Row>
           { index < (props.perPage - 1) && (
             <Divider />
           )}
         </>
       ))}
-    </Accordion>
+    </Grid>
   );
 };
 
-export default useDataList(useList(ArtworksAccordion));
+export default useDataList(useList(ArtworksList));

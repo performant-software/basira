@@ -4,19 +4,19 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import _ from 'underscore';
-import ArtworksAccordion from '../../components/ArtworksAccordion';
+import ArtworksList from '../../components/ArtworksList';
 import ArtworksService from '../../services/Artworks';
+import withMenuBar from '../../hooks/MenuBar';
 import './Artworks.css';
 
 import type { ListProps } from 'react-components/types';
 import type { Routeable } from '../../types/Routeable';
-import withMenuBar from '../../hooks/MenuBar';
 
 type Props = ListProps & Routeable;
 
 const Artworks = (props: Props) => (
   <Container>
-    <ArtworksAccordion
+    <ArtworksList
       actions={[{
         icon: 'plus',
         name: 'add',
