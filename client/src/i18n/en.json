@@ -1,4 +1,8 @@
 {
+  "AccordionMenu": {
+    "deleteContent": "Are you sure you want to remove {{name}}?",
+    "deleteHeader": "Confirm Remove"
+  },
   "Admin": {
     "buttons": {
       "logout": "Logout"
@@ -24,7 +28,6 @@
       "titles": "Titles"
     },
     "tabs": {
-      "details": "Details",
       "images": "Images"
     },
     "titles": {
@@ -55,8 +58,15 @@
     "errors": {
       "header": "Oops!"
     },
+    "labels": {
+      "artwork": "Artwork",
+      "physicalComponent": "Physical Component"
+    },
     "messages": {
       "loading": "Loading"
+    },
+    "tabs": {
+      "details": "Details"
     },
     "title": "BASIRA"
   },
@@ -74,5 +84,24 @@
   },
   "NotesModal": {
     "title": "Internal Notes"
+  },
+  "PhysicalComponent": {
+    "labels": {
+      "depth": "Depth",
+      "height": "Height",
+      "name": "Name",
+      "width": "Width"
+    }
+  },
+  "RecordHeader": {
+    "buttons": {
+      "remove": "Remove",
+      "upload": "Upload"
+    }
+  },
+  "SimpleEditPage": {
+    "labels": {
+      "add": "Add New {{type}}"
+    }
   }
 }

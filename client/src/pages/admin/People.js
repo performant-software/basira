@@ -2,8 +2,10 @@
 
 import React from 'react';
 
+import withMenuBar from '../../hooks/MenuBar';
+
 const People = () => (
   <div>People</div>
 );
 
-export default People;
+export default withMenuBar(People);

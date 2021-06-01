@@ -10,6 +10,7 @@ import {
   Dimmer,
   Form,
   Grid,
+  Header,
   Loader,
   Menu,
   Message,
@@ -17,10 +18,11 @@ import {
   Sticky
 } from 'semantic-ui-react';
 import _ from 'underscore';
-
 import i18n from '../i18n/i18n';
 
-type Props = {
+import type { Translateable } from '../types/Translateable';
+
+type Props = Translateable & {
   children: Component<{}>,
   className?: string,
   errors: Array<string>,
@@ -29,7 +31,8 @@ type Props = {
   onSave: (item: any) => Promise<any>,
   saving: boolean,
   showLoading?: boolean,
-  stickyMenu?: boolean
+  stickyMenu?: boolean,
+  type?: string
 };
 
 type State = {
@@ -190,6 +193,24 @@ class SimpleEditPage extends Component<Props, State> {
   }
 
   /**
+   * Renders the "Add New <type>" header.
+   *
+   * @returns {JSX.Element|null}
+   */
+  renderNew() {
+    if (!this.props.type) {
+      return null;
+    }
+
+    return (
+      <Header
+        content={i18n.t('SimpleEditPage.labels.add', { type: this.props.type })}
+        size='large'
+      />
+    );
+  }
+
+  /**
    * Renders the current page.
    *
    * @returns {null|*}
@@ -209,17 +230,25 @@ class SimpleEditPage extends Component<Props, State> {
       >
         <Grid
           columns={2}
+          style={{
+            marginLeft: '50px'
+          }}
         >
           <Grid.Column
             style={{
               flexGrow: '1'
             }}
           >
+            { this.renderNew() }
             { this.renderMenu(tabs) }
             { tab && tab.props.children }
           </Grid.Column>
           <Grid.Column
             className='five wide computer four wide large screen four wide widescreen column'
+            style={{
+              marginTop: '0.5em',
+              marginBottom: '0.5em'
+            }}
           >
             <Sticky
               context={this.contextRef}
@@ -239,7 +268,7 @@ class SimpleEditPage extends Component<Props, State> {
                     <Button
                       content={i18n.t('Common.buttons.cancel')}
                       inverted
-                      onClick={() => this.props.history.goBack()}
+                      onClick={() => this.props.history.push('/admin/artworks')}
                       primary
                     />
                   </div>
@@ -306,19 +335,20 @@ class SimpleEditPage extends Component<Props, State> {
   }
 }
 
-const Header = (props) => props.children;
-Header.displayName = 'Header';
+const HeaderComponent = (props) => props.children;
+HeaderComponent.displayName = 'Header';
 
 const Tab = (props) => props.children;
 Tab.displayName = 'Tab';
 
-SimpleEditPage.Header = Header;
+SimpleEditPage.Header = HeaderComponent;
 SimpleEditPage.Tab = Tab;
 
 SimpleEditPage.defaultProps = {
   className: undefined,
   showLoading: true,
-  stickyMenu: true
+  stickyMenu: true,
+  type: undefined
 };
 
 export default withRouter(SimpleEditPage);

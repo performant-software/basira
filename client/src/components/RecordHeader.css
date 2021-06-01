@@ -2,6 +2,10 @@
   margin-bottom: 1em;
 }
 
+.record-header .image-container img {
+  width: 100%;
+}
+
 .record-header .lazy-image.ui.segment {
   margin-top: 0;
 }
