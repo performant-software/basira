@@ -246,7 +246,7 @@ class SimpleEditPage extends Component<Props, State> {
                     <Button
                       content={i18n.t('Common.buttons.cancel')}
                       inverted
-                      onClick={() => this.props.history.goBack()}
+                      onClick={() => this.props.history.push('/admin/artworks')}
                       primary
                     />
                   </div>

@@ -1,26 +1,36 @@
 // @flow
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { NestedAccordion } from 'react-components';
+import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import {
-  Button, Confirm,
+  Button,
+  Confirm,
+  Grid,
   Image,
-  Label,
-  Loader
+  Loader,
+  Modal
 } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworksService from '../services/Artworks';
+import ItemLabel from './ItemLabel';
 import PhysicalComponentsService from '../services/PhysicalComponents';
 import './AccordionMenu.css';
 
 import type { Routeable } from '../types/Routeable';
+import type { Translateable } from '../types/Translateable';
 
 type Item = {
-  onDelete: () => void
+  level: number,
+  name: string,
+  parent?: Item,
+  path: string,
+  onDelete: () => Promise<any>,
+  type: string
 };
 
-type Props = Routeable & {
+type Props = Routeable & Translateable & {
   id: number
 };
 
@@ -28,6 +38,17 @@ const AccordionMenu = (props: Props) => {
   const [artwork, setArtwork] = useState(null);
   const [defaultActive, setDefaultActive] = useState([]);
   const [selectedItem, setSelectedItem] = useState<?Item>(null);
+
+  /**
+   * Calls the ArtworksService to load the data.
+   */
+  const fetchData = useCallback(() => {
+    ArtworksService
+      .fetchNested(props.id)
+      .then(({ data }) => {
+        setArtwork(transformArtwork(data.artwork));
+      });
+  }, [props.id]);
 
   /**
    * Returns true if the passed item or any of its children is active. The IDs are also added to the list of
@@ -57,11 +78,44 @@ const AccordionMenu = (props: Props) => {
   };
 
   /**
+   * Returns true if the passed item or any of its ancestors are the deleted item.
+   *
+   * @type {function(Item)}
+   */
+  const isDeleted = useCallback(
+    (item: Item) => (item === selectedItem && isItemActive(item)) || (item.parent && isDeleted(item.parent)),
+    [selectedItem]
+  );
+
+  /**
    * Returns true if the passed item is the active item.
    *
    * @param item
+   *
+   * @returns {RegExp$matchResult}
    */
-  const isItemActive = (item) => props.location.pathname.match(item.path);
+  const isItemActive = (item: Item) => props.location.pathname.match(item.path);
+
+  /**
+   * Deletes the selected item and refreshes the data, or navigates to the artworks list.
+   *
+   * @type {function(): void}
+   */
+  const onDelete = useCallback(() => {
+    if (selectedItem) {
+      selectedItem
+        .onDelete()
+        .then(() => {
+          // If we're deleting the active record, or a parent of the active record, navigate to the artworks list
+          if (isDeleted(selectedItem)) {
+            props.history.push('/admin/artworks');
+          } else {
+            setSelectedItem(null);
+            fetchData();
+          }
+        });
+    }
+  }, [selectedItem]);
 
   /**
    * Renders the actions for the passed item.
@@ -120,9 +174,9 @@ const AccordionMenu = (props: Props) => {
         marginLeft: `${item.level}em`
       }}
     >
-      <Label
-        color={item.color}
+      <ItemLabel
         content={item.type}
+        level={item.level}
       />
       { item.image && (
         <Image
@@ -144,14 +198,14 @@ const AccordionMenu = (props: Props) => {
    *
    * @returns {{image: (*|string|string), path: string, color: string, level: number, name, id, type: string}}
    */
-  const transformPhysicalComponent = (pc) => ({
+  const transformPhysicalComponent = (parent, pc) => ({
     id: pc.id,
     name: pc.name,
     image: pc.primary_attachment && pc.primary_attachment.thumbnail_url,
     type: 'Physical Component',
     level: 1,
-    color: 'orange',
     path: `/admin/physical_components/${pc.id}`,
+    parent,
     onDelete: () => PhysicalComponentsService.delete(pc)
   });
 
@@ -169,25 +223,68 @@ const AccordionMenu = (props: Props) => {
     image: a.primary_attachment && a.primary_attachment.thumbnail_url,
     type: 'Artwork',
     level: 0,
-    color: 'blue',
     path: `/admin/artworks/${a.id}`,
     onAdd: () => props.history.push('/admin/physical_components/new', { artwork_id: a.id }),
     onDelete: () => ArtworksService.delete(a),
-    children: _.map(a.physical_components, transformPhysicalComponent.bind(this))
+    children: _.map(a.physical_components, transformPhysicalComponent.bind(this, a))
   });
 
   /**
-   * Calls the ArtworksService to load the data.
+   * Returns the delete modal content.
+   *
+   * @type {unknown}
+   */
+  const renderDeleteContent = useCallback(() => {
+    if (!selectedItem) {
+      return null;
+    }
+
+    return (
+      <Modal.Content>
+        { props.t('AccordionMenu.deleteContent', { name: selectedItem.name }) }
+      </Modal.Content>
+    );
+  }, [selectedItem]);
+
+  /**
+   * Returns the delete modal header.
+   *
+   * @type {unknown}
+   */
+  const renderDeleteHeader = useCallback(() => {
+    if (!selectedItem) {
+      return null;
+    }
+
+    return (
+      <Modal.Header>
+        <Grid
+          columns={2}
+        >
+          <Grid.Column>
+            { props.t('AccordionMenu.deleteHeader') }
+          </Grid.Column>
+          <Grid.Column
+            textAlign='right'
+          >
+            <ItemLabel
+              content={selectedItem.type}
+              level={selectedItem.level}
+            />
+          </Grid.Column>
+        </Grid>
+      </Modal.Header>
+    );
+  }, [selectedItem]);
+
+  /**
+   * Fetches the data.
    */
   useEffect(() => {
     if (props.id) {
-      ArtworksService
-        .fetchNested(props.id)
-        .then(({ data }) => {
-          setArtwork(transformArtwork(data.artwork));
-        });
+      fetchData();
     }
-  }, [props.id]);
+  }, [props.id, fetchData]);
 
   /**
    * Sets the default active items.
@@ -226,14 +323,11 @@ const AccordionMenu = (props: Props) => {
             toggleOnClick
           />
           <Confirm
+            content={renderDeleteContent}
+            header={renderDeleteHeader}
             open={!!selectedItem}
             onCancel={() => setSelectedItem(null)}
-            onConfirm={() => {
-              if (selectedItem) {
-                selectedItem.onDelete();
-                setSelectedItem(null);
-              }
-            }}
+            onConfirm={onDelete}
           />
         </>
       )}
@@ -241,4 +335,4 @@ const AccordionMenu = (props: Props) => {
   );
 };
 
-export default withRouter(AccordionMenu);
+export default withTranslation()(withRouter(AccordionMenu));

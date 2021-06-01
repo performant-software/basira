@@ -1,4 +1,8 @@
 {
+  "AccordionMenu": {
+    "deleteContent": "Are you sure you want to remove {{name}}?",
+    "deleteHeader": "Confirm Remove"
+  },
   "Admin": {
     "buttons": {
       "logout": "Logout"
