@@ -9407,9 +9407,9 @@ react-color@^2.18.1:
     reactcss "^1.2.0"
     tinycolor2 "^1.4.1"
 
-"react-components@git+ssh://git@react-components:performant-software/react-components.git#feature/basira2_physical_components":
+"react-components@git+ssh://git@react-components:performant-software/react-components.git":
   version "1.0.0"
-  resolved "git+ssh://git@react-components:performant-software/react-components.git#8cca65bb37f0b917ffcd8188ecaccb4732da110a"
+  resolved "git+ssh://git@react-components:performant-software/react-components.git#33500c03d930419bd1595b6f13b6614cca5c0622"
   dependencies:
     moment "^2.27.0"
     moment-islamic-civil ACGC/moment-islamic-civil
