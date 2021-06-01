@@ -3,7 +3,8 @@ module AirtableImporter
     def self.get_model_classes
       [
         Models::Artwork,
-        Models::PhysicalComponent
+        Models::PhysicalComponent,
+        Models::VisualContext
       ]
     end
   end

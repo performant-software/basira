@@ -48,6 +48,10 @@ module AirtableImporter
 
       protected
 
+      def attachment_airtable_id(airtable_id)
+        "#{model_class.to_s}-#{airtable_id}"
+      end
+
       def columns
       end
 
