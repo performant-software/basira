@@ -1,6 +1,7 @@
 // @flow
 
 import React, { useState, type Element } from 'react';
+import { FileInputButton, LazyImage } from 'react-components';
 import { withTranslation } from 'react-i18next';
 import {
   Button,
@@ -9,7 +10,6 @@ import {
 } from 'semantic-ui-react';
 import _ from 'underscore';
 import NotesModal from './NotesModal';
-import Thumbnail from './Thumbnail';
 import './RecordHeader.css';
 
 import type { EditContainerProps } from 'react-components/types';
@@ -27,6 +27,8 @@ type Props = Translateable & {
   published: boolean,
   meta?: string,
   notes: string,
+  onFileDelete: () => void,
+  onFileUpload: (files: Array<File>) => void,
   onNotesChange: (notes: string) => void,
   onPublish: () => void,
   renderContent?: () => Element<any>,
@@ -45,9 +47,26 @@ const RecordHeader = (props: Props) => {
       <div
         className='image-container'
       >
-        <Thumbnail
+        <LazyImage
           src={props.image}
-        />
+        >
+          { props.onFileUpload && (
+            <FileInputButton
+              color='green'
+              content={props.t('RecordHeader.buttons.upload')}
+              icon='cloud upload'
+              onSelection={props.onFileUpload.bind(this)}
+            />
+          )}
+          { props.image && props.onFileDelete && (
+            <Button
+              color='red'
+              content={props.t('RecordHeader.buttons.remove')}
+              icon='trash'
+              onClick={props.onFileDelete.bind(this)}
+            />
+          )}
+        </LazyImage>
       </div>
       { props.header && (
         <Card.Header

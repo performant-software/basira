@@ -93,6 +93,12 @@
       "width": "Width"
     }
   },
+  "RecordHeader": {
+    "buttons": {
+      "remove": "Remove",
+      "upload": "Upload"
+    }
+  },
   "SimpleEditPage": {
     "labels": {
       "add": "Add New {{type}}"

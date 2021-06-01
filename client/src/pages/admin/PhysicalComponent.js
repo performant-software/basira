@@ -1,19 +1,21 @@
 // @flow
 
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Form } from 'semantic-ui-react';
+import File from '../../transforms/File';
 import ItemLabel from '../../components/ItemLabel';
 import withMenuBar from '../../hooks/MenuBar';
-import SimpleEditPage from '../../components/SimpleEditPage';
 import PhysicalComponentsService from '../../services/PhysicalComponents';
 import RecordHeader from '../../components/RecordHeader';
+import SimpleEditPage from '../../components/SimpleEditPage';
 import useEditPage from './EditPage';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { PhysicalComponent as PhysicalComponentType } from '../../types/PhysicalComponent';
 import type { Translateable } from '../../types/Translateable';
 import type { Routeable } from '../../types/Routeable';
+import _ from 'underscore';
 
 type Props = EditContainerProps & Routeable & Translateable & {
   item: PhysicalComponentType
@@ -24,6 +26,38 @@ const Tabs = {
 };
 
 const PhysicalComponent = (props: Props) => {
+  /**
+   * Deletes the attached image.
+   *
+   * @type {function(): void}
+   */
+  const onDeleteImage = useCallback(() => {
+    const image = getImage();
+    if (image) {
+      props.onDeleteChildAssociation('attachments', image);
+    }
+  }, [props.onDeleteChildAssociation]);
+
+  /**
+   * Returns the first primary, non-deleted image attachment.
+   *
+   * @type {function(): *}
+   */
+  const getImage = useCallback(
+    () => _.find(props.item.attachments, (a) => a.primary && !a._destroy),
+    [props.item.attachments]
+  );
+
+  /**
+   * Returns the primary image URL.
+   *
+   * @returns {*|string|string}
+   */
+  const getImageUrl = () => {
+    const image = getImage();
+    return image && image.file_url;
+  };
+
   useEffect(() => {
     if (props.location.state && props.location.state.artwork_id) {
       props.onSetState({ artwork_id: props.location.state.artwork_id });
@@ -47,9 +81,14 @@ const PhysicalComponent = (props: Props) => {
             />
           )}
           header={props.item.name}
-          image={props.item.primary_attachment && props.item.primary_attachment.thumbnail_url}
+          image={getImageUrl()}
           includeNotesButton={false}
           includePublishButton={false}
+          onFileDelete={onDeleteImage}
+          onFileUpload={(files) => {
+            onDeleteImage();
+            props.onSaveChildAssociation('attachments', File.toAttachment(_.first(files), true));
+          }}
         />
       </SimpleEditPage.Header>
       <SimpleEditPage.Tab

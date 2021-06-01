@@ -31,7 +31,7 @@ const Tabs = {
 const Artwork = (props: Props) => {
   const getImage = useCallback(() => {
     const image = _.find(props.item.attachments, (a) => a.primary && !a._destroy);
-    return image && image.thumbnail_url;
+    return image && image.file_url;
   }, [props.item.attachments]);
 
   const getTitle = useCallback(() => {
