@@ -4,7 +4,7 @@ import React, {
   useEffect,
   useRef,
   useState,
-  type Element
+  type ComponentType
 } from 'react';
 import { withTranslation } from 'react-i18next';
 import { Link, withRouter } from 'react-router-dom';
@@ -21,7 +21,7 @@ import Authentication from '../services/Authentication';
 import Session from '../services/Session';
 import './MenuBar.css';
 
-const withMenuBar = (WrappedComponent: Element<any>) => withTranslation()(withRouter((props) => {
+const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(withRouter((props) => {
   const menuBarRef = useRef();
 
   const [sidebarHeight, setSidebarHeight] = useState(0);
