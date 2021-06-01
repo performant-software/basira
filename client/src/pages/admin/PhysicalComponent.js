@@ -82,14 +82,13 @@ const PhysicalComponent = (props: Props) => {
           )}
           header={props.item.name}
           image={getImageUrl()}
+          includeNotesButton={false}
           includePublishButton={false}
-          notes={props.item.notes}
           onFileDelete={onDeleteImage}
           onFileUpload={(files) => {
             onDeleteImage();
             props.onSaveChildAssociation('attachments', File.toAttachment(_.first(files), true));
           }}
-          onNotesChange={props.onTextInputChange.bind(this, 'notes')}
         />
       </SimpleEditPage.Header>
       <SimpleEditPage.Tab
@@ -123,6 +122,13 @@ const PhysicalComponent = (props: Props) => {
           onChange={props.onTextInputChange.bind(this, 'depth')}
           required={props.isRequired('depth')}
           value={props.item.depth || ''}
+        />
+        <Form.TextArea
+          error={props.isError('notes')}
+          label={props.t('PhysicalComponent.labels.notes')}
+          onChange={props.onTextInputChange.bind(this, 'notes')}
+          required={props.isRequired('notes')}
+          value={props.item.notes || ''}
         />
       </SimpleEditPage.Tab>
     </SimpleEditPage>

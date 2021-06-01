@@ -91,6 +91,7 @@
       "depth": "Depth",
       "height": "Height",
       "name": "Name",
+      "notes": "Notes",
       "width": "Width"
     }
   },
