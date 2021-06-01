@@ -77,7 +77,7 @@ const VisualContext = (props: Props) => {
           description={(
             <ItemLabel
               content={props.t('Common.labels.visualContext')}
-              level={1}
+              level={2}
             />
           )}
           header={props.item.name}
