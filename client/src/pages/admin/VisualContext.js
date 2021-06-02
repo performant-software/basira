@@ -4,34 +4,34 @@ import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Form } from 'semantic-ui-react';
 import ItemLabel from '../../components/ItemLabel';
-import PhysicalComponentsService from '../../services/PhysicalComponents';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import useEditPage from './EditPage';
+import VisualContextsService from '../../services/VisualContexts';
 import withMenuBar from '../../hooks/MenuBar';
 import withSingleImage from '../../hooks/Image';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { ImageProps } from '../../hooks/Image';
-import type { PhysicalComponent as PhysicalComponentType } from '../../types/PhysicalComponent';
+import type { VisualContext as VisualContextType } from '../../types/VisualContext';
 import type { Translateable } from '../../types/Translateable';
 import type { Routeable } from '../../types/Routeable';
 
 type Props = EditContainerProps & ImageProps & Routeable & Translateable & {
-  item: PhysicalComponentType
+  item: VisualContextType
 };
 
 const Tabs = {
   details: 'details'
 };
 
-const PhysicalComponent = (props: Props) => {
+const VisualContext = (props: Props) => {
   /**
-   * Sets the artwork_id from the state.
+   * Sets the physical_component_id from the state.
    */
   useEffect(() => {
-    if (props.location.state && props.location.state.artwork_id) {
-      props.onSetState({ artwork_id: props.location.state.artwork_id });
+    if (props.location.state && props.location.state.physical_component_id) {
+      props.onSetState({ physical_component_id: props.location.state.physical_component_id });
     }
   }, []);
 
@@ -41,14 +41,14 @@ const PhysicalComponent = (props: Props) => {
       errors={props.errors}
       loading={props.loading}
       onSave={props.onSave}
-      type={props.item.id ? undefined : props.t('Common.labels.physicalComponent')}
+      type={props.item.id ? undefined : props.t('Common.labels.visualContext')}
     >
       <SimpleEditPage.Header>
         <RecordHeader
           description={(
             <ItemLabel
-              content={props.t('Common.labels.physicalComponent')}
-              level={1}
+              content={props.t('Common.labels.visualContext')}
+              level={2}
             />
           )}
           header={props.item.name}
@@ -65,35 +65,35 @@ const PhysicalComponent = (props: Props) => {
       >
         <Form.Input
           error={props.isError('name')}
-          label={props.t('PhysicalComponent.labels.name')}
+          label={props.t('VisualContext.labels.name')}
           onChange={props.onTextInputChange.bind(this, 'name')}
           required={props.isRequired('name')}
           value={props.item.name || ''}
         />
         <Form.Input
           error={props.isError('height')}
-          label={props.t('PhysicalComponent.labels.height')}
+          label={props.t('VisualContext.labels.height')}
           onChange={props.onTextInputChange.bind(this, 'height')}
           required={props.isRequired('height')}
           value={props.item.height || ''}
         />
         <Form.Input
           error={props.isError('width')}
-          label={props.t('PhysicalComponent.labels.width')}
+          label={props.t('VisualContext.labels.width')}
           onChange={props.onTextInputChange.bind(this, 'width')}
           required={props.isRequired('width')}
           value={props.item.width || ''}
         />
         <Form.Input
           error={props.isError('depth')}
-          label={props.t('PhysicalComponent.labels.depth')}
+          label={props.t('VisualContext.labels.depth')}
           onChange={props.onTextInputChange.bind(this, 'depth')}
           required={props.isRequired('depth')}
           value={props.item.depth || ''}
         />
         <Form.TextArea
           error={props.isError('notes')}
-          label={props.t('PhysicalComponent.labels.notes')}
+          label={props.t('VisualContext.labels.notes')}
           onChange={props.onTextInputChange.bind(this, 'notes')}
           required={props.isRequired('notes')}
           value={props.item.notes || ''}
@@ -103,8 +103,8 @@ const PhysicalComponent = (props: Props) => {
   );
 };
 
-export default useEditPage(withRouter(withMenuBar(withSingleImage(PhysicalComponent))), {
+export default useEditPage(withRouter(withMenuBar(withSingleImage(VisualContext))), {
   getArtworkId: (item) => item.artwork_id,
-  onLoad: (id) => PhysicalComponentsService.fetchOne(id).then(({ data }) => data.physical_component),
-  onSave: (pc) => PhysicalComponentsService.save(pc)
+  onLoad: (id) => VisualContextsService.fetchOne(id).then(({ data }) => data.visual_context),
+  onSave: (pc) => VisualContextsService.save(pc)
 });

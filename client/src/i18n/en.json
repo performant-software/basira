@@ -60,7 +60,8 @@
     },
     "labels": {
       "artwork": "Artwork",
-      "physicalComponent": "Physical Component"
+      "physicalComponent": "Physical Component",
+      "visualContext": "Visual Context"
     },
     "messages": {
       "loading": "Loading"
@@ -90,6 +91,7 @@
       "depth": "Depth",
       "height": "Height",
       "name": "Name",
+      "notes": "Notes",
       "width": "Width"
     }
   },
@@ -102,6 +104,15 @@
   "SimpleEditPage": {
     "labels": {
       "add": "Add New {{type}}"
+    }
+  },
+  "VisualContext": {
+    "labels": {
+      "depth": "Depth",
+      "height": "Height",
+      "name": "Name",
+      "notes": "Notes",
+      "width": "Width"
     }
   }
 }

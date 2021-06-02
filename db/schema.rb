@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_185806) do
+ActiveRecord::Schema.define(version: 2021_06_01_154226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,7 +120,22 @@ ActiveRecord::Schema.define(version: 2021_05_19_185806) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  create_table "visual_contexts", force: :cascade do |t|
+    t.bigint "physical_component_id", null: false
+    t.string "name"
+    t.integer "height"
+    t.integer "width"
+    t.integer "depth"
+    t.string "notes"
+    t.string "airtable_id"
+    t.datetime "airtable_timestamp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["physical_component_id"], name: "index_visual_contexts_on_physical_component_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artwork_titles", "artworks"
   add_foreign_key "physical_components", "artworks"
+  add_foreign_key "visual_contexts", "physical_components"
 end

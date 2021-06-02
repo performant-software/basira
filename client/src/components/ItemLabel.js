@@ -8,7 +8,7 @@ type Props = {
   level: number
 };
 
-const Colors = ['blue', 'orange'];
+const Colors = ['blue', 'orange', 'yellow'];
 
 const ItemLabel = (props: Props) => (
   <Label

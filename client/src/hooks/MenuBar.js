@@ -76,7 +76,7 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
               }}
             >
               <Menu.Item
-                active={!!props.location.pathname.match('/admin/(artworks|physical_components)')}
+                active={!!props.location.pathname.match('/admin/(artworks|physical_components|visual_contexts)')}
                 as={Link}
                 content={props.t('Admin.menu.artworks')}
                 to='/admin/artworks'

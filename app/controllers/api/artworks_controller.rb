@@ -14,9 +14,13 @@ class Api::ArtworksController < Api::BaseController
 
   def nested
     # Nested list of relationships to preload
-    preloads = {
-      physical_components: PhysicalComponent.attachments_preload
-    }
+    preloads = [
+      Artwork.primary_attachment_preload,
+      physical_components: [
+        PhysicalComponent.primary_attachment_preload,
+        visual_contexts: VisualContext.primary_attachment_preload
+      ]
+    ]
 
     # Load the data
     artwork = Artwork

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     resources :home, only: :index
     resources :physical_components, except: :index
+    resources :visual_contexts, except: :index
   end
 
   # Default route for static front-end
