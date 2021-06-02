@@ -1907,9 +1907,9 @@
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
 "@types/react@*":
-  version "17.0.6"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.6.tgz#0ec564566302c562bf497d73219797a5e0297013"
-  integrity sha512-u/TtPoF/hrvb63LdukET6ncaplYsvCvmkceasx8oG84/ZCsoLxz9Z/raPBP4lTAiWW1Jb889Y9svHmv8R26dWw==
+  version "17.0.9"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.9.tgz#1147fb520024a62c9b3841f5cb4db89b73ddb87f"
+  integrity sha512-2Cw7FvevpJxQrCb+k5t6GH1KIvmadj5uBbjPaLlJB/nZWUj56e1ZqcD6zsoMFB47MsJUTFl9RJ132A7hb3QFJA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -9409,7 +9409,7 @@ react-color@^2.18.1:
 
 "react-components@git+ssh://git@react-components:performant-software/react-components.git":
   version "1.0.0"
-  resolved "git+ssh://git@react-components:performant-software/react-components.git#33500c03d930419bd1595b6f13b6614cca5c0622"
+  resolved "git+ssh://git@react-components:performant-software/react-components.git#3d286cfe49b697305605ea70136f2fefe397b094"
   dependencies:
     moment "^2.27.0"
     moment-islamic-civil ACGC/moment-islamic-civil
@@ -10482,14 +10482,14 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
 
 simple-keyboard-layouts@^3.0.0:
-  version "3.0.84"
-  resolved "https://registry.yarnpkg.com/simple-keyboard-layouts/-/simple-keyboard-layouts-3.0.84.tgz#de3a09da9505ba6aca22a983bf71f44efa30bdab"
-  integrity sha512-JOz2Vk7ReKa0w+XzYnpfOJGdTMblkWELEnTNOO65mk+DeAC7ZH2/F7HDXpJ/OmpyIuoJHLGGWMWNfVRUcqYuqw==
+  version "3.0.94"
+  resolved "https://registry.yarnpkg.com/simple-keyboard-layouts/-/simple-keyboard-layouts-3.0.94.tgz#9c40dfefc7f14ff2ed64353c8e5f92c5c2cd2a30"
+  integrity sha512-kbE1lpYMPZx/v6GAx+J4DJ5Qhc5vs248xt94yiRv8MeSLG8zpFwf9PyC6ZCgte1TgSS86nLQ3NydNtagahetGQ==
 
 simple-keyboard@^3.0.0:
-  version "3.1.12"
-  resolved "https://registry.yarnpkg.com/simple-keyboard/-/simple-keyboard-3.1.12.tgz#a8e74a7eac7dcfc2f980db34ebacc136c4faaafe"
-  integrity sha512-4ipv+Kg5jG/Vz5tzDabflOAHh6g6nmFAu+ltcCUOq7uof1dbJohk12FMhQGWhfddJjEunid85zA4NJi9xtFBDg==
+  version "3.1.22"
+  resolved "https://registry.yarnpkg.com/simple-keyboard/-/simple-keyboard-3.1.22.tgz#b25158ab4a47c9eb87c7cc7a8f66d2ea3d25d3fc"
+  integrity sha512-Eut9Kxu9pmJD3wEmWBRGAQFFGCBlO3deqe/9UpRy1ZhpwMtuHgKqcyOr5CjMfEy77NM5PheZObWvYH7FQR0dMw==
 
 simple-swizzle@^0.2.2:
   version "0.2.2"
