@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import Artwork from './Artwork';
 import Artworks from './Artworks';
+import Document from './Document';
 import People from './People';
 import PhysicalComponent from './PhysicalComponent';
 import Places from './Places';
@@ -31,6 +32,14 @@ const Admin = () => (
     <Route
       path='/admin/artworks'
       component={Artworks}
+    />
+    <Route
+      path='/admin/documents/new'
+      component={Document}
+    />
+    <Route
+      path='/admin/documents/:id'
+      component={Document}
     />
     <Route
       path='/admin/people'

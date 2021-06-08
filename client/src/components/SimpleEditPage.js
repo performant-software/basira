@@ -19,6 +19,7 @@ import {
 } from 'semantic-ui-react';
 import _ from 'underscore';
 import i18n from '../i18n/i18n';
+import './SimpleEditPage.css';
 
 import type { Translateable } from '../types/Translateable';
 
