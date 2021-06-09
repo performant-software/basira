@@ -65,7 +65,11 @@
       "visualContext": "Visual Context"
     },
     "messages": {
-      "loading": "Loading"
+      "loading": "Loading",
+      "saved": {
+        "content": "Your changes have been saved.",
+        "header": "Success!"
+      }
     },
     "tabs": {
       "details": "Details"
