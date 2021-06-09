@@ -12,6 +12,7 @@ import Artwork from './Artwork';
 import Artworks from './Artworks';
 import Document from './Document';
 import People from './People';
+import Person from './Person';
 import PhysicalComponent from './PhysicalComponent';
 import Places from './Places';
 import Users from './Users';
@@ -40,6 +41,14 @@ const Admin = () => (
     <Route
       path='/admin/documents/:id'
       component={Document}
+    />
+    <Route
+      path='/admin/people/new'
+      component={Person}
+    />
+    <Route
+      path='/admin/people/:id'
+      component={Person}
     />
     <Route
       path='/admin/people'

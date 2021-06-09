@@ -27,7 +27,15 @@
       "startDate": "Start date",
       "titles": "Titles"
     },
+    "participations": {
+      "columns": {
+        "name": "Name",
+        "nationality": "Nationality",
+        "role": "Role"
+      }
+    },
     "tabs": {
+      "creators": "Creators",
       "images": "Images"
     },
     "titles": {
@@ -123,6 +131,47 @@
   },
   "NotesModal": {
     "title": "Internal Notes"
+  },
+  "ParticipationModal": {
+    "labels": {
+      "artwork": "Artwork",
+      "certainty": "Certainty",
+      "description": "Description",
+      "notes": "Notes",
+      "person": "Person",
+      "role": "Role",
+      "subrole": "Subrole"
+    },
+    "title": {
+      "add": "Add Participation",
+      "edit": "Edit Participation"
+    }
+  },
+  "People": {
+    "columns": {
+      "name": "Name",
+      "type": "Type",
+      "nationality": "Nationality"
+    }
+  },
+  "Person": {
+    "labels": {
+      "authorizedVocabulary": "Authorized vocabulary",
+      "comment": "Comment",
+      "databaseValue": "Database value",
+      "displayName": "Display name",
+      "name": "Name",
+      "nationality": "Nationality",
+      "type": "Type",
+      "url": "URL"
+    },
+    "tabs": {
+      "artworks": "Artworks"
+    },
+    "title": {
+      "add": "Add Person",
+      "edit": "Edit Person"
+    }
   },
   "PhysicalComponent": {
     "labels": {

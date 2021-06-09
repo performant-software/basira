@@ -10,6 +10,7 @@ import File from '../../transforms/File';
 import i18n from '../../i18n/i18n';
 import Images from '../../components/Images';
 import ItemLabel from '../../components/ItemLabel';
+import ParticipationModal, { ParticipationTypes } from '../../components/ParticipationModal';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import useEditPage from './EditPage';
@@ -25,7 +26,8 @@ type Props = EditContainerProps & Translateable & {
 
 const Tabs = {
   details: 'details',
-  images: 'images'
+  images: 'images',
+  creators: 'creators'
 };
 
 const Artwork = (props: Props) => {
@@ -177,6 +179,45 @@ const Artwork = (props: Props) => {
             });
           }}
           renderImage={(item) => item.thumbnail_url}
+        />
+      </SimpleEditPage.Tab>
+      <SimpleEditPage.Tab
+        key={Tabs.creators}
+        name={props.t('Artwork.tabs.creators')}
+      >
+        <EmbeddedList
+          actions={[{
+            name: 'edit'
+          }, {
+            name: 'copy'
+          }, {
+            name: 'delete'
+          }]}
+          columns={[{
+            name: 'display_name',
+            label: props.t('Artwork.participations.columns.name'),
+            resolve: (p) => p.person && p.person.display_name
+          }, {
+            name: 'nationality',
+            label: props.t('Artwork.participations.columns.nationality'),
+            resolve: (p) => p.person && p.person.nationality
+          }, {
+            name: 'role',
+            label: props.t('Artwork.participations.columns.role')
+          }]}
+          items={props.item.participations}
+          modal={{
+            component: ParticipationModal,
+            props: {
+              defaults: {
+                participateable_type: 'Person'
+              },
+              required: ['person_id'],
+              type: ParticipationTypes.person
+            }
+          }}
+          onDelete={props.onDeleteChildAssociation.bind(this, 'participations')}
+          onSave={props.onSaveChildAssociation.bind(this, 'participations')}
         />
       </SimpleEditPage.Tab>
     </SimpleEditPage>
