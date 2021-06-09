@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_07_105728) do
+ActiveRecord::Schema.define(version: 2021_06_08_151622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,38 @@ ActiveRecord::Schema.define(version: 2021_06_07_105728) do
     t.index ["visual_context_id"], name: "index_documents_on_visual_context_id"
   end
 
+  create_table "participations", force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.string "participateable_type", null: false
+    t.bigint "participateable_id", null: false
+    t.string "role"
+    t.string "subrole"
+    t.text "description"
+    t.integer "certainty"
+    t.text "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["participateable_type", "participateable_id"], name: "index_participations_participateable_type_and_id"
+    t.index ["person_id"], name: "index_participations_on_person_id"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "name"
+    t.string "display_name"
+    t.string "person_type"
+    t.string "nationality"
+    t.string "authorized_vocabulary"
+    t.string "url"
+    t.string "database_value"
+    t.string "comment"
+    t.integer "part_of"
+    t.integer "same_as"
+    t.string "airtable_id"
+    t.datetime "airtable_timestamp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "physical_components", force: :cascade do |t|
     t.bigint "artwork_id", null: false
     t.string "name"
@@ -163,6 +195,7 @@ ActiveRecord::Schema.define(version: 2021_06_07_105728) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artwork_titles", "artworks"
   add_foreign_key "documents", "visual_contexts"
+  add_foreign_key "participations", "people"
   add_foreign_key "physical_components", "artworks"
   add_foreign_key "visual_contexts", "physical_components"
 end
