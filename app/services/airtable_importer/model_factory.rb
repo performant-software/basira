@@ -4,7 +4,8 @@ module AirtableImporter
       [
         Models::Artwork,
         Models::PhysicalComponent,
-        Models::VisualContext
+        Models::VisualContext,
+        Models::Document
       ]
     end
   end
