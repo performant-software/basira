@@ -60,6 +60,7 @@
     },
     "labels": {
       "artwork": "Artwork",
+      "document": "Document",
       "physicalComponent": "Physical Component",
       "visualContext": "Visual Context"
     },
@@ -70,6 +71,39 @@
       "details": "Details"
     },
     "title": "BASIRA"
+  },
+  "Document": {
+    "labels": {
+      "bookmarksRegisters": "Bookmarks/Registers",
+      "endbandPresent": "Endband Present",
+      "foreEdgeText": "Fore-Edge Text",
+      "identity": "Identity of Work",
+      "inscriptionsOnBinding": "Inscriptions on Binding",
+      "inscriptionText": "Binding Inscription Text",
+      "locationOfFastenings": "Location of Fastenings",
+      "name": "Name",
+      "notes": "Notes",
+      "numberFastenings": "Number of Fastenings",
+      "numberSewingSupports": "Number of Sewing Supports Visible",
+      "rubrication": "Rubrication",
+      "ruling": "Ruling",
+      "sewingSupportsVisible": "Sewing Supports Visible",
+      "textColumns": "Text Columns",
+      "transcription": "Transcription",
+      "uncutForeEdges": "Uncut Fore-Edges"
+    },
+    "sections": {
+      "binding": "Binding",
+      "bookmarks": "Bookmarks/Registers",
+      "endband": "Endband",
+      "foreEdges": "Fore-Edges/Textblock Edges",
+      "layout": "Layout",
+      "text": "Text and Image"
+    },
+    "tabs": {
+      "external": "External Features",
+      "internal": "Internal Features"
+    }
   },
   "Home": {
     "buttons": {

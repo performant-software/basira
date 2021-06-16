@@ -76,6 +76,32 @@ ActiveRecord::Schema.define(version: 2021_06_13_061315) do
     t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.bigint "visual_context_id", null: false
+    t.string "name"
+    t.string "notes"
+    t.string "sewing_supports_visible"
+    t.integer "number_sewing_supports"
+    t.integer "number_fastenings"
+    t.string "location_of_fastenings"
+    t.boolean "inscriptions_on_binding"
+    t.text "inscription_text"
+    t.boolean "endband_present"
+    t.boolean "uncut_fore_edges"
+    t.text "fore_edge_text"
+    t.integer "bookmarks_registers"
+    t.integer "text_columns"
+    t.boolean "ruling"
+    t.boolean "rubrication"
+    t.text "identity"
+    t.text "transcription"
+    t.string "airtable_id"
+    t.datetime "airtable_timestamp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["visual_context_id"], name: "index_documents_on_visual_context_id"
+  end
+
   create_table "physical_components", force: :cascade do |t|
     t.bigint "artwork_id", null: false
     t.string "name"
@@ -149,6 +175,7 @@ ActiveRecord::Schema.define(version: 2021_06_13_061315) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artwork_titles", "artworks"
+  add_foreign_key "documents", "visual_contexts"
   add_foreign_key "physical_components", "artworks"
   add_foreign_key "visual_contexts", "physical_components"
 end
