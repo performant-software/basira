@@ -116,6 +116,8 @@ module AirtableImporter
             attributes[attribute_name] ||= []
             value = column[:build_attributes].call(record.id, record[airtable_name])
             attributes[attribute_name] << value unless value.nil?
+          when :multiselect_as_text
+            attributes[attribute_name] = record[airtable_name].join(", ")
           else
             attributes[attribute_name] = record[airtable_name]
           end

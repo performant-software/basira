@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     resources :home, only: :index
     resources :physical_components, except: :index
+    resources :value_lists
     resources :visual_contexts, except: :index
   end
 
