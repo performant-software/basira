@@ -140,6 +140,20 @@
       "add": "Add New {{type}}"
     }
   },
+  "ValueList": {
+    "labels": {
+      "authorizedVocabulary": "Authorized vocabulary",
+      "comment": "Comment",
+      "groupName": "Group name",
+      "humanName": "Human name",
+      "objectName": "Object name",
+      "urlDatabaseValue": "URL/Database value"
+    },
+    "title": {
+      "add": "Add value list item",
+      "edit": "Edit value list item"
+    }
+  },
   "VisualContext": {
     "labels": {
       "depth": "Depth",
