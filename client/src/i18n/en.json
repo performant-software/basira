@@ -182,6 +182,27 @@
       "width": "Width"
     }
   },
+  "Place": {
+    "labels": {
+      "city": "City",
+      "country": "Country",
+      "databaseValue": "Database value",
+      "name": "Name",
+      "notes": "Notes",
+      "state": "State",
+      "type": "Type",
+      "url": "URL"
+    }
+  },
+  "Places": {
+    "columns": {
+      "city": "City",
+      "country": "Country",
+      "name": "Name",
+      "state": "State",
+      "type": "Type"
+    }
+  },
   "RecordHeader": {
     "buttons": {
       "remove": "Remove",

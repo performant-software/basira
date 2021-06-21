@@ -19,7 +19,7 @@ class People extends BaseService {
   /**
    * Returns the people transform.
    *
-   * @returns {Artwork}
+   * @returns {Person}
    */
   getTransform() {
     return Person;
