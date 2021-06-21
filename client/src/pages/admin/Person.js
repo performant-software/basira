@@ -1,11 +1,12 @@
 // @flow
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import _ from 'underscore';
 import ParticipationModal, { ParticipationTypes } from '../../components/ParticipationModal';
 import PeopleService from '../../services/People';
 import PersonForm from '../../components/PersonForm';
-import { Image } from 'semantic-ui-react';
+import { Header, Image } from 'semantic-ui-react';
 import { ItemCollection } from 'react-components';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import withMenuBar from '../../hooks/MenuBar';
@@ -62,7 +63,16 @@ const Person = (props: Props) => (
         onDelete={props.onDeleteChildAssociation.bind(this, 'participations')}
         onSave={props.onSaveChildAssociation.bind(this, 'participations')}
         renderDescription={(item) => item.role}
-        renderHeader={(item) => item.participateable.primary_title && item.participateable.primary_title.title}
+        renderHeader={(item) => item.participateable.primary_title && item.participateable.primary_title.title && (
+          <Link
+            to={`/admin/artworks/${item.participateable_id}`}
+          >
+            <Header
+              as='h3'
+              content={item.participateable.primary_title.title}
+            />
+          </Link>
+        )}
         renderImage={(item) => (
           <Image
             src={item.participateable.primary_attachment && item.participateable.primary_attachment.thumbnail_url}
