@@ -6,6 +6,7 @@ import { withTranslation } from 'react-i18next';
 import { Form, Modal } from 'semantic-ui-react';
 import Artworks from '../services/Artworks';
 import Artwork from '../transforms/Artwork';
+import Certainty from '../resources/Certainty.json';
 import People from '../services/People';
 import Person from '../transforms/Person';
 import PersonModal from './PersonModal';
@@ -98,11 +99,13 @@ const ParticipationModal = (props: Props) => (
         required={props.isRequired('description')}
         value={props.item.description || ''}
       />
-      <Form.Input
+      <Form.Dropdown
         error={props.isError('certainty')}
         label={props.t('ParticipationModal.labels.certainty')}
         onChange={props.onTextInputChange.bind(this, 'certainty')}
+        options={Certainty}
         required={props.isRequired('certainty')}
+        selection
         value={props.item.certainty || ''}
       />
       <Form.TextArea
