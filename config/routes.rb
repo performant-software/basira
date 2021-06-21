@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :home, only: :index
     resources :people
     resources :physical_components, except: :index
+    resources :places
     resources :visual_contexts, except: :index
   end
 
