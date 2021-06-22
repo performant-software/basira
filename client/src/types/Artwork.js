@@ -2,9 +2,10 @@
 
 import type { ArtworkTitle } from './ArtworkTitle';
 import type { Attachable } from './concerns/Attachable';
+import type { Locateable } from './concerns/Locateable';
 import type { Participateable } from './concerns/Participateable';
 
-export type Artwork = Attachable & Participateable & {
+export type Artwork = Attachable & Locateable & Participateable & {
   id: number,
   date_start: number,
   date_end: number,

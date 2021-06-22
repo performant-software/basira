@@ -2,6 +2,7 @@
 
 import _ from 'underscore';
 import BaseTransform from './BaseTransform';
+import Locations from './Locations';
 import Participations from './Participations';
 
 import type { Person as PersonType } from '../types/Person';
@@ -56,6 +57,7 @@ class Person extends BaseTransform {
     return {
       person: {
         ..._.pick(person, this.getPayloadKeys()),
+        ...Locations.toPayload(person),
         ...Participations.toPayload(person)
       }
     };

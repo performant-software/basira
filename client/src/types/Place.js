@@ -13,5 +13,7 @@ export type Place = {
   database_value: string,
   notes: string,
   same_as: number,
-  part_of: number
+  part_of: number,
+
+  locations: Array<Location>
 };

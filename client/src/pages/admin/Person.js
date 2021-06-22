@@ -1,14 +1,15 @@
 // @flow
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { EmbeddedList, ItemCollection } from 'react-components';
+import { Header, Image } from 'semantic-ui-react';
 import _ from 'underscore';
 import ParticipationModal, { ParticipationTypes } from '../../components/ParticipationModal';
 import PeopleService from '../../services/People';
 import PersonForm from '../../components/PersonForm';
-import { Header, Image } from 'semantic-ui-react';
-import { ItemCollection } from 'react-components';
+import LocationModal, { LocationTypes } from '../../components/LocationModal';
 import SimpleEditPage from '../../components/SimpleEditPage';
+import SimpleLink from '../../components/SimpleLink';
 import withMenuBar from '../../hooks/MenuBar';
 import useEditPage from './EditPage';
 
@@ -22,7 +23,8 @@ type Props = EditContainerProps & Translateable & {
 
 const Tabs = {
   details: 'details',
-  artworks: 'artworks'
+  artworks: 'artworks',
+  locations: 'locations'
 };
 
 const Person = (props: Props) => (
@@ -64,14 +66,14 @@ const Person = (props: Props) => (
         onSave={props.onSaveChildAssociation.bind(this, 'participations')}
         renderDescription={(item) => item.role}
         renderHeader={(item) => item.participateable.primary_title && item.participateable.primary_title.title && (
-          <Link
-            to={`/admin/artworks/${item.participateable_id}`}
+          <SimpleLink
+            url={`/admin/artworks/${item.participateable_id}`}
           >
             <Header
               as='h3'
               content={item.participateable.primary_title.title}
             />
-          </Link>
+          </SimpleLink>
         )}
         renderImage={(item) => (
           <Image
@@ -79,6 +81,47 @@ const Person = (props: Props) => (
           />
         )}
         renderMeta={(item) => item.participateable.date_descriptor}
+      />
+    </SimpleEditPage.Tab>
+    <SimpleEditPage.Tab
+      key={Tabs.locations}
+      name={props.t('Common.tabs.locations')}
+    >
+      <EmbeddedList
+        actions={[{
+          name: 'edit'
+        }, {
+          name: 'copy'
+        }, {
+          name: 'delete'
+        }]}
+        columns={[{
+          name: 'name',
+          label: props.t('Person.locations.columns.name'),
+          render: (l) => l.place && l.place.name && (
+            <SimpleLink
+              content={l.place.name}
+              url={`/admin/places/${l.place_id}`}
+            />
+          )
+        }, {
+          name: 'country',
+          label: props.t('Person.locations.columns.country'),
+          resolve: (l) => l.place && l.place.country
+        }, {
+          name: 'role',
+          label: props.t('Person.locations.columns.role')
+        }]}
+        items={props.item.locations}
+        modal={{
+          component: LocationModal,
+          props: {
+            required: ['place_id'],
+            type: LocationTypes.place
+          }
+        }}
+        onDelete={props.onDeleteChildAssociation.bind(this, 'locations')}
+        onSave={props.onSaveChildAssociation.bind(this, 'locations')}
       />
     </SimpleEditPage.Tab>
   </SimpleEditPage>

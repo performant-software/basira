@@ -1,7 +1,8 @@
 // @flow
 
-import BaseTransform from './BaseTransform';
 import _ from 'underscore';
+import BaseTransform from './BaseTransform';
+import Locations from './Locations';
 
 import type { Place as PlaceType } from '../types/Place';
 
@@ -32,6 +33,22 @@ class Place extends BaseTransform {
   }
 
   /**
+   * Returns the passed place as a dropdown option.
+   *
+   * @param place
+   *
+   * @returns {{description: *, text: string, value: number, key: number}}
+   */
+  toDropdown(place: PlaceType) {
+    return {
+      key: place.id,
+      value: place.id,
+      text: place.name,
+      description: _.compact([place.city, place.state, place.country]).join(', ')
+    };
+  }
+
+  /**
    * Returns the place object to be sent on POST/PUT requests.
    *
    * @param place
@@ -40,7 +57,10 @@ class Place extends BaseTransform {
    */
   toPayload(place: PlaceType) {
     return {
-      place: _.pick(place, this.getPayloadKeys())
+      place: {
+        ..._.pick(place, this.getPayloadKeys()),
+        ...Locations.toPayload(place)
+      }
     };
   }
 }

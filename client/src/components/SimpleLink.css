@@ -1,0 +1,9 @@
+.link {
+  color: unset;
+}
+
+.link:hover {
+  color: unset;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.87);
+}

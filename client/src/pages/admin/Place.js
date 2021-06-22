@@ -1,13 +1,15 @@
 // @flow
 
-import React, { useCallback } from 'react';
-import { GoogleMap, GooglePlacesSearch } from 'react-components';
+import React from 'react';
+import { EmbeddedList, ItemCollection } from 'react-components';
 import { withTranslation } from 'react-i18next';
-import { Form, Grid } from 'semantic-ui-react';
+import { Header, Image } from 'semantic-ui-react';
 import _ from 'underscore';
-import Countries from '../../resources/Countries.json';
+import LocationModal, { LocationTypes } from '../../components/LocationModal';
+import PlaceForm from '../../components/PlaceForm';
 import PlacesService from '../../services/Places';
 import SimpleEditPage from '../../components/SimpleEditPage';
+import SimpleLink from '../../components/SimpleLink';
 import useEditPage from './EditPage';
 import withMenuBar from '../../hooks/MenuBar';
 
@@ -20,134 +22,109 @@ type Props = EditContainerProps & Translateable & {
 };
 
 const Tabs = {
-  details: 'details'
+  details: 'details',
+  artworks: 'artworks',
+  people: 'people'
 };
 
-const Place = (props: Props) => {
-  /**
-   * Sets the location attributes on the current item.
-   *
-   * @type {function({result: *, lat: *, lng?: *}): void}
-   */
-  const onLocationSelection = useCallback(({ result, lat, lng }) => {
-    const attributes = {
-      name: result.name,
-      city: '',
-      state: '',
-      country: '',
-      lat,
-      long: lng
-    };
-
-    _.each(result.address_components, (component) => {
-      if (_.contains(component.types, 'locality')) {
-        attributes.city = component.long_name;
-      } else if (_.contains(component.types, 'administrative_area_level_1')) {
-        attributes.state = component.long_name;
-      } else if (_.contains(component.types, 'country')) {
-        attributes.country = component.long_name;
-      }
-    });
-
-    props.onSetState(attributes);
-  }, []);
-
-  return (
-    <SimpleEditPage
-      errors={props.errors}
-      loading={props.loading}
-      onSave={props.onSave}
+const Place = (props: Props) => (
+  <SimpleEditPage
+    errors={props.errors}
+    loading={props.loading}
+    onSave={props.onSave}
+  >
+    <SimpleEditPage.Tab
+      key={Tabs.details}
+      name={props.t('Common.tabs.details')}
     >
-      <SimpleEditPage.Tab
-        key={Tabs.details}
-        name={props.t('Common.tabs.details')}
-      >
-        <Grid
-          columns={2}
-        >
-          <Grid.Column>
-            <GooglePlacesSearch
-              containerElement={<Form.Field />}
-              googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
-              onLocationSelection={onLocationSelection}
-            >
-              <Form.Input
-                autoFocus
-                error={props.isError('name')}
-                label={props.t('Place.labels.name')}
-                placeholder=''
-                required={props.isRequired('name')}
-                onChange={props.onTextInputChange.bind(this, 'name')}
-                value={props.item.name || ''}
-              />
-            </GooglePlacesSearch>
-            <Form.Input
-              error={props.isError('place_type')}
-              label={props.t('Place.labels.type')}
-              required={props.isRequired('place_type')}
-              onChange={props.onTextInputChange.bind(this, 'place_type')}
-              value={props.item.place_type || ''}
+      <PlaceForm
+        {...props}
+      />
+    </SimpleEditPage.Tab>
+    <SimpleEditPage.Tab
+      key={Tabs.artworks}
+      name={props.t('Place.tabs.artworks')}
+    >
+      <ItemCollection
+        actions={[{
+          name: 'edit'
+        }, {
+          name: 'delete'
+        }]}
+        items={_.filter(props.item.locations, (l) => l.locateable_type === 'Artwork' && !l._destroy)}
+        modal={{
+          component: LocationModal,
+          props: {
+            defaults: {
+              locateable_type: 'Artwork'
+            },
+            required: ['locateable_id'],
+            type: LocationTypes.artwork
+          }
+        }}
+        onDelete={props.onDeleteChildAssociation.bind(this, 'locations')}
+        onSave={props.onSaveChildAssociation.bind(this, 'locations')}
+        renderDescription={(item) => item.role}
+        renderHeader={(item) => item.locateable.primary_title && item.locateable.primary_title.title && (
+          <SimpleLink
+            url={`/admin/artworks/${item.locateable_id}`}
+          >
+            <Header
+              as='h3'
+              content={item.locateable.primary_title.title}
             />
-            <Form.Input
-              error={props.isError('city')}
-              label={props.t('Place.labels.city')}
-              required={props.isRequired('city')}
-              onChange={props.onTextInputChange.bind(this, 'city')}
-              value={props.item.city || ''}
+          </SimpleLink>
+        )}
+        renderImage={(item) => (
+          <Image
+            src={item.locateable.primary_attachment && item.locateable.primary_attachment.thumbnail_url}
+          />
+        )}
+        renderMeta={(item) => item.locateable.date_descriptor}
+      />
+    </SimpleEditPage.Tab>
+    <SimpleEditPage.Tab
+      key={Tabs.people}
+      name={props.t('Place.tabs.people')}
+    >
+      <EmbeddedList
+        actions={[{
+          name: 'edit'
+        }, {
+          name: 'copy'
+        }, {
+          name: 'delete'
+        }]}
+        columns={[{
+          name: 'name',
+          label: props.t('Place.locations.columns.name'),
+          render: (l) => l.locateable && l.locateable.display_name && (
+            <SimpleLink
+              content={l.locateable.display_name}
+              url={`/admin/people/${l.locateable_id}`}
             />
-            <Form.Input
-              error={props.isError('state')}
-              label={props.t('Place.labels.state')}
-              required={props.isRequired('state')}
-              onChange={props.onTextInputChange.bind(this, 'state')}
-              value={props.item.state || ''}
-            />
-            <Form.Dropdown
-              error={props.isError('country')}
-              label={props.t('Place.labels.country')}
-              required={props.isRequired('country')}
-              onChange={props.onTextInputChange.bind(this, 'country')}
-              options={_.map(Countries, (country) => ({
-                key: country.Code,
-                value: country.Name,
-                text: country.Name
-              }))}
-              selection
-              value={props.item.country || ''}
-            />
-            <Form.Input
-              error={props.isError('url')}
-              label={props.t('Place.labels.url')}
-              required={props.isRequired('url')}
-              onChange={props.onTextInputChange.bind(this, 'url')}
-              value={props.item.url || ''}
-            />
-            <Form.Input
-              error={props.isError('database_value')}
-              label={props.t('Place.labels.databaseValue')}
-              required={props.isRequired('database_value')}
-              onChange={props.onTextInputChange.bind(this, 'database_value')}
-              value={props.item.database_value || ''}
-            />
-            <Form.TextArea
-              error={props.isError('notes')}
-              label={props.t('Place.labels.notes')}
-              required={props.isRequired('notes')}
-              onChange={props.onTextInputChange.bind(this, 'notes')}
-              value={props.item.notes || ''}
-            />
-          </Grid.Column>
-          <Grid.Column>
-            <GoogleMap
-              googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
-              position={{ lat: props.item.lat, lng: props.item.long }}
-            />
-          </Grid.Column>
-        </Grid>
-      </SimpleEditPage.Tab>
-    </SimpleEditPage>
-  );
-};
+          )
+        }, {
+          name: 'role',
+          label: props.t('Place.locations.columns.role')
+        }]}
+        items={_.filter(props.item.locations, (l) => l.locateable_type === 'Person')}
+        modal={{
+          component: LocationModal,
+          props: {
+            defaults: {
+              locateable_type: 'Person'
+            },
+            required: ['locateable_id'],
+            type: LocationTypes.person
+          }
+        }}
+        onDelete={props.onDeleteChildAssociation.bind(this, 'locations')}
+        onSave={props.onSaveChildAssociation.bind(this, 'locations')}
+      />
+    </SimpleEditPage.Tab>
+  </SimpleEditPage>
+);
 
 export default withTranslation()(useEditPage(withMenuBar(Place), {
   onLoad: (id) => PlacesService.fetchOne(id).then(({ data }) => data.place),

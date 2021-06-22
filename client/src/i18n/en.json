@@ -27,6 +27,13 @@
       "startDate": "Start date",
       "titles": "Titles"
     },
+    "locations": {
+      "columns": {
+        "country": "Country",
+        "name": "Name",
+        "role": "Role"
+      }
+    },
     "participations": {
       "columns": {
         "name": "Name",
@@ -80,7 +87,8 @@
       }
     },
     "tabs": {
-      "details": "Details"
+      "details": "Details",
+      "locations": "Locations"
     },
     "title": "BASIRA"
   },
@@ -129,6 +137,22 @@
       "upload": "Upload images"
     }
   },
+  "LocationModal": {
+    "labels": {
+      "artwork": "Artwork",
+      "certainty": "Certainty",
+      "description": "Description",
+      "notes": "Notes",
+      "person": "Person",
+      "place": "Place",
+      "role": "Role",
+      "subrole": "Subrole"
+    },
+    "title": {
+      "add": "Add Location",
+      "edit": "Edit Location"
+    }
+  },
   "NotesModal": {
     "title": "Internal Notes"
   },
@@ -165,6 +189,13 @@
       "type": "Type",
       "url": "URL"
     },
+    "locations": {
+      "columns": {
+        "country": "Country",
+        "name": "Name",
+        "role": "Role"
+      }
+    },
     "tabs": {
       "artworks": "Artworks"
     },
@@ -192,6 +223,16 @@
       "state": "State",
       "type": "Type",
       "url": "URL"
+    },
+    "locations": {
+      "columns": {
+        "name": "Name",
+        "role": "Role"
+      }
+    },
+    "tabs": {
+      "artworks": "Artworks",
+      "people": "People"
     }
   },
   "Places": {
