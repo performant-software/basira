@@ -1,6 +1,7 @@
 class Artwork < ApplicationRecord
   # Includes
   include Attachable
+  include Locateable
   include Participateable
 
   # Relationships

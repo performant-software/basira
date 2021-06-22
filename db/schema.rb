@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_123016) do
+ActiveRecord::Schema.define(version: 2021_06_21_174742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,21 @@ ActiveRecord::Schema.define(version: 2021_06_21_123016) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["visual_context_id"], name: "index_documents_on_visual_context_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.bigint "place_id", null: false
+    t.string "locateable_type", null: false
+    t.bigint "locateable_id", null: false
+    t.string "role"
+    t.string "subrole"
+    t.text "description"
+    t.integer "certainty"
+    t.text "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["locateable_type", "locateable_id"], name: "index_locations_on_locateable_type_and_locateable_id"
+    t.index ["place_id"], name: "index_locations_on_place_id"
   end
 
   create_table "participations", force: :cascade do |t|
@@ -214,6 +229,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_123016) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artwork_titles", "artworks"
   add_foreign_key "documents", "visual_contexts"
+  add_foreign_key "locations", "places"
   add_foreign_key "participations", "people"
   add_foreign_key "physical_components", "artworks"
   add_foreign_key "visual_contexts", "physical_components"
