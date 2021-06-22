@@ -28,6 +28,7 @@ type Props = EditContainerProps & Translateable & {
 
 const Tabs = {
   details: 'details',
+  physical: 'physical',
   images: 'images',
   creators: 'creators',
   locations: 'locations'
@@ -152,6 +153,32 @@ const Artwork = (props: Props) => {
           onChange={props.onTextInputChange.bind(this, 'notes_external')}
           required={props.isRequired('notes_external')}
           value={props.item.notes_external || ''}
+        />
+      </SimpleEditPage.Tab>
+      <SimpleEditPage.Tab
+        key={Tabs.physical}
+        name={props.t('Artwork.tabs.physical')}
+      >
+        <Form.Input
+          error={props.isError('height')}
+          label={props.t('Artwork.labels.height')}
+          onChange={props.onTextInputChange.bind(this, 'height')}
+          required={props.isRequired('height')}
+          value={props.item.height || 0}
+        />
+        <Form.Input
+          error={props.isError('width')}
+          label={props.t('Artwork.labels.width')}
+          onChange={props.onTextInputChange.bind(this, 'width')}
+          required={props.isRequired('width')}
+          value={props.item.width || 0}
+        />
+        <Form.Input
+          error={props.isError('depth')}
+          label={props.t('Artwork.labels.depth')}
+          onChange={props.onTextInputChange.bind(this, 'depth')}
+          required={props.isRequired('depth')}
+          value={props.item.depth || 0}
         />
       </SimpleEditPage.Tab>
       <SimpleEditPage.Tab

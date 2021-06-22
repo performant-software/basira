@@ -22,10 +22,13 @@
     "labels": {
       "creationDate": "Creation date",
       "dateDescription": "Description",
+      "depth": "Depth",
       "endDate": "End date",
+      "height": "Height",
       "notes": "Notes",
       "startDate": "Start date",
-      "titles": "Titles"
+      "titles": "Titles",
+      "width": "Width"
     },
     "locations": {
       "columns": {
@@ -43,7 +46,8 @@
     },
     "tabs": {
       "creators": "Creators",
-      "images": "Images"
+      "images": "Images",
+      "physical": "Physical Features"
     },
     "titles": {
       "columns": {
