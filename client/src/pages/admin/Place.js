@@ -109,6 +109,7 @@ const Place = (props: Props) => (
           label: props.t('Place.locations.columns.role')
         }]}
         items={_.filter(props.item.locations, (l) => l.locateable_type === 'Person')}
+        key='locations'
         modal={{
           component: LocationModal,
           props: {

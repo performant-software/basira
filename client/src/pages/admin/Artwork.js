@@ -241,6 +241,7 @@ const Artwork = (props: Props) => {
             label: props.t('Artwork.participations.columns.role')
           }]}
           items={props.item.participations}
+          key='participations'
           modal={{
             component: ParticipationModal,
             props: {
@@ -285,6 +286,7 @@ const Artwork = (props: Props) => {
             label: props.t('Artwork.locations.columns.role')
           }]}
           items={props.item.locations}
+          key='locations'
           modal={{
             component: LocationModal,
             props: {

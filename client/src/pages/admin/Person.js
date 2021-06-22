@@ -113,6 +113,7 @@ const Person = (props: Props) => (
           label: props.t('Person.locations.columns.role')
         }]}
         items={props.item.locations}
+        key='locations'
         modal={{
           component: LocationModal,
           props: {
