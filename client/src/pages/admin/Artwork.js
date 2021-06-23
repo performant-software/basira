@@ -10,9 +10,11 @@ import File from '../../transforms/File';
 import i18n from '../../i18n/i18n';
 import Images from '../../components/Images';
 import ItemLabel from '../../components/ItemLabel';
+import LocationModal, { LocationTypes } from '../../components/LocationModal';
 import ParticipationModal, { ParticipationTypes } from '../../components/ParticipationModal';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
+import SimpleLink from '../../components/SimpleLink';
 import useEditPage from './EditPage';
 import withMenuBar from '../../hooks/MenuBar';
 
@@ -26,8 +28,10 @@ type Props = EditContainerProps & Translateable & {
 
 const Tabs = {
   details: 'details',
+  physical: 'physical',
   images: 'images',
-  creators: 'creators'
+  creators: 'creators',
+  locations: 'locations'
 };
 
 const Artwork = (props: Props) => {
@@ -152,6 +156,32 @@ const Artwork = (props: Props) => {
         />
       </SimpleEditPage.Tab>
       <SimpleEditPage.Tab
+        key={Tabs.physical}
+        name={props.t('Artwork.tabs.physical')}
+      >
+        <Form.Input
+          error={props.isError('height')}
+          label={props.t('Artwork.labels.height')}
+          onChange={props.onTextInputChange.bind(this, 'height')}
+          required={props.isRequired('height')}
+          value={props.item.height || 0}
+        />
+        <Form.Input
+          error={props.isError('width')}
+          label={props.t('Artwork.labels.width')}
+          onChange={props.onTextInputChange.bind(this, 'width')}
+          required={props.isRequired('width')}
+          value={props.item.width || 0}
+        />
+        <Form.Input
+          error={props.isError('depth')}
+          label={props.t('Artwork.labels.depth')}
+          onChange={props.onTextInputChange.bind(this, 'depth')}
+          required={props.isRequired('depth')}
+          value={props.item.depth || 0}
+        />
+      </SimpleEditPage.Tab>
+      <SimpleEditPage.Tab
         key={Tabs.images}
         name={props.t('Artwork.tabs.images')}
       >
@@ -196,7 +226,12 @@ const Artwork = (props: Props) => {
           columns={[{
             name: 'display_name',
             label: props.t('Artwork.participations.columns.name'),
-            resolve: (p) => p.person && p.person.display_name
+            render: (p) => p.person && p.person.display_name && (
+              <SimpleLink
+                content={p.person.display_name}
+                url={`/admin/people/${p.person_id}`}
+              />
+            )
           }, {
             name: 'nationality',
             label: props.t('Artwork.participations.columns.nationality'),
@@ -206,6 +241,7 @@ const Artwork = (props: Props) => {
             label: props.t('Artwork.participations.columns.role')
           }]}
           items={props.item.participations}
+          key='participations'
           modal={{
             component: ParticipationModal,
             props: {
@@ -218,6 +254,48 @@ const Artwork = (props: Props) => {
           }}
           onDelete={props.onDeleteChildAssociation.bind(this, 'participations')}
           onSave={props.onSaveChildAssociation.bind(this, 'participations')}
+        />
+      </SimpleEditPage.Tab>
+      <SimpleEditPage.Tab
+        key={Tabs.locations}
+        name={props.t('Common.tabs.locations')}
+      >
+        <EmbeddedList
+          actions={[{
+            name: 'edit'
+          }, {
+            name: 'copy'
+          }, {
+            name: 'delete'
+          }]}
+          columns={[{
+            name: 'name',
+            label: props.t('Artwork.locations.columns.name'),
+            render: (l) => l.place && l.place.name && (
+              <SimpleLink
+                content={l.place.name}
+                url={`/admin/places/${l.place_id}`}
+              />
+            )
+          }, {
+            name: 'country',
+            label: props.t('Artwork.locations.columns.country'),
+            resolve: (l) => l.place && l.place.country
+          }, {
+            name: 'role',
+            label: props.t('Artwork.locations.columns.role')
+          }]}
+          items={props.item.locations}
+          key='locations'
+          modal={{
+            component: LocationModal,
+            props: {
+              required: ['place_id'],
+              type: LocationTypes.place
+            }
+          }}
+          onDelete={props.onDeleteChildAssociation.bind(this, 'locations')}
+          onSave={props.onSaveChildAssociation.bind(this, 'locations')}
         />
       </SimpleEditPage.Tab>
     </SimpleEditPage>

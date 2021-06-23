@@ -14,6 +14,7 @@ import Document from './Document';
 import People from './People';
 import Person from './Person';
 import PhysicalComponent from './PhysicalComponent';
+import Place from './Place';
 import Places from './Places';
 import Users from './Users';
 import ValueLists from './ValueLists';
@@ -61,6 +62,14 @@ const Admin = () => (
     <Route
       path='/admin/physical_components/:id'
       component={PhysicalComponent}
+    />
+    <Route
+      path='/admin/places/new'
+      component={Place}
+    />
+    <Route
+      path='/admin/places/:id'
+      component={Place}
     />
     <Route
       path='/admin/places'

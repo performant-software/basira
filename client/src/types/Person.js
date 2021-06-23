@@ -1,8 +1,9 @@
 // @flow
 
+import type { Locateable } from './concerns/Locateable';
 import type { Participation } from './Participation';
 
-export type Person = {
+export type Person = Locateable & {
   id: number,
   name: string,
   display_name: string,

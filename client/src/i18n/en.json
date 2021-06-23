@@ -22,10 +22,20 @@
     "labels": {
       "creationDate": "Creation date",
       "dateDescription": "Description",
+      "depth": "Depth",
       "endDate": "End date",
+      "height": "Height",
       "notes": "Notes",
       "startDate": "Start date",
-      "titles": "Titles"
+      "titles": "Titles",
+      "width": "Width"
+    },
+    "locations": {
+      "columns": {
+        "country": "Country",
+        "name": "Name",
+        "role": "Role"
+      }
     },
     "participations": {
       "columns": {
@@ -36,7 +46,8 @@
     },
     "tabs": {
       "creators": "Creators",
-      "images": "Images"
+      "images": "Images",
+      "physical": "Physical Features"
     },
     "titles": {
       "columns": {
@@ -80,7 +91,8 @@
       }
     },
     "tabs": {
-      "details": "Details"
+      "details": "Details",
+      "locations": "Locations"
     },
     "title": "BASIRA"
   },
@@ -129,6 +141,22 @@
       "upload": "Upload images"
     }
   },
+  "LocationModal": {
+    "labels": {
+      "artwork": "Artwork",
+      "certainty": "Certainty",
+      "description": "Description",
+      "notes": "Notes",
+      "person": "Person",
+      "place": "Place",
+      "role": "Role",
+      "subrole": "Subrole"
+    },
+    "title": {
+      "add": "Add Location",
+      "edit": "Edit Location"
+    }
+  },
   "NotesModal": {
     "title": "Internal Notes"
   },
@@ -165,6 +193,13 @@
       "type": "Type",
       "url": "URL"
     },
+    "locations": {
+      "columns": {
+        "country": "Country",
+        "name": "Name",
+        "role": "Role"
+      }
+    },
     "tabs": {
       "artworks": "Artworks"
     },
@@ -180,6 +215,37 @@
       "name": "Name",
       "notes": "Notes",
       "width": "Width"
+    }
+  },
+  "Place": {
+    "labels": {
+      "city": "City",
+      "country": "Country",
+      "databaseValue": "Database value",
+      "name": "Name",
+      "notes": "Notes",
+      "state": "State",
+      "type": "Type",
+      "url": "URL"
+    },
+    "locations": {
+      "columns": {
+        "name": "Name",
+        "role": "Role"
+      }
+    },
+    "tabs": {
+      "artworks": "Artworks",
+      "people": "People"
+    }
+  },
+  "Places": {
+    "columns": {
+      "city": "City",
+      "country": "Country",
+      "name": "Name",
+      "state": "State",
+      "type": "Type"
     }
   },
   "RecordHeader": {

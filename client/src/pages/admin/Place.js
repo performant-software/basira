@@ -2,32 +2,32 @@
 
 import React from 'react';
 import { EmbeddedList, ItemCollection } from 'react-components';
+import { withTranslation } from 'react-i18next';
 import { Header, Image } from 'semantic-ui-react';
 import _ from 'underscore';
-import ParticipationModal, { ParticipationTypes } from '../../components/ParticipationModal';
-import PeopleService from '../../services/People';
-import PersonForm from '../../components/PersonForm';
 import LocationModal, { LocationTypes } from '../../components/LocationModal';
+import PlaceForm from '../../components/PlaceForm';
+import PlacesService from '../../services/Places';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
-import withMenuBar from '../../hooks/MenuBar';
 import useEditPage from './EditPage';
+import withMenuBar from '../../hooks/MenuBar';
 
 import type { EditContainerProps } from 'react-components/types';
-import type { Person as PersonType } from '../../types/Person';
+import type { Place as PlaceType } from '../../types/Place';
 import type { Translateable } from '../../types/Translateable';
 
 type Props = EditContainerProps & Translateable & {
-  item: PersonType
+  item: PlaceType
 };
 
 const Tabs = {
   details: 'details',
   artworks: 'artworks',
-  locations: 'locations'
+  people: 'people'
 };
 
-const Person = (props: Props) => (
+const Place = (props: Props) => (
   <SimpleEditPage
     errors={props.errors}
     loading={props.loading}
@@ -37,13 +37,13 @@ const Person = (props: Props) => (
       key={Tabs.details}
       name={props.t('Common.tabs.details')}
     >
-      <PersonForm
+      <PlaceForm
         {...props}
       />
     </SimpleEditPage.Tab>
     <SimpleEditPage.Tab
       key={Tabs.artworks}
-      name={props.t('Person.tabs.artworks')}
+      name={props.t('Place.tabs.artworks')}
     >
       <ItemCollection
         actions={[{
@@ -51,41 +51,41 @@ const Person = (props: Props) => (
         }, {
           name: 'delete'
         }]}
-        items={_.filter(props.item.participations, (p) => !p._destroy)}
+        items={_.filter(props.item.locations, (l) => l.locateable_type === 'Artwork' && !l._destroy)}
         modal={{
-          component: ParticipationModal,
+          component: LocationModal,
           props: {
             defaults: {
-              participateable_type: 'Artwork'
+              locateable_type: 'Artwork'
             },
-            required: ['participateable_id'],
-            type: ParticipationTypes.artwork
+            required: ['locateable_id'],
+            type: LocationTypes.artwork
           }
         }}
-        onDelete={props.onDeleteChildAssociation.bind(this, 'participations')}
-        onSave={props.onSaveChildAssociation.bind(this, 'participations')}
+        onDelete={props.onDeleteChildAssociation.bind(this, 'locations')}
+        onSave={props.onSaveChildAssociation.bind(this, 'locations')}
         renderDescription={(item) => item.role}
-        renderHeader={(item) => item.participateable.primary_title && item.participateable.primary_title.title && (
+        renderHeader={(item) => item.locateable.primary_title && item.locateable.primary_title.title && (
           <SimpleLink
-            url={`/admin/artworks/${item.participateable_id}`}
+            url={`/admin/artworks/${item.locateable_id}`}
           >
             <Header
               as='h3'
-              content={item.participateable.primary_title.title}
+              content={item.locateable.primary_title.title}
             />
           </SimpleLink>
         )}
         renderImage={(item) => (
           <Image
-            src={item.participateable.primary_attachment && item.participateable.primary_attachment.thumbnail_url}
+            src={item.locateable.primary_attachment && item.locateable.primary_attachment.thumbnail_url}
           />
         )}
-        renderMeta={(item) => item.participateable.date_descriptor}
+        renderMeta={(item) => item.locateable.date_descriptor}
       />
     </SimpleEditPage.Tab>
     <SimpleEditPage.Tab
-      key={Tabs.locations}
-      name={props.t('Common.tabs.locations')}
+      key={Tabs.people}
+      name={props.t('Place.tabs.people')}
     >
       <EmbeddedList
         actions={[{
@@ -97,28 +97,27 @@ const Person = (props: Props) => (
         }]}
         columns={[{
           name: 'name',
-          label: props.t('Person.locations.columns.name'),
-          render: (l) => l.place && l.place.name && (
+          label: props.t('Place.locations.columns.name'),
+          render: (l) => l.locateable && l.locateable.display_name && (
             <SimpleLink
-              content={l.place.name}
-              url={`/admin/places/${l.place_id}`}
+              content={l.locateable.display_name}
+              url={`/admin/people/${l.locateable_id}`}
             />
           )
         }, {
-          name: 'country',
-          label: props.t('Person.locations.columns.country'),
-          resolve: (l) => l.place && l.place.country
-        }, {
           name: 'role',
-          label: props.t('Person.locations.columns.role')
+          label: props.t('Place.locations.columns.role')
         }]}
-        items={props.item.locations}
+        items={_.filter(props.item.locations, (l) => l.locateable_type === 'Person')}
         key='locations'
         modal={{
           component: LocationModal,
           props: {
-            required: ['place_id'],
-            type: LocationTypes.place
+            defaults: {
+              locateable_type: 'Person'
+            },
+            required: ['locateable_id'],
+            type: LocationTypes.person
           }
         }}
         onDelete={props.onDeleteChildAssociation.bind(this, 'locations')}
@@ -128,8 +127,8 @@ const Person = (props: Props) => (
   </SimpleEditPage>
 );
 
-export default useEditPage(withMenuBar(Person), {
-  onLoad: (id) => PeopleService.fetchOne(id).then(({ data }) => data.person),
-  onSave: (person) => PeopleService.save(person),
-  required: ['name', 'display_name']
-});
+export default withTranslation()(useEditPage(withMenuBar(Place), {
+  onLoad: (id) => PlacesService.fetchOne(id).then(({ data }) => data.place),
+  onSave: (place) => PlacesService.save(place),
+  required: ['name']
+}));

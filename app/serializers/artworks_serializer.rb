@@ -1,6 +1,7 @@
 class ArtworksSerializer < BaseSerializer
   # Includes
   include AttachableSerializer
+  include LocateableSerializer
   include NestableSerializer
 
   index_attributes :id, :date_start, :date_end, :date_descriptor, :published, primary_title: [:id, :title, :title_type]

@@ -1,4 +1,7 @@
 class Person < ApplicationRecord
+  # Includes
+  include Locateable
+
   # Relationships
   has_many :participations, dependent: :destroy
 
