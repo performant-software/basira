@@ -1,13 +1,16 @@
 // @flow
 
 import _ from 'underscore';
+import BaseTransform from './BaseTransform';
 import String from '../utils/String';
 
-class FormDataTransform {
+class FormDataTransform extends BaseTransform {
   /**
-   * Constructs a new BaseTransform object. This constructor should never be used directly.
+   * Constructs a new FormDataTransform object. This constructor should never be used directly.
    */
   constructor() {
+    super();
+
     if (this.constructor === FormDataTransform) {
       throw new TypeError('Abstract class "FormDataTransform" cannot be instantiated directly.');
     }
@@ -24,20 +27,9 @@ class FormDataTransform {
   }
 
   /**
-   * Returns the array of payload keys.
-   *
-   * @returns {*[]}
-   */
-  getPayloadKeys() {
-    // Implemented in sub-class
-    return [];
-  }
-
-  /**
    * Converts the passed records to a formData object to be sent on PUT/POST requests.
    *
    * @param record
-   *
    * @returns {FormData}
    */
   toPayload(record: any) {

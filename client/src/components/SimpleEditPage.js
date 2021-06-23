@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { Element, Toaster } from 'react-components';
 import { withRouter, RouterHistory } from 'react-router-dom';
 import {
@@ -60,6 +60,8 @@ class SimpleEditPage extends Component<Props, State> {
       showToaster: false,
       tab: null
     };
+
+    this.contextRef = createRef();
   }
 
   /**
@@ -67,17 +69,6 @@ class SimpleEditPage extends Component<Props, State> {
    */
   componentDidMount() {
     this.onTabClick(_.first(Element.findByType(this.props.children, SimpleEditPage.Tab)));
-  }
-
-  /**
-   * Displays the error toaster if new errors are added.
-   *
-   * @param prevProps
-   */
-  componentDidUpdate(prevProps: Props) {
-    if (!_.isEmpty(this.props.errors) && prevProps.errors !== this.props.errors) {
-      this.setState({ showToaster: true });
-    }
   }
 
   /**
@@ -117,11 +108,31 @@ class SimpleEditPage extends Component<Props, State> {
         fluid
         noValidate
       >
+        { this.renderToaster() }
         { this.renderLoading() }
         { this.renderSaving() }
-        { this.renderToaster() }
         { this.renderPage() }
       </Container>
+    );
+  }
+
+  renderButtons() {
+    return (
+      <div
+        className='ui two buttons'
+      >
+        <Button
+          content={i18n.t('Common.buttons.save')}
+          onClick={() => this.setState({ showToaster: true }, this.props.onSave.bind(this))}
+          primary
+        />
+        <Button
+          content={i18n.t('Common.buttons.cancel')}
+          inverted
+          onClick={() => this.props.history.goBack()}
+          primary
+        />
+      </div>
     );
   }
 
@@ -153,11 +164,12 @@ class SimpleEditPage extends Component<Props, State> {
    * Renders the menu for the passed collection of tabs.
    *
    * @param tabs
+   * @param buttons
    *
-   * @returns {null|*}
+   * @returns {JSX.Element|null}
    */
-  renderMenu(tabs) {
-    if (!tabs || tabs.length === 1) {
+  renderMenu(tabs, buttons = false) {
+    if (!buttons && (!tabs || tabs.length === 1)) {
       return null;
     }
 
@@ -177,13 +189,21 @@ class SimpleEditPage extends Component<Props, State> {
             }}
           />
         ))}
+        { buttons && (
+          <Menu.Item
+            position='right'
+          >
+            { this.renderButtons() }
+          </Menu.Item>
+        )}
       </Menu>
     );
 
     if (this.props.stickyMenu) {
       return (
         <Sticky
-          ref={this.contextRef}
+          context={this.contextRef}
+          offset={20}
         >
           { menu }
         </Sticky>
@@ -232,7 +252,8 @@ class SimpleEditPage extends Component<Props, State> {
         <Grid
           columns={2}
           style={{
-            marginLeft: '50px'
+            marginLeft: '50px',
+            marginRight: header ? undefined : '50px'
           }}
         >
           <Grid.Column
@@ -241,42 +262,32 @@ class SimpleEditPage extends Component<Props, State> {
             }}
           >
             { this.renderNew() }
-            { this.renderMenu(tabs) }
+            { this.renderMenu(tabs, !header) }
             { tab && tab.props.children }
           </Grid.Column>
-          <Grid.Column
-            className='five wide computer four wide large screen four wide widescreen column'
-            style={{
-              marginTop: '0.5em',
-              marginBottom: '0.5em'
-            }}
-          >
-            <Sticky
-              context={this.contextRef}
-              offset={20}
+          { header && (
+            <Grid.Column
+              className='five wide computer four wide large screen four wide widescreen column'
+              style={{
+                marginTop: '0.5em',
+                marginBottom: '0.5em'
+              }}
             >
-              <Card>
-                { header && header.props && header.props.children }
-                <Card.Content
-                  extra
-                >
-                  <div className='ui two buttons'>
-                    <Button
-                      content={i18n.t('Common.buttons.save')}
-                      onClick={this.props.onSave.bind(this)}
-                      primary
-                    />
-                    <Button
-                      content={i18n.t('Common.buttons.cancel')}
-                      inverted
-                      onClick={() => this.props.history.push('/admin/artworks')}
-                      primary
-                    />
-                  </div>
-                </Card.Content>
-              </Card>
-            </Sticky>
-          </Grid.Column>
+              <Sticky
+                context={this.contextRef}
+                offset={20}
+              >
+                <Card>
+                  { header && header.props && header.props.children }
+                  <Card.Content
+                    extra
+                  >
+                    { this.renderButtons() }
+                  </Card.Content>
+                </Card>
+              </Sticky>
+            </Grid.Column>
+          )}
         </Grid>
       </Ref>
     );
@@ -306,32 +317,46 @@ class SimpleEditPage extends Component<Props, State> {
   }
 
   /**
-   * Renders the error toaster.
+   * Renders the success/error toaster.
    *
-   * @returns {null|*}
+   * @returns {JSX.Element|null}
    */
   renderToaster() {
     if (!this.state.showToaster) {
       return null;
     }
 
-    if (!(this.props.errors && this.props.errors.length)) {
-      return null;
+    if (this.props.errors && this.props.errors.length) {
+      return (
+        <Toaster
+          onDismiss={() => this.setState({ showToaster: false })}
+          timeout={0}
+          type={Toaster.MessageTypes.negative}
+        >
+          <Message.Header
+            content={i18n.t('Common.errors.header')}
+          />
+          <Message.List
+            items={this.props.errors}
+          />
+        </Toaster>
+      );
     }
 
     return (
       <Toaster
         onDismiss={() => this.setState({ showToaster: false })}
-        timeout={0}
-        type={Toaster.MessageTypes.negative}
+        timeout={3000}
+        type={Toaster.MessageTypes.positive}
       >
         <Message.Header
-          content={i18n.t('Common.errors.header')}
+          content={i18n.t('Common.messages.saved.header')}
         />
-        <Message.List
-          items={this.props.errors}
+        <Message.Content
+          content={i18n.t('Common.messages.saved.content')}
         />
       </Toaster>
+
     );
   }
 }

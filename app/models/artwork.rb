@@ -1,6 +1,7 @@
 class Artwork < ApplicationRecord
   # Includes
   include Attachable
+  include Participateable
 
   # Relationships
   has_many :artwork_titles, dependent: :destroy

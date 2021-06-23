@@ -3,6 +3,7 @@
 import ArtworkTitles from './ArtworkTitles';
 import Attachments from './Attachments';
 import FormDataTransform from './FormDataTransform';
+import Participations from './Participations';
 
 import type { Artwork as ArtworkType } from '../types/Artwork';
 
@@ -41,6 +42,21 @@ class Artwork extends FormDataTransform {
   }
 
   /**
+   * Returns the passed artwork as a dropdown option.
+   *
+   * @param artwork
+   *
+   * @returns {{text: string, value: number, key: number}}
+   */
+  toDropdown(artwork: ArtworkType) {
+    return {
+      key: artwork.id,
+      value: artwork.id,
+      text: artwork.primary_title && artwork.primary_title.title
+    };
+  }
+
+  /**
    * Returns the artwork object to be sent to the server on POST/PUT requests.
    *
    * @param artwork
@@ -52,6 +68,7 @@ class Artwork extends FormDataTransform {
 
     ArtworkTitles.appendFormData(formData, this.getParameterName(), artwork);
     Attachments.appendFormData(formData, this.getParameterName(), artwork);
+    Participations.appendFormData(formData, this.getParameterName(), artwork);
 
     return formData;
   }
