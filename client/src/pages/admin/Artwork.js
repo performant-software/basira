@@ -12,6 +12,7 @@ import Images from '../../components/Images';
 import ItemLabel from '../../components/ItemLabel';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
+import ValueListDropdown from '../../components/ValueListDropdown';
 import useEditPage from './EditPage';
 import withMenuBar from '../../hooks/MenuBar';
 
@@ -25,7 +26,8 @@ type Props = EditContainerProps & Translateable & {
 
 const Tabs = {
   details: 'details',
-  images: 'images'
+  images: 'images',
+  physical_features: 'physical features'
 };
 
 const Artwork = (props: Props) => {
@@ -177,6 +179,38 @@ const Artwork = (props: Props) => {
             });
           }}
           renderImage={(item) => item.thumbnail_url}
+        />
+      </SimpleEditPage.Tab>
+      <SimpleEditPage.Tab
+        key={Tabs.physical_features}
+        name={props.t('Artwork.labels.physicalFeatures')}
+      >
+
+        <ValueListDropdown
+          column={'Object/Work Type'}
+          label={"Object type"}
+          multiple={true}
+          placeholder={"Select object type..."}
+          table={'Artwork'}
+          value={'object_type'}
+        />
+
+        <ValueListDropdown
+          column={'Material'}
+          label={props.t('Artwork.labels.materials')}
+          multiple={true}
+          placeholder={"Select material(s)..."}
+          table={'Artwork'}
+          value={props.item.materials}
+        />
+
+        <ValueListDropdown
+          column={'Technique'}
+          label={props.t('Artwork.labels.techniques')}
+          multiple={true}
+          placeholder={"Select technique(s)..."}
+          table={'Artwork'}
+          value={props.item.techniques}
         />
       </SimpleEditPage.Tab>
     </SimpleEditPage>

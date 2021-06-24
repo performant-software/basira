@@ -1,47 +1,51 @@
 // @flow
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form } from 'semantic-ui-react';
-import { RemoteDropdown, type EditModalProps } from 'react-components';
-import _ from 'underscore';
 import ValueLists from '../services/ValueLists';
 import ValueList from '../transforms/ValueList';
+import { withTranslation } from 'react-i18next';
+import { useEditContainer } from 'react-components';
 
-type Props = EditModalProps & {
-  allowAdditions?: boolean,
-  column: string,
-  label: string,
-  multiple?: boolean,
-  table: string
+import type { ValueListType } from '../types/ValueList';
+import type { EditContainerProps } from 'react-components/types';
+
+type Props = EditContainerProps & {
+  item: ValueListType
 };
 
-const ValueListDropdown = (props: Props) => (
-  <Form.Input
-    error={props.isError(props.column)}
-    label={props.label}
-    required={props.isRequired(props.column)}
-  >
-    <RemoteDropdown
-      allowAdditions={props.allowAdditions}
-      collectionName='value_lists'
-      fluid
+const ValueListDropdown = (props: Props) => {
+
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    ValueLists.fetchAll({ table_filter: props.table, column_filter: props.column })
+      .then(resp => {
+        const optionsList = resp.data.value_lists.map(option => ({ key: option.value, value: option.value, text: option.value }) );
+        setOptions(optionsList);
+      });
+  }, []);
+
+  return (
+    <Form.Dropdown
+      clearable={props.clearable}
+      label={props.label}
       multiple={props.multiple}
-      onAddItem={(value) => ValueLists.save({ table: props.table, column: props.column, value })}
-      onLoad={(params) => ValueLists.fetchAll(_.extend(params, {
-        table: props.table,
-        column: props.column,
-        sort_by: 'value'
-      }))}
-      onSelection={(value) => props.onTextInputChange(props.column, null, { value })}
-      renderOption={ValueList.toDropdown.bind(this)}
-      value={props.item[props.column] || ''}
+      onChange={props.onTextInputChange.bind(this, `${props.value}`)}
+      options={options}
+      placeholder={props.placeholder}
+      search
+      selection
+      value={props.item[`${props.value}`] || ''}
+      width={props.width}
     />
-  </Form.Input>
-);
+  );
+};
 
 ValueListDropdown.defaultProps = {
-  allowAdditions: true,
-  multiple: false
+  clearable: true,
+  multiple: false,
+  width: 8
 };
 
-export default ValueListDropdown;
+export default withTranslation()(useEditContainer(ValueListDropdown));

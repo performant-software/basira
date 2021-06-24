@@ -23,8 +23,12 @@
       "creationDate": "Creation date",
       "dateDescription": "Description",
       "endDate": "End date",
+      "materials": "Material(s)",
       "notes": "Notes",
+      "objectWorkType": "Object/Work Type",
+      "physicalFeatures": "Physical features",
       "startDate": "Start date",
+      "techniques": "Techniques",
       "titles": "Titles"
     },
     "tabs": {
@@ -152,6 +156,15 @@
     "title": {
       "add": "Add value list item",
       "edit": "Edit value list item"
+    }
+  },
+  "ValueListsFiltersModal": {
+    "labels": {
+      "groupName": "Group name",
+      "selectGroupName": "Select group name..."
+    },
+    "title": {
+      "filterByGroupName": "Filter by group name"
     }
   },
   "VisualContext": {

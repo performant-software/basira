@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources :physical_components, except: :index
     resources :value_lists
     resources :visual_contexts, except: :index
+
+    get 'value_lists_tables' => "value_lists#tables_list"
+    get 'value_lists_columns' => "value_lists#columns_list"
+
   end
 
   # Default route for static front-end
