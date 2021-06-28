@@ -10,12 +10,13 @@ class Session {
    * @param response
    */
   create(response: any) {
-    const { uid } = response.data.data;
+    const { name, uid } = response.data.data;
 
     sessionStorage.setItem('user',
       JSON.stringify({
         'access-token': response.headers['access-token'],
         client: response.headers.client,
+        name,
         uid
       }));
   }
@@ -25,6 +26,18 @@ class Session {
    */
   destroy() {
     sessionStorage.removeItem('user');
+  }
+
+  /**
+   * Returns the name of the current user.
+   *
+   * @returns {*}
+   */
+  getName() {
+    const userString = sessionStorage.getItem('user') || '{}';
+    const user = JSON.parse(userString);
+
+    return user.name;
   }
 
   /**
