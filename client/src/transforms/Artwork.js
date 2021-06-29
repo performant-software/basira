@@ -3,6 +3,7 @@
 import ArtworkTitles from './ArtworkTitles';
 import Attachments from './Attachments';
 import FormDataTransform from './FormDataTransform';
+import Selection from './Selection';
 
 import type { Artwork as ArtworkType } from '../types/Artwork';
 
@@ -32,10 +33,13 @@ class Artwork extends FormDataTransform {
       // 'height',
       // 'width',
       // 'depth',
+      'materials',
       'notes_external',
       'notes_internal',
+      'object_work_types',
       'published',
       'repository_work_url',
+      'techniques',
       'accession_number'
     ];
   }
@@ -49,10 +53,9 @@ class Artwork extends FormDataTransform {
    */
   toPayload(artwork: ArtworkType): FormData {
     const formData = super.toPayload(artwork);
-
     ArtworkTitles.appendFormData(formData, this.getParameterName(), artwork);
     Attachments.appendFormData(formData, this.getParameterName(), artwork);
-
+    debugger
     return formData;
   }
 }

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :documents, except: :index
     resources :home, only: :index
     resources :physical_components, except: :index
+    resources :selections
     resources :value_lists
     resources :visual_contexts, except: :index
 

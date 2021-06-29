@@ -1,6 +1,9 @@
 class Api::ValueListsController < Api::BaseController
   # Search columns
-  search_attributes :table, :column, :value, :comment
+  search_attributes :table, :column_readable, :value, :comment
+
+  # Preloads
+  preloads :selections
 
   def index
 
@@ -13,7 +16,7 @@ class Api::ValueListsController < Api::BaseController
       query = apply_search(query)
     end
 
-    list, items = pagy(query, items: 25, page: params[:page])
+    list, items = pagy(query, items: params[:unpaginated].presence ? ValueList.all.count : 25, page: params[:page])
     metadata = pagy_metadata(list)
 
     serializer = serializer_class.new(current_user)
@@ -39,7 +42,7 @@ class Api::ValueListsController < Api::BaseController
   end
 
   def columns_list
-    columns_list = Set.new(ValueList.where(table: params[:table]).pluck(:column).sort)
+    columns_list = Set.new(ValueList.where(table: params[:table]).pluck(:column_readable).sort)
 
     render json: {
       columns: columns_list
@@ -71,9 +74,12 @@ class Api::ValueListsController < Api::BaseController
     end
 
     def apply_column_filter(query)
-      return query if params[:column_filter].blank?
-
-      query.where(column: params[:column_filter])
+      if params[:column_filter].presence
+        query.where(column: params[:column_filter])
+      elsif params[:column_readable_filter].presence
+        query.where(column_readable: params[:column_readable_filter])
+      else return
+      end
     end
 
 end

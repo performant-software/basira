@@ -2,11 +2,15 @@
 
 import _ from 'underscore';
 import type { ValueList as ValueListType } from '../types/ValueList';
+import NestedAttributes from './NestedAttributes';
+
 
 /**
  * Class for handling transforming value_list records.
  */
-class ValueList {
+class ValueList extends NestedAttributes {
+  PARAM_NAME = 'value_lists'
+
   PAYLOAD_KEYS = [
     'id',
     'table',
@@ -19,6 +23,27 @@ class ValueList {
   ];
 
   /**
+   * Overrides the appendFormData function and defaults the collection name.
+   *
+   * @param formData
+   * @param prefix
+   * @param record
+   * @param collection
+   */
+  appendFormData(formData: FormData, prefix: string, record: *, collection: string = this.PARAM_NAME) {
+    super.appendFormData(formData, prefix, record, collection);
+  }
+
+  /**
+   * Returns the value_list payload keys.
+   *
+   * @returns {string[]}
+   */
+  getPayloadKeys() {
+    return this.PAYLOAD_KEYS;
+  }
+
+  /**
    * Converts the passed value_list to a dropdown option.
    *
    * @param option
@@ -27,7 +52,7 @@ class ValueList {
    */
   toDropdown(option: ValueListType) {
     return {
-      key: option.value,
+      key: option.id,
       value: option.value,
       text: option.value
     };

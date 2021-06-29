@@ -34,11 +34,11 @@ const ValueListModal = (props: Props) => (
         value={props.item.table || ''}
       />
       <Form.Input
-        error={props.isError('column')}
+        error={props.isError('column_readable')}
         label={props.t('ValueList.labels.groupName')}
         onChange={props.onTextInputChange.bind(this, 'column')}
-        required={props.isRequired('column')}
-        value={props.item.column || ''}
+        required={props.isRequired('column_readable')}
+        value={props.item.column_readable || ''}
       />
       <Form.Input
         error={props.isError('value')}

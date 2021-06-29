@@ -118,6 +118,8 @@ module AirtableImporter
             attributes[attribute_name] << value unless value.nil?
           when :multiselect_as_text
             attributes[attribute_name] = record[airtable_name].join(", ")
+          when :paramaterize
+            attributes[attribute_name] = record[airtable_name].parameterize.underscore.pluralize
           else
             attributes[attribute_name] = record[airtable_name]
           end

@@ -187,30 +187,30 @@ const Artwork = (props: Props) => {
       >
 
         <ValueListDropdown
-          column={'Object/Work Type'}
+          column={'object_work_types'}
+          item={props.item}
           label={"Object type"}
           multiple={true}
           placeholder={"Select object type..."}
           table={'Artwork'}
-          value={'object_type'}
         />
 
         <ValueListDropdown
-          column={'Material'}
+          column={'materials'}
+          item={props.item}
           label={props.t('Artwork.labels.materials')}
           multiple={true}
           placeholder={"Select material(s)..."}
           table={'Artwork'}
-          value={props.item.materials}
         />
 
         <ValueListDropdown
-          column={'Technique'}
+          column={'techniques'}
+          item={props.item}
           label={props.t('Artwork.labels.techniques')}
           multiple={true}
           placeholder={"Select technique(s)..."}
           table={'Artwork'}
-          value={props.item.techniques}
         />
       </SimpleEditPage.Tab>
     </SimpleEditPage>

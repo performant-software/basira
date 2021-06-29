@@ -3,6 +3,7 @@ class CreateValueLists < ActiveRecord::Migration[6.0]
     create_table :value_lists do |t|
       t.string :table
       t.string :column
+      t.string :column_readable
       t.string :value
       t.string :authorized_vocabulary
       t.string :url_database_value

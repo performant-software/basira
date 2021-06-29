@@ -150,6 +150,7 @@
       "comment": "Comment",
       "groupName": "Group name",
       "humanName": "Human name",
+      "linkedRecords": "Linked records",
       "objectName": "Object name",
       "urlDatabaseValue": "URL/Database value"
     },

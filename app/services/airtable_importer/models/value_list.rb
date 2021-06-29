@@ -11,6 +11,10 @@ module AirtableImporter
           type: :multiselect_as_text,
         }, {
           attribute_name: :column,
+          airtable_name: 'Group',
+          type: :paramaterize
+        }, {
+          attribute_name: :column_readable,
           airtable_name: 'Group'
         }, {
           attribute_name: :value,

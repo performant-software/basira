@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_13_061315) do
+ActiveRecord::Schema.define(version: 2021_06_28_231640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,10 @@ ActiveRecord::Schema.define(version: 2021_06_13_061315) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "commissioning_contexts", default: [], array: true
+    t.jsonb "materials", default: [], array: true
+    t.jsonb "object_work_types", default: [], array: true
+    t.jsonb "techniques", default: [], array: true
   end
 
   create_table "attachments", force: :cascade do |t|
@@ -116,6 +120,14 @@ ActiveRecord::Schema.define(version: 2021_06_13_061315) do
     t.index ["artwork_id"], name: "index_physical_components_on_artwork_id"
   end
 
+  create_table "selections", force: :cascade do |t|
+    t.string "selectable_type"
+    t.bigint "selectable_id"
+    t.bigint "value_list_id"
+    t.index ["selectable_type", "selectable_id"], name: "index_selections_on_selectable_type_and_selectable_id"
+    t.index ["value_list_id"], name: "index_selections_on_value_list_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -149,6 +161,7 @@ ActiveRecord::Schema.define(version: 2021_06_13_061315) do
   create_table "value_lists", force: :cascade do |t|
     t.string "table"
     t.string "column"
+    t.string "column_readable"
     t.string "value"
     t.string "authorized_vocabulary"
     t.string "url_database_value"

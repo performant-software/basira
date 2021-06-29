@@ -46,12 +46,12 @@ const ValueListsFiltersModal = (props: Props) => {
           clearable
           label={props.t('ValueListsFiltersModal.labels.groupName')}
           multiple
-          onChange={props.onTextInputChange.bind(this, 'column_filter')}
+          onChange={props.onTextInputChange.bind(this, 'column_readable_filter')}
           options={columnNames}
           placeholder={props.t('ValueListsFiltersModal.labels.selectGroupName')}
           search
           selection
-          value={props.item.column_filter || ''}
+          value={props.item.column_readable_filter || ''}
           width={8}
         />
       </Modal.Content>

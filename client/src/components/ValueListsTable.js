@@ -38,7 +38,7 @@ const ValueListsTable = (props: Props) => {
       className='value-lists-table'
       collectionName='value_lists'
       columns={[{
-        name: 'column',
+        name: 'column_readable',
         label: props.t('ValueList.labels.groupName'),
         sortable: true
       }, {
@@ -49,11 +49,15 @@ const ValueListsTable = (props: Props) => {
         name: 'comment',
         label: props.t('ValueList.labels.comment'),
         sortable: true
+      }, {
+        name: 'linked_records_count',
+        label: props.t('ValueList.labels.linkedRecords'),
+        sortable: true
       }]}
       filters={{
         component: ValueListsFiltersModal,
         props: {
-          column_filter: '',
+          column_readable_filter: '',
           table_filter: tableName
         }
       }}
@@ -61,7 +65,7 @@ const ValueListsTable = (props: Props) => {
       modal={{
         component: ValueListModal,
         props: {
-          required: ['table', 'column', 'value']
+          required: ['table', 'column_readable', 'value']
         }
       }}
       onDelete={(params) => ValueListsService.delete(params)}
