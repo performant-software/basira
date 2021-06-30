@@ -7,6 +7,9 @@
     "buttons": {
       "logout": "Logout"
     },
+    "labels": {
+      "greeting": "Hello, {{name}}!"
+    },
     "menu": {
       "artworks": "Artworks",
       "people": "People",
@@ -257,6 +260,33 @@
   "SimpleEditPage": {
     "labels": {
       "add": "Add New {{type}}"
+    }
+  },
+  "UserModal": {
+    "labels": {
+      "email": "Email",
+      "name": "Name",
+      "password": "Password",
+      "passwordConfirmation": "Password confirmation",
+      "passwordPolicy": {
+        "content": "Passwords must be a minimum of six (6) characters",
+        "header": "Password Policy"
+      }
+    },
+    "title": {
+      "add": "Add User",
+      "edit": "Edit User"
+    }
+  },
+  "Users": {
+    "columns": {
+      "email": "Email",
+      "name": "Name"
+    },
+    "errors": {
+      "email": "Email {{error}}",
+      "password": "Password {{error}}",
+      "passwordConfirmation": "Password confirmation {{error}}"
     }
   },
   "VisualContext": {

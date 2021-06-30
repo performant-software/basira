@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :physical_components, except: :index
     resources :places
     resources :visual_contexts, except: :index
+    resources :users
   end
 
   # Default route for static front-end
