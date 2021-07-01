@@ -4,6 +4,8 @@ class Attachment < ApplicationRecord
 
   # Relationships
   belongs_to :attachable, polymorphic: true, optional: true
+  has_many :qualifications, as: :qualifiable
+  has_many :value_lists, through: :qualifications, as: :qualifiable
 
   # Active storage
   has_one_attached :file
@@ -11,6 +13,17 @@ class Attachment < ApplicationRecord
   # Callbacks
   after_create :generate_thumbnail
   before_save :set_primary
+
+  # Resourceable parameters
+  allow_params qualifications_attributes: [
+    :id,
+    :qualifiable_id,
+    :qualifiable_type,
+    :value_list_id,
+    :notes,
+    :persistent,
+    :_destroy
+  ]
 
   def file_url
     return nil unless self.file&.attached?

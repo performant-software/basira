@@ -71,7 +71,7 @@ class Artwork extends FormDataTransform {
     Attachments.appendFormData(formData, this.getParameterName(), artwork);
     Locations.appendFormData(formData, this.getParameterName(), artwork);
     Participations.appendFormData(formData, this.getParameterName(), artwork);
-
+    Selections.appendFormData(formData, this.getParameterName(), artwork);
     return formData;
   }
 }

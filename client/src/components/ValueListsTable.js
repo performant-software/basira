@@ -41,7 +41,7 @@ const ValueListsTable = (props: Props) => {
         label: props.t('ValueList.labels.groupName'),
         sortable: true
       }, {
-        name: 'human_value',
+        name: 'human_name',
         label: props.t('ValueList.labels.humanName'),
         sortable: true
       }, {
@@ -64,7 +64,7 @@ const ValueListsTable = (props: Props) => {
       modal={{
         component: ValueListModal,
         props: {
-          required: ['object', 'group', 'human_value']
+          required: ['object', 'group', 'human_name']
         }
       }}
       onDelete={(params) => ValueListsService.delete(params)}

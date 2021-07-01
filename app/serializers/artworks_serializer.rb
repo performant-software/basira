@@ -9,7 +9,7 @@ class ArtworksSerializer < BaseSerializer
   show_attributes :id, :date_start, :date_end, :date_descriptor, :published, :height, :width, :depth,
                   :notes_external, :notes_internal, :repository_work_url, :accession_number,
                   artwork_titles: [:id, :title, :title_type, :notes, :primary],
-                  participations: ParticipationsSerializer
+                  participations: ParticipationsSerializer, qualifications: QualificationsSerializer
 
   nested_attributes :id, primary_title: [:id, :title, :title_type],
                     primary_attachment: [:id, :file_url, :primary, :thumbnail_url],
