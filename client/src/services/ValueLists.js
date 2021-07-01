@@ -43,7 +43,6 @@ class ValueLists extends BaseService {
   getGroupsList(object: string) {
     return axios.get(`/api/value_lists_groups?object=${object}`);
   }
-
 }
 
 export default new ValueLists();

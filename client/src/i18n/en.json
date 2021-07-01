@@ -289,6 +289,30 @@
       "passwordConfirmation": "Password confirmation {{error}}"
     }
   },
+  "ValueList": {
+    "labels": {
+      "authorizedVocabulary": "Authorized vocabulary",
+      "comment": "Comment",
+      "groupName": "Group name",
+      "humanName": "Human name",
+      "linkedRecords": "Linked records",
+      "objectName": "Object name",
+      "urlDatabaseValue": "URL/Database value"
+    },
+    "title": {
+      "add": "Add value list item",
+      "edit": "Edit value list item"
+    }
+  },
+  "ValueListsFiltersModal": {
+    "labels": {
+      "groupName": "Group name",
+      "selectGroupName": "Select group name..."
+    },
+    "title": {
+      "filterByGroupName": "Filter by group name"
+    }
+  },
   "VisualContext": {
     "labels": {
       "depth": "Depth",

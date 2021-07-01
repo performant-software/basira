@@ -4,7 +4,6 @@ import _ from 'underscore';
 import type { ValueList as ValueListType } from '../types/ValueList';
 import NestedAttributes from './NestedAttributes';
 
-
 /**
  * Class for handling transforming value_list records.
  */

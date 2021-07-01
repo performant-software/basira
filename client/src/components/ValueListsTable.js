@@ -3,20 +3,12 @@
 import React from 'react';
 import ValueListModal from './ValueListModal';
 import ValueListsFiltersModal from './ValueListsFiltersModal';
-import { withTranslation } from 'react-i18next';
-import { DataTable, EmbeddedList, ListTable } from 'react-components';
-import { Tab } from 'semantic-ui-react';
 import ValueListsService from '../services/ValueLists';
-import {
-  Container,
-  Header
-} from 'semantic-ui-react';
-import _ from 'underscore';
-
+import { withTranslation } from 'react-i18next';
+import { ListTable, useDataList } from 'react-components';
 import type { EditContainerProps } from 'react-components/types';
-import { useDataList } from 'react-components';
-import type { ValueList as ValueListType } from '../../types/ValueList';
-import type { Translateable } from '../../types/Translateable';
+import type { ValueList as ValueListType } from '../types/ValueList';
+import type { Translateable } from '../types/Translateable';
 
 type Props = EditContainerProps & Translateable & {
   item: ValueListType
@@ -41,7 +33,7 @@ const ValueListsTable = (props: Props) => {
         label: props.t('ValueList.labels.groupName'),
         sortable: true
       }, {
-        name: 'human_value',
+        name: 'human_name',
         label: props.t('ValueList.labels.humanName'),
         sortable: true
       }, {
@@ -64,7 +56,7 @@ const ValueListsTable = (props: Props) => {
       modal={{
         component: ValueListModal,
         props: {
-          required: ['object', 'group', 'human_value']
+          required: ['object', 'group', 'human_name']
         }
       }}
       onDelete={(params) => ValueListsService.delete(params)}

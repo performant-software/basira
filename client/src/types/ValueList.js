@@ -5,7 +5,7 @@ export type ValueList = {
   authorized_vocabulary: string,
   comment: string,
   group: string,
-  human_name: string
+  human_name: string,
   object: string,
   url_database_value: string,
 };

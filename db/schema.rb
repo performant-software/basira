@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_174742) do
+ActiveRecord::Schema.define(version: 2021_06_23_042443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,6 +182,16 @@ ActiveRecord::Schema.define(version: 2021_06_21_174742) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "qualifications", force: :cascade do |t|
+    t.string "qualifiable_type"
+    t.bigint "qualifiable_id"
+    t.bigint "value_list_id"
+    t.json "notes"
+    t.boolean "persistent", default: false, null: false
+    t.index ["qualifiable_type", "qualifiable_id"], name: "index_qualifications_on_qualifiable_type_and_qualifiable_id"
+    t.index ["value_list_id"], name: "index_qualifications_on_value_list_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -210,6 +220,19 @@ ActiveRecord::Schema.define(version: 2021_06_21_174742) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+  end
+
+  create_table "value_lists", force: :cascade do |t|
+    t.string "object"
+    t.string "group"
+    t.string "human_name"
+    t.string "url_database_value"
+    t.json "comment"
+    t.string "authorized_vocabulary"
+    t.string "airtable_id"
+    t.datetime "airtable_timestamp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "visual_contexts", force: :cascade do |t|
