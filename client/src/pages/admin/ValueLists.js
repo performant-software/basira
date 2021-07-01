@@ -1,16 +1,14 @@
 // @flow
 
 import React, { useEffect, useState } from 'react';
-import { ListTable } from 'react-components';
-import { Tab } from 'semantic-ui-react';
 import ValueListsTable from '../../components/ValueListsTable';
 import withMenuBar from '../../hooks/MenuBar';
 import ValueListsService from '../../services/ValueLists';
 import {
   Container,
-  Header
+  Header,
+  Tab
 } from 'semantic-ui-react';
-import _ from 'underscore';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { ValueList as ValueListType } from '../../types/ValueList';
@@ -26,12 +24,16 @@ const ValueLists = (props: Props) => {
 
   useEffect(() => {
     ValueListsService.getObjectsList()
-    .then(response => setObjectsList(response.data.objects));
+      .then((response) => setObjectsList(response.data.objects));
   }, []);
 
-  const panes = objectsList.map(objectName => ({
+  const panes = objectsList.map((objectName) => ({
     menuItem: objectName,
-    render: () => (<Tab.Pane attached={false}> <ValueListsTable objectName={objectName} /> </Tab.Pane>)
+    render: () => (
+      <Tab.Pane attached={false}>
+        <ValueListsTable objectName={objectName} />
+      </Tab.Pane>
+    )
   }));
 
   return (
@@ -41,7 +43,6 @@ const ValueLists = (props: Props) => {
     </Container>
   );
 };
-
 export default useEditPage(withMenuBar(ValueLists), {
   onLoad: () => ValueListsService.getObjectsList(),
   onSave: () => ValueListsService.save()

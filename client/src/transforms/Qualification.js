@@ -4,7 +4,6 @@ import _ from 'underscore';
 import type { Qualification as QualificationType } from '../types/Qualification';
 import NestedAttributes from './NestedAttributes';
 
-
 /**
  * Class for handling transforming qualification records.
  */

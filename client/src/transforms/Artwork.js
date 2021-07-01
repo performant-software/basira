@@ -4,6 +4,7 @@ import ArtworkTitles from './ArtworkTitles';
 import Attachments from './Attachments';
 import FormDataTransform from './FormDataTransform';
 import Locations from './Locations';
+import Qualification from './Qualification';
 import Participations from './Participations';
 
 import type { Artwork as ArtworkType } from '../types/Artwork';
@@ -71,7 +72,7 @@ class Artwork extends FormDataTransform {
     Attachments.appendFormData(formData, this.getParameterName(), artwork);
     Locations.appendFormData(formData, this.getParameterName(), artwork);
     Participations.appendFormData(formData, this.getParameterName(), artwork);
-    Selections.appendFormData(formData, this.getParameterName(), artwork);
+    Qualification.appendFormData(formData, this.getParameterName(), artwork);
     return formData;
   }
 }
