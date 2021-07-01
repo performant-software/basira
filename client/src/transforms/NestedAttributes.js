@@ -54,7 +54,7 @@ class NestedAttributes {
    */
   toPayload(record: any, collection: string) {
     return {
-      [collection]: _.map(collection, (item, index) => ({ ..._.pick(item, this.getPayloadKeys()), order: index }))
+      [collection]: _.map(record[collection], (item) => _.pick(item, this.getPayloadKeys()))
     };
   }
 }

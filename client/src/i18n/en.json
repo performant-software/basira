@@ -7,6 +7,9 @@
     "buttons": {
       "logout": "Logout"
     },
+    "labels": {
+      "greeting": "Hello, {{name}}!"
+    },
     "menu": {
       "artworks": "Artworks",
       "people": "People",
@@ -22,13 +25,32 @@
     "labels": {
       "creationDate": "Creation date",
       "dateDescription": "Description",
+      "depth": "Depth",
       "endDate": "End date",
+      "height": "Height",
       "notes": "Notes",
       "startDate": "Start date",
-      "titles": "Titles"
+      "titles": "Titles",
+      "width": "Width"
+    },
+    "locations": {
+      "columns": {
+        "country": "Country",
+        "name": "Name",
+        "role": "Role"
+      }
+    },
+    "participations": {
+      "columns": {
+        "name": "Name",
+        "nationality": "Nationality",
+        "role": "Role"
+      }
     },
     "tabs": {
-      "images": "Images"
+      "creators": "Creators",
+      "images": "Images",
+      "physical": "Physical Features"
     },
     "titles": {
       "columns": {
@@ -60,16 +82,55 @@
     },
     "labels": {
       "artwork": "Artwork",
+      "document": "Document",
       "physicalComponent": "Physical Component",
       "visualContext": "Visual Context"
     },
     "messages": {
-      "loading": "Loading"
+      "loading": "Loading",
+      "saved": {
+        "content": "Your changes have been saved.",
+        "header": "Success!"
+      }
     },
     "tabs": {
-      "details": "Details"
+      "details": "Details",
+      "locations": "Locations"
     },
     "title": "BASIRA"
+  },
+  "Document": {
+    "labels": {
+      "bookmarksRegisters": "Bookmarks/Registers",
+      "endbandPresent": "Endband Present",
+      "foreEdgeText": "Fore-Edge Text",
+      "identity": "Identity of Work",
+      "inscriptionsOnBinding": "Inscriptions on Binding",
+      "inscriptionText": "Binding Inscription Text",
+      "locationOfFastenings": "Location of Fastenings",
+      "name": "Name",
+      "notes": "Notes",
+      "numberFastenings": "Number of Fastenings",
+      "numberSewingSupports": "Number of Sewing Supports Visible",
+      "rubrication": "Rubrication",
+      "ruling": "Ruling",
+      "sewingSupportsVisible": "Sewing Supports Visible",
+      "textColumns": "Text Columns",
+      "transcription": "Transcription",
+      "uncutForeEdges": "Uncut Fore-Edges"
+    },
+    "sections": {
+      "binding": "Binding",
+      "bookmarks": "Bookmarks/Registers",
+      "endband": "Endband",
+      "foreEdges": "Fore-Edges/Textblock Edges",
+      "layout": "Layout",
+      "text": "Text and Image"
+    },
+    "tabs": {
+      "external": "External Features",
+      "internal": "Internal Features"
+    }
   },
   "Home": {
     "buttons": {
@@ -83,8 +144,72 @@
       "upload": "Upload images"
     }
   },
+  "LocationModal": {
+    "labels": {
+      "artwork": "Artwork",
+      "certainty": "Certainty",
+      "description": "Description",
+      "notes": "Notes",
+      "person": "Person",
+      "place": "Place",
+      "role": "Role",
+      "subrole": "Subrole"
+    },
+    "title": {
+      "add": "Add Location",
+      "edit": "Edit Location"
+    }
+  },
   "NotesModal": {
     "title": "Internal Notes"
+  },
+  "ParticipationModal": {
+    "labels": {
+      "artwork": "Artwork",
+      "certainty": "Certainty",
+      "description": "Description",
+      "notes": "Notes",
+      "person": "Person",
+      "role": "Role",
+      "subrole": "Subrole"
+    },
+    "title": {
+      "add": "Add Participation",
+      "edit": "Edit Participation"
+    }
+  },
+  "People": {
+    "columns": {
+      "name": "Name",
+      "type": "Type",
+      "nationality": "Nationality"
+    }
+  },
+  "Person": {
+    "labels": {
+      "authorizedVocabulary": "Authorized vocabulary",
+      "comment": "Comment",
+      "databaseValue": "Database value",
+      "displayName": "Display name",
+      "name": "Name",
+      "nationality": "Nationality",
+      "type": "Type",
+      "url": "URL"
+    },
+    "locations": {
+      "columns": {
+        "country": "Country",
+        "name": "Name",
+        "role": "Role"
+      }
+    },
+    "tabs": {
+      "artworks": "Artworks"
+    },
+    "title": {
+      "add": "Add Person",
+      "edit": "Edit Person"
+    }
   },
   "PhysicalComponent": {
     "labels": {
@@ -93,6 +218,37 @@
       "name": "Name",
       "notes": "Notes",
       "width": "Width"
+    }
+  },
+  "Place": {
+    "labels": {
+      "city": "City",
+      "country": "Country",
+      "databaseValue": "Database value",
+      "name": "Name",
+      "notes": "Notes",
+      "state": "State",
+      "type": "Type",
+      "url": "URL"
+    },
+    "locations": {
+      "columns": {
+        "name": "Name",
+        "role": "Role"
+      }
+    },
+    "tabs": {
+      "artworks": "Artworks",
+      "people": "People"
+    }
+  },
+  "Places": {
+    "columns": {
+      "city": "City",
+      "country": "Country",
+      "name": "Name",
+      "state": "State",
+      "type": "Type"
     }
   },
   "RecordHeader": {
@@ -104,6 +260,33 @@
   "SimpleEditPage": {
     "labels": {
       "add": "Add New {{type}}"
+    }
+  },
+  "UserModal": {
+    "labels": {
+      "email": "Email",
+      "name": "Name",
+      "password": "Password",
+      "passwordConfirmation": "Password confirmation",
+      "passwordPolicy": {
+        "content": "Passwords must be a minimum of six (6) characters",
+        "header": "Password Policy"
+      }
+    },
+    "title": {
+      "add": "Add User",
+      "edit": "Edit User"
+    }
+  },
+  "Users": {
+    "columns": {
+      "email": "Email",
+      "name": "Name"
+    },
+    "errors": {
+      "email": "Email {{error}}",
+      "password": "Password {{error}}",
+      "passwordConfirmation": "Password confirmation {{error}}"
     }
   },
   "VisualContext": {

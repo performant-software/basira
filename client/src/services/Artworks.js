@@ -1,8 +1,8 @@
 // @flow
 
+import axios from 'axios';
 import Artwork from '../transforms/Artwork';
 import BaseService from './BaseService';
-import axios from 'axios';
 
 /**
  * Class for handling all artworks API requests.

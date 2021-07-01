@@ -14,6 +14,7 @@ import {
 } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworksService from '../services/Artworks';
+import DocumentsService from '../services/Documents';
 import ItemLabel from './ItemLabel';
 import PhysicalComponentsService from '../services/PhysicalComponents';
 import VisualContextsService from '../services/VisualContexts';
@@ -213,6 +214,26 @@ const AccordionMenu = (props: Props) => {
   });
 
   /**
+   * Transforms the passed document to a nested structure.
+   *
+   * @param parent
+   * @param doc
+   *
+   * @returns {{image: (*|string|string), path: string, parent, onDelete: (function(): Q.Promise<AxiosResponse<T>>),
+   * level: number, name, id, type: string}}
+   */
+  const transformDocument = (parent, doc) => ({
+    id: doc.id,
+    name: doc.name,
+    image: doc.primary_attachment && doc.primary_attachment.thumbnail_url,
+    type: 'Document',
+    level: 3,
+    path: `/admin/documents/${doc.id}`,
+    parent,
+    onDelete: () => DocumentsService.delete(doc)
+  });
+
+  /**
    * Transforms the passed physical component to a nested structure.
    *
    * @param parent
@@ -231,7 +252,7 @@ const AccordionMenu = (props: Props) => {
     parent,
     onAdd: () => props.history.push('/admin/visual_contexts/new', { physical_component_id: pc.id }),
     onDelete: () => PhysicalComponentsService.delete(pc),
-    children: _.map(pc.visual_contexts, transformVisualContexts.bind(this, pc))
+    children: _.map(pc.visual_contexts, transformVisualContext.bind(this, pc))
   });
 
   /**
@@ -241,9 +262,9 @@ const AccordionMenu = (props: Props) => {
    * @param vc
    *
    * @returns {{image: (*|string|string), path: string, parent, onDelete: (function(): Q.Promise<AxiosResponse<T>>),
-   * level: number, name, id, type: string}}
+   * level: number, children, name, id, type: string, onAdd: (function(): *)}}
    */
-  const transformVisualContexts = (parent, vc) => ({
+  const transformVisualContext = (parent, vc) => ({
     id: vc.id,
     name: vc.name,
     image: vc.primary_attachment && vc.primary_attachment.thumbnail_url,
@@ -251,7 +272,9 @@ const AccordionMenu = (props: Props) => {
     level: 2,
     path: `/admin/visual_contexts/${vc.id}`,
     parent,
-    onDelete: () => VisualContextsService.delete(vc)
+    onAdd: () => props.history.push('/admin/documents/new', { visual_context_id: vc.id }),
+    onDelete: () => VisualContextsService.delete(vc),
+    children: _.map(vc.documents, transformDocument.bind(this, vc))
   });
 
   /**

@@ -4,8 +4,6 @@ class Document < ApplicationRecord
 
   # Relationships
   belongs_to :visual_context
-  has_many :qualifications, as: :qualifiable
-  has_many :value_lists, through: :qualifications, as: :qualifiable
 
   # Resourceable parameters
   allow_params :visual_context_id, :name, :sewing_supports_visible, :number_sewing_supports, :number_fastenings,

@@ -109,6 +109,11 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
             <Menu.Item
               position='right'
             >
+              <div
+                className='greeting'
+              >
+                { props.t('Admin.labels.greeting', { name: Session.getName() })}
+              </div>
               <Button
                 basic
                 content={props.t('Admin.buttons.logout')}
