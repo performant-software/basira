@@ -15,6 +15,7 @@ import ParticipationModal, { ParticipationTypes } from '../../components/Partici
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
+import ValueListDropdown from '../../components/ValueListDropdown';
 import useEditPage from './EditPage';
 import withMenuBar from '../../hooks/MenuBar';
 
@@ -44,6 +45,10 @@ const Artwork = (props: Props) => {
     const title = _.find(props.item.artwork_titles, (t) => t.primary && !t._destroy);
     return title && title.title;
   }, [props.item.artwork_titles]);
+
+  const handleDropdownSelection = (collection) => {
+    props.onMultiAddChildAssociations('qualifications', collection);
+  };
 
   return (
     <SimpleEditPage
@@ -159,6 +164,33 @@ const Artwork = (props: Props) => {
         key={Tabs.physical}
         name={props.t('Artwork.tabs.physical')}
       >
+        <ValueListDropdown
+          group={'Object/Work Type'}
+          item={props.item}
+          label={props.t('Artwork.labels.objectWorkTypes')}
+          multiple={true}
+          onSelection={handleDropdownSelection}
+          placeholder={props.t('Artwork.placeholders.objectWorkTypes')}
+          object={'Artwork'}
+        />
+        <ValueListDropdown
+          group={'Material'}
+          item={props.item}
+          label={props.t('Artwork.labels.materials')}
+          multiple={true}
+          onSelection={handleDropdownSelection}
+          placeholder={props.t('Artwork.placeholders.materials')}
+          object={'Artwork'}
+        />
+        <ValueListDropdown
+          group={'Technique'}
+          item={props.item}
+          label={props.t('Artwork.labels.techniques')}
+          multiple={true}
+          placeholder={props.t('Artwork.placeholders.techniques')}
+          object={'Artwork'}
+          onSelection={handleDropdownSelection}
+        />
         <Form.Input
           error={props.isError('height')}
           label={props.t('Artwork.labels.height')}

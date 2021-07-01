@@ -28,8 +28,11 @@
       "depth": "Depth",
       "endDate": "End date",
       "height": "Height",
+      "objectWorkTypes": "Object/Work Type(s)",
+      "materials": "Material(s)",
       "notes": "Notes",
       "startDate": "Start date",
+      "techniques": "Technique(s)",
       "titles": "Titles",
       "width": "Width"
     },
@@ -46,6 +49,11 @@
         "nationality": "Nationality",
         "role": "Role"
       }
+    },
+    "placeholders": {
+      "materials": "Select material(s)...",
+      "objectWorkTypes": "Select object/work type...",
+      "techniques": "Select technique(s)..."
     },
     "tabs": {
       "creators": "Creators",
