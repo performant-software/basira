@@ -35,6 +35,28 @@ const ValueListDropdown = (props: Props) => {
   const [options, setOptions] = useState([]);
 
   /**
+   * Base attributes for new and matching qualifications.
+   *
+   * @type {{value_list_group: string, value_list_object: string}}
+   */
+  const attributes = useMemo(() => ({
+    value_list_group: props.group,
+    value_list_object: props.object
+  }), [props.group, props.object]);
+
+  /**
+   * Returns the value for the component.
+   */
+  const value = useMemo(() => {
+    const qualifications = _.filter(props.item.qualifications, (qualification) => (
+      !qualification._destroy && _.isMatch(qualification, attributes)
+    ));
+
+    const ids = _.pluck(qualifications, 'value_list_id');
+    return props.multiple ? ids : _.first(ids);
+  }, [props.item.qualifications]);
+
+  /**
    * Finds the existing qualification for the passed value list ID or creates a new one.
    *
    * @param valueListId
@@ -42,20 +64,19 @@ const ValueListDropdown = (props: Props) => {
    * @returns {*}
    */
   const findOrInitialize = useCallback((valueListId) => {
-    const attributes = {
-      value_list_group: props.group,
-      value_list_object: props.object,
+    const initializeAttributes = {
+      ...attributes,
       value_list_id: valueListId
     };
 
     // Find an existing record based on the above attributes that is not marked for deletion.
     let record = _.find(props.item.qualifications, (qualification) => (
-      !qualification._destroy && _.isMatch(qualification, attributes)
+      !qualification._destroy && _.isMatch(qualification, initializeAttributes)
     ));
 
     // If no existing record can be found, create a new record.
     if (!record) {
-      record = _.extend(attributes, { uid: uuid() });
+      record = _.extend(initializeAttributes, { uid: uuid() });
     }
 
     return record;
@@ -67,36 +88,40 @@ const ValueListDropdown = (props: Props) => {
    * @type {function(*, *): void}
    */
   const onChange = useCallback((e, data) => {
-    const qualifications = [];
+    let ids = [];
 
     if (data.value) {
-      const ids = _.isArray(data.value) ? data.value : [data.value];
-
-      _.each(ids, (id) => {
-        qualifications.push(findOrInitialize(id));
-      });
+      if (_.isArray(data.value)) {
+        ids = data.value;
+      } else {
+        ids = [data.value];
+      }
     }
 
-    props.onMultiAddChildAssociations('qualifications', qualifications);
-  }, [props.onMultiAddChildAssociations]);
+    /*
+     * Add any qualifications with matching group and object that are in the list of value list IDs.
+     */
+    const qualificationsToAdd = [];
 
-  /**
-   * Returns the value for the component.
-   */
-  const value = useMemo(() => {
-    const attributes = {
-      value_list_group: props.group,
-      value_list_object: props.object
-    };
+    _.each(ids, (id) => {
+      qualificationsToAdd.push(findOrInitialize(id));
+    });
 
-    const qualifications = _.filter(props.item.qualifications, (qualification) => (
-      !qualification._destroy && _.isMatch(qualification, attributes)
+    _.each(qualificationsToAdd, (qualification) => {
+      props.onSaveChildAssociation('qualifications', qualification);
+    });
+
+    /*
+     * Delete any qualifications with matching group and object that are not in the list of value list IDs.
+     */
+    const qualificationsToDelete = _.filter(props.item.qualifications, (qualification) => (
+      _.isMatch(qualification, attributes) && !_.contains(ids, qualification.value_list_id)
     ));
 
-    const ids = _.pluck(qualifications, 'value_list_id');
-
-    return props.multiple ? ids : _.first(ids);
-  }, [props.item.qualifications]);
+    _.each(qualificationsToDelete, (qualifications) => {
+      props.onDeleteChildAssociation('qualifications', qualifications);
+    });
+  }, [props.onMultiAddChildAssociations]);
 
   /**
    * Sets the dropdown options for the component.
