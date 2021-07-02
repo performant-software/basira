@@ -11,6 +11,9 @@ class Api::ArtworksController < Api::BaseController
 
   preloads :artwork_titles, only: :show
   preloads Artwork.attachments_preload, only: :show
+  preloads locations: :place, only: :show
+  preloads participations: :person, only: :show
+  preloads qualifications: :value_list, only: :show
 
   def nested
     # Nested list of relationships to preload
@@ -18,7 +21,10 @@ class Api::ArtworksController < Api::BaseController
       Artwork.primary_attachment_preload,
       physical_components: [
         PhysicalComponent.primary_attachment_preload,
-        visual_contexts: VisualContext.primary_attachment_preload
+        visual_contexts: [
+          VisualContext.primary_attachment_preload,
+          documents: Document.attachments_preload
+        ]
       ]
     ]
 

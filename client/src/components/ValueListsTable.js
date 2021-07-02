@@ -41,7 +41,7 @@ const ValueListsTable = (props: Props) => {
         label: props.t('ValueList.labels.comment'),
         sortable: true
       }, {
-        name: 'qualifiables_count',
+        name: 'qualifications_count',
         label: props.t('ValueList.labels.linkedRecords'),
         sortable: false
       }]}
@@ -61,8 +61,9 @@ const ValueListsTable = (props: Props) => {
       }}
       onDelete={(params) => ValueListsService.delete(params)}
       onLoad={(params) => ValueListsService.fetchAll({
+        ...params,
         object_filter: objectName,
-        ...params
+        per_page: 25
       })}
       onSave={(params) => ValueListsService.save(params)}
     />

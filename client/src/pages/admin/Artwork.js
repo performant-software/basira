@@ -16,6 +16,7 @@ import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
 import useEditPage from './EditPage';
+import ValueListDropdown from '../../components/ValueListDropdown';
 import withMenuBar from '../../hooks/MenuBar';
 
 import type { EditContainerProps } from 'react-components/types';
@@ -159,6 +160,13 @@ const Artwork = (props: Props) => {
         key={Tabs.physical}
         name={props.t('Artwork.tabs.physical')}
       >
+        <ValueListDropdown
+          {...props}
+          group='Object/Work Type'
+          label={props.t('Artwork.labels.objectWorkType')}
+          multiple
+          object='Artwork'
+        />
         <Form.Input
           error={props.isError('height')}
           label={props.t('Artwork.labels.height')}

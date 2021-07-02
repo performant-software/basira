@@ -1,38 +1,116 @@
 // @flow
 
-import React, { useState, useEffect } from 'react';
-import { Form } from 'semantic-ui-react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState
+} from 'react';
+import { withTranslation } from 'react-i18next';
+import uuid from 'react-uuid';
+import { Dropdown, Form } from 'semantic-ui-react';
+import _ from 'underscore';
 import ValueLists from '../services/ValueLists';
 import ValueList from '../transforms/ValueList';
-import Qualifications from '../services/Qualifications';
-import Qualification from '../transforms/Qualification';
-import { withTranslation } from 'react-i18next';
-import { AssociatedDropdown, useEditContainer, RemoteDropdown } from 'react-components';
-import _ from 'underscore';
-import uuid from 'react-uuid';
 
-import type { ValueListType } from '../types/ValueList';
 import type { EditContainerProps } from 'react-components/types';
+import type { Qualification } from '../types/Qualification';
+
+type Qualifiable = {
+  qualifications: Array<Qualification>
+};
 
 type Props = EditContainerProps & {
-  item: ValueListType
+  clearable?: boolean,
+  item: Qualifiable,
+  group: string,
+  label?: string,
+  multiple?: boolean,
+  object: string,
+  placeholder?: string,
+  width?: number
 };
 
 const ValueListDropdown = (props: Props) => {
-
   const [options, setOptions] = useState([]);
 
+  /**
+   * Finds the existing qualification for the passed value list ID or creates a new one.
+   *
+   * @param valueListId
+   *
+   * @returns {*}
+   */
+  const findOrInitialize = useCallback((valueListId) => {
+    const attributes = {
+      value_list_group: props.group,
+      value_list_object: props.object,
+      value_list_id: valueListId
+    };
+
+    // Find an existing record based on the above attributes that is not marked for deletion.
+    let record = _.find(props.item.qualifications, (qualification) => (
+      !qualification._destroy && _.isMatch(qualification, attributes)
+    ));
+
+    // If no existing record can be found, create a new record.
+    if (!record) {
+      record = _.extend(attributes, { uid: uuid() });
+    }
+
+    return record;
+  }, [props.item.qualifications]);
+
+  /**
+   * Sets the qualifications on the current item based on the dropdown value(s).
+   *
+   * @type {function(*, *): void}
+   */
+  const onChange = useCallback((e, data) => {
+    const qualifications = [];
+
+    if (data.value) {
+      const ids = _.isArray(data.value) ? data.value : [data.value];
+
+      _.each(ids, (id) => {
+        qualifications.push(findOrInitialize(id));
+      });
+    }
+
+    props.onMultiAddChildAssociations('qualifications', qualifications);
+  }, [props.onMultiAddChildAssociations]);
+
+  /**
+   * Returns the value for the component.
+   */
+  const value = useMemo(() => {
+    const attributes = {
+      value_list_group: props.group,
+      value_list_object: props.object
+    };
+
+    const qualifications = _.filter(props.item.qualifications, (qualification) => (
+      !qualification._destroy && _.isMatch(qualification, attributes)
+    ));
+
+    const ids = _.pluck(qualifications, 'value_list_id');
+
+    return props.multiple ? ids : _.first(ids);
+  }, [props.item.qualifications]);
+
+  /**
+   * Sets the dropdown options for the component.
+   */
   useEffect(() => {
     ValueLists.fetchAll({
       object_filter: props.object,
       group_filter: props.group,
-      unpaginated: true
-    })
-      .then(resp => {
-        const optionsList = resp.data.value_lists.map(option => ({ key: option.id, text: option.human_name, ...option }) );
-        setOptions(optionsList);
-      });
-  }, []);
+      sort_by: 'human_name',
+      per_page: 0
+    }).then(({ data }) => {
+      setOptions(_.map(data.value_lists, ValueList.toDropdown.bind(this)));
+    });
+  }, [props.group, props.object]);
 
   return (
     <Form.Input
@@ -41,38 +119,16 @@ const ValueListDropdown = (props: Props) => {
       required={props.isRequired(props.group)}
       width={props.width}
     >
-      <RemoteDropdown
-        allowAdditions={false}
+      <Dropdown
         clearable={props.clearable}
-        collectionName='value_lists'
         fluid
         multiple={props.multiple}
-        onLoad={(params) => ValueLists.fetchAll(_.extend(params, {
-          object_filter: props.object,
-          group_filter: props.group,
-          sort_by: 'human_name'
-        }))}
-        onSelection={(selection) => {
-          const value_list_items = [];
-          selection.forEach((sel) => {
-            value_list_items.push(options.find(opt => opt.id === sel))
-          });
-          const allQualifications = [
-            ...value_list_items.map((vl) => {
-              ({
-              qualifiable_type: props.object,
-              qualifiable_id: props.item.id,
-              value_list_id: vl.id,
-              value_list: vl,
-              group: props.group
-            })}),
-            ...props.item.qualifications
-          ];
-          props.onSelection(allQualifications);
-        }}
+        onChange={onChange}
+        options={options}
         placeholder={props.placeholder}
-        renderOption={ValueList.toDropdown.bind(this)}
-        value={_.where(props.item.qualifications, { group: props.group }).map(qual => qual.value_list.id) || props.item.text || ''}
+        search
+        selection
+        value={value}
       />
     </Form.Input>
   );
@@ -80,8 +136,7 @@ const ValueListDropdown = (props: Props) => {
 
 ValueListDropdown.defaultProps = {
   clearable: true,
-  multiple: false,
-  width: 6
+  multiple: false
 };
 
-export default withTranslation()(useEditContainer(ValueListDropdown));
+export default withTranslation()(ValueListDropdown);
