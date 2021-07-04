@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_02_121718) do
+ActiveRecord::Schema.define(version: 2021_07_04_082016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -247,6 +247,7 @@ ActiveRecord::Schema.define(version: 2021_07_02_121718) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "beta", default: false, null: false
     t.index ["physical_component_id"], name: "index_visual_contexts_on_physical_component_id"
   end
 

@@ -325,11 +325,20 @@
   },
   "VisualContext": {
     "labels": {
+      "beta": "BETA",
       "depth": "Depth",
+      "generalSubjectGenre": "General Subject/Genre",
       "height": "Height",
       "name": "Name",
       "notes": "Notes",
+      "specificSubjectIconography": "Specific Subject/Iconography",
+      "subjectCulturalContext": "Subject Cultural Context",
       "width": "Width"
+    },
+    "tabs": {
+      "details": "Details",
+      "notes": "Notes",
+      "subjectMatter": "Subject Matter"
     }
   }
 }
