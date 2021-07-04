@@ -23,6 +23,7 @@
       "dateNumeric": "{{name}} must be a valid numeric year"
     },
     "labels": {
+      "commissioningContext": "Commissioning Context",
       "creationDate": "Creation date",
       "dateDescription": "Description",
       "depth": "Depth",
