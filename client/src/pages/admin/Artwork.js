@@ -17,6 +17,7 @@ import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
 import ValueListDropdown from '../../components/ValueListDropdown';
 import useEditPage from './EditPage';
+import ValueListDropdown from '../../components/ValueListDropdown';
 import withMenuBar from '../../hooks/MenuBar';
 
 import type { EditContainerProps } from 'react-components/types';
@@ -165,31 +166,11 @@ const Artwork = (props: Props) => {
         name={props.t('Artwork.tabs.physical')}
       >
         <ValueListDropdown
-          group={'Object/Work Type'}
-          item={props.item}
-          label={props.t('Artwork.labels.objectWorkTypes')}
-          multiple={true}
-          onSelection={handleDropdownSelection}
-          placeholder={props.t('Artwork.placeholders.objectWorkTypes')}
-          object={'Artwork'}
-        />
-        <ValueListDropdown
-          group={'Material'}
-          item={props.item}
-          label={props.t('Artwork.labels.materials')}
-          multiple={true}
-          onSelection={handleDropdownSelection}
-          placeholder={props.t('Artwork.placeholders.materials')}
-          object={'Artwork'}
-        />
-        <ValueListDropdown
-          group={'Technique'}
-          item={props.item}
-          label={props.t('Artwork.labels.techniques')}
-          multiple={true}
-          placeholder={props.t('Artwork.placeholders.techniques')}
-          object={'Artwork'}
-          onSelection={handleDropdownSelection}
+          {...props}
+          group='Object/Work Type'
+          label={props.t('Artwork.labels.objectWorkType')}
+          multiple
+          object='Artwork'
         />
         <Form.Input
           error={props.isError('height')}

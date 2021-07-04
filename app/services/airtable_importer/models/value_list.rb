@@ -8,7 +8,10 @@ module AirtableImporter
         [{
           attribute_name: :object,
           airtable_name: 'Object',
-          type: :multiselect_as_text,
+          type: :custom,
+          build_attributes: -> (airtable_id, values) do
+            values&.first
+          end
         }, {
           attribute_name: :group,
           airtable_name: 'Group'
