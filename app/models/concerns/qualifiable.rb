@@ -4,6 +4,7 @@ module Qualifiable
   included do
     # Relationships
     has_many :qualifications, as: :qualifiable, dependent: :destroy
+    has_many :value_lists, through: :qualifications, as: :qualifiable, dependent: :destroy
 
     # Nested attributes
     accepts_nested_attributes_for :qualifications, allow_destroy: true
