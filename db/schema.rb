@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_02_121718) do
+ActiveRecord::Schema.define(version: 2021_07_02_132901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actions", force: :cascade do |t|
+    t.bigint "document_id", null: false
+    t.text "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["document_id"], name: "index_actions_on_document_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -250,6 +258,7 @@ ActiveRecord::Schema.define(version: 2021_07_02_121718) do
     t.index ["physical_component_id"], name: "index_visual_contexts_on_physical_component_id"
   end
 
+  add_foreign_key "actions", "documents"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artwork_titles", "artworks"
   add_foreign_key "documents", "visual_contexts"
