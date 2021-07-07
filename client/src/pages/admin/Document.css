@@ -1,0 +1,16 @@
+.document .vc-image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+}
+
+.document .vc-image-container > .ui.segment {
+  height: 100%;
+}
+
+.document .vc-image-container > .ui.segment > .image {
+  object-fit: contain;
+  height: 100%;
+  width: unset;
+}

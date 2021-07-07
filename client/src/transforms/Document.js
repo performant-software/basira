@@ -1,5 +1,6 @@
 // @flow
 
+import Actions from './Actions';
 import Attachments from './Attachments';
 import FormDataTransform from './FormDataTransform';
 
@@ -57,6 +58,7 @@ class Document extends FormDataTransform {
     const formData = super.toPayload(document);
 
     Attachments.appendFormData(formData, this.getParameterName(), document);
+    Actions.appendFormData(formData, this.getParameterName(), document);
 
     return formData;
   }

@@ -32,7 +32,7 @@ type Props = EditContainerProps & {
 };
 
 const ValueListDropdown = (props: Props) => {
-  const [options, setOptions] = useState([]);
+  const [valueLists, setValueLists] = useState([]);
 
   /**
    * Base attributes for new and matching qualifications.
@@ -76,11 +76,14 @@ const ValueListDropdown = (props: Props) => {
 
     // If no existing record can be found, create a new record.
     if (!record) {
-      record = _.extend(initializeAttributes, { uid: uuid() });
+      record = _.extend(initializeAttributes, {
+        uid: uuid(),
+        value_list: _.findWhere(valueLists, { id: valueListId })
+      });
     }
 
     return record;
-  }, [props.item.qualifications]);
+  }, [valueLists, props.item.qualifications]);
 
   /**
    * Sets the qualifications on the current item based on the dropdown value(s).
@@ -121,7 +124,7 @@ const ValueListDropdown = (props: Props) => {
     _.each(qualificationsToDelete, (qualifications) => {
       props.onDeleteChildAssociation('qualifications', qualifications);
     });
-  }, [props.onMultiAddChildAssociations]);
+  }, [valueLists, props.onDeleteChildAssociation, props.onSaveChildAssociation]);
 
   /**
    * Sets the dropdown options for the component.
@@ -133,7 +136,7 @@ const ValueListDropdown = (props: Props) => {
       sort_by: 'human_name',
       per_page: 0
     }).then(({ data }) => {
-      setOptions(_.map(data.value_lists, ValueList.toDropdown.bind(this)));
+      setValueLists(data.value_lists);
     });
   }, [props.group, props.object]);
 
@@ -149,9 +152,10 @@ const ValueListDropdown = (props: Props) => {
         fluid
         multiple={props.multiple}
         onChange={onChange}
-        options={options}
+        options={_.map(valueLists, ValueList.toDropdown.bind(this))}
         placeholder={props.placeholder}
         search
+        selectOnBlur={false}
         selection
         value={value}
       />

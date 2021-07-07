@@ -48,6 +48,7 @@ const RecordHeader = (props: Props) => {
         className='image-container'
       >
         <LazyImage
+          preview={props.preview}
           src={props.image}
         >
           { props.onFileUpload && (
