@@ -63,11 +63,11 @@ const ValueListDropdown = (props: Props) => {
    *
    * @returns {*}
    */
-  const findOrInitialize = useCallback((valueListId) => {
+  const findOrInitialize = useCallback((valueListId, opts) => {
     const initializeAttributes = {
       ...attributes,
       value_list_id: valueListId,
-      human_name: options.find((opt) => opt.key === valueListId)?.text
+      human_name: opts.find((opt) => opt.key === valueListId).text
     };
 
     // Find an existing record based on the above attributes that is not marked for deletion.
@@ -105,7 +105,7 @@ const ValueListDropdown = (props: Props) => {
     const qualificationsToAdd = [];
 
     _.each(ids, (id) => {
-      qualificationsToAdd.push(findOrInitialize(id));
+      qualificationsToAdd.push(findOrInitialize(id, data.options));
     });
 
     _.each(qualificationsToAdd, (qualification) => {
