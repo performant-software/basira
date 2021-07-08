@@ -86,26 +86,28 @@ const Document = (props: Props) => {
   );
 
   const showInternalFeatures = () => {
-    const documentFormatQual = _.findWhere(props.item.qualifications, {
-      value_list_object: 'Document',
-      value_list_group: 'Document Format'
-    });
-    const apertureQuals = _.where(props.item.qualifications, {
-      value_list_object: 'Document',
-      value_list_group: 'Aperture'
-    });
-    const apertureValues = ['Partially open', 'Fully Open', 'Fluttering/Breathing'];
+    const documentFormatQual = props.item.qualifications?.find((qual) => (
+      qual.value_list_object === 'Document'
+      && qual.value_list_group === 'Document Format'
+      && qual._destroy === undefined
+    ));
+    const apertureQuals = props.item.qualifications?.filter((qual) => (
+      qual.value_list_object === 'Document'
+      && qual.value_list_group === 'Aperture'
+      && qual._destroy === undefined
+    ));
+    const apertureValues = ['Partially open', 'Fully open', 'Fluttering / Breathing'];
 
     if (documentFormatQual === undefined) { return false; }
     if (
-      documentFormatQual?.human_name !== 'Codex/Book' || documentFormatQual?.value_list?.human_name !== 'Codex/Book'
+      (documentFormatQual?.human_name !== 'Codex/Book' && documentFormatQual?.value_list?.human_name !== 'Codex/Book')
     ) { return true; }
     if (
       documentFormatQual?.human_name === 'Codex/Book' || documentFormatQual?.value_list?.human_name === 'Codex/Book'
     ) {
       if (
         apertureQuals.some((quals) => (
-          apertureValues.includes(quals?.human_name) || apertureValues.includes(quals?.value_list.human_name)
+          apertureValues.includes(quals?.human_name) || apertureValues.includes(quals?.value_list?.human_name)
         ))
       ) { return true; }
       return false;
