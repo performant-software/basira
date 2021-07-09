@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :value_lists
     resources :visual_contexts, except: :index
     resources :users
-    
+
     get 'value_lists_objects', to: 'value_lists#objects_list'
     get 'value_lists_groups', to: 'value_lists#groups_list'
   end

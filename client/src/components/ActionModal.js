@@ -2,7 +2,13 @@
 
 import React from 'react';
 import { withTranslation } from 'react-i18next';
-import { Form, Modal } from 'semantic-ui-react';
+import {
+  Form,
+  Header,
+  Message,
+  Modal
+} from 'semantic-ui-react';
+import EntityDescriptionDropdown from './EntityDescriptionDropdown';
 import ValueListDropdown from './ValueListDropdown';
 import './ActionModal.css';
 
@@ -27,23 +33,35 @@ const ActionModal = (props: Props) => (
         : props.t('ActionModal.title.add')}
     />
     <Modal.Content>
-      <div
-        className='action-description'
+      <Message
+        info
       >
-        <div>The book</div>
-        <ValueListDropdown
-          {...props}
-          object='Document'
-          group='Action'
-          width={7}
-        />
-        <ValueListDropdown
-          {...props}
-          object='Action'
-          group='Entity'
-          width={7}
-        />
-      </div>
+        <Header
+          className='action-description'
+          size='medium'
+        >
+          <div>{ props.t('ActionModal.labels.book') }</div>
+          <ValueListDropdown
+            {...props}
+            object='Document'
+            group='Action'
+            width={6}
+          />
+          <ValueListDropdown
+            {...props}
+            object='Action'
+            group='Entity'
+            width={6}
+          />
+        </Header>
+      </Message>
+      <EntityDescriptionDropdown
+        {...props}
+        label={props.t('ActionModal.labels.descriptors')}
+        object='Action'
+        group='Characteristic'
+        multiple
+      />
       <Form.TextArea
         error={props.isError('notes')}
         label={props.t('ActionModal.labels.notes')}

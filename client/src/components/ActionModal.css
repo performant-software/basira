@@ -3,7 +3,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  margin-bottom: 2em;
 }
 
 .action-modal.ui.form .action-description .field {

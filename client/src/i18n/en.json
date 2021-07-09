@@ -5,6 +5,8 @@
   },
   "ActionModal": {
     "labels": {
+      "book": "The book",
+      "descriptors": "Entity descriptors",
       "notes": "Notes"
     },
     "title": {
@@ -148,6 +150,12 @@
       "actions": "Actions",
       "external": "External Features",
       "internal": "Internal Features"
+    }
+  },
+  "EntityDescriptionDropdown": {
+    "labels": {
+      "all": "Show All",
+      "grouped": "Show Grouped"
     }
   },
   "Home": {
