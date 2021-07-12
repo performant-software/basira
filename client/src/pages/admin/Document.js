@@ -240,6 +240,7 @@ const Document = (props: Props) => {
                 />
                 <ValueListDropdown
                   {...props}
+                  formField='binding_color'
                   group='Color'
                   label={props.t('Document.labels.bindingColor')}
                   multiple
@@ -339,6 +340,7 @@ const Document = (props: Props) => {
                 />
                 <ValueListDropdown
                   {...props}
+                  formField='binding_iconography'
                   group='Iconography'
                   label={props.t('Document.labels.bindingIconography')}
                   multiple
@@ -362,6 +364,7 @@ const Document = (props: Props) => {
                   <>
                     <ValueListDropdown
                       {...props}
+                      formField='endband_colors'
                       group='Color'
                       label={props.t('Document.labels.endbandColors')}
                       multiple
@@ -404,6 +407,7 @@ const Document = (props: Props) => {
                 />
                 <ValueListDropdown
                   {...props}
+                  formField='fore_edges_color'
                   group='Color'
                   label={props.t('Document.labels.colorOfForeEdges')}
                   multiple
@@ -438,6 +442,7 @@ const Document = (props: Props) => {
                   <>
                     <ValueListDropdown
                       {...props}
+                      formField='bookmark_register_color'
                       group='Color'
                       label={props.t('Document.labels.color')}
                       multiple
@@ -507,6 +512,7 @@ const Document = (props: Props) => {
                 { props.item.ruling && (
                   <ValueListDropdown
                     {...props}
+                    formField='ruling_color'
                     group='Color'
                     label={props.t('Document.labels.rulingColor')}
                     multiple
@@ -524,6 +530,7 @@ const Document = (props: Props) => {
                 { props.item.rubrication && (
                   <ValueListDropdown
                     {...props}
+                    formField='rubrication_color'
                     group='Color'
                     label={props.t('Document.labels.rubricationColor')}
                     multiple
@@ -595,6 +602,7 @@ const Document = (props: Props) => {
                 { meetsCriteria('Type of Illumination', 'Figurative') && (
                   <ValueListDropdown
                     {...props}
+                    formField='illumination_iconography'
                     group='Iconography'
                     label={props.t('Document.labels.illumunationIconography')}
                     multiple

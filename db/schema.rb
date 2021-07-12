@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_07_235542) do
+ActiveRecord::Schema.define(version: 2021_07_09_014315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2021_07_07_235542) do
     t.string "sewing_supports_visible", default: "f"
     t.integer "number_sewing_supports"
     t.integer "number_fastenings"
-    t.string "location_of_fastenings"
+    t.text "location_of_fastenings"
     t.boolean "inscriptions_on_binding", default: false
     t.text "inscription_text"
     t.boolean "endband_present", default: false
@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(version: 2021_07_07_235542) do
     t.bigint "value_list_id"
     t.json "notes"
     t.boolean "persistent", default: false, null: false
+    t.string "form_field", default: ""
     t.index ["qualifiable_type", "qualifiable_id"], name: "index_qualifications_on_qualifiable_type_and_qualifiable_id"
     t.index ["value_list_id"], name: "index_qualifications_on_value_list_id"
   end

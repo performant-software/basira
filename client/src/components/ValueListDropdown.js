@@ -22,6 +22,7 @@ type Qualifiable = {
 
 type Props = EditContainerProps & {
   clearable?: boolean,
+  formField?: string,
   item: Qualifiable,
   group: string,
   label?: string,
@@ -37,12 +38,13 @@ const ValueListDropdown = (props: Props) => {
   /**
    * Base attributes for new and matching qualifications.
    *
-   * @type {{value_list_group: string, value_list_object: string}}
+   * @type {{value_list_group: string, value_list_object: string, form_field: any}}
    */
   const attributes = useMemo(() => ({
     value_list_group: props.group,
-    value_list_object: props.object
-  }), [props.group, props.object]);
+    value_list_object: props.object,
+    form_field: props.formField || ''
+  }), [props.group, props.object, props.formField]);
 
   /**
    * Returns the value for the component.
@@ -54,7 +56,7 @@ const ValueListDropdown = (props: Props) => {
 
     const ids = _.pluck(qualifications, 'value_list_id');
     return props.multiple ? ids : _.first(ids);
-  }, [props.item.qualifications]);
+  }, [props.item.qualifications, props.group, props.object, props.formField]);
 
   /**
    * Finds the existing qualification for the passed value list ID or creates a new one.
@@ -67,7 +69,8 @@ const ValueListDropdown = (props: Props) => {
     const initializeAttributes = {
       ...attributes,
       value_list_id: valueListId,
-      human_name: opts.find((opt) => opt.key === valueListId).text
+      human_name: opts.find((opt) => opt.key === valueListId).text,
+      form_field: props.formField || ''
     };
 
     // Find an existing record based on the above attributes that is not marked for deletion.
@@ -81,7 +84,7 @@ const ValueListDropdown = (props: Props) => {
     }
 
     return record;
-  }, [props.item.qualifications]);
+  }, [props.item.qualifications, props.group, props.object, props.formField]);
 
   /**
    * Sets the qualifications on the current item based on the dropdown value(s).
@@ -162,6 +165,7 @@ const ValueListDropdown = (props: Props) => {
 
 ValueListDropdown.defaultProps = {
   clearable: true,
+  formField: '',
   multiple: false
 };
 
