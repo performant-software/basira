@@ -2,6 +2,7 @@
 
 import Attachments from './Attachments';
 import FormDataTransform from './FormDataTransform';
+import Qualifications from './Qualifications';
 
 import type { Document as DocumentType } from '../types/Document';
 
@@ -57,6 +58,7 @@ class Document extends FormDataTransform {
     const formData = super.toPayload(document);
 
     Attachments.appendFormData(formData, this.getParameterName(), document);
+    Qualifications.appendFormData(formData, this.getParameterName(), document);
 
     return formData;
   }

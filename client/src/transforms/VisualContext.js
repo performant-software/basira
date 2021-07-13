@@ -2,6 +2,7 @@
 
 import Attachments from './Attachments';
 import FormDataTransform from './FormDataTransform';
+import Qualifications from './Qualifications';
 
 import type { VisualContext as VisualContextType } from '../types/VisualContext';
 
@@ -30,7 +31,8 @@ class VisualContext extends FormDataTransform {
       'height',
       'width',
       'depth',
-      'notes'
+      'notes',
+      'beta'
     ];
   }
 
@@ -45,6 +47,7 @@ class VisualContext extends FormDataTransform {
     const formData = super.toPayload(visualContext);
 
     Attachments.appendFormData(formData, this.getParameterName(), visualContext);
+    Qualifications.appendFormData(formData, this.getParameterName(), visualContext);
 
     return formData;
   }

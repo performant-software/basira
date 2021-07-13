@@ -4,7 +4,7 @@ class Attachment < ApplicationRecord
 
   # Relationships
   belongs_to :attachable, polymorphic: true, optional: true
-
+  
   # Active storage
   has_one_attached :file
 

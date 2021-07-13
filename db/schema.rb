@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_174742) do
+ActiveRecord::Schema.define(version: 2021_07_13_051839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,19 +80,19 @@ ActiveRecord::Schema.define(version: 2021_06_21_174742) do
     t.bigint "visual_context_id", null: false
     t.string "name"
     t.string "notes"
-    t.string "sewing_supports_visible"
+    t.boolean "sewing_supports_visible", default: false
     t.integer "number_sewing_supports"
     t.integer "number_fastenings"
-    t.string "location_of_fastenings"
-    t.boolean "inscriptions_on_binding"
+    t.text "location_of_fastenings"
+    t.boolean "inscriptions_on_binding", default: false
     t.text "inscription_text"
-    t.boolean "endband_present"
-    t.boolean "uncut_fore_edges"
+    t.boolean "endband_present", default: false
+    t.boolean "uncut_fore_edges", default: false
     t.text "fore_edge_text"
-    t.integer "bookmarks_registers"
-    t.integer "text_columns"
-    t.boolean "ruling"
-    t.boolean "rubrication"
+    t.integer "bookmarks_registers", default: 0
+    t.integer "text_columns", default: 1
+    t.boolean "ruling", default: false
+    t.boolean "rubrication", default: false
     t.text "identity"
     t.text "transcription"
     t.string "airtable_id"
@@ -182,6 +182,17 @@ ActiveRecord::Schema.define(version: 2021_06_21_174742) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "qualifications", force: :cascade do |t|
+    t.string "qualifiable_type"
+    t.bigint "qualifiable_id"
+    t.bigint "value_list_id"
+    t.json "notes"
+    t.boolean "persistent", default: false, null: false
+    t.string "form_field", default: ""
+    t.index ["qualifiable_type", "qualifiable_id"], name: "index_qualifications_on_qualifiable_type_and_qualifiable_id"
+    t.index ["value_list_id"], name: "index_qualifications_on_value_list_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -212,6 +223,20 @@ ActiveRecord::Schema.define(version: 2021_06_21_174742) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  create_table "value_lists", force: :cascade do |t|
+    t.string "object"
+    t.string "group"
+    t.string "human_name"
+    t.string "url_database_value"
+    t.json "comment"
+    t.string "authorized_vocabulary"
+    t.string "airtable_id"
+    t.datetime "airtable_timestamp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "qualifications_count", default: 0, null: false
+  end
+
   create_table "visual_contexts", force: :cascade do |t|
     t.bigint "physical_component_id", null: false
     t.string "name"
@@ -223,6 +248,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_174742) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "beta", default: false, null: false
     t.index ["physical_component_id"], name: "index_visual_contexts_on_physical_component_id"
   end
 

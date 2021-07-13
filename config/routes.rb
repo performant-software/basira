@@ -14,8 +14,13 @@ Rails.application.routes.draw do
     resources :people
     resources :physical_components, except: :index
     resources :places
+    resources :value_lists
     resources :visual_contexts, except: :index
     resources :users
+
+    get 'authorized_vocabularies' => "value_lists#authorized_vocabularies"
+    get 'value_lists_groups' => "value_lists#groups_list"
+    get 'value_lists_objects' => "value_lists#objects_list"
   end
 
   # Default route for static front-end
