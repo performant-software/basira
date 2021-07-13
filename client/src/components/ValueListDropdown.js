@@ -56,7 +56,7 @@ const ValueListDropdown = (props: Props) => {
 
     const ids = _.pluck(qualifications, 'value_list_id');
     return props.multiple ? ids : _.first(ids);
-  }, [props.item.qualifications, props.group, props.object, props.formField]);
+  }, [props.item.qualifications]);
 
   /**
    * Finds the existing qualification for the passed value list ID or creates a new one.
@@ -84,7 +84,7 @@ const ValueListDropdown = (props: Props) => {
     }
 
     return record;
-  }, [props.item.qualifications, props.group, props.object, props.formField]);
+  }, [props.item.qualifications]);
 
   /**
    * Sets the qualifications on the current item based on the dropdown value(s).
