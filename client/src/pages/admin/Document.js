@@ -3,7 +3,8 @@
 import React, { useEffect } from 'react';
 import { EmbeddedList, LazyImage } from 'react-components';
 import { withRouter } from 'react-router-dom';
-import { Form, Grid } from 'semantic-ui-react';
+import { Dropdown, Form, Grid } from 'semantic-ui-react';
+import _ from 'underscore';
 import ActionModal from '../../components/ActionModal';
 import Actions from '../../utils/Actions';
 import DocumentsService from '../../services/Documents';
@@ -12,6 +13,7 @@ import LocationOfFastenings from '../../resources/LocationOfFastenings.json';
 import RecordHeader from '../../components/RecordHeader';
 import Section from '../../components/Section';
 import SimpleEditPage from '../../components/SimpleEditPage';
+import ValueListDropdown from '../../components/ValueListDropdown';
 import useEditPage from './EditPage';
 import withMenuBar from '../../hooks/MenuBar';
 import withSingleImage from '../../hooks/Image';
@@ -44,6 +46,14 @@ const Document = (props: Props) => {
     }
   }, []);
 
+  const zeroToTenRangeOptionsList = [...(_.range(0, 10)), '10+'].map((el) => (
+    {
+      key: el,
+      value: el,
+      text: el
+    }
+  ));
+
   return (
     <SimpleEditPage
       artworkId={props.item.artwork_id}
@@ -74,20 +84,68 @@ const Document = (props: Props) => {
         key={Tabs.details}
         name={props.t('Common.tabs.details')}
       >
-        <Form.Input
-          error={props.isError('name')}
-          label={props.t('Document.labels.name')}
-          onChange={props.onTextInputChange.bind(this, 'name')}
-          required={props.isRequired('name')}
-          value={props.item.name || ''}
-        />
-        <Form.TextArea
-          error={props.isError('notes')}
-          label={props.t('Document.labels.notes')}
-          onChange={props.onTextInputChange.bind(this, 'notes')}
-          required={props.isRequired('notes')}
-          value={props.item.notes || ''}
-        />
+        <Grid
+          columns={2}
+        >
+          <Grid.Column>
+            <Section
+              title={props.t('Document.sections.details')}
+            >
+              <Form.Input
+                error={props.isError('name')}
+                label={props.t('Document.labels.name')}
+                onChange={props.onTextInputChange.bind(this, 'name')}
+                required={props.isRequired('name')}
+                value={props.item.name || ''}
+              />
+              <ValueListDropdown
+                {...props}
+                group='Document Format'
+                label={props.t('Document.labels.documentFormat')}
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                group='Document Type'
+                label={props.t('Document.labels.documentType')}
+                object='Document'
+              />
+              <Form.TextArea
+                error={props.isError('notes')}
+                label={props.t('Document.labels.notes')}
+                onChange={props.onTextInputChange.bind(this, 'notes')}
+                required={props.isRequired('notes')}
+                value={props.item.notes || ''}
+              />
+            </Section>
+          </Grid.Column>
+          <Grid.Column>
+            <Section
+              title={props.t('Document.sections.positionScaleAttitude')}
+            >
+              <ValueListDropdown
+                {...props}
+                group='Orientation (spine)'
+                label={props.t('Document.labels.orientation')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                group='Size'
+                label={props.t('Document.labels.size')}
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                group='Aperture'
+                label={props.t('Document.labels.aperture')}
+                multiple
+                object='Document'
+              />
+            </Section>
+          </Grid.Column>
+        </Grid>
       </SimpleEditPage.Tab>
       <SimpleEditPage.Tab
         key={Tabs.external}
@@ -100,6 +158,21 @@ const Document = (props: Props) => {
             <Section
               title={props.t('Document.sections.binding')}
             >
+              <ValueListDropdown
+                {...props}
+                group='Binding Type'
+                label={props.t('Document.labels.bindingType')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                formField='binding_color'
+                group='Color'
+                label={props.t('Document.labels.bindingColor')}
+                multiple
+                object='Document'
+              />
               <Form.Checkbox
                 checked={props.item.sewing_supports_visible}
                 error={props.isError('sewing_supports_visible')}
@@ -111,20 +184,53 @@ const Document = (props: Props) => {
               <Form.Input
                 error={props.isError('number_sewing_supports')}
                 label={props.t('Document.labels.numberSewingSupports')}
-                onChange={props.onTextInputChange.bind(this, 'number_sewing_supports')}
                 required={props.isRequired('number_sewing_supports')}
-                value={props.item.number_sewing_supports || ''}
+              >
+                <Dropdown
+                  onChange={props.onTextInputChange.bind(this, 'number_sewing_supports')}
+                  options={zeroToTenRangeOptionsList}
+                  selection
+                  value={props.item.number_sewing_supports || ''}
+                />
+              </Form.Input>
+              <ValueListDropdown
+                {...props}
+                group='Spine Features'
+                label={props.t('Document.labels.spineFeatures')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                group='Furniture'
+                label={props.t('Document.labels.furniture')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                group='Fastenings'
+                label={props.t('Document.labels.fastenings')}
+                multiple
+                object='Document'
               />
               <Form.Input
                 error={props.isError('number_fastenings')}
                 label={props.t('Document.labels.numberFastenings')}
-                onChange={props.onTextInputChange.bind(this, 'number_fastenings')}
                 required={props.isRequired('number_fastenings')}
-                value={props.item.number_fastenings || ''}
-              />
+              >
+                <Dropdown
+                  onChange={props.onTextInputChange.bind(this, 'number_fastenings')}
+                  options={zeroToTenRangeOptionsList}
+                  selection
+                  value={props.item.number_fastenings || ''}
+                />
+              </Form.Input>
               <Form.Dropdown
                 error={props.isError('location_of_fastenings')}
+                clearable
                 label={props.t('Document.labels.locationOfFastenings')}
+                multiple
                 onChange={props.onTextInputChange.bind(this, 'location_of_fastenings')}
                 options={LocationOfFastenings}
                 required={props.isRequired('location_of_fastenings')}
@@ -146,6 +252,21 @@ const Document = (props: Props) => {
                 required={props.isRequired('inscription_text')}
                 value={props.item.inscription_text || ''}
               />
+              <ValueListDropdown
+                {...props}
+                group='Binding Ornamentation'
+                label={props.t('Document.labels.bindingOrnamentation')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                formField='binding_iconography'
+                group='Iconography'
+                label={props.t('Document.labels.bindingIconography')}
+                multiple
+                object='Document'
+              />
             </Section>
           </Grid.Column>
           <Grid.Column>
@@ -160,10 +281,39 @@ const Document = (props: Props) => {
                 required={props.isRequired('endband_present')}
                 toggle
               />
+              <ValueListDropdown
+                {...props}
+                formField='endband_colors'
+                group='Color'
+                label={props.t('Document.labels.endbandColors')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                group='Endband Style'
+                label={props.t('Document.labels.endbandStyle')}
+                multiple
+                object='Document'
+              />
             </Section>
             <Section
               title={props.t('Document.sections.foreEdges')}
             >
+              <ValueListDropdown
+                {...props}
+                group='Binding Relationship to Text Block'
+                label={props.t('Document.labels.bindingRelationshipToTextBlock')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                group='Decorated Fore-Edges'
+                label={props.t('Document.labels.decoratedForeEdges')}
+                multiple
+                object='Document'
+              />
               <Form.Checkbox
                 checked={props.item.uncut_fore_edges}
                 error={props.isError('uncut_fore_edges')}
@@ -171,6 +321,14 @@ const Document = (props: Props) => {
                 onChange={props.onCheckboxInputChange.bind(this, 'uncut_fore_edges')}
                 required={props.isRequired('uncut_fore_edges')}
                 toggle
+              />
+              <ValueListDropdown
+                {...props}
+                formField='fore_edges_color'
+                group='Color'
+                label={props.t('Document.labels.colorOfForeEdges')}
+                multiple
+                object='Document'
               />
               <Form.Input
                 error={props.isError('fore_edge_text')}
@@ -186,9 +344,29 @@ const Document = (props: Props) => {
               <Form.Input
                 error={props.isError('bookmarks_registers')}
                 label={props.t('Document.labels.bookmarksRegisters')}
-                onChange={props.onTextInputChange.bind(this, 'bookmarks_registers')}
                 required={props.isRequired('bookmarks_registers')}
-                value={props.item.bookmarks_registers || ''}
+              >
+                <Dropdown
+                  onChange={props.onTextInputChange.bind(this, 'bookmarks_registers')}
+                  options={zeroToTenRangeOptionsList}
+                  selection
+                  value={props.item.bookmarks_registers || ''}
+                />
+              </Form.Input>
+              <ValueListDropdown
+                {...props}
+                formField='bookmark_register_color'
+                group='Color'
+                label={props.t('Document.labels.color')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                group='Bookmark/Register Style'
+                label={props.t('Document.labels.bookmarkRegisterStyle')}
+                multiple
+                object='Document'
               />
             </Section>
           </Grid.Column>
@@ -205,12 +383,32 @@ const Document = (props: Props) => {
             <Section
               title={props.t('Document.sections.layout')}
             >
+              <ValueListDropdown
+                {...props}
+                group='Text Technology'
+                label={props.t('Document.labels.textTechnology')}
+                multiple
+                object='Document'
+              />
+
               <Form.Input
                 error={props.isError('text_columns')}
                 label={props.t('Document.labels.textColumns')}
-                onChange={props.onTextInputChange.bind(this, 'text_columns')}
                 required={props.isRequired('text_columns')}
-                value={props.item.text_columns || ''}
+              >
+                <Dropdown
+                  onChange={props.onTextInputChange.bind(this, 'text_columns')}
+                  options={zeroToTenRangeOptionsList}
+                  selection
+                  value={props.item.text_columns || ''}
+                />
+              </Form.Input>
+              <ValueListDropdown
+                {...props}
+                group='Page Contents'
+                label={props.t('Document.labels.pageContents')}
+                multiple
+                object='Document'
               />
               <Form.Checkbox
                 checked={props.item.ruling}
@@ -220,6 +418,14 @@ const Document = (props: Props) => {
                 required={props.isRequired('ruling')}
                 toggle
               />
+              <ValueListDropdown
+                {...props}
+                formField='ruling_color'
+                group='Color'
+                label={props.t('Document.labels.rulingColor')}
+                multiple
+                object='Document'
+              />
               <Form.Checkbox
                 checked={props.item.rubrication}
                 error={props.isError('rubrication')}
@@ -228,12 +434,42 @@ const Document = (props: Props) => {
                 required={props.isRequired('rubrication')}
                 toggle
               />
+              <ValueListDropdown
+                {...props}
+                formField='rubrication_color'
+                group='Color'
+                label={props.t('Document.labels.rubricationColor')}
+                multiple
+                object='Document'
+              />
             </Section>
           </Grid.Column>
           <Grid.Column>
             <Section
               title={props.t('Document.sections.text')}
             >
+              <ValueListDropdown
+                {...props}
+                group='Legibility'
+                label={props.t('Document.labels.legibility')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                group='Script'
+                label={props.t('Document.labels.script')}
+                multiple
+                object='Document'
+              />
+
+              <ValueListDropdown
+                {...props}
+                group='Language'
+                label={props.t('Document.labels.language')}
+                multiple
+                object='Document'
+              />
               <Form.Input
                 error={props.isError('identity')}
                 label={props.t('Document.labels.identity')}
@@ -248,6 +484,28 @@ const Document = (props: Props) => {
                 required={props.isRequired('transcription')}
                 rows={5}
                 value={props.item.transcription || ''}
+              />
+              <ValueListDropdown
+                {...props}
+                group='Simulated Script'
+                label={props.t('Document.labels.simulatedScript')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                group='Type of Illumination'
+                label={props.t('Document.labels.typeOfIllumination')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                formField='illumination_iconography'
+                group='Iconography'
+                label={props.t('Document.labels.illumunationIconography')}
+                multiple
+                object='Document'
               />
             </Section>
           </Grid.Column>

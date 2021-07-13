@@ -32,6 +32,7 @@ const ValueListDropdown = (props: ValueListProps) => (
 
 ValueListDropdown.defaultProps = {
   clearable: true,
+  formField: '',
   multiple: false
 };
 

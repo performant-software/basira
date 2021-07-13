@@ -34,14 +34,18 @@
       "dateNumeric": "{{name}} must be a valid numeric year"
     },
     "labels": {
+      "commissioningContext": "Commissioning Context",
       "creationDate": "Creation date",
       "dateDescription": "Description",
       "depth": "Depth",
       "endDate": "End date",
       "height": "Height",
+      "objectWorkTypes": "Object/Work Type(s)",
+      "materials": "Material(s)",
       "notes": "Notes",
       "objectWorkType": "Object/Work Type",
       "startDate": "Start date",
+      "techniques": "Technique(s)",
       "titles": "Titles",
       "width": "Width"
     },
@@ -58,6 +62,11 @@
         "nationality": "Nationality",
         "role": "Role"
       }
+    },
+    "placeholders": {
+      "materials": "Select material(s)...",
+      "objectWorkTypes": "Select object/work type...",
+      "techniques": "Select technique(s)..."
     },
     "tabs": {
       "creators": "Creators",
@@ -120,30 +129,63 @@
       }
     },
     "labels": {
+      "aperture": "Aperture",
+      "bindingColor": "Binding Color",
+      "bindingIconography": "Binding Iconography",
+      "bindingOrnamentation": "Binding Ornamentation",
+      "bindingRelationshipToTextBlock": "Binding Relationship to Text Block",
+      "bindingType": "Binding Type",
+      "bookmarksRegisterColor": "Bookmark/Register Color",
       "bookmarksRegisters": "Bookmarks/Registers",
+      "bookmarkRegisterStyle": "Bookmark/Register Style",
+      "color": "Color",
+      "colorOfForeEdges": "Color of Fore-Edges",
+      "decoratedForeEdges": "Decorated Fore-Edges",
+      "documentFormat": "Document Format",
+      "documentType": "Document Type",
+      "endbandColors": "Endband Color(s)",
       "endbandPresent": "Endband Present",
+      "endbandStyle": "Endband Style",
+      "fastenings": "Fastenings",
       "foreEdgeText": "Fore-Edge Text",
+      "furniture": "Furniture",
+      "iconography": "Iconography",
+      "illumunationIconography": "Illumunation Iconography",
       "identity": "Identity of Work",
       "inscriptionsOnBinding": "Inscriptions on Binding",
       "inscriptionText": "Binding Inscription Text",
+      "language": "Language",
+      "legibility": "Legibility",
       "locationOfFastenings": "Location of Fastenings",
       "name": "Name",
       "notes": "Notes",
       "numberFastenings": "Number of Fastenings",
       "numberSewingSupports": "Number of Sewing Supports Visible",
+      "orientation": "Orientation",
+      "pageContents": "Page Contents",
       "rubrication": "Rubrication",
+      "rubricationColor": "Rubrication Color",
       "ruling": "Ruling",
+      "rulingColor": "Ruling Color",
+      "script": "Script",
       "sewingSupportsVisible": "Sewing Supports Visible",
+      "simulatedScript": "Simulated Script",
+      "size": "Size",
+      "spineFeatures": "Spine Features",
       "textColumns": "Text Columns",
+      "textTechnology": "Text Technology",
       "transcription": "Transcription",
+      "typeOfIllumination": "Type of Illumination",
       "uncutForeEdges": "Uncut Fore-Edges"
     },
     "sections": {
       "binding": "Binding",
       "bookmarks": "Bookmarks/Registers",
+      "details": "Details",
       "endband": "Endband",
       "foreEdges": "Fore-Edges/Textblock Edges",
       "layout": "Layout",
+      "positionScaleAttitude": "Position, Scale and Attitude",
       "text": "Text and Image"
     },
     "tabs": {
@@ -341,11 +383,20 @@
   },
   "VisualContext": {
     "labels": {
+      "beta": "BETA",
       "depth": "Depth",
+      "generalSubjectGenre": "General Subject/Genre",
       "height": "Height",
       "name": "Name",
       "notes": "Notes",
+      "specificSubjectIconography": "Specific Subject/Iconography",
+      "subjectCulturalContext": "Subject Cultural Context",
       "width": "Width"
+    },
+    "tabs": {
+      "details": "Details",
+      "notes": "Notes",
+      "subjectMatter": "Subject Matter"
     }
   }
 }

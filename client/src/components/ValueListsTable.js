@@ -43,7 +43,7 @@ const ValueListsTable = (props: Props) => {
       }, {
         name: 'qualifications_count',
         label: props.t('ValueList.labels.linkedRecords'),
-        sortable: false
+        sortable: true
       }]}
       filters={{
         component: ValueListsFiltersModal,

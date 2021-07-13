@@ -31,6 +31,7 @@ class Qualifications extends NestedAttributes {
       'id',
       'notes',
       'persistent',
+      'form_field',
       'qualifiable_type',
       'qualifiable_id',
       'value_list_id',

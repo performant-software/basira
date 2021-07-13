@@ -26,6 +26,18 @@ class Api::ValueListsController < Api::BaseController
     }
   end
 
+  def authorized_vocabularies
+    vocabs_list = ValueList
+                    .where.not(authorized_vocabulary: nil)
+                    .order(:authorized_vocabulary)
+                    .distinct
+                    .pluck(:authorized_vocabulary)
+
+    render json: {
+      authorized_vocabularies: vocabs_list
+    }
+  end
+
   protected
 
     def apply_filters(query)

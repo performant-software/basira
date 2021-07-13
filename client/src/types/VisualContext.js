@@ -7,5 +7,6 @@ export type VisualContext = Attachable & {
   name: string,
   height: number,
   width: number,
-  depth: number
+  depth: number,
+  beta: boolean
 };

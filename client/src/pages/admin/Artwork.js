@@ -15,8 +15,8 @@ import ParticipationModal, { ParticipationTypes } from '../../components/Partici
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
-import useEditPage from './EditPage';
 import ValueListDropdown from '../../components/ValueListDropdown';
+import useEditPage from './EditPage';
 import withMenuBar from '../../hooks/MenuBar';
 
 import type { EditContainerProps } from 'react-components/types';
@@ -167,6 +167,20 @@ const Artwork = (props: Props) => {
           multiple
           object='Artwork'
         />
+        <ValueListDropdown
+          {...props}
+          group='Material'
+          label={props.t('Artwork.labels.materials')}
+          multiple
+          object='Artwork'
+        />
+        <ValueListDropdown
+          {...props}
+          group='Technique'
+          label={props.t('Artwork.labels.techniques')}
+          multiple
+          object='Artwork'
+        />
         <Form.Input
           error={props.isError('height')}
           label={props.t('Artwork.labels.height')}
@@ -262,6 +276,15 @@ const Artwork = (props: Props) => {
           }}
           onDelete={props.onDeleteChildAssociation.bind(this, 'participations')}
           onSave={props.onSaveChildAssociation.bind(this, 'participations')}
+        />
+        <br />
+        <ValueListDropdown
+          {...props}
+          group='Commissioning Context'
+          label={props.t('Artwork.labels.commissioningContext')}
+          multiple
+          object='Artwork'
+          width={6}
         />
       </SimpleEditPage.Tab>
       <SimpleEditPage.Tab

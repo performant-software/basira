@@ -36,6 +36,15 @@ class ValueLists extends BaseService {
   }
 
   /**
+   * Returns the list of value_lists authorized_vocabularies.
+   *
+   * @returns {Promise<AxiosResponse<T>>}
+   */
+  getAuthorizedVocabulariesList() {
+    return axios.get('/api/authorized_vocabularies');
+  }
+
+  /**
    * Returns the list of value_lists columns for a given table.
    *
    * @returns {Promise<AxiosResponse<T>>}

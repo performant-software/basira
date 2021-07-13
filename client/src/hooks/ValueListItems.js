@@ -20,8 +20,9 @@ type Qualifiable = {
 
 type Props = EditContainerProps & {
   clearable?: boolean,
-  item: Qualifiable,
+  formField?: string,
   group: string,
+  item: Qualifiable,
   label?: string,
   multiple?: boolean,
   object: string,
@@ -36,12 +37,13 @@ const withValueList = (WrappedComponent: ComponentType<any>) => (props: Props) =
   /**
    * Base attributes for new and matching qualifications.
    *
-   * @type {{value_list_group: string, value_list_object: string}}
+   * @type {{value_list_group: string, form_field, value_list_object: string}}
    */
   const attributes = useMemo(() => ({
     value_list_group: props.group,
-    value_list_object: props.object
-  }), [props.group, props.object]);
+    value_list_object: props.object,
+    form_field: props.formField
+  }), [props.group, props.object, props.formField]);
 
   /**
    * Returns the value for the component.
