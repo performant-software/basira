@@ -13,7 +13,6 @@ import {
 import type { EditContainerProps } from 'react-components/types';
 import type { ValueList as ValueListType } from '../../types/ValueList';
 import type { Translateable } from '../../types/Translateable';
-import useEditPage from './EditPage';
 
 type Props = EditContainerProps & Translateable & {
   item: ValueListType
@@ -43,7 +42,4 @@ const ValueLists = (props: Props) => {
     </Container>
   );
 };
-export default useEditPage(withMenuBar(ValueLists), {
-  onLoad: () => ValueListsService.getObjectsList(),
-  onSave: () => ValueListsService.save()
-});
+export default withMenuBar(ValueLists);

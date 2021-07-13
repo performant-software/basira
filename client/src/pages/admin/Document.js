@@ -85,6 +85,12 @@ const Document = (props: Props) => {
     })
   );
 
+  // Plain English logic: Internal Features tab only avaialable
+  // if "Codex/Book" is selected in "Document Format",
+  // AND one or more of the following IS ALSO selected in “Aperture”:
+  // “Partially open”, “Fully Open,” “Fluttering/Breathing”;
+  // OR, if something OTHER THAN "Codex/Book" is selected in "Document Format"
+
   const showInternalFeatures = () => {
     const documentFormatQual = props.item.qualifications?.find((qual) => (
       qual.value_list_object === 'Document'
