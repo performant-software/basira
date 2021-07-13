@@ -200,7 +200,7 @@ const Document = (props: Props) => {
               { meetsCriteria('Document Format', 'Codex/Book') && (
                 <ValueListDropdown
                   {...props}
-                  group='Orientation'
+                  group='Orientation (spine)'
                   label={props.t('Document.labels.orientation')}
                   multiple
                   object='Document'
