@@ -1,8 +1,12 @@
 // @flow
 
 import React, { useEffect } from 'react';
+import { EmbeddedList, LazyImage } from 'react-components';
 import { withRouter } from 'react-router-dom';
 import { Dropdown, Form, Grid } from 'semantic-ui-react';
+import _ from 'underscore';
+import ActionModal from '../../components/ActionModal';
+import Actions from '../../utils/Actions';
 import DocumentsService from '../../services/Documents';
 import ItemLabel from '../../components/ItemLabel';
 import LocationOfFastenings from '../../resources/LocationOfFastenings.json';
@@ -13,7 +17,7 @@ import ValueListDropdown from '../../components/ValueListDropdown';
 import useEditPage from './EditPage';
 import withMenuBar from '../../hooks/MenuBar';
 import withSingleImage from '../../hooks/Image';
-import _ from 'underscore';
+import './Document.css';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { ImageProps } from '../../hooks/Image';
@@ -28,7 +32,8 @@ type Props = EditContainerProps & ImageProps & Routeable & Translateable & {
 const Tabs = {
   details: 'details',
   external: 'external',
-  internal: 'internal'
+  internal: 'internal',
+  actions: 'actions'
 };
 
 const Document = (props: Props) => {
@@ -52,6 +57,7 @@ const Document = (props: Props) => {
   return (
     <SimpleEditPage
       artworkId={props.item.artwork_id}
+      className='document'
       errors={props.errors}
       loading={props.loading}
       onSave={props.onSave}
@@ -71,6 +77,7 @@ const Document = (props: Props) => {
           includePublishButton={false}
           onFileDelete={props.onDeleteImage}
           onFileUpload={props.onSaveImage}
+          preview={props.image && props.image.thumbnail_url}
         />
       </SimpleEditPage.Header>
       <SimpleEditPage.Tab
@@ -503,6 +510,50 @@ const Document = (props: Props) => {
             </Section>
           </Grid.Column>
         </Grid>
+      </SimpleEditPage.Tab>
+      <SimpleEditPage.Tab
+        key={Tabs.actions}
+        name={props.t('Document.tabs.actions')}
+      >
+        { props.item.visual_context_image && props.item.visual_context_image.file_url && (
+          <div
+            className='vc-image-container'
+          >
+            <LazyImage
+              preview={props.item.visual_context_image.thumbnail_url}
+              src={props.item.visual_context_image.file_url}
+            />
+          </div>
+        )}
+        <EmbeddedList
+          actions={[{
+            name: 'edit'
+          }, {
+            name: 'copy'
+          }, {
+            name: 'delete'
+          }]}
+          columns={[{
+            name: 'book',
+            label: '',
+            resolve: () => props.t('Document.actions.book'),
+            sortable: false
+          }, {
+            name: 'verb',
+            label: props.t('Document.actions.columns.verb'),
+            resolve: (action) => Actions.getValueListValue(action, 'Document', 'Action')
+          }, {
+            name: 'entity',
+            label: props.t('Document.actions.columns.entity'),
+            resolve: (action) => Actions.getValueListValue(action, 'Action', 'Entity')
+          }]}
+          items={props.item.actions}
+          modal={{
+            component: ActionModal
+          }}
+          onDelete={props.onDeleteChildAssociation.bind(this, 'actions')}
+          onSave={props.onSaveChildAssociation.bind(this, 'actions')}
+        />
       </SimpleEditPage.Tab>
     </SimpleEditPage>
   );

@@ -1,0 +1,3 @@
+.entity-description-dropdown .ui.selection.dropdown .menu > .item.hidden {
+  display: none;
+}

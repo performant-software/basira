@@ -3,6 +3,17 @@
     "deleteContent": "Are you sure you want to remove {{name}}?",
     "deleteHeader": "Confirm Remove"
   },
+  "ActionModal": {
+    "labels": {
+      "book": "The book",
+      "descriptors": "Entity descriptors",
+      "notes": "Notes"
+    },
+    "title": {
+      "add": "Add Action",
+      "edit": "Edit Action"
+    }
+  },
   "Admin": {
     "buttons": {
       "logout": "Logout"
@@ -110,6 +121,13 @@
     "title": "BASIRA"
   },
   "Document": {
+    "actions": {
+      "book": "The book",
+      "columns": {
+        "entity": "Entity",
+        "verb": "Verb"
+      }
+    },
     "labels": {
       "aperture": "Aperture",
       "bindingColor": "Binding Color",
@@ -171,8 +189,15 @@
       "text": "Text and Image"
     },
     "tabs": {
+      "actions": "Actions",
       "external": "External Features",
       "internal": "Internal Features"
+    }
+  },
+  "EntityDescriptionDropdown": {
+    "labels": {
+      "all": "Show All",
+      "grouped": "Show Grouped"
     }
   },
   "Home": {
