@@ -41,7 +41,7 @@ const ValueListModal = (props: Props) => {
       />
       <Modal.Content>
         <Form.Input
-          disabled={props.item.id}
+          disabled={props.item.qualifications_count > 0}
           error={props.isError('object')}
           label={props.t('ValueList.labels.objectName')}
           onChange={props.onTextInputChange.bind(this, 'object')}
@@ -49,7 +49,7 @@ const ValueListModal = (props: Props) => {
           value={props.item.object || ''}
         />
         <Form.Input
-          disabled={props.item.id}
+          disabled={props.item.qualifications_count > 0}
           error={props.isError('group')}
           label={props.t('ValueList.labels.groupName')}
           onChange={props.onTextInputChange.bind(this, 'group')}
