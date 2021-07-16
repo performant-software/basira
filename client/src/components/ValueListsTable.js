@@ -46,7 +46,6 @@ const ValueListsTable = (props: Props) => {
             compact
             disabled
             icon='times circle outline'
-            onClick={() => {}}
             title='Delete'
           />
         </span>
