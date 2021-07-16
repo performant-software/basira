@@ -118,7 +118,6 @@ const ValueListsTable = (props: Props) => {
           per_page: 25
         })}
         onSave={(params) => ValueListsService.save(params)}
-        trigger={showDeleteModal}
       />
     </>
   );
