@@ -20,7 +20,7 @@ const Artworks = (props: Props) => (
       actions={[{
         icon: 'plus',
         name: 'add',
-        onClick: (item) => props.history.push('/admin/physical_components/new', { id: item.id })
+        onClick: (item) => props.history.push('/admin/physical_components/new', { artwork_id: item.id })
       }, {
         name: 'edit',
         onClick: (item) => props.history.push(`/admin/artworks/${item.id}`)
