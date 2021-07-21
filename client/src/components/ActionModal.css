@@ -1,0 +1,10 @@
+.action-modal.ui.form .action-description {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.action-modal.ui.form .action-description .field {
+  margin-bottom: 0;
+}

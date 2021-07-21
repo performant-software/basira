@@ -7,6 +7,7 @@ import ItemLabel from '../../components/ItemLabel';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import useEditPage from './EditPage';
+import ValueListDropdown from '../../components/ValueListDropdown';
 import VisualContextsService from '../../services/VisualContexts';
 import withMenuBar from '../../hooks/MenuBar';
 import withSingleImage from '../../hooks/Image';
@@ -22,7 +23,9 @@ type Props = EditContainerProps & ImageProps & Routeable & Translateable & {
 };
 
 const Tabs = {
-  details: 'details'
+  details: 'details',
+  subjectMatter: 'Subject Matter',
+  notes: 'Notes'
 };
 
 const VisualContext = (props: Props) => {
@@ -61,7 +64,7 @@ const VisualContext = (props: Props) => {
       </SimpleEditPage.Header>
       <SimpleEditPage.Tab
         key={Tabs.details}
-        name={props.t('Common.tabs.details')}
+        name={props.t('VisualContext.tabs.details')}
       >
         <Form.Input
           error={props.isError('name')}
@@ -91,6 +94,45 @@ const VisualContext = (props: Props) => {
           required={props.isRequired('depth')}
           value={props.item.depth || ''}
         />
+      </SimpleEditPage.Tab>
+      <SimpleEditPage.Tab
+        key={Tabs.subjectMatter}
+        name={props.t('VisualContext.tabs.subjectMatter')}
+      >
+        <ValueListDropdown
+          {...props}
+          group='General Subject/Genre'
+          label={props.t('VisualContext.labels.generalSubjectGenre')}
+          multiple
+          object='Visual Context'
+        />
+        <ValueListDropdown
+          {...props}
+          group='Subject Cultural Context'
+          label={props.t('VisualContext.labels.subjectCulturalContext')}
+          multiple
+          object='Visual Context'
+        />
+        <ValueListDropdown
+          {...props}
+          group='Specific Subject/Iconography'
+          label={props.t('VisualContext.labels.specificSubjectIconography')}
+          multiple
+          object='Visual Context'
+        />
+        <Form.Checkbox
+          checked={props.item.beta}
+          error={props.isError('beta')}
+          label={props.t('VisualContext.labels.beta')}
+          onChange={props.onCheckboxInputChange.bind(this, 'beta')}
+          required={props.isRequired('beta')}
+          toggle
+        />
+      </SimpleEditPage.Tab>
+      <SimpleEditPage.Tab
+        key={Tabs.notes}
+        name={props.t('VisualContext.tabs.notes')}
+      >
         <Form.TextArea
           error={props.isError('notes')}
           label={props.t('VisualContext.labels.notes')}

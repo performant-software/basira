@@ -7,7 +7,8 @@ module AirtableImporter
         Models::VisualContext,
         Models::Document,
         Models::Person,
-        Models::Place
+        Models::Place,
+        Models::ValueList
       ]
     end
   end

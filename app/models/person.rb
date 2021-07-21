@@ -1,6 +1,7 @@
 class Person < ApplicationRecord
   # Includes
   include Locateable
+  include Qualifiable
 
   # Relationships
   has_many :participations, dependent: :destroy

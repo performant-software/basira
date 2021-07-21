@@ -21,6 +21,8 @@ import Authentication from '../services/Authentication';
 import Session from '../services/Session';
 import './MenuBar.css';
 
+const ARTWORKS_REGEX = '/admin/(artworks|physical_components|visual_contexts|documents)';
+
 const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(withRouter((props) => {
   const menuBarRef = useRef();
 
@@ -76,7 +78,7 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
               }}
             >
               <Menu.Item
-                active={!!props.location.pathname.match('/admin/(artworks|physical_components|visual_contexts)')}
+                active={!!props.location.pathname.match(ARTWORKS_REGEX)}
                 as={Link}
                 content={props.t('Admin.menu.artworks')}
                 to='/admin/artworks'
