@@ -32,6 +32,7 @@ const Person = (props: Props) => (
     errors={props.errors}
     loading={props.loading}
     onSave={props.onSave}
+    saving={props.saving}
   >
     <SimpleEditPage.Tab
       key={Tabs.details}
@@ -130,6 +131,6 @@ const Person = (props: Props) => (
 
 export default useEditPage(withMenuBar(Person), {
   onLoad: (id) => PeopleService.fetchOne(id).then(({ data }) => data.person),
-  onSave: (person) => PeopleService.save(person),
+  onSave: (person) => PeopleService.save(person).then(({ data }) => data.person),
   required: ['name', 'display_name']
 });

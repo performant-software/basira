@@ -52,6 +52,7 @@ const Artwork = (props: Props) => {
       errors={props.errors}
       loading={props.loading}
       onSave={props.onSave}
+      saving={props.saving}
       type={props.item.id ? undefined : props.t('Common.labels.artwork')}
     >
       <SimpleEditPage.Header>
@@ -336,7 +337,7 @@ const Artwork = (props: Props) => {
 export default useEditPage(withMenuBar(Artwork), {
   getArtworkId: (item) => item.id,
   onLoad: (id) => ArtworksService.fetchOne(id).then(({ data }) => data.artwork),
-  onSave: (artwork) => ArtworksService.save(artwork),
+  onSave: (artwork) => ArtworksService.save(artwork).then(({ data }) => data.artwork),
   required: ['date_descriptor'],
   validate: (artwork) => {
     let validationErrors = {};

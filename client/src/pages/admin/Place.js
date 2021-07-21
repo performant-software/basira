@@ -32,6 +32,7 @@ const Place = (props: Props) => (
     errors={props.errors}
     loading={props.loading}
     onSave={props.onSave}
+    saving={props.saving}
   >
     <SimpleEditPage.Tab
       key={Tabs.details}
@@ -129,6 +130,6 @@ const Place = (props: Props) => (
 
 export default withTranslation()(useEditPage(withMenuBar(Place), {
   onLoad: (id) => PlacesService.fetchOne(id).then(({ data }) => data.place),
-  onSave: (place) => PlacesService.save(place),
+  onSave: (place) => PlacesService.save(place).then(({ data }) => data.place),
   required: ['name']
 }));
