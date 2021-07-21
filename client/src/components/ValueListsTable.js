@@ -24,7 +24,8 @@ const ValueListsTable = (props: Props) => {
       }, {
         name: 'copy'
       }, {
-        name: 'delete'
+        name: 'delete',
+        accept: (item) => item.qualifications_count === 0
       }]}
       className='value-lists-table'
       collectionName='value_lists'
