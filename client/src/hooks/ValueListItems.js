@@ -42,7 +42,7 @@ const withValueList = (WrappedComponent: ComponentType<any>) => (props: Props) =
   const attributes = useMemo(() => ({
     value_list_group: props.group,
     value_list_object: props.object,
-    form_field: props.formField
+    form_field: props.formField || ''
   }), [props.group, props.object, props.formField]);
 
   /**
