@@ -6,9 +6,11 @@ import { Dropdown, Form } from 'semantic-ui-react';
 import _ from 'underscore';
 import ValueList from '../transforms/ValueList';
 import withValueList, { type ValueListProps } from '../hooks/ValueListItems';
+import './ValueListDropdown.css';
 
 const ValueListDropdown = (props: ValueListProps) => (
   <Form.Input
+    className='value-list-dropdown'
     error={props.isError(props.group)}
     label={props.label}
     required={props.isRequired(props.group)}
