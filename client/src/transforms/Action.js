@@ -1,10 +1,28 @@
 // @flow
 
+import uuid from 'react-uuid';
 import _ from 'underscore';
 
 import type { Action as ActionType } from '../types/Action';
 
 class Action {
+  /**
+   * Returns a copy of the passed action striped of the identifier attributes.
+   *
+   * @param action
+   *
+   * @returns {*&{qualifications}}
+   */
+  toCopy(action: ActionType) {
+    return {
+      ..._.omit(action, 'id', 'uid'),
+      qualifications: _.map(action.qualifications, (qualification) => ({
+        ..._.omit(qualification, 'id', 'uid', '_destroy', 'qualifiable_id'),
+        uid: uuid()
+      }))
+    };
+  }
+
   /**
    * Returns the passed action as a dropdown option.
    *
