@@ -41,6 +41,7 @@ const PhysicalComponent = (props: Props) => {
       errors={props.errors}
       loading={props.loading}
       onSave={props.onSave}
+      saving={props.saving}
       type={props.item.id ? undefined : props.t('Common.labels.physicalComponent')}
     >
       <SimpleEditPage.Header>
@@ -106,5 +107,5 @@ const PhysicalComponent = (props: Props) => {
 export default useEditPage(withRouter(withMenuBar(withSingleImage(PhysicalComponent))), {
   getArtworkId: (item) => item.artwork_id,
   onLoad: (id) => PhysicalComponentsService.fetchOne(id).then(({ data }) => data.physical_component),
-  onSave: (pc) => PhysicalComponentsService.save(pc)
+  onSave: (pc) => PhysicalComponentsService.save(pc).then(({ data }) => data.physical_component)
 });

@@ -44,6 +44,7 @@ const VisualContext = (props: Props) => {
       errors={props.errors}
       loading={props.loading}
       onSave={props.onSave}
+      saving={props.saving}
       type={props.item.id ? undefined : props.t('Common.labels.visualContext')}
     >
       <SimpleEditPage.Header>
@@ -148,5 +149,5 @@ const VisualContext = (props: Props) => {
 export default useEditPage(withRouter(withMenuBar(withSingleImage(VisualContext))), {
   getArtworkId: (item) => item.artwork_id,
   onLoad: (id) => VisualContextsService.fetchOne(id).then(({ data }) => data.visual_context),
-  onSave: (pc) => VisualContextsService.save(pc)
+  onSave: (pc) => VisualContextsService.save(pc).then(({ data }) => data.visual_context)
 });

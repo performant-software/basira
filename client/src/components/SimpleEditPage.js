@@ -29,6 +29,11 @@ type Props = Translateable & {
   errors: Array<string>,
   history: typeof RouterHistory,
   loading: boolean,
+  location: {
+    state: {
+      saved: boolean
+    }
+  },
   onSave: (item: any) => Promise<any>,
   saving: boolean,
   showLoading?: boolean,
@@ -69,6 +74,12 @@ class SimpleEditPage extends Component<Props, State> {
    */
   componentDidMount() {
     this.onTabClick(_.first(Element.findByType(this.props.children, SimpleEditPage.Tab)));
+
+    const { saved } = this.props.location.state || false;
+
+    if (saved) {
+      this.setState({ showToaster: true });
+    }
   }
 
   /**
@@ -322,7 +333,7 @@ class SimpleEditPage extends Component<Props, State> {
    * @returns {JSX.Element|null}
    */
   renderToaster() {
-    if (!this.state.showToaster) {
+    if (!this.state.showToaster || this.props.saving) {
       return null;
     }
 
