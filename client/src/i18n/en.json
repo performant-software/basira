@@ -342,11 +342,6 @@
       "objectName": "Object name",
       "urlDatabaseValue": "URL/Database value"
     },
-    "messages": {
-      "deleteContent": "Are you sure you want to remove this record?",
-      "deleteHeader": "Confirm Remove",
-      "deleteLinked": "Cannot delete linked value list items"
-    },
     "title": {
       "add": "Add value list item",
       "edit": "Edit value list item"
