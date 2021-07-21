@@ -112,7 +112,8 @@
       "saved": {
         "content": "Your changes have been saved.",
         "header": "Success!"
-      }
+      },
+      "saving": "Saving"
     },
     "tabs": {
       "details": "Details",

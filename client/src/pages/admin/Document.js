@@ -61,6 +61,7 @@ const Document = (props: Props) => {
       errors={props.errors}
       loading={props.loading}
       onSave={props.onSave}
+      saving={props.saving}
       type={props.item.id ? undefined : props.t('Common.labels.document')}
     >
       <SimpleEditPage.Header>
@@ -562,5 +563,5 @@ const Document = (props: Props) => {
 export default useEditPage(withRouter(withMenuBar(withSingleImage(Document))), {
   getArtworkId: (item) => item.artwork_id,
   onLoad: (id) => DocumentsService.fetchOne(id).then(({ data }) => data.document),
-  onSave: (doc) => DocumentsService.save(doc)
+  onSave: (doc) => DocumentsService.save(doc).then(({ data }) => data.document)
 });
