@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_051839) do
+ActiveRecord::Schema.define(version: 2021_07_21_163156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,9 +59,9 @@ ActiveRecord::Schema.define(version: 2021_07_13_051839) do
     t.string "date_descriptor"
     t.integer "date_start"
     t.integer "date_end"
-    t.integer "height", default: 0, null: false
-    t.integer "width", default: 0, null: false
-    t.integer "depth", default: 0, null: false
+    t.string "height"
+    t.string "width"
+    t.string "depth"
     t.text "notes_external"
     t.text "notes_internal"
     t.boolean "published", default: false, null: false
@@ -82,6 +82,9 @@ ActiveRecord::Schema.define(version: 2021_07_13_051839) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
+  end
+
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
   create_table "documents", force: :cascade do |t|
@@ -160,9 +163,9 @@ ActiveRecord::Schema.define(version: 2021_07_13_051839) do
   create_table "physical_components", force: :cascade do |t|
     t.bigint "artwork_id", null: false
     t.string "name"
-    t.integer "height"
-    t.integer "width"
-    t.integer "depth"
+    t.string "height"
+    t.string "width"
+    t.string "depth"
     t.string "notes"
     t.string "airtable_id"
     t.datetime "airtable_timestamp"
@@ -248,9 +251,9 @@ ActiveRecord::Schema.define(version: 2021_07_13_051839) do
   create_table "visual_contexts", force: :cascade do |t|
     t.bigint "physical_component_id", null: false
     t.string "name"
-    t.integer "height"
-    t.integer "width"
-    t.integer "depth"
+    t.string "height"
+    t.string "width"
+    t.string "depth"
     t.string "notes"
     t.string "airtable_id"
     t.datetime "airtable_timestamp"
