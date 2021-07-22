@@ -11,6 +11,7 @@ import {
 } from 'semantic-ui-react';
 import _ from 'underscore';
 import Thumbnail from './Thumbnail';
+import './ArtworksList.css';
 
 import type { ListProps } from 'react-components/types';
 
@@ -48,7 +49,6 @@ const ArtworksList = (props: Props) => {
   return (
     <Grid
       className='artworks-list'
-      fluid
     >
       { _.map(props.items, (item, index) => (
         <>
@@ -93,6 +93,7 @@ const ArtworksList = (props: Props) => {
                       <Button
                         basic
                         icon={action.icon}
+                        key={action.name}
                         onClick={(e) => {
                           e.stopPropagation();
                           return action.onClick && action.onClick(item);
