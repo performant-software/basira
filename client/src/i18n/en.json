@@ -384,6 +384,16 @@
       "edit": "Edit value list item"
     }
   },
+  "Validations": {
+    "errors": {
+      "dimensionNumeric": "{{name}} must be numeric"
+    },
+    "labels": {
+      "depth": "Depth",
+      "height": "Height",
+      "width": "Width"
+    }
+  },
   "ValueListsFiltersModal": {
     "labels": {
       "groupName": "Group name",

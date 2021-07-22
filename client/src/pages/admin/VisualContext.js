@@ -7,6 +7,7 @@ import ItemLabel from '../../components/ItemLabel';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import useEditPage from './EditPage';
+import Validations from '../../utils/Validations';
 import ValueListDropdown from '../../components/ValueListDropdown';
 import VisualContextsService from '../../services/VisualContexts';
 import withMenuBar from '../../hooks/MenuBar';
@@ -33,8 +34,11 @@ const VisualContext = (props: Props) => {
    * Sets the physical_component_id from the state.
    */
   useEffect(() => {
-    if (props.location.state && props.location.state.physical_component_id) {
-      props.onSetState({ physical_component_id: props.location.state.physical_component_id });
+    if (props.location.state) {
+      props.onSetState({
+        artwork_id: props.location.state.artwork_id || props.item.artwork_id,
+        physical_component_id: props.location.state.physical_component_id
+      });
     }
   }, []);
 
@@ -150,5 +154,6 @@ const VisualContext = (props: Props) => {
 export default useEditPage(withRouter(withMenuBar(withSingleImage(VisualContext))), {
   getArtworkId: (item) => item.artwork_id,
   onLoad: (id) => VisualContextsService.fetchOne(id).then(({ data }) => data.visual_context),
-  onSave: (pc) => VisualContextsService.save(pc).then(({ data }) => data.visual_context)
+  onSave: (pc) => VisualContextsService.save(pc).then(({ data }) => data.visual_context),
+  validate: Validations.validateDimensions.bind(this)
 });

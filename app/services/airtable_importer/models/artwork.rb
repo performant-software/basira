@@ -43,6 +43,18 @@ module AirtableImporter
         }, {
           attribute_name: :notes_external,
           airtable_name: 'Info'
+         }, {
+          attribute_name: :height,
+          airtable_name: 'height_cm',
+          transforms: [:trim]
+         }, {
+          attribute_name: :width,
+          airtable_name: 'width_cm',
+          transforms: [:trim]
+         }, {
+          attribute_name: :depth,
+          airtable_name: 'depth_cm',
+          transforms: [:trim]
          }]
       end
 

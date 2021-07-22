@@ -8,6 +8,7 @@ import PhysicalComponentsService from '../../services/PhysicalComponents';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import useEditPage from './EditPage';
+import Validations from '../../utils/Validations';
 import withMenuBar from '../../hooks/MenuBar';
 import withSingleImage from '../../hooks/Image';
 
@@ -108,5 +109,6 @@ const PhysicalComponent = (props: Props) => {
 export default useEditPage(withRouter(withMenuBar(withSingleImage(PhysicalComponent))), {
   getArtworkId: (item) => item.artwork_id,
   onLoad: (id) => PhysicalComponentsService.fetchOne(id).then(({ data }) => data.physical_component),
-  onSave: (pc) => PhysicalComponentsService.save(pc).then(({ data }) => data.physical_component)
+  onSave: (pc) => PhysicalComponentsService.save(pc).then(({ data }) => data.physical_component),
+  validate: Validations.validateDimensions.bind(this)
 });
