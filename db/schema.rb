@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_13_051839) do
+ActiveRecord::Schema.define(version: 2021_07_21_201656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -236,7 +236,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_051839) do
     t.string "group"
     t.string "human_name"
     t.string "url_database_value"
-    t.json "comment"
+    t.text "comment"
     t.string "authorized_vocabulary"
     t.string "airtable_id"
     t.datetime "airtable_timestamp"
