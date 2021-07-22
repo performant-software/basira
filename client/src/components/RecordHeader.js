@@ -59,6 +59,14 @@ const RecordHeader = (props: Props) => {
               onSelection={props.onFileUpload.bind(this)}
             />
           )}
+          { props.image && props.onFileEdit && (
+            <Button
+              color='orange'
+              content={props.t('RecordHeader.buttons.edit')}
+              icon='edit'
+              onClick={props.onFileEdit.bind(this)}
+            />
+          )}
           { props.image && props.onFileDelete && (
             <Button
               color='red'

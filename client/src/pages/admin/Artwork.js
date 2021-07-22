@@ -1,11 +1,12 @@
 // @flow
 
-import React, { useCallback } from 'react';
-import { BooleanIcon, EmbeddedList } from 'react-components';
+import React, { useCallback, useState } from 'react';
+import { BooleanIcon, EditModal, EmbeddedList } from 'react-components';
 import { Form, Header } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworkTitleModal from '../../components/ArtworkTitleModal';
 import ArtworksService from '../../services/Artworks';
+import AttachmentModal from '../../components/AttachmentModal';
 import File from '../../transforms/File';
 import i18n from '../../i18n/i18n';
 import Images from '../../components/Images';
@@ -36,6 +37,8 @@ const Tabs = {
 };
 
 const Artwork = (props: Props) => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   const getImage = useCallback(() => {
     const image = _.find(props.item.attachments, (a) => a.primary && !a._destroy);
     return image && image.file_url;
@@ -218,6 +221,11 @@ const Artwork = (props: Props) => {
                 (attachment) => ({ ...attachment, primary: attachment === item }))
             })
           }, {
+            color: () => 'orange',
+            icon: 'edit',
+            name: 'edit',
+            onClick: (item) => setSelectedImage(item)
+          }, {
             color: () => 'red',
             icon: 'times',
             name: 'delete',
@@ -233,6 +241,18 @@ const Artwork = (props: Props) => {
           }}
           renderImage={(item) => item.thumbnail_url}
         />
+        { selectedImage && (
+          <EditModal
+            component={AttachmentModal}
+            item={selectedImage}
+            onClose={() => setSelectedImage(null)}
+            onSave={(item) => {
+              props.onSaveChildAssociation('attachments', item);
+              setSelectedImage(null);
+              return Promise.resolve();
+            }}
+          />
+        )}
       </SimpleEditPage.Tab>
       <SimpleEditPage.Tab
         key={Tabs.creators}

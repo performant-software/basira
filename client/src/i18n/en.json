@@ -93,6 +93,16 @@
       "edit": "Edit Title"
     }
   },
+  "AttachmentModal": {
+    "labels": {
+      "imageRights": "Image rights",
+      "imageSource": "Image source",
+      "photographer": "Photographer"
+    },
+    "title": {
+      "edit": "Edit Image"
+    }
+  },
   "Common": {
     "buttons": {
       "cancel": "Cancel",
@@ -322,6 +332,7 @@
   },
   "RecordHeader": {
     "buttons": {
+      "edit": "Edit",
       "remove": "Remove",
       "upload": "Upload"
     }

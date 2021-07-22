@@ -57,6 +57,7 @@ const PhysicalComponent = (props: Props) => {
           includeNotesButton={false}
           includePublishButton={false}
           onFileDelete={props.onDeleteImage}
+          onFileEdit={props.onEditImage}
           onFileUpload={props.onSaveImage}
         />
       </SimpleEditPage.Header>

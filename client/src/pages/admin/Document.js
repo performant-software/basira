@@ -78,6 +78,7 @@ const Document = (props: Props) => {
           includeNotesButton={false}
           includePublishButton={false}
           onFileDelete={props.onDeleteImage}
+          onFileEdit={props.onEditImage}
           onFileUpload={props.onSaveImage}
           preview={props.image && props.image.thumbnail_url}
         />
