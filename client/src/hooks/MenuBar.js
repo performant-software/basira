@@ -2,6 +2,7 @@
 
 import React, {
   useEffect,
+  useMemo,
   useRef,
   useState,
   type ComponentType
@@ -29,6 +30,21 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
   const [sidebarHeight, setSidebarHeight] = useState(0);
   const [sidebarVisible, setSidebarVisible] = useState(false);
 
+  /**
+   * Returns the ID for the currently selected artwork.
+   *
+   * @type {*}
+   */
+  const artworkId = useMemo(() => {
+    let id;
+
+    if (props.getArtworkId && props.item) {
+      id = props.getArtworkId(props.item);
+    }
+
+    return id;
+  }, [props.getArtworkId, props.item]);
+
   useEffect(() => {
     const menuBarInstance = menuBarRef.current;
 
@@ -53,7 +69,7 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
             secondary
           >
             <Menu.Item>
-              { props.getArtworkId && (
+              { artworkId && (
                 <Button
                   basic
                   icon='bars'
@@ -139,7 +155,7 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
           minHeight: sidebarHeight
         }}
       >
-        { props.getArtworkId && (
+        { artworkId && (
           <Sidebar
             as={Segment}
             animation='overlay'
@@ -152,7 +168,7 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
             }}
           >
             <AccordionMenu
-              id={props.getArtworkId(props.item)}
+              id={artworkId}
             />
           </Sidebar>
         )}
