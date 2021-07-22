@@ -33,8 +33,11 @@ const VisualContext = (props: Props) => {
    * Sets the physical_component_id from the state.
    */
   useEffect(() => {
-    if (props.location.state && props.location.state.physical_component_id) {
-      props.onSetState({ physical_component_id: props.location.state.physical_component_id });
+    if (props.location.state) {
+      props.onSetState({
+        artwork_id: props.location.state.artwork_id || props.item.artwork_id,
+        physical_component_id: props.location.state.physical_component_id
+      });
     }
   }, []);
 

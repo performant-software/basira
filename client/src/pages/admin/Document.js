@@ -42,8 +42,11 @@ const Document = (props: Props) => {
    * Sets the visual_context_id from the state.
    */
   useEffect(() => {
-    if (props.location.state && props.location.state.visual_context_id) {
-      props.onSetState({ visual_context_id: props.location.state.visual_context_id });
+    if (props.location.state) {
+      props.onSetState({
+        artwork_id: props.location.state.artwork_id || props.item.artwork_id,
+        visual_context_id: props.location.state.visual_context_id
+      });
     }
   }, []);
 
