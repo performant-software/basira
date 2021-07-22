@@ -1,10 +1,11 @@
 class Attachment < ApplicationRecord
   # Includes
   include Rails.application.routes.url_helpers
+  include Qualifiable
 
   # Relationships
   belongs_to :attachable, polymorphic: true, optional: true
-  
+
   # Active storage
   has_one_attached :file
 

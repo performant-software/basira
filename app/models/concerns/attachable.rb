@@ -10,7 +10,9 @@ module Attachable
     accepts_nested_attributes_for :attachments, allow_destroy: true
 
     # Resourceable parameters
-    allow_params attachments_attributes: [:id, :file, :primary, :_destroy]
+    allow_params attachments_attributes: [:id, :file, :primary, :_destroy, qualifications_attributes: [
+      :id, :qualifiable_id, :qualifiable_type, :value_list_id, :form_field, :notes, :persistent, :_destroy]
+    ]
   end
 
   class_methods do
