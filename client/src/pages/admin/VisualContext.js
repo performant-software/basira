@@ -7,6 +7,7 @@ import ItemLabel from '../../components/ItemLabel';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import useEditPage from './EditPage';
+import Validations from '../../utils/Validations';
 import ValueListDropdown from '../../components/ValueListDropdown';
 import VisualContextsService from '../../services/VisualContexts';
 import withMenuBar from '../../hooks/MenuBar';
@@ -149,5 +150,6 @@ const VisualContext = (props: Props) => {
 export default useEditPage(withRouter(withMenuBar(withSingleImage(VisualContext))), {
   getArtworkId: (item) => item.artwork_id,
   onLoad: (id) => VisualContextsService.fetchOne(id).then(({ data }) => data.visual_context),
-  onSave: (pc) => VisualContextsService.save(pc).then(({ data }) => data.visual_context)
+  onSave: (pc) => VisualContextsService.save(pc).then(({ data }) => data.visual_context),
+  validate: Validations.validateDimensions.bind(this)
 });
