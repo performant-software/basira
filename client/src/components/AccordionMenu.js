@@ -250,7 +250,10 @@ const AccordionMenu = (props: Props) => {
     level: 1,
     path: `/admin/physical_components/${pc.id}`,
     parent,
-    onAdd: () => props.history.push('/admin/visual_contexts/new', { physical_component_id: pc.id }),
+    onAdd: () => props.history.push('/admin/visual_contexts/new', {
+      artwork_id: props.id,
+      physical_component_id: pc.id
+    }),
     onDelete: () => PhysicalComponentsService.delete(pc),
     children: _.map(pc.visual_contexts, transformVisualContext.bind(this, pc))
   });
@@ -272,7 +275,7 @@ const AccordionMenu = (props: Props) => {
     level: 2,
     path: `/admin/visual_contexts/${vc.id}`,
     parent,
-    onAdd: () => props.history.push('/admin/documents/new', { visual_context_id: vc.id }),
+    onAdd: () => props.history.push('/admin/documents/new', { artwork_id: props.id, visual_context_id: vc.id }),
     onDelete: () => VisualContextsService.delete(vc),
     children: _.map(vc.documents, transformDocument.bind(this, vc))
   });
