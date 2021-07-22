@@ -1,0 +1,3 @@
+.value-list-dropdown .ui.input > .dropdown.search.visible > input.search {
+  width: unset;
+}

@@ -187,21 +187,21 @@ const Artwork = (props: Props) => {
           label={props.t('Artwork.labels.height')}
           onChange={props.onTextInputChange.bind(this, 'height')}
           required={props.isRequired('height')}
-          value={props.item.height || 0}
+          value={props.item.height || ''}
         />
         <Form.Input
           error={props.isError('width')}
           label={props.t('Artwork.labels.width')}
           onChange={props.onTextInputChange.bind(this, 'width')}
           required={props.isRequired('width')}
-          value={props.item.width || 0}
+          value={props.item.width || ''}
         />
         <Form.Input
           error={props.isError('depth')}
           label={props.t('Artwork.labels.depth')}
           onChange={props.onTextInputChange.bind(this, 'depth')}
           required={props.isRequired('depth')}
-          value={props.item.depth || 0}
+          value={props.item.depth || ''}
         />
       </SimpleEditPage.Tab>
       <SimpleEditPage.Tab
