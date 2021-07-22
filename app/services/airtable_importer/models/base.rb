@@ -93,6 +93,7 @@ module AirtableImporter
         columns.each do |column|
           attribute_name = column[:attribute_name]
           airtable_name = column[:airtable_name]
+          transforms = column[:transforms]
           type = column[:type]
 
           case type
@@ -117,7 +118,7 @@ module AirtableImporter
             value = column[:build_attributes].call(record.id, record[airtable_name])
             attributes[attribute_name] << value unless value.nil?
           else
-            attributes[attribute_name] = record[airtable_name]
+            attributes[attribute_name] = transform(transforms, record[airtable_name])
           end
         end
 
@@ -128,6 +129,24 @@ module AirtableImporter
         puts "#{model_class.to_s} - #{model.errors.full_messages}"
         puts model.attributes
         puts ''
+      end
+
+      def transform(transforms, value)
+        return value if value.nil?
+        return value unless transforms.present?
+
+        newValue = value
+
+        transforms.each do |t|
+
+          case t
+          when :trim
+            newValue = newValue.strip
+          end
+
+        end
+
+        newValue
       end
 
     end
