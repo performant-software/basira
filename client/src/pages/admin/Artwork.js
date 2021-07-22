@@ -11,10 +11,12 @@ import i18n from '../../i18n/i18n';
 import Images from '../../components/Images';
 import ItemLabel from '../../components/ItemLabel';
 import LocationModal, { LocationTypes } from '../../components/LocationModal';
+import Number from '../../utils/Number';
 import ParticipationModal, { ParticipationTypes } from '../../components/ParticipationModal';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
+import Validations from '../../utils/Validations';
 import ValueListDropdown from '../../components/ValueListDropdown';
 import useEditPage from './EditPage';
 import withMenuBar from '../../hooks/MenuBar';
@@ -342,17 +344,22 @@ export default useEditPage(withMenuBar(Artwork), {
   validate: (artwork) => {
     let validationErrors = {};
 
-    if (!_.isEmpty(artwork.date_start) && Number.isNaN(parseInt(artwork.date_start, 10))) {
+    // Validate start date
+    if (!(_.isEmpty(artwork.date_start) || Number.isNumeric(artwork.date_start))) {
       validationErrors = _.extend(validationErrors, {
         date_start: i18n.t('Artwork.errors.dateNumeric', { name: i18n.t('Artwork.labels.startDate') })
       });
     }
 
-    if (!_.isEmpty(artwork.date_end) && Number.isNaN(parseInt(artwork.date_end, 10))) {
+    // Validate end date
+    if (!(_.isEmpty(artwork.date_end) || Number.isNumeric(artwork.date_end))) {
       validationErrors = _.extend(validationErrors, {
         date_end: i18n.t('Artwork.errors.dateNumeric', { name: i18n.t('Artwork.labels.endDate') })
       });
     }
+
+    // Validate height, width, depth
+    validationErrors = _.extend(validationErrors, Validations.validateDimensions(artwork));
 
     return validationErrors;
   }
