@@ -246,6 +246,7 @@ const Artwork = (props: Props) => {
         { selectedImage && (
           <EditModal
             component={AttachmentModal}
+            extra={props.item.notes_internal}
             item={selectedImage}
             onClose={() => setSelectedImage(null)}
             onSave={(item) => {

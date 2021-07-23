@@ -55,6 +55,18 @@ module AirtableImporter
           attribute_name: :depth,
           airtable_name: 'depth_cm',
           transforms: [:trim]
+         }, {
+          attribute_name: :notes_internal,
+          airtable_name: 'Image_permissions',
+          type: :string_append
+         }, {
+          attribute_name: :notes_internal,
+          airtable_name: 'Image_Source',
+          type: :string_append
+         }, {
+          attribute_name: :notes_internal,
+          airtable_name: 'Photographer_Name',
+          type: :string_append
          }]
       end
 

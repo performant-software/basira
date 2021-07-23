@@ -117,6 +117,15 @@ module AirtableImporter
             attributes[attribute_name] ||= []
             value = column[:build_attributes].call(record.id, record[airtable_name])
             attributes[attribute_name] << value unless value.nil?
+          when :string_append
+            if record[airtable_name].present?
+              if attributes[attribute_name].nil?
+                attributes[attribute_name] = ''
+              else
+                attributes[attribute_name] << "\n"
+              end
+              attributes[attribute_name] << record[airtable_name]
+            end
           else
             attributes[attribute_name] = transform(transforms, record[airtable_name])
           end
