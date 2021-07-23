@@ -62,6 +62,13 @@ const ActionModal = (props: Props) => (
         group='Characteristic'
         multiple
       />
+      <ValueListDropdown
+        {...props}
+        label={props.t('ActionModal.labels.body')}
+        multiple
+        object='Action'
+        group='Body'
+      />
       <Form.TextArea
         error={props.isError('notes')}
         label={props.t('ActionModal.labels.notes')}

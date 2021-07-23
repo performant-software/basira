@@ -5,6 +5,7 @@
   },
   "ActionModal": {
     "labels": {
+      "body": "Body descriptors",
       "book": "The book",
       "descriptors": "Entity descriptors",
       "notes": "Notes"
