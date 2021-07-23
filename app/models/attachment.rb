@@ -10,7 +10,6 @@ class Attachment < ApplicationRecord
 
   # Callbacks
   after_create :generate_thumbnail
-  before_save :set_primary
 
   def file_url
     return nil unless self.file&.attached?
@@ -30,9 +29,5 @@ class Attachment < ApplicationRecord
     return unless self.file&.attached?
 
     CreateImageThumbnailJob.perform_later(self.id)
-  end
-
-  def set_primary
-    self.primary = false unless self.primary.present?
   end
 end

@@ -9,5 +9,4 @@ class VisualContext < ApplicationRecord
 
   # Resourceable parameters
   allow_params :physical_component_id, :name, :height, :width, :depth, :notes, :beta
-  
 end
