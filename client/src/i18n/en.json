@@ -324,6 +324,16 @@
     "buttons": {
       "remove": "Remove",
       "upload": "Upload"
+    },
+    "popups": {
+      "notes": {
+        "content": "Add or remove internal notes",
+        "header": "Notes"
+      },
+      "publish": {
+        "content": "Toggle the published indicator on/off",
+        "header": "Publish"
+      }
     }
   },
   "SimpleEditPage": {
