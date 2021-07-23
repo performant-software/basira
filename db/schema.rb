@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_21_201656) do
+ActiveRecord::Schema.define(version: 2021_07_23_115502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,16 +94,16 @@ ActiveRecord::Schema.define(version: 2021_07_21_201656) do
     t.boolean "sewing_supports_visible", default: false
     t.integer "number_sewing_supports"
     t.integer "number_fastenings"
-    t.text "location_of_fastenings"
-    t.boolean "inscriptions_on_binding", default: false
+    t.string "location_of_fastenings"
+    t.boolean "inscriptions_on_binding", default: false, null: false
     t.text "inscription_text"
-    t.boolean "endband_present", default: false
-    t.boolean "uncut_fore_edges", default: false
+    t.boolean "endband_present", default: false, null: false
+    t.boolean "uncut_fore_edges", default: false, null: false
     t.text "fore_edge_text"
     t.integer "bookmarks_registers", default: 0
     t.integer "text_columns", default: 1
-    t.boolean "ruling", default: false
-    t.boolean "rubrication", default: false
+    t.boolean "ruling", default: false, null: false
+    t.boolean "rubrication", default: false, null: false
     t.text "identity"
     t.text "transcription"
     t.string "airtable_id"

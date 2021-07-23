@@ -36,3 +36,6 @@
 
 # Ignore env
 .env
+
+# Image Magick
+Magick-0.log
