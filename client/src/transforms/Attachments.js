@@ -2,6 +2,7 @@
 
 import _ from 'underscore';
 import NestedAttributes from './NestedAttributes';
+import Qualifications from './Qualifications';
 import String from '../utils/String';
 
 /**
@@ -28,6 +29,8 @@ class Attachments extends NestedAttributes {
       if (attachment.file) {
         formData.append(`${prefix}[${collection}][${index}][file]`, String.toString(attachment.file));
       }
+
+      Qualifications.appendFormData(formData, `${prefix}[attachments][${index}]`, attachment);
     });
   }
 

@@ -1,7 +1,14 @@
 // @flow
 
-import React, { useCallback, useMemo, type ComponentType } from 'react';
+import React, {
+  useCallback,
+  useMemo,
+  useState,
+  type ComponentType
+} from 'react';
+import { EditModal } from 'react-components';
 import _ from 'underscore';
+import AttachmentModal from '../components/AttachmentModal';
 import File from '../transforms/File';
 
 import type { EditContainerProps } from 'react-components/types';
@@ -13,6 +20,8 @@ type Props = EditContainerProps & {
 };
 
 const withSingleImage = (WrappedComponent: ComponentType<any>) => (props: Props) => {
+  const [editModal, setEditModal] = useState(false);
+
   /**
    * Returns the first primary, non-deleted image attachment.
    *
@@ -35,6 +44,18 @@ const withSingleImage = (WrappedComponent: ComponentType<any>) => (props: Props)
   }, [image, props.onDeleteChildAssociation]);
 
   /**
+   * Opens the edit modal for the current image.
+   *
+   * @type {(function(): void)|*}
+   */
+  const onEditImage = useCallback(() => {
+    if (image) {
+      setEditModal(true);
+    }
+  }, [image]);
+
+  /**
+   * Saves the first file in the passed array as an attachment.
    *
    * @type {function(*=): void}
    */
@@ -44,12 +65,27 @@ const withSingleImage = (WrappedComponent: ComponentType<any>) => (props: Props)
   }, [onDeleteImage, props.onSaveChildAssociation]);
 
   return (
-    <WrappedComponent
-      {...props}
-      image={image}
-      onDeleteImage={onDeleteImage}
-      onSaveImage={onSaveImage}
-    />
+    <>
+      <WrappedComponent
+        {...props}
+        image={image}
+        onDeleteImage={onDeleteImage}
+        onEditImage={onEditImage}
+        onSaveImage={onSaveImage}
+      />
+      { editModal && (
+        <EditModal
+          component={AttachmentModal}
+          item={image}
+          onClose={() => setEditModal(false)}
+          onSave={(item) => {
+            props.onSaveChildAssociation('attachments', item);
+            setEditModal(false);
+            return Promise.resolve();
+          }}
+        />
+      )}
+    </>
   );
 };
 
@@ -58,5 +94,6 @@ export default withSingleImage;
 export type ImageProps = {
   image: Attachment,
   onDeleteImage: () => void,
+  onEditImage: () => void,
   onSaveImage: (files: Array<any>) => void
 };

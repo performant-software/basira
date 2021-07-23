@@ -24,10 +24,12 @@ type Props = Translateable & {
   includeInfoButton?: boolean,
   includeNotesButton?: boolean,
   includePublishButton?: boolean,
+  preview?: string,
   published: boolean,
   meta?: string,
   notes: string,
   onFileDelete: () => void,
+  onFileEdit: () => void,
   onFileUpload: (files: Array<File>) => void,
   onNotesChange: (notes: string) => void,
   onPublish: () => void,
@@ -57,6 +59,14 @@ const RecordHeader = (props: Props) => {
               content={props.t('RecordHeader.buttons.upload')}
               icon='cloud upload'
               onSelection={props.onFileUpload.bind(this)}
+            />
+          )}
+          { props.image && props.onFileEdit && (
+            <Button
+              color='orange'
+              content={props.t('RecordHeader.buttons.edit')}
+              icon='edit'
+              onClick={props.onFileEdit.bind(this)}
             />
           )}
           { props.image && props.onFileDelete && (
