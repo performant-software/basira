@@ -12,13 +12,13 @@ import Validations from '../../utils/Validations';
 import withMenuBar from '../../hooks/MenuBar';
 import withSingleImage from '../../hooks/Image';
 
-import type { EditContainerProps } from 'react-components/types';
+import type { EditPageProps } from './EditPage';
 import type { ImageProps } from '../../hooks/Image';
 import type { PhysicalComponent as PhysicalComponentType } from '../../types/PhysicalComponent';
 import type { Translateable } from '../../types/Translateable';
 import type { Routeable } from '../../types/Routeable';
 
-type Props = EditContainerProps & ImageProps & Routeable & Translateable & {
+type Props = EditPageProps & ImageProps & Routeable & Translateable & {
   item: PhysicalComponentType
 };
 
@@ -42,6 +42,7 @@ const PhysicalComponent = (props: Props) => {
       errors={props.errors}
       loading={props.loading}
       onSave={props.onSave}
+      onTabClick={props.onTabClick}
       saving={props.saving}
       type={props.item.id ? undefined : props.t('Common.labels.physicalComponent')}
     >
