@@ -16,3 +16,15 @@ code {
   text-decoration: underline;
   text-decoration-color: rgba(0, 0, 0, 0.87);
 }
+
+/* Remove the hidden overflow on the pusher to allow long dropdowns to be visible */
+.pushable > .pusher {
+  overflow: visible;
+}
+
+/* Adjust the number of elements visible in a dropdown */
+@media only screen and (min-width: 768px) {
+  .ui.search.dropdown .menu {
+    max-height: 26.6rem;
+  }
+}
