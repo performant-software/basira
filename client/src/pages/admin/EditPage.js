@@ -5,6 +5,8 @@ import { useEditContainer } from 'react-components';
 import { useHistory, useParams } from 'react-router-dom';
 import _ from 'underscore';
 
+import type { EditContainerProps } from 'react-components/types';
+
 type Config = {
   onLoad: (params: any) => Promise<any>,
   onSave: (item: any) => Promise<any>,
@@ -19,25 +21,30 @@ const useEditPage = (WrappedComponent: ComponentType<any>, config: Config) => (
     const { pathname } = history.location;
     const url = pathname.substring(0, pathname.lastIndexOf('/'));
 
+    let tab;
+
     /**
-     * If we're saving a new record, navigate to the new ID.
+     * Navigate to the new URL to force the component to be re-mounted. This ensures that the IDs of new records
+     * are appropriately updated.
      *
      * @param record
      */
     const afterSave = (record) => {
-      if (!id) {
-        history.replace({
-          pathname: `${url}/${record.id}`,
-          state: {
-            saved: true
-          }
-        });
-      }
+      history.replace({
+        pathname: `${url}/${record.id}`,
+        state: {
+          saved: true,
+          tab
+        }
+      });
     };
 
     const EditPage = (innerProps) => (
       <WrappedComponent
         {...innerProps}
+        onTabClick={(t) => {
+          tab = t;
+        }}
       />
     );
 
@@ -56,3 +63,8 @@ const useEditPage = (WrappedComponent: ComponentType<any>, config: Config) => (
 );
 
 export default useEditPage;
+
+export type EditPageProps = {
+  ...EditContainerProps,
+  onTabClick: (tab: string) => void
+};

@@ -22,11 +22,11 @@ import ValueListDropdown from '../../components/ValueListDropdown';
 import useEditPage from './EditPage';
 import withMenuBar from '../../hooks/MenuBar';
 
-import type { EditContainerProps } from 'react-components/types';
 import type { Artwork as ArtworkType } from '../../types/Artwork';
+import type { EditPageProps } from './EditPage';
 import type { Translateable } from '../../types/Translateable';
 
-type Props = EditContainerProps & Translateable & {
+type Props = EditPageProps & Translateable & {
   item: ArtworkType
 };
 
@@ -57,6 +57,7 @@ const Artwork = (props: Props) => {
       errors={props.errors}
       loading={props.loading}
       onSave={props.onSave}
+      onTabClick={props.onTabClick}
       saving={props.saving}
       type={props.item.id ? undefined : props.t('Common.labels.artwork')}
     >

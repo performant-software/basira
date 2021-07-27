@@ -13,11 +13,11 @@ import SimpleLink from '../../components/SimpleLink';
 import useEditPage from './EditPage';
 import withMenuBar from '../../hooks/MenuBar';
 
-import type { EditContainerProps } from 'react-components/types';
+import type { EditPageProps } from './EditPage';
 import type { Place as PlaceType } from '../../types/Place';
 import type { Translateable } from '../../types/Translateable';
 
-type Props = EditContainerProps & Translateable & {
+type Props = EditPageProps & Translateable & {
   item: PlaceType
 };
 
@@ -32,6 +32,7 @@ const Place = (props: Props) => (
     errors={props.errors}
     loading={props.loading}
     onSave={props.onSave}
+    onTabClick={props.onTabClick}
     saving={props.saving}
   >
     <SimpleEditPage.Tab

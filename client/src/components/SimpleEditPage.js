@@ -31,10 +31,12 @@ type Props = Translateable & {
   loading: boolean,
   location: {
     state: {
-      saved: boolean
+      saved: boolean,
+      tab?: string
     }
   },
   onSave: (item: any) => Promise<any>,
+  onTabClick?: (tab: string) => void,
   saving: boolean,
   showLoading?: boolean,
   stickyMenu?: boolean,
@@ -70,13 +72,22 @@ class SimpleEditPage extends Component<Props, State> {
   }
 
   /**
-   * Selects the first tab.
+   * Sets up the component on mount.
    */
   componentDidMount() {
-    this.onTabClick(_.first(Element.findByType(this.props.children, SimpleEditPage.Tab)));
+    const { state = {} } = this.props.location;
+    const { saved, tab } = state;
 
-    const { saved } = this.props.location.state || false;
+    const tabs = Element.findByType(this.props.children, SimpleEditPage.Tab);
 
+    // If a tab if provided by the router state, set the tab. Otherwise default to the first tab.
+    if (tab) {
+      this.onTabClick(_.findWhere(tabs, { key: tab }));
+    } else {
+      this.onTabClick(_.first(tabs));
+    }
+
+    // If the record has been saved, display the toaster.
     if (saved) {
       this.setState({ showToaster: true });
     }
@@ -103,7 +114,11 @@ class SimpleEditPage extends Component<Props, State> {
    * @param tab
    */
   onTabClick(tab) {
-    this.setState({ tab: tab.key });
+    this.setState({ tab: tab.key }, () => {
+      if (this.props.onTabClick) {
+        this.props.onTabClick(tab.key);
+      }
+    });
   }
 
   /**
