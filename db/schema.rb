@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_23_115502) do
+ActiveRecord::Schema.define(version: 2021_07_30_065408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,6 +158,9 @@ ActiveRecord::Schema.define(version: 2021_07_23_115502) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "artist_birth_date"
+    t.string "artist_death_date"
+    t.string "years_active"
   end
 
   create_table "physical_components", force: :cascade do |t|

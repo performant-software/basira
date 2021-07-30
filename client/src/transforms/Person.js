@@ -19,6 +19,8 @@ class Person extends BaseTransform {
   getPayloadKeys() {
     return [
       'name',
+      'artist_birth_date',
+      'artist_death_date',
       'display_name',
       'person_type',
       'nationality',
@@ -27,7 +29,8 @@ class Person extends BaseTransform {
       'database_value',
       'comment',
       'part_of',
-      'same_as'
+      'same_as',
+      'years_active'
     ];
   }
 

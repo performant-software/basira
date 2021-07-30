@@ -47,6 +47,27 @@ const PersonForm = (props: Props) => (
       value={props.item.nationality || ''}
     />
     <Form.Input
+      error={props.isError('artist_birth_date')}
+      label={props.t('Person.labels.yearOfBirth')}
+      onChange={props.onTextInputChange.bind(this, 'artist_birth_date')}
+      required={props.isRequired('artist_birth_date')}
+      value={props.item.artist_birth_date || ''}
+    />
+    <Form.Input
+      error={props.isError('artist_death_date')}
+      label={props.t('Person.labels.yearOfDeath')}
+      onChange={props.onTextInputChange.bind(this, 'artist_death_date')}
+      required={props.isRequired('artist_death_date')}
+      value={props.item.artist_death_date || ''}
+    />
+    <Form.Input
+      error={props.isError('years_active')}
+      label={props.t('Person.labels.yearsOfActivity')}
+      onChange={props.onTextInputChange.bind(this, 'years_active')}
+      required={props.isRequired('years_active')}
+      value={props.item.years_active || ''}
+    />
+    <Form.Input
       error={props.isError('authorized_vocabulary')}
       label={props.t('Person.labels.authorizedVocabulary')}
       onChange={props.onTextInputChange.bind(this, 'authorized_vocabulary')}
