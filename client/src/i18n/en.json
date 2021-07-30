@@ -274,7 +274,10 @@
       "name": "Name",
       "nationality": "Nationality",
       "type": "Type",
-      "url": "URL"
+      "url": "URL",
+      "yearOfBirth": "Year of birth",
+      "yearOfDeath": "Year of death",
+      "yearsOfActivity": "Years of activity"
     },
     "locations": {
       "columns": {

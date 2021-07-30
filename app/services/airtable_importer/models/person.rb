@@ -23,6 +23,12 @@ module AirtableImporter
             person = ::Person.find_by(airtable_id: airtable_id)
             ::Participation.find_or_initialize_by(person: person, participateable: artwork)
           end
+         }, {
+           attribute_name: :artist_birth_date,
+           airtable_name: 'Artist_Born'
+         }, {
+           attribute_name: :artist_death_date,
+           airtable_name: 'Artist_Death_Date'
          }]
       end
 
