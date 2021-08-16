@@ -177,7 +177,6 @@ class SimpleEditPage extends Component<Props, State> {
         active={this.props.loading}
         inverted
         page
-        verticalAlign='middle'
       >
         <Loader
           content={i18n.t('Common.messages.loading')}
@@ -333,7 +332,6 @@ class SimpleEditPage extends Component<Props, State> {
       <Dimmer
         active={this.props.saving}
         inverted
-        verticalAlign='middle'
       >
         <Loader
           content={i18n.t('Common.messages.saving')}

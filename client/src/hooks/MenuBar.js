@@ -135,7 +135,7 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
               <Button
                 basic
                 content={props.t('Admin.buttons.logout')}
-                icon='logout'
+                icon='log out'
                 inverted
                 onClick={() => (
                   Authentication

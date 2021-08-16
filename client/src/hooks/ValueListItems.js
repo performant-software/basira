@@ -55,7 +55,7 @@ const withValueList = (WrappedComponent: ComponentType<any>) => (props: Props) =
 
     const ids = _.pluck(qualifications, 'value_list_id');
     return props.multiple ? ids : _.first(ids);
-  }, [props.item.qualifications]);
+  }, [attributes, props.multiple, props.item.qualifications]);
 
   /**
    * Finds the existing qualification for the passed value list ID or creates a new one.
@@ -84,7 +84,7 @@ const withValueList = (WrappedComponent: ComponentType<any>) => (props: Props) =
     }
 
     return record;
-  }, [valueLists, props.item.qualifications]);
+  }, [attributes, valueLists, props.item.qualifications]);
 
   /**
    * Sets the qualifications on the current item based on the dropdown value(s).
@@ -125,7 +125,7 @@ const withValueList = (WrappedComponent: ComponentType<any>) => (props: Props) =
     _.each(qualificationsToDelete, (qualifications) => {
       props.onDeleteChildAssociation('qualifications', qualifications);
     });
-  }, [valueLists, props.onDeleteChildAssociation, props.onSaveChildAssociation]);
+  }, [valueLists, props.item.qualifications, props.onDeleteChildAssociation, props.onSaveChildAssociation]);
 
   /**
    * Sets the dropdown options for the component.
