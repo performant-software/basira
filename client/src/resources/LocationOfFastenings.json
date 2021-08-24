@@ -10,4 +10,12 @@
   "key": "tail",
   "value": "tail",
   "text": "Tail"
+}, {
+  "key": "left-right",
+  "value": "left-right",
+  "text": "Left-to-right"
+}, {
+  "key": "right-left",
+  "value": "right-left",
+  "text": "Right-to-left"
 }]
