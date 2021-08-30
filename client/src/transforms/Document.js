@@ -33,7 +33,6 @@ class Document extends FormDataTransform {
       'sewing_supports_visible',
       'number_sewing_supports',
       'number_fastenings',
-      'location_of_fastenings',
       'inscriptions_on_binding',
       'inscription_text',
       'endband_present',
