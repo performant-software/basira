@@ -233,16 +233,12 @@ const Document = (props: Props) => {
                   value={props.item.number_fastenings || ''}
                 />
               </Form.Input>
-              <Form.Dropdown
-                error={props.isError('location_of_fastenings')}
-                clearable
-                label={props.t('Document.labels.locationOfFastenings')}
+              <ValueListDropdown
+                {...props}
+                group='Location of Fastenings'
+                label={props.t('Document.labels.locationsOfFastenings')}
                 multiple
-                onChange={props.onTextInputChange.bind(this, 'location_of_fastenings')}
-                options={LocationOfFastenings}
-                required={props.isRequired('location_of_fastenings')}
-                selection
-                value={props.item.location_of_fastenings || ''}
+                object='Document'
               />
               <Form.Checkbox
                 checked={props.item.inscriptions_on_binding}

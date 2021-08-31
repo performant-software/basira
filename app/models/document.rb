@@ -15,8 +15,8 @@ class Document < ApplicationRecord
 
   # Resourceable parameters
   allow_params :visual_context_id, :name, :notes, :sewing_supports_visible, :number_sewing_supports, :number_fastenings,
-               :location_of_fastenings, :inscriptions_on_binding, :inscription_text, :endband_present, :uncut_fore_edges,
-               :fore_edge_text, :bookmarks_registers, :text_columns, :ruling, :rubrication, :identity, :transcription,
+               :inscriptions_on_binding, :inscription_text, :endband_present, :uncut_fore_edges, :fore_edge_text,
+               :bookmarks_registers, :text_columns, :ruling, :rubrication, :identity, :transcription,
                actions_attributes: [:id, :notes, :_destroy, qualifications_attributes: [:id, :value_list_id, :notes, :persistent, :_destroy]]
 
   private
