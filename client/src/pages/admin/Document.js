@@ -10,7 +10,6 @@ import Action from '../../transforms/Action';
 import Actions from '../../utils/Actions';
 import DocumentsService from '../../services/Documents';
 import ItemLabel from '../../components/ItemLabel';
-import LocationOfFastenings from '../../resources/LocationOfFastenings.json';
 import RecordHeader from '../../components/RecordHeader';
 import Section from '../../components/Section';
 import SimpleEditPage from '../../components/SimpleEditPage';
