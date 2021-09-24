@@ -55,7 +55,12 @@ const useEditPage = (WrappedComponent: ComponentType<any>, config: Config) => (
         {...props}
         {..._.pick(config, 'defaults', 'getArtworkId', 'required', 'validate')}
         item={{ id }}
-        onInitialize={config.onLoad}
+        onInitialize={(params) => config.onLoad(params)
+          .catch((err) => {
+            if (err.response?.status === 404) {
+              history.push('/admin/404');
+            }
+          })}
         onSave={(item) => config.onSave(item).then(afterSave)}
       />
     );

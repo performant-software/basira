@@ -8,6 +8,7 @@ import {
   Switch,
   withRouter
 } from 'react-router-dom';
+import AdminNotFound from './AdminNotFound';
 import Artwork from './Artwork';
 import Artworks from './Artworks';
 import Document from './Document';
@@ -90,6 +91,10 @@ const Admin = () => (
     <Route
       path='/admin/users'
       component={Users}
+    />
+    <Route
+      path='/admin/404'
+      component={AdminNotFound}
     />
     <Redirect
       to='/admin/artworks'
