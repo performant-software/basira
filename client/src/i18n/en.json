@@ -30,6 +30,17 @@
       "valueLists": "Value Lists"
     }
   },
+  "AdminNotFound": {
+    "buttons": {
+      "back": "Return to the previous page"
+    },
+    "errors": {
+      "notFound": "Page not found"
+    },
+    "messages": {
+      "notFound": "Sorry, the page you attempted to reach could not be found."
+    }
+  },
   "Artwork": {
     "errors": {
       "dateNumeric": "{{name}} must be a valid numeric year"
