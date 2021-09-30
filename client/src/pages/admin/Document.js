@@ -505,7 +505,7 @@ const Document = (props: Props) => {
                 {...props}
                 formField='illumination_iconography'
                 group='Iconography'
-                label={props.t('Document.labels.illumunationIconography')}
+                label={props.t('Document.labels.illuminationIconography')}
                 multiple
                 object='Document'
               />
