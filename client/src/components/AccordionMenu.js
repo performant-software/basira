@@ -345,6 +345,13 @@ const AccordionMenu = (props: Props) => {
       const active = [];
       isActive(artwork, active);
 
+      _.each(artwork.children, (child) => {
+        active.push(child.id);
+        _.each(child.children, (child_) => {
+          active.push(child_.id);
+        });
+      });
+
       setDefaultActive(active);
     }
   }, [artwork]);
