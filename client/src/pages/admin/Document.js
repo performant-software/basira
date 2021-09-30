@@ -115,6 +115,7 @@ const Document = (props: Props) => {
                 group='Document Type'
                 label={props.t('Document.labels.documentType')}
                 object='Document'
+                multiple
               />
               <Form.TextArea
                 error={props.isError('notes')}
