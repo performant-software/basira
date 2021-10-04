@@ -70,12 +70,14 @@ const Artwork = (props: Props) => {
             />
           )}
           header={getTitle()}
+          id={props.item.id}
           image={getImage()}
           meta={props.item.date_descriptor}
           notes={props.item.notes_internal}
           published={props.item.published}
           onNotesChange={props.onTextInputChange.bind(this, 'notes_internal')}
           onPublish={props.onCheckboxInputChange.bind(this, 'published')}
+          url={`/admin/artworks/${props.item.id}`}
         />
       </SimpleEditPage.Header>
       <SimpleEditPage.Tab

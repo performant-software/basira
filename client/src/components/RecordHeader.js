@@ -6,6 +6,7 @@ import { withTranslation } from 'react-i18next';
 import {
   Button,
   Card,
+  Label,
   Popup
 } from 'semantic-ui-react';
 import _ from 'underscore';
@@ -19,6 +20,7 @@ type Props = Translateable & {
   ...EditContainerProps,
   description?: string,
   header?: string,
+  id?: string,
   image?: string,
   imageUpload?: boolean,
   includeInfoButton?: boolean,
@@ -34,7 +36,8 @@ type Props = Translateable & {
   onNotesChange: (notes: string) => void,
   onPublish: () => void,
   renderContent?: () => Element<any>,
-  renderImage?: () => Element<any>
+  renderImage?: () => Element<any>,
+  url?: string,
 };
 
 const POPUP_DELAY = 1000;
@@ -91,7 +94,18 @@ const RecordHeader = (props: Props) => {
       )}
       { props.description && (
         <Card.Description
-          content={props.description}
+          content={(
+            <>
+              {props.description}
+              {props.id && (
+                <Label
+                  as='a'
+                  content={props.id}
+                  href={props.url}
+                />
+              )}
+            </>
+          )}
         />
       )}
       { props.renderContent && props.renderContent() }

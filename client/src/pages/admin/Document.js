@@ -77,6 +77,7 @@ const Document = (props: Props) => {
             />
           )}
           header={props.item.name}
+          id={props.item.id}
           image={props.image && props.image.file_url}
           includeNotesButton={false}
           includePublishButton={false}
@@ -84,6 +85,7 @@ const Document = (props: Props) => {
           onFileEdit={props.onEditImage}
           onFileUpload={props.onSaveImage}
           preview={props.image && props.image.thumbnail_url}
+          url={`/admin/documents/${props.item.id}`}
         />
       </SimpleEditPage.Header>
       <SimpleEditPage.Tab
