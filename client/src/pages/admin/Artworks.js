@@ -35,11 +35,13 @@ const Artworks = (props: Props) => (
         onClick: () => props.history.push('/admin/artworks/new')
       })}
       collectionName='artworks'
-      perPage={10}
       onDelete={(artwork) => ArtworksService.delete(artwork)}
       onLoad={(params) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        return ArtworksService.fetchAll(params);
+        return ArtworksService.fetchAll({
+          ...params,
+          per_page: 12,
+        });
       }}
       onSave={(artwork) => ArtworksService.save(artwork)}
       sort={[{

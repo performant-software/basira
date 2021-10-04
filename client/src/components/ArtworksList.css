@@ -1,4 +1,5 @@
-.artworks-list.ui.grid {
+.artworks-list .ui.cards {
   margin-bottom: 1em;
   margin-top: 1em;
+  justify-content: center;
 }
