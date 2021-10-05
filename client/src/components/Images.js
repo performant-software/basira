@@ -53,6 +53,7 @@ const Images = (props: Props) => {
             props.onFilesAdded(files);
             setFileUpload(false);
           }}
+          fileTypes={['jpg', 'jpeg', 'JPG', 'JPEG']}
         />
       )}
       <Card.Group
