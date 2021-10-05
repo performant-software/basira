@@ -1,4 +1,7 @@
 class Place < ApplicationRecord
+  # Includes
+  include Recordable
+
   # Relationships
   has_many :locations, dependent: :destroy
 

@@ -4,6 +4,7 @@ class Artwork < ApplicationRecord
   include Locateable
   include Participateable
   include Qualifiable
+  include Recordable
 
   # Relationships
   has_many :artwork_titles, dependent: :destroy

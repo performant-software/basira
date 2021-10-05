@@ -2,6 +2,7 @@ class Person < ApplicationRecord
   # Includes
   include Locateable
   include Qualifiable
+  include Recordable
 
   # Relationships
   has_many :participations, dependent: :destroy

@@ -1,6 +1,7 @@
 class Action < ApplicationRecord
   # Includes
   include Qualifiable
+  include Recordable
 
   # Relationships
   belongs_to :document

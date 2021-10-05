@@ -2,6 +2,7 @@ class Document < ApplicationRecord
   # Includes
   include Attachable
   include Qualifiable
+  include Recordable
 
   # Relationships
   belongs_to :visual_context
