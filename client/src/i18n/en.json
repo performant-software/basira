@@ -336,6 +336,12 @@
       "people": "People"
     }
   },
+  "PlaceModal": {
+    "title": {
+      "add": "Add Place",
+      "edit": "Edit Place"
+    }
+  },
   "Places": {
     "columns": {
       "city": "City",

@@ -3,7 +3,7 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import { Form, Modal } from 'semantic-ui-react';
-import PlaceForm from './PersonForm';
+import PlaceForm from './PlaceForm';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { Place } from '../types/Place';
