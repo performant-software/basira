@@ -1,6 +1,6 @@
 GIT
   remote: git@resource-api:performant-software/resource-api.git
-  revision: e6a65f1392d6c09afa7ac6ef18a47d86f8052c8e
+  revision: 7999b9328e6d73b78598c1baaf5767e8079f2392
   specs:
     resource_api (0.1.0)
       pagy (~> 3.5)

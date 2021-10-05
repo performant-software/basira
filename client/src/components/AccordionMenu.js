@@ -65,12 +65,18 @@ const AccordionMenu = (props: Props) => {
     let active = false;
 
     if (isItemActive(item)) {
-      activeIds.push(item.id);
+      activeIds.push({
+        id: item.id,
+        type: item.type
+      });
       active = true;
     } else {
       _.each(item.children, (child) => {
         if (isActive(child, activeIds)) {
-          activeIds.push(item.id);
+          activeIds.push({
+            id: item.id,
+            type: item.type
+          });
           active = true;
         }
       });
@@ -346,9 +352,15 @@ const AccordionMenu = (props: Props) => {
       isActive(artwork, active);
 
       _.each(artwork.children, (child) => {
-        active.push(child.id);
+        active.push({
+          id: child.id,
+          type: child.type
+        });
         _.each(child.children, (child_) => {
-          active.push(child_.id);
+          active.push({
+            id: child_.id,
+            type: child_.type
+          });
         });
       });
 
@@ -372,6 +384,7 @@ const AccordionMenu = (props: Props) => {
             getChildItems={(item) => item.children}
             inverted
             isItemActive={isItemActive.bind(this)}
+            multipleItemTypes
             onItemToggle={() => {}}
             rootItems={[artwork]}
             renderItem={renderItem.bind(this)}
