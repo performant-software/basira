@@ -51,8 +51,6 @@ const Images = (props: Props) => {
         <FileUpload
           onFilesAdded={(files) => {
             props.onFilesAdded(files);
-          }}
-          onSuccess={() => {
             setFileUpload(false);
           }}
           fileTypes={['jpg', 'jpeg', 'JPG', 'JPEG']}
