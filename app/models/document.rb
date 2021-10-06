@@ -11,9 +11,8 @@ class Document < ApplicationRecord
   accepts_nested_attributes_for :actions, allow_destroy: true
 
   # Callbacks
-  after_create :set_actor_type
-  after_save -> { update_artwork_documents_count(1) }
-  after_destroy -> { update_artwork_documents_count(-1) }
+  after_create :update_artwork_documents_count, :set_actor_type
+  after_destroy :update_artwork_documents_count
 
   # Resourceable parameters
   allow_params :visual_context_id, :name, :notes, :sewing_supports_visible, :number_sewing_supports, :number_fastenings,
@@ -29,9 +28,15 @@ class Document < ApplicationRecord
     Qualification.find_or_create_by(qualifiable_type: 'Document', qualifiable_id: self.id, value_list_id: value_list_id)
   end
 
-  def update_artwork_documents_count(n)
+  def update_artwork_documents_count
+    documents_count = 0
     artwork = self.visual_context.physical_component.artwork
-    artwork.documents_count += n
+    artwork.physical_components.find_each do |pc|
+      pc.visual_contexts.find_each do |vc|
+        documents_count += vc.documents.count
+      end
+    end
+    artwork.documents_count = documents_count
     artwork.save!
   end
 end
