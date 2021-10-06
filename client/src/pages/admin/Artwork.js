@@ -69,6 +69,8 @@ const Artwork = (props: Props) => {
               level={0}
             />
           )}
+          documentsEntered={props.item.documents_count}
+          documentsVisible={props.item.number_documents_visible}
           header={getTitle()}
           image={getImage()}
           meta={props.item.date_descriptor}
@@ -153,6 +155,16 @@ const Artwork = (props: Props) => {
           onChange={props.onTextInputChange.bind(this, 'date_descriptor')}
           required={props.isRequired('date_descriptor')}
           value={props.item.date_descriptor || ''}
+        />
+        <Header
+          content={props.t('Artwork.labels.documentsVisible')}
+        />
+        <Form.Input
+          error={props.isError('number_documents_visible')}
+          label={props.t('Artwork.labels.numberDocumentsVisible')}
+          onChange={props.onTextInputChange.bind(this, 'number_documents_visible')}
+          required={props.isRequired('number_documents_visible')}
+          value={props.item.number_documents_visible || ''}
         />
         <Header
           content={props.t('Artwork.labels.notes')}
@@ -377,6 +389,13 @@ export default useEditPage(withMenuBar(Artwork), {
     if (!(_.isEmpty(artwork.date_end) || Number.isNumeric(artwork.date_end))) {
       validationErrors = _.extend(validationErrors, {
         date_end: i18n.t('Artwork.errors.dateNumeric', { name: i18n.t('Artwork.labels.endDate') })
+      });
+    }
+
+    // Validate number of visible documents
+    if (!(_.isEmpty(artwork.number_documents_visible) || Number.isNumeric(artwork.number_documents_visible))) {
+      validationErrors = _.extend(validationErrors, {
+        number_documents_visible: i18n.t('Artwork.errors.documentsVisibleNumeric')
       });
     }
 

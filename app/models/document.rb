@@ -12,6 +12,8 @@ class Document < ApplicationRecord
 
   # Callbacks
   after_create :set_actor_type
+  after_save -> { update_artwork_documents_count(1) }
+  after_destroy -> { update_artwork_documents_count(-1) }
 
   # Resourceable parameters
   allow_params :visual_context_id, :name, :notes, :sewing_supports_visible, :number_sewing_supports, :number_fastenings,
@@ -25,5 +27,11 @@ class Document < ApplicationRecord
     value_list_id = ValueList.find_by(object: 'Document', group: 'Actor Type', human_name: 'Document').id
 
     Qualification.find_or_create_by(qualifiable_type: 'Document', qualifiable_id: self.id, value_list_id: value_list_id)
+  end
+
+  def update_artwork_documents_count(n)
+    artwork = self.visual_context.physical_component.artwork
+    artwork.documents_count += n
+    artwork.save!
   end
 end
