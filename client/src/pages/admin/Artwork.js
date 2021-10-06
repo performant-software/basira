@@ -113,7 +113,7 @@ const Artwork = (props: Props) => {
               defaults: {
                 primary: false
               },
-              required: ['title', 'title_type']
+              required: ['title']
             }
           }}
           onDelete={props.onDeleteChildAssociation.bind(this, 'artwork_titles')}

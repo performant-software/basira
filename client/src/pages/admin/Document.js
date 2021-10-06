@@ -117,6 +117,7 @@ const Document = (props: Props) => {
                 group='Document Type'
                 label={props.t('Document.labels.documentType')}
                 object='Document'
+                multiple
               />
               <Form.TextArea
                 error={props.isError('notes')}
@@ -507,7 +508,7 @@ const Document = (props: Props) => {
                 {...props}
                 formField='illumination_iconography'
                 group='Iconography'
-                label={props.t('Document.labels.illumunationIconography')}
+                label={props.t('Document.labels.illuminationIconography')}
                 multiple
                 object='Document'
               />
