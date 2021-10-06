@@ -1,5 +1,6 @@
 class Api::ArtworksController < Api::BaseController
   # Includes
+  include Api::Filterable
   include Api::Qualifiable
 
   # Search columns
@@ -41,6 +42,12 @@ class Api::ArtworksController < Api::BaseController
   end
 
   protected
+
+  def apply_filters(query)
+    query = super
+    query = apply_filterable(query)
+    query
+  end
 
   def apply_search(query)
     return query if params[:search].blank?
