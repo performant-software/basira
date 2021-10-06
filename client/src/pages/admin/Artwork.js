@@ -2,7 +2,7 @@
 
 import React, { useCallback, useState } from 'react';
 import { BooleanIcon, EditModal, EmbeddedList } from 'react-components';
-import { Form, Header } from 'semantic-ui-react';
+import { Card, Form, Header } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworkTitleModal from '../../components/ArtworkTitleModal';
 import ArtworksService from '../../services/Artworks';
@@ -69,8 +69,6 @@ const Artwork = (props: Props) => {
               level={0}
             />
           )}
-          documentsEntered={props.item.documents_count}
-          documentsVisible={props.item.number_documents_visible}
           header={getTitle()}
           image={getImage()}
           meta={props.item.date_descriptor}
@@ -78,6 +76,22 @@ const Artwork = (props: Props) => {
           published={props.item.published}
           onNotesChange={props.onTextInputChange.bind(this, 'notes_internal')}
           onPublish={props.onCheckboxInputChange.bind(this, 'published')}
+          renderContent={() => (props.item.documents_count || props.item.documents_count === 0) && (
+            <Card.Content
+              className='entered-visible-container'
+              extra
+              textAlign='center'
+            >
+              {props.item.number_documents_visible || props.item.number_documents_visible === 0
+                ? props.t('RecordHeader.labels.documentsEnteredWithVisible',
+                  {
+                    entered: props.item.documents_count,
+                    visible: props.item.number_documents_visible
+                  })
+                : props.t('RecordHeader.labels.documentsEntered',
+                  { entered: props.item.documents_count })}
+            </Card.Content>
+          )}
         />
       </SimpleEditPage.Header>
       <SimpleEditPage.Tab

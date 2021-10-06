@@ -18,8 +18,6 @@ import type { Translateable } from '../types/Translateable';
 type Props = Translateable & {
   ...EditContainerProps,
   description?: string,
-  documentsEntered?: number,
-  documentsVisible?: number,
   header?: string,
   image?: string,
   imageUpload?: boolean,
@@ -97,18 +95,6 @@ const RecordHeader = (props: Props) => {
         />
       )}
       { props.renderContent && props.renderContent() }
-      { (props.documentsEntered || props.documentsEntered === 0) && (
-        <Card.Content
-          className='entered-visible-container'
-          extra
-          textAlign='center'
-        >
-          {props.documentsVisible || props.documentsVisible === 0
-            ? props.t('RecordHeader.labels.documentsEnteredWithVisible',
-              { entered: props.documentsEntered, visible: props.documentsVisible })
-            : props.t('RecordHeader.labels.documentsEntered', { entered: props.documentsEntered })}
-        </Card.Content>
-      )}
       <Card.Content
         className='button-container'
         extra
@@ -165,8 +151,6 @@ const RecordHeader = (props: Props) => {
 
 RecordHeader.defaultProps = {
   description: undefined,
-  documentsEntered: undefined,
-  documentsVisible: undefined,
   header: undefined,
   imageUpload: true,
   includeHcp: true,
