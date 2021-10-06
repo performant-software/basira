@@ -24,6 +24,21 @@ class User extends BaseTransform {
   }
 
   /**
+   * Returns the dropdown option for the passed user.
+   *
+   * @param user
+   *
+   * @returns {{text: string, value: number, key: number}}
+   */
+  toDropdown(user: UserType) {
+    return {
+      key: user.id,
+      value: user.id,
+      text: user.name
+    };
+  }
+
+  /**
    * Returns the user object to be sent on POST/PUT requests.
    *
    * @param user

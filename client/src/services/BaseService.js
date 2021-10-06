@@ -1,6 +1,7 @@
 // @flow
 
 import axios from 'axios';
+import Filterable from './Filterable';
 
 class BaseService {
   /**
@@ -64,6 +65,17 @@ class BaseService {
    */
   save(item: any) {
     return item.id ? this.update(item) : this.create(item);
+  }
+
+  /**
+   * Calls the POST /api/<resource>/search endpoint.
+   *
+   * @param params
+   *
+   * @returns {Promise<AxiosResponse<T>>}
+   */
+  search(params: any) {
+    return axios.post(`${this.getBaseUrl()}/search`, Filterable.prepareParameters(params));
   }
 
   /**
