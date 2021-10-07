@@ -50,7 +50,11 @@ const ParticipationModal = (props: Props) => (
               component: PersonModal,
               onSave: (person) => People.save(person).then(({ data }) => data.person)
             }}
-            onSearch={(search) => People.fetchAll({ search, sort_by: 'display_name' })}
+            onSearch={(search) => People.fetchAll({
+              search,
+              sort_by: 'display_name',
+              per_page: 25
+            })}
             onSelection={props.onAssociationInputChange.bind(this, 'person_id', 'person')}
             renderOption={Person.toDropdown.bind(this)}
             searchQuery={props.item.person && props.item.person.display_name}

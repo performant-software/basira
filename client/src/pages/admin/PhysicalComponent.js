@@ -55,12 +55,14 @@ const PhysicalComponent = (props: Props) => {
             />
           )}
           header={props.item.name}
+          id={props.item.id}
           image={props.image && props.image.file_url}
           includeNotesButton={false}
           includePublishButton={false}
           onFileDelete={props.onDeleteImage}
           onFileEdit={props.onEditImage}
           onFileUpload={props.onSaveImage}
+          url={`/admin/physical_components/${props.item.id}`}
         />
       </SimpleEditPage.Header>
       <SimpleEditPage.Tab

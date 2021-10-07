@@ -165,8 +165,8 @@
       "bookmarksRegisters": "Bookmarks/Registers",
       "bookmarkRegisterStyle": "Bookmark/Register Style",
       "color": "Color",
-      "colorOfForeEdges": "Color of Fore-Edges",
-      "decoratedForeEdges": "Decorated Fore-Edges",
+      "colorOfForeEdges": "Color of Textblock Edges",
+      "decoratedForeEdges": "Decorated Textblock Edges",
       "documentFormat": "Document Format",
       "documentType": "Document Type",
       "endbandColors": "Endband Color(s)",
@@ -176,7 +176,7 @@
       "foreEdgeText": "Fore-Edge Text",
       "furniture": "Furniture",
       "iconography": "Iconography",
-      "illumunationIconography": "Illumunation Iconography",
+      "illuminationIconography": "Illumination Iconography",
       "identity": "Identity of Work",
       "inscriptionsOnBinding": "Inscriptions on Binding",
       "inscriptionText": "Binding Inscription Text",
@@ -337,6 +337,12 @@
     "tabs": {
       "artworks": "Artworks",
       "people": "People"
+    }
+  },
+  "PlaceModal": {
+    "title": {
+      "add": "Add Place",
+      "edit": "Edit Place"
     }
   },
   "Places": {
