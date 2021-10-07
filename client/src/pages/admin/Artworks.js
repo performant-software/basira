@@ -22,15 +22,17 @@ const Artworks = (props: Props) => (
   <Container>
     <ItemList
       actions={[{
-        icon: 'plus',
-        name: 'add',
-        onClick: (item) => props.history.push('/admin/physical_components/new', { artwork_id: item.id })
-      }, {
         name: 'edit',
         onClick: (item) => props.history.push(`/admin/artworks/${item.id}`)
       }, {
         icon: 'times',
         name: 'delete'
+      }, {
+        basic: true,
+        label: props.t('Artworks.buttons.addPhysicalComponent'),
+        icon: 'plus',
+        name: 'add',
+        onClick: (item) => props.history.push('/admin/physical_components/new', { artwork_id: item.id })
       }]}
       addButton={_.defaults(props.addButton, {
         basic: false,
