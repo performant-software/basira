@@ -8,6 +8,7 @@ class Artwork < ApplicationRecord
   # Relationships
   has_many :artwork_titles, dependent: :destroy
   has_many :physical_components, dependent: :destroy
+  has_many :documents
   has_one :primary_title, -> { where(primary: true) }, class_name: 'ArtworkTitle'
 
   # Nested attributes
