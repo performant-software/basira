@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_181322) do
+ActiveRecord::Schema.define(version: 2021_10_07_131217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(version: 2021_10_05_181322) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
+    t.integer "number_documents_visible"
+    t.integer "documents_count", default: 0, null: false
     t.index ["created_by_id"], name: "index_artworks_on_created_by_id"
     t.index ["updated_by_id"], name: "index_artworks_on_updated_by_id"
   end
@@ -123,6 +125,8 @@ ActiveRecord::Schema.define(version: 2021_10_05_181322) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
+    t.bigint "artwork_id"
+    t.index ["artwork_id"], name: "index_documents_on_artwork_id"
     t.index ["created_by_id"], name: "index_documents_on_created_by_id"
     t.index ["updated_by_id"], name: "index_documents_on_updated_by_id"
     t.index ["visual_context_id"], name: "index_documents_on_visual_context_id"
@@ -320,6 +324,7 @@ ActiveRecord::Schema.define(version: 2021_10_05_181322) do
   add_foreign_key "attachments", "users", column: "updated_by_id"
   add_foreign_key "documents", "users", column: "created_by_id"
   add_foreign_key "documents", "users", column: "updated_by_id"
+  add_foreign_key "documents", "artworks"
   add_foreign_key "documents", "visual_contexts"
   add_foreign_key "locations", "places"
   add_foreign_key "locations", "users", column: "created_by_id"

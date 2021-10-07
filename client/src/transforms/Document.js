@@ -27,6 +27,7 @@ class Document extends FormDataTransform {
    */
   getPayloadKeys() {
     return [
+      'artwork_id',
       'visual_context_id',
       'name',
       'notes',

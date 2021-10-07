@@ -2,7 +2,7 @@
 
 import React, { useCallback, useState } from 'react';
 import { BooleanIcon, EditModal, EmbeddedList } from 'react-components';
-import { Form, Header } from 'semantic-ui-react';
+import { Card, Form, Header } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworkTitleModal from '../../components/ArtworkTitleModal';
 import ArtworksService from '../../services/Artworks';
@@ -77,6 +77,22 @@ const Artwork = (props: Props) => {
           published={props.item.published}
           onNotesChange={props.onTextInputChange.bind(this, 'notes_internal')}
           onPublish={props.onCheckboxInputChange.bind(this, 'published')}
+          renderContent={() => (props.item.documents_count || props.item.documents_count === 0) && (
+            <Card.Content
+              className='entered-visible-container'
+              extra
+              textAlign='center'
+            >
+              {props.item.number_documents_visible || props.item.number_documents_visible === 0
+                ? props.t('RecordHeader.labels.documentsEnteredWithVisible',
+                  {
+                    entered: props.item.documents_count,
+                    visible: props.item.number_documents_visible
+                  })
+                : props.t('RecordHeader.labels.documentsEntered',
+                  { entered: props.item.documents_count })}
+            </Card.Content>
+          )}
           url={`/admin/artworks/${props.item.id}`}
         />
       </SimpleEditPage.Header>
@@ -155,6 +171,16 @@ const Artwork = (props: Props) => {
           onChange={props.onTextInputChange.bind(this, 'date_descriptor')}
           required={props.isRequired('date_descriptor')}
           value={props.item.date_descriptor || ''}
+        />
+        <Header
+          content={props.t('Artwork.labels.documentsVisible')}
+        />
+        <Form.Input
+          error={props.isError('number_documents_visible')}
+          label={props.t('Artwork.labels.numberDocumentsVisible')}
+          onChange={props.onTextInputChange.bind(this, 'number_documents_visible')}
+          required={props.isRequired('number_documents_visible')}
+          value={props.item.number_documents_visible || ''}
         />
         <Header
           content={props.t('Artwork.labels.notes')}
@@ -379,6 +405,13 @@ export default useEditPage(withMenuBar(Artwork), {
     if (!(_.isEmpty(artwork.date_end) || Number.isNumeric(artwork.date_end))) {
       validationErrors = _.extend(validationErrors, {
         date_end: i18n.t('Artwork.errors.dateNumeric', { name: i18n.t('Artwork.labels.endDate') })
+      });
+    }
+
+    // Validate number of visible documents
+    if (!(_.isEmpty(artwork.number_documents_visible) || Number.isNumeric(artwork.number_documents_visible))) {
+      validationErrors = _.extend(validationErrors, {
+        number_documents_visible: i18n.t('Artwork.errors.documentsVisibleNumeric')
       });
     }
 
