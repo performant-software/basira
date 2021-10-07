@@ -39,7 +39,8 @@ class Artwork extends FormDataTransform {
       'notes_internal',
       'published',
       'repository_work_url',
-      'accession_number'
+      'accession_number',
+      'number_documents_visible',
     ];
   }
 

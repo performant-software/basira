@@ -8,6 +8,7 @@ class ArtworksSerializer < BaseSerializer
 
   show_attributes :id, :date_start, :date_end, :date_descriptor, :published, :height, :width, :depth,
                   :notes_external, :notes_internal, :repository_work_url, :accession_number,
+                  :documents_count, :number_documents_visible,
                   artwork_titles: [:id, :title, :title_type, :notes, :primary],
                   participations: ParticipationsSerializer, qualifications: QualificationsSerializer
 

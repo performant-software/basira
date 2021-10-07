@@ -18,6 +18,8 @@ export type Artwork = Attachable & Locateable & Participateable & {
   published: boolean,
   repository_work_url: string,
   accession_number: string,
+  documents_count: number,
+  number_documents_visible: number,
 
   artwork_titles: Array<ArtworkTitle>,
   primary_title: ArtworkTitle

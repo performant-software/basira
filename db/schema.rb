@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_30_191625) do
+ActiveRecord::Schema.define(version: 2021_10_07_131217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 2021_08_30_191625) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "number_documents_visible"
+    t.integer "documents_count", default: 0, null: false
   end
 
   create_table "attachments", force: :cascade do |t|
@@ -109,6 +111,8 @@ ActiveRecord::Schema.define(version: 2021_08_30_191625) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "artwork_id"
+    t.index ["artwork_id"], name: "index_documents_on_artwork_id"
     t.index ["visual_context_id"], name: "index_documents_on_visual_context_id"
   end
 
@@ -268,6 +272,7 @@ ActiveRecord::Schema.define(version: 2021_08_30_191625) do
   add_foreign_key "actions", "documents"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artwork_titles", "artworks"
+  add_foreign_key "documents", "artworks"
   add_foreign_key "documents", "visual_contexts"
   add_foreign_key "locations", "places"
   add_foreign_key "participations", "people"

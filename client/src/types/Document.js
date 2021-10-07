@@ -3,6 +3,7 @@
 export type Document = {
   id: number,
   visual_context_id: number,
+  artwork_id: number,
   name: string,
   notes: string,
   sewing_supports_visible: boolean,

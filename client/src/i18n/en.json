@@ -43,18 +43,21 @@
   },
   "Artwork": {
     "errors": {
-      "dateNumeric": "{{name}} must be a valid numeric year"
+      "dateNumeric": "{{name}} must be a valid numeric year",
+      "documentsVisibleNumeric": "Number of documents visible must be numeric"
     },
     "labels": {
       "commissioningContext": "Commissioning Context",
       "creationDate": "Creation date",
       "dateDescription": "Description",
       "depth": "Depth",
+      "documentsVisible": "Documents Visible",
       "endDate": "End date",
       "height": "Height",
       "objectWorkTypes": "Object/Work Type(s)",
       "materials": "Material(s)",
       "notes": "Notes",
+      "numberDocumentsVisible": "Total documents visible",
       "objectWorkType": "Object/Work Type",
       "startDate": "Start date",
       "techniques": "Technique(s)",
@@ -356,6 +359,10 @@
       "edit": "Edit",
       "remove": "Remove",
       "upload": "Upload"
+    },
+    "labels": {
+      "documentsEntered": "{{entered}} document(s) entered",
+      "documentsEnteredWithVisible": "{{entered}} of {{visible}} document(s) entered"
     },
     "popups": {
       "notes": {
