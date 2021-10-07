@@ -108,6 +108,23 @@
       "edit": "Edit Title"
     }
   },
+  "Artworks": {
+    "buttons": {
+      "addPhysicalComponent": "Add Physical Component"
+    },
+    "filters": {
+      "createdAt": "Created date",
+      "createdBy": "Created by",
+      "dateDescriptor": "Date descriptor",
+      "endDate": "End date",
+      "externalNotes": "External notes",
+      "internalNotes": "Internal notes",
+      "published": "Published",
+      "startDate": "Start date",
+      "updatedAt": "Updated date",
+      "updatedBy": "Updated by"
+    }
+  },
   "AttachmentModal": {
     "labels": {
       "imageRights": "Image rights",

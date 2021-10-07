@@ -1,4 +1,7 @@
 class ValueList < ApplicationRecord
+  # Includes
+  include Recordable
+
   # Relationships
   has_many :qualifications
 

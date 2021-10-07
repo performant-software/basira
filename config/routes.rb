@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     get 'authorized_vocabularies' => 'value_lists#authorized_vocabularies'
     get 'value_lists_objects', to: 'value_lists#objects_list'
     get 'value_lists_groups', to: 'value_lists#groups_list'
+
+    post 'artworks/search', to: 'artworks#index'
   end
 
   # Default route for static front-end

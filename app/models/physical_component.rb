@@ -1,6 +1,7 @@
 class PhysicalComponent < ApplicationRecord
   # Includes
   include Attachable
+  include Recordable
 
   # Relationships
   belongs_to :artwork

@@ -52,7 +52,11 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
     t.index ["artwork_id"], name: "index_artwork_titles_on_artwork_id"
+    t.index ["created_by_id"], name: "index_artwork_titles_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_artwork_titles_on_updated_by_id"
   end
 
   create_table "artworks", force: :cascade do |t|
@@ -71,8 +75,12 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
     t.integer "number_documents_visible"
     t.integer "documents_count", default: 0, null: false
+    t.index ["created_by_id"], name: "index_artworks_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_artworks_on_updated_by_id"
   end
 
   create_table "attachments", force: :cascade do |t|
@@ -83,7 +91,11 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
     t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
+    t.index ["created_by_id"], name: "index_attachments_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_attachments_on_updated_by_id"
   end
 
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
@@ -111,8 +123,12 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
     t.bigint "artwork_id"
     t.index ["artwork_id"], name: "index_documents_on_artwork_id"
+    t.index ["created_by_id"], name: "index_documents_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_documents_on_updated_by_id"
     t.index ["visual_context_id"], name: "index_documents_on_visual_context_id"
   end
 
@@ -127,8 +143,12 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.index ["created_by_id"], name: "index_locations_on_created_by_id"
     t.index ["locateable_type", "locateable_id"], name: "index_locations_on_locateable_type_and_locateable_id"
     t.index ["place_id"], name: "index_locations_on_place_id"
+    t.index ["updated_by_id"], name: "index_locations_on_updated_by_id"
   end
 
   create_table "participations", force: :cascade do |t|
@@ -142,8 +162,12 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.index ["created_by_id"], name: "index_participations_on_created_by_id"
     t.index ["participateable_type", "participateable_id"], name: "index_participations_participateable_type_and_id"
     t.index ["person_id"], name: "index_participations_on_person_id"
+    t.index ["updated_by_id"], name: "index_participations_on_updated_by_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -164,6 +188,10 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.string "artist_birth_date"
     t.string "artist_death_date"
     t.string "years_active"
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.index ["created_by_id"], name: "index_people_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_people_on_updated_by_id"
   end
 
   create_table "physical_components", force: :cascade do |t|
@@ -177,7 +205,11 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
     t.index ["artwork_id"], name: "index_physical_components_on_artwork_id"
+    t.index ["created_by_id"], name: "index_physical_components_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_physical_components_on_updated_by_id"
   end
 
   create_table "places", force: :cascade do |t|
@@ -197,6 +229,10 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.index ["created_by_id"], name: "index_places_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_places_on_updated_by_id"
   end
 
   create_table "qualifications", force: :cascade do |t|
@@ -252,6 +288,10 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "qualifications_count", default: 0, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.index ["created_by_id"], name: "index_value_lists_on_created_by_id"
+    t.index ["updated_by_id"], name: "index_value_lists_on_updated_by_id"
   end
 
   create_table "visual_contexts", force: :cascade do |t|
@@ -266,16 +306,42 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "beta", default: false, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.index ["created_by_id"], name: "index_visual_contexts_on_created_by_id"
     t.index ["physical_component_id"], name: "index_visual_contexts_on_physical_component_id"
+    t.index ["updated_by_id"], name: "index_visual_contexts_on_updated_by_id"
   end
 
   add_foreign_key "actions", "documents"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artwork_titles", "artworks"
+  add_foreign_key "artwork_titles", "users", column: "created_by_id"
+  add_foreign_key "artwork_titles", "users", column: "updated_by_id"
+  add_foreign_key "artworks", "users", column: "created_by_id"
+  add_foreign_key "artworks", "users", column: "updated_by_id"
+  add_foreign_key "attachments", "users", column: "created_by_id"
+  add_foreign_key "attachments", "users", column: "updated_by_id"
+  add_foreign_key "documents", "users", column: "created_by_id"
+  add_foreign_key "documents", "users", column: "updated_by_id"
   add_foreign_key "documents", "artworks"
   add_foreign_key "documents", "visual_contexts"
   add_foreign_key "locations", "places"
+  add_foreign_key "locations", "users", column: "created_by_id"
+  add_foreign_key "locations", "users", column: "updated_by_id"
   add_foreign_key "participations", "people"
+  add_foreign_key "participations", "users", column: "created_by_id"
+  add_foreign_key "participations", "users", column: "updated_by_id"
+  add_foreign_key "people", "users", column: "created_by_id"
+  add_foreign_key "people", "users", column: "updated_by_id"
   add_foreign_key "physical_components", "artworks"
+  add_foreign_key "physical_components", "users", column: "created_by_id"
+  add_foreign_key "physical_components", "users", column: "updated_by_id"
+  add_foreign_key "places", "users", column: "created_by_id"
+  add_foreign_key "places", "users", column: "updated_by_id"
+  add_foreign_key "value_lists", "users", column: "created_by_id"
+  add_foreign_key "value_lists", "users", column: "updated_by_id"
   add_foreign_key "visual_contexts", "physical_components"
+  add_foreign_key "visual_contexts", "users", column: "created_by_id"
+  add_foreign_key "visual_contexts", "users", column: "updated_by_id"
 end

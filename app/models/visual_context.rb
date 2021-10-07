@@ -2,6 +2,7 @@ class VisualContext < ApplicationRecord
   # Includes
   include Attachable
   include Qualifiable
+  include Recordable
 
   # Relationships
   belongs_to :physical_component
