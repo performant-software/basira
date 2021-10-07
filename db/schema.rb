@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_07_131217) do
+ActiveRecord::Schema.define(version: 2021_10_07_154031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
+    t.string "repository_work_url"
     t.index ["created_by_id"], name: "index_locations_on_created_by_id"
     t.index ["locateable_type", "locateable_id"], name: "index_locations_on_locateable_type_and_locateable_id"
     t.index ["place_id"], name: "index_locations_on_place_id"
@@ -322,9 +323,9 @@ ActiveRecord::Schema.define(version: 2021_10_07_131217) do
   add_foreign_key "artworks", "users", column: "updated_by_id"
   add_foreign_key "attachments", "users", column: "created_by_id"
   add_foreign_key "attachments", "users", column: "updated_by_id"
+  add_foreign_key "documents", "artworks"
   add_foreign_key "documents", "users", column: "created_by_id"
   add_foreign_key "documents", "users", column: "updated_by_id"
-  add_foreign_key "documents", "artworks"
   add_foreign_key "documents", "visual_contexts"
   add_foreign_key "locations", "places"
   add_foreign_key "locations", "users", column: "created_by_id"
