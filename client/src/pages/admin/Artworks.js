@@ -1,11 +1,11 @@
 // @flow
 
 import React from 'react';
-import { FilterTypes, ListFilters } from 'react-components';
+import { FilterTypes, ItemList, ListFilters } from 'react-components';
 import { withRouter } from 'react-router-dom';
-import { Container } from 'semantic-ui-react';
+import { Container, Header } from 'semantic-ui-react';
 import _ from 'underscore';
-import ArtworksList from '../../components/ArtworksList';
+import Thumbnail from '../../components/Thumbnail';
 import ArtworksService from '../../services/Artworks';
 import Users from '../../services/Users';
 import User from '../../transforms/User';
@@ -20,7 +20,7 @@ type Props = ListProps & Routeable;
 
 const Artworks = (props: Props) => (
   <Container>
-    <ArtworksList
+    <ItemList
       actions={[{
         icon: 'plus',
         name: 'add',
@@ -105,13 +105,26 @@ const Artworks = (props: Props) => (
           }]
         }
       }}
-      perPageOptions={[10, 25, 50, 100]}
       onDelete={(artwork) => ArtworksService.delete(artwork)}
       onLoad={(params) => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return ArtworksService.search(params);
       }}
       onSave={(artwork) => ArtworksService.save(artwork)}
+      perPageOptions={[10, 25, 50, 100]}
+      renderHeader={(item) => item.primary_title && item.primary_title.title && (
+        <Header
+          as='h3'
+          content={item.primary_title && item.primary_title.title}
+        />
+      )}
+      renderImage={(item) => item.primary_attachment && (
+        <Thumbnail
+          src={item.primary_attachment.thumbnail_url}
+          style={{ width: '100%' }}
+        />
+      )}
+      renderMeta={(item) => item.date_descriptor}
       session={{
         key: 'artworks',
         storage: sessionStorage
@@ -119,11 +132,11 @@ const Artworks = (props: Props) => (
       sort={[{
         key: 'title',
         value: 'artwork_titles.title',
-        text: 'Title'
+        text: props.t('Artwork.titles.columns.title')
       }, {
         key: 'date',
-        value: 'date',
-        text: 'Date'
+        value: 'created_at',
+        text: props.t('Artwork.labels.creationDate')
       }]}
     />
   </Container>

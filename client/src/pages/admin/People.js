@@ -18,8 +18,6 @@ const People = (props: Translateable & Routeable) => (
         name: 'edit',
         onClick: (item) => props.history.push(`/admin/people/${item.id}`)
       }, {
-        name: 'copy'
-      }, {
         name: 'delete'
       }]}
       addButton={{

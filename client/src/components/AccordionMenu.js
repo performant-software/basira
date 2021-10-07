@@ -24,6 +24,7 @@ import type { Routeable } from '../types/Routeable';
 import type { Translateable } from '../types/Translateable';
 
 type Item = {
+  children?: [],
   level: number,
   name: string,
   parent?: Item,
@@ -65,12 +66,18 @@ const AccordionMenu = (props: Props) => {
     let active = false;
 
     if (isItemActive(item)) {
-      activeIds.push(item.id);
+      activeIds.push({
+        id: item.id,
+        type: item.type
+      });
       active = true;
     } else {
       _.each(item.children, (child) => {
         if (isActive(child, activeIds)) {
-          activeIds.push(item.id);
+          activeIds.push({
+            id: item.id,
+            type: item.type
+          });
           active = true;
         }
       });
@@ -78,16 +85,6 @@ const AccordionMenu = (props: Props) => {
 
     return active;
   };
-
-  /**
-   * Returns true if the passed item or any of its ancestors are the deleted item.
-   *
-   * @type {function(Item)}
-   */
-  const isDeleted = useCallback(
-    (item: Item) => (item === selectedItem && isItemActive(item)) || (item.parent && isDeleted(item.parent)),
-    [selectedItem]
-  );
 
   /**
    * Returns true if the passed item is the active item.
@@ -99,7 +96,24 @@ const AccordionMenu = (props: Props) => {
   const isItemActive = (item: Item) => props.location.pathname.match(item.path);
 
   /**
-   * Deletes the selected item and refreshes the data, or navigates to the artworks list.
+   * Returns true if the passed item, or its child at any level, is the active item.
+   *
+   * @param item
+   *
+   * @returns {boolean}
+   */
+  const isItemOrChildActive = (item: Item) => {
+    if (props.location.pathname.match(item.path)) {
+      return true;
+    }
+    if (item.children) {
+      return _.some(item.children, (child) => isItemOrChildActive(child));
+    }
+    return false;
+  };
+
+  /**
+   * Deletes the selected item and refreshes the data, or navigates to the nearest parent.
    *
    * @type {function(): void}
    */
@@ -108,9 +122,13 @@ const AccordionMenu = (props: Props) => {
       selectedItem
         .onDelete()
         .then(() => {
-          // If we're deleting the active record, or a parent of the active record, navigate to the artworks list
-          if (isDeleted(selectedItem)) {
-            props.history.push('/admin/artworks');
+          // If we're deleting the active record, or a parent of the active record, navigate to the
+          // nearest remaining parent. If there's no remaining parent, navigate to artworks list.
+          if (isItemOrChildActive(selectedItem)) {
+            const redirectPath = (selectedItem.parent && selectedItem.parent.path)
+              ? selectedItem.parent.path
+              : '/admin/artworks';
+            props.history.push(redirectPath);
           } else {
             setSelectedItem(null);
             fetchData();
@@ -229,7 +247,7 @@ const AccordionMenu = (props: Props) => {
     type: 'Document',
     level: 3,
     path: `/admin/documents/${doc.id}`,
-    parent,
+    parent: { ...parent, path: `/admin/visual_contexts/${parent.id}` },
     onDelete: () => DocumentsService.delete(doc)
   });
 
@@ -249,7 +267,7 @@ const AccordionMenu = (props: Props) => {
     type: 'Physical Component',
     level: 1,
     path: `/admin/physical_components/${pc.id}`,
-    parent,
+    parent: { ...parent, path: `/admin/artworks/${parent.id}` },
     onAdd: () => props.history.push('/admin/visual_contexts/new', {
       artwork_id: props.id,
       physical_component_id: pc.id
@@ -274,7 +292,7 @@ const AccordionMenu = (props: Props) => {
     type: 'Visual Context',
     level: 2,
     path: `/admin/visual_contexts/${vc.id}`,
-    parent,
+    parent: { ...parent, path: `/admin/physical_components/${parent.id}` },
     onAdd: () => props.history.push('/admin/documents/new', { artwork_id: props.id, visual_context_id: vc.id }),
     onDelete: () => VisualContextsService.delete(vc),
     children: _.map(vc.documents, transformDocument.bind(this, vc))
@@ -345,6 +363,19 @@ const AccordionMenu = (props: Props) => {
       const active = [];
       isActive(artwork, active);
 
+      _.each(artwork.children, (child) => {
+        active.push({
+          id: child.id,
+          type: child.type
+        });
+        _.each(child.children, (child_) => {
+          active.push({
+            id: child_.id,
+            type: child_.type
+          });
+        });
+      });
+
       setDefaultActive(active);
     }
   }, [artwork]);
@@ -365,6 +396,7 @@ const AccordionMenu = (props: Props) => {
             getChildItems={(item) => item.children}
             inverted
             isItemActive={isItemActive.bind(this)}
+            multipleItemTypes
             onItemToggle={() => {}}
             rootItems={[artwork]}
             renderItem={renderItem.bind(this)}
