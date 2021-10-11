@@ -26,6 +26,8 @@ import type { Artwork as ArtworkType } from '../../types/Artwork';
 import type { EditPageProps } from './EditPage';
 import type { Translateable } from '../../types/Translateable';
 
+import './Artwork.css';
+
 type Props = EditPageProps & Translateable & {
   item: ArtworkType
 };
@@ -63,6 +65,7 @@ const Artwork = (props: Props) => {
     >
       <SimpleEditPage.Header>
         <RecordHeader
+          className='artwork-header'
           description={(
             <ItemLabel
               content={props.t('Common.labels.artwork')}
@@ -77,21 +80,63 @@ const Artwork = (props: Props) => {
           published={props.item.published}
           onNotesChange={props.onTextInputChange.bind(this, 'notes_internal')}
           onPublish={props.onCheckboxInputChange.bind(this, 'published')}
-          renderContent={() => (props.item.documents_count || props.item.documents_count === 0) && (
-            <Card.Content
-              className='entered-visible-container'
-              extra
-              textAlign='center'
-            >
-              {props.item.number_documents_visible || props.item.number_documents_visible === 0
-                ? props.t('RecordHeader.labels.documentsEnteredWithVisible',
-                  {
-                    entered: props.item.documents_count,
-                    visible: props.item.number_documents_visible
-                  })
-                : props.t('RecordHeader.labels.documentsEntered',
-                  { entered: props.item.documents_count })}
-            </Card.Content>
+          renderContent={() => (
+            <>
+              <div className='artwork-header-meta'>
+                {props.item.created_by && props.item.created_by.name && (
+                <div>
+                  <span className='meta-label'>
+                    {props.t('Artworks.filters.createdBy')}
+                    {': '}
+                  </span>
+                  {props.item.created_by.name}
+                </div>
+                )}
+                {props.item.updated_by && props.item.updated_by.name && (
+                <div>
+                  <span className='meta-label'>
+                    {props.t('Artworks.filters.updatedBy')}
+                    {': '}
+                  </span>
+                  {props.item.updated_by.name}
+                </div>
+                )}
+                {props.item.created_at && (
+                <div>
+                  <span className='meta-label'>
+                    {props.t('Artworks.filters.createdAt')}
+                    {': '}
+                  </span>
+                  {new Date(props.item.created_at).toLocaleString('en-US')}
+                </div>
+                )}
+                {props.item.updated_at && (
+                <div>
+                  <span className='meta-label'>
+                    {props.t('Artworks.filters.updatedAt')}
+                    {': '}
+                  </span>
+                  {new Date(props.item.updated_at).toLocaleString('en-US')}
+                </div>
+                )}
+              </div>
+              {(props.item.documents_count || props.item.documents_count === 0) && (
+                <Card.Content
+                  className='entered-visible-container'
+                  extra
+                  textAlign='center'
+                >
+                  {props.item.number_documents_visible || props.item.number_documents_visible === 0
+                    ? props.t('RecordHeader.labels.documentsEnteredWithVisible',
+                      {
+                        entered: props.item.documents_count,
+                        visible: props.item.number_documents_visible
+                      })
+                    : props.t('RecordHeader.labels.documentsEntered',
+                      { entered: props.item.documents_count })}
+                </Card.Content>
+              )}
+            </>
           )}
           url={`/admin/artworks/${props.item.id}`}
         />

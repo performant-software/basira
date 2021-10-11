@@ -11,6 +11,8 @@ class Artwork < ApplicationRecord
   has_many :physical_components, dependent: :destroy
   has_many :documents
   has_one :primary_title, -> { where(primary: true) }, class_name: 'ArtworkTitle'
+  belongs_to :created_by, class_name: 'User', optional: true
+  belongs_to :updated_by, class_name: 'User', optional: true
 
   # Nested attributes
   accepts_nested_attributes_for :artwork_titles, allow_destroy: true

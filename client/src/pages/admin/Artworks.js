@@ -40,6 +40,7 @@ const Artworks = (props: Props) => (
         location: 'top',
         onClick: () => props.history.push('/admin/artworks/new')
       })}
+      className='artworks'
       collectionName='artworks'
       filters={{
         component: ListFilters,
@@ -126,7 +127,51 @@ const Artworks = (props: Props) => (
           style={{ width: '100%' }}
         />
       )}
-      renderMeta={(item) => item.date_descriptor}
+      renderMeta={(item) => (
+        <>
+          <div className='main-meta'>
+            {item.date_descriptor}
+          </div>
+          <div className='additional-meta'>
+            {item.created_by.name && (
+              <div>
+                <span className='meta-label'>
+                  {props.t('Artworks.filters.createdBy')}
+                  {': '}
+                </span>
+                {item.created_by.name}
+              </div>
+            )}
+            {item.updated_by.name && (
+              <div>
+                <span className='meta-label'>
+                  {props.t('Artworks.filters.updatedBy')}
+                  {': '}
+                </span>
+                {item.updated_by.name}
+              </div>
+            )}
+            {item.created_at && (
+              <div>
+                <span className='meta-label'>
+                  {props.t('Artworks.filters.createdAt')}
+                  {': '}
+                </span>
+                {new Date(item.created_at).toLocaleString('en-US')}
+              </div>
+            )}
+            {item.updated_at && (
+              <div>
+                <span className='meta-label'>
+                  {props.t('Artworks.filters.updatedAt')}
+                  {': '}
+                </span>
+                {new Date(item.updated_at).toLocaleString('en-US')}
+              </div>
+            )}
+          </div>
+        </>
+      )}
       session={{
         key: 'artworks',
         storage: sessionStorage

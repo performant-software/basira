@@ -15,3 +15,21 @@
   height: 300px;
   object-fit: cover;
 }
+
+.artworks .main-meta {
+  margin-bottom: 0.5em;
+}
+
+.artworks .additional-meta {
+  line-height: 1.5em;
+  font-size: 0.9em;
+}
+
+.artworks .ui.items .additional-meta {
+  border-left: 4px solid rgba(0,0,0,0.15);
+  padding-left: 1em;
+}
+
+.artworks .additional-meta .meta-label {
+  font-weight: bold;
+}
