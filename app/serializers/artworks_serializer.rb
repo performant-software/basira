@@ -4,12 +4,15 @@ class ArtworksSerializer < BaseSerializer
   include LocateableSerializer
   include NestableSerializer
 
-  index_attributes :id, :date_start, :date_end, :date_descriptor, :published, primary_title: [:id, :title, :title_type]
+  index_attributes :id, :date_start, :date_end, :date_descriptor, :published, :created_at, :updated_at,
+                    primary_title: [:id, :title, :title_type],
+                    updated_by: UsersSerializer, created_by: UsersSerializer
 
   show_attributes :id, :date_start, :date_end, :date_descriptor, :published, :height, :width, :depth,
                   :notes_external, :notes_internal, :repository_work_url, :accession_number,
-                  :documents_count, :number_documents_visible,
+                  :documents_count, :number_documents_visible, :created_at, :updated_at,
                   artwork_titles: [:id, :title, :title_type, :notes, :primary],
+                  updated_by: UsersSerializer, created_by: UsersSerializer,
                   participations: ParticipationsSerializer, qualifications: QualificationsSerializer
 
   nested_attributes :id, primary_title: [:id, :title, :title_type],

@@ -1,0 +1,8 @@
+.artwork-header-meta {
+  margin-top: 1em;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.artwork-header-meta .meta-label {
+  font-weight: bold;
+}
