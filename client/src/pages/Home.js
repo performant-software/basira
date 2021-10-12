@@ -93,6 +93,9 @@ const Home = (props: Props) => {
             size='huge'
             subheader={props.t('Home.subtitle')}
           />
+          <p className='description'>
+            {props.t('Home.description')}
+          </p>
           <Button
             onClick={() => setModal(true)}
             primary
