@@ -116,6 +116,13 @@ const LocationModal = (props: Props) => (
         required={props.isRequired('subrole')}
         value={props.item.subrole || ''}
       />
+      <Form.Input
+        error={props.isError('repository_work_url')}
+        label={props.t('LocationModal.labels.repositoryWorkUrl')}
+        onChange={props.onTextInputChange.bind(this, 'repository_work_url')}
+        required={props.isRequired('repository_work_url')}
+        value={props.item.repository_work_url || ''}
+      />
       <Form.TextArea
         error={props.isError('description')}
         label={props.t('LocationModal.labels.description')}

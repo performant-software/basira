@@ -264,6 +264,7 @@
       "notes": "Notes",
       "person": "Person",
       "place": "Place",
+      "repositoryWorkUrl": "Repository work URL",
       "role": "Role",
       "subrole": "Subrole"
     },

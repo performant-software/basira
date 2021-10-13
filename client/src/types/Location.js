@@ -13,5 +13,6 @@ export type Location = {
   subrole: string,
   description: string,
   certainty: number,
-  notes: string
+  notes: string,
+  repository_work_url: string
 };

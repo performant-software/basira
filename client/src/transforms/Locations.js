@@ -24,6 +24,7 @@ class Locations extends NestedAttributes {
       'description',
       'certainty',
       'notes',
+      'repository_work_url',
       '_destroy'
     ];
   }
