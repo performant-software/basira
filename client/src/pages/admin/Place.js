@@ -6,9 +6,9 @@ import { withTranslation } from 'react-i18next';
 import { Header, Image } from 'semantic-ui-react';
 import _ from 'underscore';
 import LocationModal, { LocationTypes } from '../../components/LocationModal';
-import Locations from '../../utils/Locations';
 import PlaceForm from '../../components/PlaceForm';
 import PlacesService from '../../services/Places';
+import Qualifiables from '../../utils/Qualifiables';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
 import useEditPage from './EditPage';
@@ -110,7 +110,7 @@ const Place = (props: Props) => (
         }, {
           name: 'role',
           label: props.t('Place.locations.columns.role'),
-          resolve: (l) => Locations.getValueListValue(l, 'Location', 'Role')
+          resolve: (l) => Qualifiables.getValueListValue(l, 'Location', 'Role')
         }]}
         items={_.filter(props.item.locations, (l) => l.locateable_type === 'Person')}
         key='locations'

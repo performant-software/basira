@@ -1,10 +1,10 @@
 // @flow
 
+import type { Qualifiable } from './concerns/Qualifiable';
 import type { Artwork } from './Artwork';
 import type { Person } from './Person';
-import type { Qualification } from './Qualification';
 
-export type Location = {
+export type Location = Qualifiable & {
   id: number,
   place_id: number,
   locateable_id: number,
@@ -15,6 +15,5 @@ export type Location = {
   description: string,
   certainty: number,
   notes: string,
-  repository_work_url: string,
-  qualifications: Array<Qualification>
+  repository_work_url: string
 };

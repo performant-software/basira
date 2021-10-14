@@ -11,12 +11,8 @@ import _ from 'underscore';
 import uuid from 'react-uuid';
 import ValueLists from '../services/ValueLists';
 import type { EditContainerProps } from 'react-components/types';
-import type { Qualification } from '../types/Qualification';
+import type { Qualifiable } from '../types/concerns/Qualifiable';
 import type { ValueList } from '../types/ValueList';
-
-type Qualifiable = {
-  qualifications: Array<Qualification>
-};
 
 type Props = EditContainerProps & {
   clearable?: boolean,

@@ -8,7 +8,7 @@ import ParticipationModal, { ParticipationTypes } from '../../components/Partici
 import PeopleService from '../../services/People';
 import PersonForm from '../../components/PersonForm';
 import LocationModal, { LocationTypes } from '../../components/LocationModal';
-import Locations from '../../utils/Locations';
+import Qualifiables from '../../utils/Qualifiables';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
 import withMenuBar from '../../hooks/MenuBar';
@@ -114,7 +114,7 @@ const Person = (props: Props) => (
         }, {
           name: 'role',
           label: props.t('Person.locations.columns.role'),
-          resolve: (l) => Locations.getValueListValue(l, 'Location', 'Role')
+          resolve: (l) => Qualifiables.getValueListValue(l, 'Location', 'Role')
         }]}
         items={props.item.locations}
         key='locations'
