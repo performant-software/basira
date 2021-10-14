@@ -12,6 +12,7 @@ import i18n from '../../i18n/i18n';
 import Images from '../../components/Images';
 import ItemLabel from '../../components/ItemLabel';
 import LocationModal, { LocationTypes } from '../../components/LocationModal';
+import Locations from '../../utils/Locations';
 import Number from '../../utils/Number';
 import ParticipationModal, { ParticipationTypes } from '../../components/ParticipationModal';
 import RecordHeader from '../../components/RecordHeader';
@@ -412,7 +413,8 @@ const Artwork = (props: Props) => {
             resolve: (l) => l.place && l.place.country
           }, {
             name: 'role',
-            label: props.t('Artwork.locations.columns.role')
+            label: props.t('Artwork.locations.columns.role'),
+            resolve: (l) => Locations.getValueListValue(l, 'Location', 'Role')
           }]}
           items={props.item.locations}
           key='locations'

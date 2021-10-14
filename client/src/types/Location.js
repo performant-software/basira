@@ -2,6 +2,7 @@
 
 import type { Artwork } from './Artwork';
 import type { Person } from './Person';
+import type { Qualification } from './Qualification';
 
 export type Location = {
   id: number,
@@ -14,5 +15,6 @@ export type Location = {
   description: string,
   certainty: number,
   notes: string,
-  repository_work_url: string
+  repository_work_url: string,
+  qualifications: Array<Qualification>
 };
