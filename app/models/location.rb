@@ -1,6 +1,7 @@
 class Location < ApplicationRecord
   # Includes
   include Recordable
+  include Qualifiable
 
   # Relationships
   belongs_to :place

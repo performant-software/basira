@@ -2,19 +2,19 @@
 
 import _ from 'underscore';
 
-import type { Action } from '../types/Action';
+import type { Qualifiable } from '../types/concerns/Qualifiable';
 
 /**
- * Returns the value list value for the passed action, object, and group.
+ * Returns the value list value for the passed qualifiable, object, and group.
  *
- * @param action
+ * @param qualifiable
  * @param object
  * @param group
  *
  * @returns {*|string}
  */
-const getValueListValue = (action: Action, object: string, group: string) => {
-  const qualification = _.find(action.qualifications, (q) => (
+const getValueListValue = (qualifiable: Qualifiable, object: string, group: string) => {
+  const qualification = _.find(qualifiable.qualifications, (q) => (
     !q._destroy && _.isMatch(q, { value_list_group: group, value_list_object: object })
   ));
   return qualification && qualification.value_list && qualification.value_list.human_name;

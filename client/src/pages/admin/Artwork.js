@@ -14,6 +14,7 @@ import ItemLabel from '../../components/ItemLabel';
 import LocationModal, { LocationTypes } from '../../components/LocationModal';
 import Number from '../../utils/Number';
 import ParticipationModal, { ParticipationTypes } from '../../components/ParticipationModal';
+import Qualifiables from '../../utils/Qualifiables';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
@@ -412,7 +413,8 @@ const Artwork = (props: Props) => {
             resolve: (l) => l.place && l.place.country
           }, {
             name: 'role',
-            label: props.t('Artwork.locations.columns.role')
+            label: props.t('Artwork.locations.columns.role'),
+            resolve: (l) => Qualifiables.getValueListValue(l, 'Location', 'Role')
           }]}
           items={props.item.locations}
           key='locations'
