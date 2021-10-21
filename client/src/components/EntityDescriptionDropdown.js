@@ -78,7 +78,7 @@ const EntityDescriptionDropdown = (props: Translateable & ValueListProps) => {
       setLoading(true);
 
       Actions
-        .fetchAll({ entity_id: entity.value_list_id })
+        .fetchAll({ entity_id: entity.value_list_id, per_page: 0 })
         .then(({ data }) => {
           setActions(_.sortBy(data.actions, Action.toLabel.bind(this)));
           setLoading(false);
