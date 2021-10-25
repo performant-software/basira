@@ -35,6 +35,8 @@ namespace :airtable do
 
     records.each do |record|
       artwork = Artwork.find_by(airtable_id: record.id)
+      next if artwork.nil?
+
       location = artwork.locations.first
 
       next if location.nil?
