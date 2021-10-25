@@ -13,6 +13,7 @@ import PersonModal from './PersonModal';
 import Place from '../transforms/Place';
 import PlaceModal from './PlaceModal';
 import Places from '../services/Places';
+import ValueListDropdown from './ValueListDropdown';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { Participation } from '../types/Participation';
@@ -102,12 +103,11 @@ const LocationModal = (props: Props) => (
           />
         </Form.Input>
       )}
-      <Form.Input
-        error={props.isError('role')}
+      <ValueListDropdown
+        {...props}
+        group='Role'
         label={props.t('LocationModal.labels.role')}
-        onChange={props.onTextInputChange.bind(this, 'role')}
-        required={props.isRequired('role')}
-        value={props.item.role || ''}
+        object='Location'
       />
       <Form.Input
         error={props.isError('subrole')}

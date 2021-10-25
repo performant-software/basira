@@ -20,7 +20,7 @@ class Attachment < ApplicationRecord
   end
 
   def thumbnail_url
-    return nil unless self.file&.attached?
+    return nil unless self.file&.attached? and self.file.variable?
 
     url_for(self.file.variant(resize_to_fit: [250, nil]))
   end
@@ -28,7 +28,7 @@ class Attachment < ApplicationRecord
   private
 
   def generate_thumbnail
-    return unless self.file&.attached?
+    return unless self.file&.attached? and self.file.variable?
 
     CreateImageThumbnailJob.perform_later(self.id)
   end

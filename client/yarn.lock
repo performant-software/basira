@@ -9434,7 +9434,7 @@ react-color@^2.18.1:
 
 "react-components@git+ssh://git@react-components:performant-software/react-components.git":
   version "1.0.0"
-  resolved "git+ssh://git@react-components:performant-software/react-components.git#b9030baf12a4a7e9f015d0ee34cb46f0d4fd0035"
+  resolved "git+ssh://git@react-components:performant-software/react-components.git#4c1d26ec50e19c1e9aa4c7e67562398aca94e575"
   dependencies:
     moment "^2.27.0"
     moment-islamic-civil ACGC/moment-islamic-civil

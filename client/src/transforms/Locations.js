@@ -1,6 +1,8 @@
 // @flow
 
+import _ from 'underscore';
 import NestedAttributes from './NestedAttributes';
+import Qualifications from './Qualifications';
 
 import type { Locateable } from '../types/concerns/Locateable';
 import type { Place } from '../types/Place';
@@ -19,7 +21,6 @@ class Locations extends NestedAttributes {
       'place_id',
       'locateable_id',
       'locateable_type',
-      'role',
       'subrole',
       'description',
       'certainty',
@@ -38,11 +39,14 @@ class Locations extends NestedAttributes {
    * @param collection
    */
   appendFormData(formData: FormData, prefix: string, record: any, collection: string = this.PARAM_NAME) {
+    _.each(record[collection], (location, index) => {
+      Qualifications.appendFormData(formData, `${prefix}[locations][${index}]`, location);
+    });
     super.appendFormData(formData, prefix, record, collection);
   }
 
   /**
-   * Overrides the collection name.
+   * Returns the locateable object to be sent to the server on POST/PUT requests.
    *
    * @param locateable
    * @param collection
@@ -50,7 +54,13 @@ class Locations extends NestedAttributes {
    * @returns {{}}
    */
   toPayload(locateable: Locateable | Place, collection: string = this.PARAM_NAME) {
-    return super.toPayload(locateable, collection);
+    const payload = super.toPayload(locateable, collection);
+    const newLocationsPayload = _.map(locateable[collection], (location) => {
+      const payloadLocation = payload[collection].find((loc) => loc.id === location.id);
+      return { ...payloadLocation, ...Qualifications.toPayload(location) };
+    });
+    payload[collection] = newLocationsPayload;
+    return payload;
   }
 }
 

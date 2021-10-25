@@ -7,9 +7,9 @@ import { Dropdown, Form, Grid } from 'semantic-ui-react';
 import _ from 'underscore';
 import ActionModal from '../../components/ActionModal';
 import Action from '../../transforms/Action';
-import Actions from '../../utils/Actions';
 import DocumentsService from '../../services/Documents';
 import ItemLabel from '../../components/ItemLabel';
+import Qualifiables from '../../utils/Qualifiables';
 import RecordHeader from '../../components/RecordHeader';
 import Section from '../../components/Section';
 import SimpleEditPage from '../../components/SimpleEditPage';
@@ -546,11 +546,11 @@ const Document = (props: Props) => {
           }, {
             name: 'verb',
             label: props.t('Document.actions.columns.verb'),
-            resolve: (action) => Actions.getValueListValue(action, 'Document', 'Action')
+            resolve: (action) => Qualifiables.getValueListValue(action, 'Document', 'Action')
           }, {
             name: 'entity',
             label: props.t('Document.actions.columns.entity'),
-            resolve: (action) => Actions.getValueListValue(action, 'Action', 'Entity')
+            resolve: (action) => Qualifiables.getValueListValue(action, 'Action', 'Entity')
           }]}
           items={props.item.actions}
           modal={{
