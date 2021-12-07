@@ -2,8 +2,9 @@
 
 import type { Locateable } from './concerns/Locateable';
 import type { Participation } from './Participation';
+import type { Qualifiable } from './concerns/Qualifiable';
 
-export type Person = Locateable & {
+export type Person = Locateable & Qualifiable & {
   id: number,
   name: string,
   display_name: string,

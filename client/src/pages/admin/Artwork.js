@@ -354,10 +354,6 @@ const Artwork = (props: Props) => {
               />
             )
           }, {
-            name: 'nationality',
-            label: props.t('Artwork.participations.columns.nationality'),
-            resolve: (p) => p.person && p.person.nationality
-          }, {
             name: 'role',
             label: props.t('Artwork.participations.columns.role')
           }]}

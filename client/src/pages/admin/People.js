@@ -6,6 +6,7 @@ import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import PeopleService from '../../services/People';
+import Qualifiables from '../../utils/Qualifiables';
 import withMenuBar from '../../hooks/MenuBar';
 
 import type { Routeable } from '../../types/Routeable';
@@ -39,6 +40,7 @@ const People = (props: Translateable & Routeable) => (
       }, {
         name: 'nationality',
         label: props.t('People.columns.nationality'),
+        resolve: (person) => Qualifiables.getValueListValue(person, 'Person', 'Nationality'),
         sortable: true
       }]}
       onDelete={(person) => PeopleService.delete(person)}
