@@ -10,16 +10,19 @@ import {
   Header,
   Icon,
   Image,
+  Menu,
   Segment
 } from 'semantic-ui-react';
+import _ from 'underscore';
 import Authentication from '../services/Authentication';
 import HomeService from '../services/Home';
+import PennLogo from '../images/penn-logo.png';
+import PriceLogo from '../images/price-logo.png';
 import Session from '../services/Session';
 import './Home.css';
 
 import type { Translateable } from '../types/Translateable';
 import type { Routeable } from '../types/Routeable';
-import _ from 'underscore';
 
 type Props = Routeable & Translateable & {
   images: number
@@ -107,6 +110,31 @@ const Home = (props: Props) => {
             />
           </Button>
         </Segment>
+        <Menu
+          fixed='bottom'
+          widths={4}
+        >
+          <Menu.Item
+            as='a'
+            href='https://www.library.upenn.edu/'
+            target='_blank'
+          >
+            <Image
+              src={PennLogo}
+              size='small'
+            />
+          </Menu.Item>
+          <Menu.Item
+            as='a'
+            href='https://pricelab.sas.upenn.edu/'
+            target='_blank'
+          >
+            <Image
+              src={PriceLogo}
+              size='small'
+            />
+          </Menu.Item>
+        </Menu>
       </Container>
       <LoginModal
         disabled={!(username && password)}
