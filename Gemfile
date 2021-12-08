@@ -28,7 +28,7 @@ gem 'pagy', '~> 3.5'
 gem 'rack-cors'
 
 # Resource API
-gem 'resource_api', git: 'git@resource-api:performant-software/resource-api.git'
+gem 'resource_api', git: 'git@resource-api:performant-software/resource-api.git', tag: 'v0.3.0'
 
 # Airtable API integration for seeding and synchronizing data
 gem 'airrecord'

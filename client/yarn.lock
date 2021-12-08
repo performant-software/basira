@@ -9432,9 +9432,9 @@ react-color@^2.18.1:
     reactcss "^1.2.0"
     tinycolor2 "^1.4.1"
 
-"react-components@git+ssh://git@react-components:performant-software/react-components.git":
+"react-components@git+ssh://git@react-components:performant-software/react-components.git#v0.3.0":
   version "1.0.0"
-  resolved "git+ssh://git@react-components:performant-software/react-components.git#4c1d26ec50e19c1e9aa4c7e67562398aca94e575"
+  resolved "git+ssh://git@react-components:performant-software/react-components.git#6030a08f5dc3443e22e862dc4be48df0f2014387"
   dependencies:
     moment "^2.27.0"
     moment-islamic-civil ACGC/moment-islamic-civil
@@ -9442,6 +9442,7 @@ react-color@^2.18.1:
     react-color "^2.18.1"
     react-dnd "^11.1.3"
     react-dnd-html5-backend "^11.1.3"
+    react-fast-compare "^3.2.0"
     react-google-maps "^9.4.5"
     react-uuid "^1.0.2"
     react-xml-viewer "^1.1.0"
@@ -9512,7 +9513,7 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
-react-fast-compare@^3.0.1:
+react-fast-compare@^3.0.1, react-fast-compare@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==

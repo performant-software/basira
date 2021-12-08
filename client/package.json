@@ -15,7 +15,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "i18next": "^20.2.1",
     "react": "^17.0.2",
-    "react-components": "git+ssh://git@react-components:performant-software/react-components.git",
+    "react-components": "git+ssh://git@react-components:performant-software/react-components.git#v0.3.0",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.8.13",
     "react-router-dom": "^5.2.0",
