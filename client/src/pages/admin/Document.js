@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { EmbeddedList, LazyImage } from 'react-components';
 import { withRouter } from 'react-router-dom';
 import { Dropdown, Form, Grid } from 'semantic-ui-react';
@@ -49,13 +49,14 @@ const Document = (props: Props) => {
     }
   }, []);
 
-  const zeroToTenRangeOptionsList = [...(_.range(0, 10)), '10+'].map((el) => (
+  const zeroToTenRangeOptionsList = useMemo(() => [
+    ..._.range(0, 10).map((el) => ({ key: el, value: el, text: el })),
     {
-      key: el,
-      value: el,
-      text: el
+      key: 10,
+      value: 10,
+      text: '10+'
     }
-  ));
+  ], []);
 
   return (
     <SimpleEditPage
