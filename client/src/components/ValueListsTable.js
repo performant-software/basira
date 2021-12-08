@@ -11,64 +11,61 @@ import type { ValueList as ValueListType } from '../types/ValueList';
 import type { Translateable } from '../types/Translateable';
 
 type Props = EditContainerProps & Translateable & {
-  item: ValueListType
+  item: ValueListType,
+  objectName: string
 };
 
-const ValueListsTable = (props: Props) => {
-  const { objectName } = props;
-
-  return (
-    <ListTable
-      actions={[{
-        name: 'edit'
-      }, {
-        name: 'copy'
-      }, {
-        name: 'delete',
-        accept: (item) => item.qualifications_count === 0
-      }]}
-      className='value-lists-table'
-      collectionName='value_lists'
-      columns={[{
-        name: 'group',
-        label: props.t('ValueList.labels.groupName'),
-        sortable: true
-      }, {
-        name: 'human_name',
-        label: props.t('ValueList.labels.humanName'),
-        sortable: true
-      }, {
-        name: 'comment',
-        label: props.t('ValueList.labels.comment'),
-        sortable: true
-      }, {
-        name: 'qualifications_count',
-        label: props.t('ValueList.labels.linkedRecords'),
-        sortable: true
-      }]}
-      filters={{
-        component: ValueListsFiltersModal,
-        props: {
-          group_filter: '',
-          object_filter: objectName
-        }
-      }}
-      key={objectName}
-      modal={{
-        component: ValueListModal,
-        props: {
-          required: ['object', 'group', 'human_name']
-        }
-      }}
-      onDelete={(params) => ValueListsService.delete(params)}
-      onLoad={(params) => ValueListsService.fetchAll({
-        ...params,
-        object_filter: objectName,
-        per_page: 25
-      })}
-      onSave={(params) => ValueListsService.save(params)}
-    />
-  );
-};
+const ValueListsTable = (props: Props) => (
+  <ListTable
+    actions={[{
+      name: 'edit'
+    }, {
+      name: 'copy'
+    }, {
+      name: 'delete',
+      accept: (item) => item.qualifications_count === 0
+    }]}
+    className='value-lists-table'
+    collectionName='value_lists'
+    columns={[{
+      name: 'group',
+      label: props.t('ValueList.labels.groupName'),
+      sortable: true
+    }, {
+      name: 'human_name',
+      label: props.t('ValueList.labels.humanName'),
+      sortable: true
+    }, {
+      name: 'comment',
+      label: props.t('ValueList.labels.comment'),
+      sortable: true
+    }, {
+      name: 'qualifications_count',
+      label: props.t('ValueList.labels.linkedRecords'),
+      sortable: true
+    }]}
+    filters={{
+      component: ValueListsFiltersModal,
+      props: {
+        group_filter: '',
+        object_filter: props.objectName
+      }
+    }}
+    key={props.objectName}
+    modal={{
+      component: ValueListModal,
+      props: {
+        required: ['object', 'group', 'human_name']
+      }
+    }}
+    onDelete={(params) => ValueListsService.delete(params)}
+    onLoad={(params) => ValueListsService.fetchAll({
+      ...params,
+      object_filter: props.objectName,
+      per_page: 25
+    })}
+    onSave={(params) => ValueListsService.save(params)}
+  />
+);
 
 export default withTranslation()(useDataList(ValueListsTable));
