@@ -4,6 +4,7 @@ import _ from 'underscore';
 import BaseTransform from './BaseTransform';
 import Locations from './Locations';
 import Participations from './Participations';
+import Qualifications from './Qualifications';
 
 import type { Person as PersonType } from '../types/Person';
 
@@ -23,7 +24,6 @@ class Person extends BaseTransform {
       'artist_death_date',
       'display_name',
       'person_type',
-      'nationality',
       'authorized_vocabulary',
       'url',
       'database_value',
@@ -61,7 +61,8 @@ class Person extends BaseTransform {
       person: {
         ..._.pick(person, this.getPayloadKeys()),
         ...Locations.toPayload(person),
-        ...Participations.toPayload(person)
+        ...Participations.toPayload(person),
+        ...Qualifications.toPayload(person)
       }
     };
   }

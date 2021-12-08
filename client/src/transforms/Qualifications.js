@@ -1,7 +1,7 @@
 // @flow
 
 import NestedAttributes from './NestedAttributes';
-import type { Qualification } from '../types/Qualification';
+import type { Qualifiable } from '../types/concerns/Qualifiable';
 
 /**
  * Class for handling transforming qualification records.
@@ -47,7 +47,7 @@ class Qualifications extends NestedAttributes {
    *
    * @returns {{}}
    */
-  toPayload(record: Qualification, collection: string = this.PARAM_NAME) {
+  toPayload(record: Qualifiable, collection: string = this.PARAM_NAME) {
     return super.toPayload(record, collection);
   }
 }

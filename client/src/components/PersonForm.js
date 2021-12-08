@@ -3,8 +3,7 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import { Form } from 'semantic-ui-react';
-import _ from 'underscore';
-import Nationalities from '../resources/Nationalities.json';
+import ValueListDropdown from './ValueListDropdown';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { Person } from '../types/Person';
@@ -37,14 +36,11 @@ const PersonForm = (props: Props) => (
       required={props.isRequired('person_type')}
       value={props.item.person_type || ''}
     />
-    <Form.Dropdown
-      error={props.isError('nationality')}
+    <ValueListDropdown
+      {...props}
+      group='Nationality'
       label={props.t('Person.labels.nationality')}
-      onChange={props.onTextInputChange.bind(this, 'nationality')}
-      options={_.sortBy(Nationalities, (nationality) => nationality.value)}
-      required={props.isRequired('nationality')}
-      selection
-      value={props.item.nationality || ''}
+      object='Person'
     />
     <Form.Input
       error={props.isError('artist_birth_date')}
