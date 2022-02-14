@@ -16,6 +16,7 @@ import {
 import _ from 'underscore';
 import Authentication from '../services/Authentication';
 import HomeService from '../services/Home';
+import KressLogo from '../images/kress-logo.png';
 import PennLogo from '../images/penn-logo.png';
 import PriceLogo from '../images/price-logo.png';
 import Session from '../services/Session';
@@ -121,6 +122,16 @@ const Home = (props: Props) => {
           >
             <Image
               src={PennLogo}
+              size='small'
+            />
+          </Menu.Item>
+          <Menu.Item
+            as='a'
+            href='https://www.kressfoundation.org/'
+            target='_blank'
+          >
+            <Image
+              src={KressLogo}
               size='small'
             />
           </Menu.Item>
