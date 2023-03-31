@@ -44,7 +44,9 @@ class Document extends FormDataTransform {
       'ruling',
       'rubrication',
       'identity',
-      'transcription'
+      'transcription',
+      'transcription_expanded',
+      'transcription_translation'
     ];
   }
 

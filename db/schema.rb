@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_07_171525) do
+ActiveRecord::Schema.define(version: 2023_04_03_142734) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
@@ -75,10 +76,10 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "created_by_id"
-    t.bigint "updated_by_id"
     t.integer "number_documents_visible"
     t.integer "documents_count", default: 0, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
     t.index ["created_by_id"], name: "index_artworks_on_created_by_id"
     t.index ["updated_by_id"], name: "index_artworks_on_updated_by_id"
   end
@@ -123,9 +124,11 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.datetime "airtable_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "artwork_id"
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
-    t.bigint "artwork_id"
+    t.text "transcription_expanded"
+    t.text "transcription_translation"
     t.index ["artwork_id"], name: "index_documents_on_artwork_id"
     t.index ["created_by_id"], name: "index_documents_on_created_by_id"
     t.index ["updated_by_id"], name: "index_documents_on_updated_by_id"

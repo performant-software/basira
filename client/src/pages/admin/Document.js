@@ -485,11 +485,27 @@ const Document = (props: Props) => {
               />
               <Form.TextArea
                 error={props.isError('transcription')}
-                label={props.t('Document.labels.transcription')}
+                label={props.t('Document.labels.transcriptionDiplomatic')}
                 onChange={props.onTextInputChange.bind(this, 'transcription')}
                 required={props.isRequired('transcription')}
                 rows={5}
                 value={props.item.transcription || ''}
+              />
+              <Form.TextArea
+                error={props.isError('transcription_expanded')}
+                label={props.t('Document.labels.transcriptionExpanded')}
+                onChange={props.onTextInputChange.bind(this, 'transcription_expanded')}
+                required={props.isRequired('transcription_expanded')}
+                rows={5}
+                value={props.item.transcription_expanded || ''}
+              />
+              <Form.TextArea
+                error={props.isError('transcription_translation')}
+                label={props.t('Document.labels.transcriptionTranslation')}
+                onChange={props.onTextInputChange.bind(this, 'transcription_translation')}
+                required={props.isRequired('transcription_translation')}
+                rows={5}
+                value={props.item.transcription_translation || ''}
               />
               <ValueListDropdown
                 {...props}
