@@ -38,7 +38,9 @@
     "react/prefer-stateless-function": "off",
     "react/jsx-props-no-spreading": "off",
     "react/sort-comp": "off",
-    "react/static-property-placement": "off"
+    "react/static-property-placement": "off",
+    "template-curly-spacing": "off",
+    "indent": "off"
   },
   "settings": {
     "import/resolver": {
