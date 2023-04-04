@@ -217,7 +217,9 @@
       "spineFeatures": "Spine Features",
       "textColumns": "Text Columns",
       "textTechnology": "Text Technology",
-      "transcription": "Transcription",
+      "transcriptionDiplomatic": "Transcription: Diplomatic",
+      "transcriptionExpanded": "Transcription: Expanded",
+      "transcriptionTranslation": "Transcription: Translation",
       "typeOfIllumination": "Type of Illumination",
       "uncutForeEdges": "Uncut Fore-Edges"
     },

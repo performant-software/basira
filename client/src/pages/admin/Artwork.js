@@ -162,7 +162,10 @@ const Artwork = (props: Props) => {
             label: props.t('Artwork.titles.columns.title')
           }, {
             name: 'title_type',
-            label: props.t('Artwork.titles.columns.titleType')
+            label: props.t('Artwork.titles.columns.titleType'),
+            resolve: (at) => (at.qualifications[0]?.value_list
+              ? at.qualifications[0].value_list.human_name
+              : null)
           }, {
             name: 'primary',
             label: props.t('Artwork.titles.columns.primary'),

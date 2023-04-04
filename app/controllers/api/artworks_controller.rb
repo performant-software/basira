@@ -13,7 +13,7 @@ class Api::ArtworksController < Api::BaseController
   preloads :primary_title, only: :index
   preloads Artwork.primary_attachment_preload, only: :index
 
-  preloads :artwork_titles, only: :show
+  preloads qualifications: :value_list
   preloads Artwork.attachments_preload, only: :show
   preloads locations: :place, only: :show
   preloads participations: :person, only: :show

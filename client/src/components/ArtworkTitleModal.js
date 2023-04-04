@@ -3,6 +3,7 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import { Form, Modal } from 'semantic-ui-react';
+import ValueListDropdown from './ValueListDropdown';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { ArtworkTitle } from '../types/ArtworkTitle';
@@ -33,12 +34,11 @@ const ArtworkTitleModal = (props: Props) => (
         required={props.isRequired('title')}
         value={props.item.title || ''}
       />
-      <Form.Input
-        error={props.isError('title_type')}
+      <ValueListDropdown
+        {...props}
+        group='Title Type'
         label={props.t('ArtworkTitleModal.labels.type')}
-        onChange={props.onTextInputChange.bind(this, 'title_type')}
-        required={props.isRequired('title_type')}
-        value={props.item.title_type || ''}
+        object='Artwork'
       />
       <Form.TextArea
         error={props.isError('notes')}
