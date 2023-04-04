@@ -1,5 +1,5 @@
 GIT
-  remote: git@resource-api:performant-software/resource-api.git
+  remote: https://github.com/performant-software/resource-api.git
   revision: 78ed38db2a55ac10010702f6343edf1d01dbaefc
   tag: v0.3.0
   specs:
