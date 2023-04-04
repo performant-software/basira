@@ -20,5 +20,7 @@ export type Document = {
   ruling: boolean,
   rubrication: boolean,
   identity: string,
-  transcription: string
+  transcription: string,
+  transcription_expanded: string,
+  transcription_translation: string
 };

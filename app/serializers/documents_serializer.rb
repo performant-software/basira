@@ -8,8 +8,9 @@ class DocumentsSerializer < BaseSerializer
   show_attributes :id, :name, :visual_context_id, :notes, :sewing_supports_visible, :number_sewing_supports,
                   :number_fastenings, :inscriptions_on_binding, :inscription_text, :endband_present,
                   :uncut_fore_edges, :fore_edge_text, :bookmarks_registers, :text_columns, :ruling, :rubrication,
-                  :identity, :transcription, qualifications: QualificationsSerializer,
-                  actions: [:id, :document_id, :notes, qualifications: QualificationsSerializer]
+                  :transcription, :transcription_expanded, :transcription_translation, :identity,
+                  qualifications: QualificationsSerializer, actions: [:id, :document_id, :notes,
+                  qualifications: QualificationsSerializer]
 
   show_attributes(:artwork_id) { |document| document.visual_context&.physical_component&.artwork_id }
 
