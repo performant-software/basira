@@ -1,19 +1,19 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '3.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.6'
+gem 'rails', '~> 7.0.4'
 
 # Use PostgreSQL as the database for Active Record
 gem 'pg'
 
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 6.1'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap', '~> 1.16', require: false
 
 # Devise token authentication
 gem 'devise_token_auth'
@@ -22,13 +22,13 @@ gem 'devise_token_auth'
 gem 'dotenv-rails'
 
 # Pagination
-gem 'pagy', '~> 3.5'
+gem 'pagy', '~> 5'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
 # Resource API
-gem 'resource_api', git: 'https://github.com/performant-software/resource-api.git', tag: 'v0.3.0'
+gem 'resource_api', git: 'https://github.com/performant-software/resource-api.git', tag: 'v0.4.0'
 
 # Airtable API integration for seeding and synchronizing data
 gem 'airrecord'
@@ -40,7 +40,7 @@ gem 'aws-sdk-s3'
 gem 'image_processing', '~> 1.0'
 
 # Data migration
-gem 'data_migrate'
+gem 'data_migrate', '~> 9.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
