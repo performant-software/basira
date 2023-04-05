@@ -7,7 +7,7 @@ import type { Qualifiable } from '../types/concerns/Qualifiable';
  * Class for handling transforming qualification records.
  */
 class Qualifications extends NestedAttributes {
-  PARAM_NAME = 'qualifications'
+  PARAM_NAME = 'qualifications';
 
   /**
    * Overrides the appendFormData function and defaults the collection name.

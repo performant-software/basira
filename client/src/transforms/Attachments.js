@@ -9,7 +9,7 @@ import String from '../utils/String';
  * Class for handling transforming attachments records.
  */
 class Attachments extends NestedAttributes {
-  PARAM_NAME = 'attachments'
+  PARAM_NAME = 'attachments';
 
   /**
    * Overrides the appendFormData function to conditionally append the "file" prop only if a value is present. There
