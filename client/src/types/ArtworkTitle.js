@@ -1,9 +1,9 @@
 // @flow
+import type { Qualifiable } from './concerns/Qualifiable';
 
-export type ArtworkTitle = {
+export type ArtworkTitle = Qualifiable & {
   id: number,
   title: string,
-  title_type: string,
   notes: string,
   primary: boolean
 };

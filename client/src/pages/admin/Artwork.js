@@ -162,7 +162,8 @@ const Artwork = (props: Props) => {
             label: props.t('Artwork.titles.columns.title')
           }, {
             name: 'title_type',
-            label: props.t('Artwork.titles.columns.titleType')
+            label: props.t('Artwork.titles.columns.titleType'),
+            resolve: (at) => Qualifiables.getValueListValue(at, 'Artwork', 'Title Type')
           }, {
             name: 'primary',
             label: props.t('Artwork.titles.columns.primary'),
