@@ -9,7 +9,7 @@ import String from '../utils/String';
  * Class for handling transforming artwork_title records.
  */
 class ArtworkTitles extends NestedAttributes {
-  PARAM_NAME = 'artwork_titles'
+  PARAM_NAME = 'artwork_titles';
 
   /**
    * Overrides the appendFormData function and defaults the collection name.
