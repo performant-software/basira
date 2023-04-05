@@ -109,12 +109,11 @@ const LocationModal = (props: Props) => (
         label={props.t('LocationModal.labels.role')}
         object='Location'
       />
-      <Form.Input
-        error={props.isError('subrole')}
+      <ValueListDropdown
+        {...props}
+        group='Subrole'
         label={props.t('LocationModal.labels.subrole')}
-        onChange={props.onTextInputChange.bind(this, 'subrole')}
-        required={props.isRequired('subrole')}
-        value={props.item.subrole || ''}
+        object='Location'
       />
       <Form.Input
         error={props.isError('repository_work_url')}

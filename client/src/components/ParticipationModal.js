@@ -10,6 +10,7 @@ import Certainty from '../resources/Certainty.json';
 import People from '../services/People';
 import Person from '../transforms/Person';
 import PersonModal from './PersonModal';
+import ValueListDropdown from './ValueListDropdown';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { Participation } from '../types/Participation';
@@ -82,19 +83,17 @@ const ParticipationModal = (props: Props) => (
           />
         </Form.Input>
       )}
-      <Form.Input
-        error={props.isError('role')}
+      <ValueListDropdown
+        {...props}
+        group='Participation Role'
         label={props.t('ParticipationModal.labels.role')}
-        onChange={props.onTextInputChange.bind(this, 'role')}
-        required={props.isRequired('role')}
-        value={props.item.role || ''}
+        object='Person'
       />
-      <Form.Input
-        error={props.isError('subrole')}
+      <ValueListDropdown
+        {...props}
+        group='Participation Subrole'
         label={props.t('ParticipationModal.labels.subrole')}
-        onChange={props.onTextInputChange.bind(this, 'subrole')}
-        required={props.isRequired('subrole')}
-        value={props.item.subrole || ''}
+        object='Person'
       />
       <Form.TextArea
         error={props.isError('description')}

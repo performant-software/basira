@@ -10,8 +10,6 @@ export type Location = Qualifiable & {
   locateable_id: number,
   locateable_type: string,
   locateable: Artwork | Person,
-  role: string,
-  subrole: string,
   description: string,
   certainty: number,
   notes: string,
