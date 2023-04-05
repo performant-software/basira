@@ -6,8 +6,8 @@
     "yarn": "1.x"
   },
   "scripts": {
-    "build": "yarn --cwd client install && yarn --cwd client run build && cd ..",
+    "build": "yarn --cwd client install && yarn --cwd client run --openssl-legacy-provider build && cd ..",
     "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "yarn build && yarn deploy"
+    "heroku-postbuild": "yarn --openssl-legacy-provider build && yarn deploy"
   }
 }
