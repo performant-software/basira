@@ -6,8 +6,8 @@
     "yarn": "1.x"
   },
   "scripts": {
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && yarn --cwd client install && yarn --cwd client run build && cd ..",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && yarn --cwd client install && yarn --cwd client run build && cd ..",
     "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "set NODE_OPTIONS=--openssl-legacy-provider && yarn build && yarn deploy"
+    "heroku-postbuild": "export NODE_OPTIONS=--openssl-legacy-provider && yarn build && yarn deploy"
   }
 }
