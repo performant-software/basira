@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/performant-software/resource-api.git
-  revision: 0e58adf7ea410647eda91c637053a2f41db03417
-  tag: v0.4.0
+  revision: f1de1653b67fc1d623d7418e92d3bb3134df800e
+  tag: v0.4.2
   specs:
     resource_api (0.1.0)
       pagy (~> 5.10)
@@ -126,7 +126,7 @@ GEM
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     faraday-net_http (1.0.1)
-    ffi (1.15.0)
+    ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -245,7 +245,6 @@ DEPENDENCIES
   dotenv-rails
   image_processing (~> 1.0)
   listen (~> 3.2)
-  pagy (~> 5)
   pg
   puma (~> 6.1)
   rack-cors

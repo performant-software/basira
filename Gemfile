@@ -21,14 +21,11 @@ gem 'devise_token_auth'
 # Use .env files for environment variables
 gem 'dotenv-rails'
 
-# Pagination
-gem 'pagy', '~> 5'
-
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
 # Resource API
-gem 'resource_api', git: 'https://github.com/performant-software/resource-api.git', tag: 'v0.4.0'
+gem 'resource_api', git: 'https://github.com/performant-software/resource-api.git', tag: 'v0.4.2'
 
 # Airtable API integration for seeding and synchronizing data
 gem 'airrecord'

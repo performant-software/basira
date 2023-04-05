@@ -39,7 +39,7 @@ const Home = (props: Props) => {
 
   useEffect(() => {
     HomeService
-      .fetchAll({ limit: props.images })
+      .fetchAll()
       .then(({ data }) => {
         setImages(_.map(data.homes, (item) => item.primary_attachment.thumbnail_url));
       });
