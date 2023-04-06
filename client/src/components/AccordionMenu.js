@@ -1,7 +1,9 @@
 // @flow
 
-import React, { useCallback, useEffect, useState } from 'react';
-import { NestedAccordion } from 'react-components';
+import React, {
+  useCallback, useEffect, useMemo, useState
+} from 'react';
+import { LazyImage, NestedAccordion, Selectize } from 'react-components';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import {
@@ -10,12 +12,14 @@ import {
   Grid,
   Image,
   Loader,
-  Modal
+  Modal,
+  Card
 } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworksService from '../services/Artworks';
 import DocumentsService from '../services/Documents';
 import ItemLabel from './ItemLabel';
+import { getPhysicalComponents, getVisualContexts } from '../utils/Artwork';
 import PhysicalComponentsService from '../services/PhysicalComponents';
 import VisualContextsService from '../services/VisualContexts';
 import './AccordionMenu.css';
@@ -37,10 +41,13 @@ type Props = Routeable & Translateable & {
   id: number
 };
 
+const CHILD_TYPES = ['Document', 'Visual Context'];
+
 const AccordionMenu = (props: Props) => {
   const [artwork, setArtwork] = useState(null);
   const [defaultActive, setDefaultActive] = useState([]);
   const [selectedItem, setSelectedItem] = useState<?Item>(null);
+  const [reorderItem, setReorderItem] = useState<?Item>(null);
 
   /**
    * Calls the ArtworksService to load the data.
@@ -52,6 +59,14 @@ const AccordionMenu = (props: Props) => {
         setArtwork(transformArtwork(data.artwork));
       });
   }, [props.id]);
+
+  const physicalComponents = useMemo(() => (
+    artwork ? getPhysicalComponents(artwork) : []
+  ), [artwork]);
+
+  const visualContexts = useMemo(() => (
+    artwork ? getVisualContexts(artwork) : []
+  ), [artwork]);
 
   /**
    * Returns true if the passed item or any of its children is active. The IDs are also added to the list of
@@ -157,6 +172,12 @@ const AccordionMenu = (props: Props) => {
             e.stopPropagation();
             item.onAdd();
           }}
+        />
+      )}
+      { CHILD_TYPES.includes(item.type) && (
+        <Button
+          icon='arrows alternate vertical'
+          onClick={() => setReorderItem(item)}
         />
       )}
       { item.path && (
@@ -380,6 +401,30 @@ const AccordionMenu = (props: Props) => {
     }
   }, [artwork]);
 
+  const changeParent = useCallback((item: any, newParentId: number) => {
+    if (item.type === 'Document') {
+      return DocumentsService
+        .save({
+          id: item.id,
+          visual_context_id: newParentId
+        })
+        .then(() => {
+          setReorderItem(null);
+          fetchData();
+        });
+    }
+
+    return VisualContextsService
+      .save({
+        id: item.id,
+        physical_component_id: newParentId
+      })
+      .then(() => {
+        setReorderItem(null);
+        fetchData();
+      });
+  }, [reorderItem?.type]);
+
   return (
     <div
       className='accordion-menu'
@@ -389,6 +434,48 @@ const AccordionMenu = (props: Props) => {
           active
         />
       )}
+      { reorderItem && (
+        <Selectize
+          collectionName='items'
+          className='selectize-parent-select'
+          onClose={() => setReorderItem(null)}
+          onLoad={() => Promise.resolve({
+              data: {
+                items: reorderItem.type === 'Document' ? visualContexts : physicalComponents,
+                list: {
+                  count: reorderItem.type === 'Document'
+                    ? visualContexts.length
+                    : physicalComponents.length,
+                  pages: 1
+                }
+              }
+          })}
+          onSave={(items) => changeParent(reorderItem, items[0].id)}
+          multiple={false}
+          renderItem={(item) => (
+            <Card className='selectize-item'>
+              <Image>
+                <LazyImage
+                  image={{
+                    alt: item.name
+                  }}
+                  size='small'
+                  name={item.name}
+                  src={item.image}
+                />
+              </Image>
+              <Card.Content>
+                <Card.Header>
+                  {item.name}
+                </Card.Header>
+              </Card.Content>
+            </Card>
+          )}
+          title={reorderItem.type === 'Document'
+            ? props.t('Document.popups.changeVisualContext.header')
+            : props.t('Document.popups.changePhysicalComponent.header')}
+        />
+        )}
       { artwork && (
         <>
           <NestedAccordion

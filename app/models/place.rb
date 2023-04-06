@@ -10,6 +10,6 @@ class Place < ApplicationRecord
 
   # Resourceable parameters
   allow_params :name, :place_type, :lat, :long, :city, :state, :country, :url, :database_value, :notes, :same_as,
-               :part_of, locations_attributes: [:id, :locateable_id, :locateable_type, :description, :certainty,
+               :part_of, locations_attributes: [:id, :locateable_id, :locateable_type, :subrole, :description, :certainty,
                                                 :notes, :_destroy, qualifications_attributes: [:id, :value_list_id, :notes, :persistent, :_destroy]]
 end

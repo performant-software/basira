@@ -223,6 +223,12 @@
       "typeOfIllumination": "Type of Illumination",
       "uncutForeEdges": "Uncut Fore-Edges"
     },
+    "popups": {
+      "changeVisualContext": {
+        "header": "Select Parent Visual Context",
+        "content": "Change the parent visual context for this document."
+      }
+    },
     "sections": {
       "binding": "Binding",
       "bookmarks": "Bookmarks/Registers",
@@ -478,6 +484,12 @@
       "details": "Details",
       "notes": "Notes",
       "subjectMatter": "Subject Matter"
+    },
+    "popups": {
+      "changePhysicalComponent": {
+        "header": "Select Parent Physical Component",
+        "content": "Change the parent physical component for this visual context."
+      }
     }
   }
 }
