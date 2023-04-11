@@ -356,7 +356,8 @@ const Artwork = (props: Props) => {
             )
           }, {
             name: 'role',
-            label: props.t('Artwork.participations.columns.role')
+            label: props.t('Artwork.participations.columns.role'),
+            resolve: (pa) => Qualifiables.getValueListValue(pa, 'Person', 'Participation Role')
           }]}
           items={props.item.participations}
           key='participations'

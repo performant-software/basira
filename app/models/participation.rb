@@ -1,6 +1,7 @@
 class Participation < ApplicationRecord
   # Includes
   include Recordable
+  include Qualifiable
 
   # Relationships
   belongs_to :person
