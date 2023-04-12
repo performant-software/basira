@@ -9,7 +9,7 @@ module Locateable
     accepts_nested_attributes_for :locations, allow_destroy: true
 
     # Resourceable params
-    allow_params locations_attributes: [:id, :place_id, :subrole, :description, :certainty, 
+    allow_params locations_attributes: [:id, :place_id, :description, :certainty,
                                         :notes, :repository_work_url, :_destroy,
                                         qualifications_attributes: [:id, :value_list_id, :notes, :persistent, :_destroy]]
   end
