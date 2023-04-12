@@ -11,9 +11,9 @@ import {
   Confirm,
   Grid,
   Image,
+  Item as SemanticItem,
   Loader,
-  Modal,
-  Card
+  Modal
 } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworksService from '../services/Artworks';
@@ -453,27 +453,34 @@ const AccordionMenu = (props: Props) => {
           onSave={(items) => changeParent(reorderItem, items[0].id)}
           multiple={false}
           renderItem={(item) => (
-            <Card className='selectize-item'>
-              <Image>
-                <LazyImage
-                  image={{
-                    alt: item.name
+            <SemanticItem.Group>
+              <SemanticItem>
+                <SemanticItem.Image
+                  style={{
+                    width: 'unset'
                   }}
-                  size='small'
-                  name={item.name}
-                  src={item.image}
-                />
-              </Image>
-              <Card.Content>
-                <Card.Header>
-                  {item.name}
-                </Card.Header>
-              </Card.Content>
-            </Card>
+                >
+                  <LazyImage
+                    image={{
+                      alt: item.name
+                    }}
+                    size='tiny'
+                    name={item.name}
+                    src={item.image}
+                  />
+                </SemanticItem.Image>
+                <SemanticItem.Content>
+                  <SemanticItem.Header>
+                    {item.name}
+                  </SemanticItem.Header>
+                </SemanticItem.Content>
+              </SemanticItem>
+            </SemanticItem.Group>
           )}
+          searchable={false}
           title={reorderItem.type === 'Document'
             ? props.t('Document.popups.changeVisualContext.header')
-            : props.t('Document.popups.changePhysicalComponent.header')}
+            : props.t('VisualContext.popups.changePhysicalComponent.header')}
         />
         )}
       { artwork && (
