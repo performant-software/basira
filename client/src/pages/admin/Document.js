@@ -3,7 +3,11 @@
 import React, { useEffect, useMemo } from 'react';
 import { EmbeddedList, LazyImage } from 'react-components';
 import { withRouter } from 'react-router-dom';
-import { Dropdown, Form, Grid } from 'semantic-ui-react';
+import {
+  Dropdown,
+  Form,
+  Grid,
+} from 'semantic-ui-react';
 import _ from 'underscore';
 import ActionModal from '../../components/ActionModal';
 import Action from '../../transforms/Action';
