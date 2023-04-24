@@ -32,7 +32,7 @@ module Indexable
   def to_solr(omit_value_list_suffixes = false)
     model = self.class
 
-    prefix = "#{self.class.name.underscore}_"
+    prefix = "#{model.name.underscore}_"
 
     unless model.attributes_to_index.empty?
       solr_obj = {}
