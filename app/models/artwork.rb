@@ -30,26 +30,6 @@ class Artwork < ApplicationRecord
   def to_solr
     artwork_solr = super
 
-    # Create the "view" fields for multi-nested records.
-    # These are displayed on the Blacklight detail pages,
-    # but not searchable or facetable.
-    def ingest_view(items, model_name)
-      view = ''
-      items.each_with_index do |item, index|
-        view << "#{model_name} #{index + 1}:\n"
-        item.keys.each_with_index do |key, idx|
-          if item[key]
-            view << "#{key.gsub(model_name.gsub(' ', '').underscore, '').humanize}: #{item[key]}"
-            if idx != (item.keys.length - 1)
-              view << "\n"
-            end
-          end
-        end
-      end
-
-      view
-    end
-
     artwork_titles = self.artwork_titles.map { |at| at.to_solr(true) }
     artwork_title_data = {
       artwork_titles_ssim: artwork_titles.map { |at| at['artwork_title_title'] }
