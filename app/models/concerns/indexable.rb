@@ -27,8 +27,9 @@ module Indexable
       end
 
       # Index value list attributes
-      if model.method_defined?(:value_lists)
-        self.value_lists.each do |vl|
+      if self.has_attribute?(:qualifications)
+        value_lists = self.qualifications.map { |q| q[:value_list] }
+        value_lists.each do |vl|
           if omit_value_list_suffixes
             suffix = ''
           else
