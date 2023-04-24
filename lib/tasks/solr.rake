@@ -4,20 +4,6 @@ namespace :solr do
     if ENV["SOLR_URL"]
       solr = RSolr.connect(url: ENV["SOLR_URL"])
 
-      value_lists = ValueList.group(:object, :group).pluck(:object, :group)
-
-      value_list_fields = {}
-
-      # Create a hash for quick lookup of which fields
-      # to index for each item.
-      value_lists.each do |vl|
-        if !value_list_fields[vl[0]]
-          value_list_fields[vl[0]] = [vl[1]]
-        else
-          value_list_fields[vl[0]].push vl[1]
-        end
-      end
-
       docs_to_index = []
 
       def add_docs(solr, docs)
@@ -51,7 +37,7 @@ namespace :solr do
         },
         qualifications: :value_list
       ).find_each(batch_size: 250).with_index do |doc, index|
-        docs_to_index.push(doc.to_solr(value_list_fields, 'Document'))
+        docs_to_index.push(doc.to_solr)
 
         # Batch calls to solr to prevent memory issues
         if (index > 1 && index % 100 == 0)

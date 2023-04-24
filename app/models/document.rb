@@ -25,14 +25,14 @@ class Document < ApplicationRecord
                :transcription_translation, :artwork_id, actions_attributes: [:id, :notes, :_destroy,
                qualifications_attributes: [:id, :value_list_id, :notes, :persistent, :_destroy]]
 
-  def to_solr(value_list_fields, model_name)
+  def to_solr()
     document_solr = super
 
-    artwork_solr = self.artwork.to_solr(value_list_fields, 'Artwork')
-    visual_context_solr = self.visual_context.to_solr(value_list_fields, 'Visual Context')
+    artwork_solr = self.artwork.to_solr
+    visual_context_solr = self.visual_context.to_solr
 
     action_data = {
-      actions_tesim: self.actions.map { |a| a.to_solr(value_list_fields, 'Action') }.map{ |a| a['action_notes'] }.reject { |an| an.empty? }
+      actions_tesim: self.actions.map { |a| a.to_solr }.map{ |a| a['action_notes'] }.reject { |an| an.empty? }
     }
 
     # Remove the model prefix from the document id field

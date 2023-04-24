@@ -27,7 +27,7 @@ class Artwork < ApplicationRecord
                 artwork_titles_attributes: [:id, :title, :notes, :primary, :_destroy,
                 qualifications_attributes: [:id, :value_list_id, :notes, :persistent, :_destroy]]
 
-  def to_solr(value_list_fields, model_name)
+  def to_solr
     artwork_solr = super
 
     # Create the "view" fields for multi-nested records.
@@ -50,17 +50,17 @@ class Artwork < ApplicationRecord
       view
     end
 
-    artwork_titles = self.artwork_titles.map { |at| at.to_solr(value_list_fields, 'Artwork Title', true) }
+    artwork_titles = self.artwork_titles.map { |at| at.to_solr(true) }
     artwork_title_data = {
       artwork_titles_ssim: artwork_titles.map { |at| at['artwork_title_title'] }
     }
     artwork_titles_view = ingest_view(artwork_titles, 'Artwork Title')
 
-    locations_view = ingest_view(self.locations.map { |loc| loc.to_solr(value_list_fields, 'Location', true) }, 'Location')
+    locations_view = ingest_view(self.locations.map { |loc| loc.to_solr(true) }, 'Location')
 
     people = self.participations.map do |ap|
-      participation_solr = ap.to_solr(value_list_fields, 'Participation', true)
-      person_solr = ap.person.to_solr(value_list_fields, 'Person', true)
+      participation_solr = ap.to_solr(true)
+      person_solr = ap.person.to_solr(true)
 
       participation_solr.merge(person_solr)
     end
@@ -72,7 +72,7 @@ class Artwork < ApplicationRecord
     }
     people_view = ingest_view(people, 'Person')
 
-    places = self.locations.map(&:place).map { |place| place.to_solr(value_list_fields, 'Place', true)}
+    places = self.locations.map(&:place).map { |place| place.to_solr(true)}
     place_data = {
       place_names_ssim: places.map { |p| p['place_name'] }
     }

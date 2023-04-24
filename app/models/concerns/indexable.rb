@@ -9,7 +9,7 @@ module Indexable
     'Boolean': "_bsi",
   }
 
-  def to_solr(value_list_fields, model_name, omit_value_list_suffixes = false)
+  def to_solr(omit_value_list_suffixes = false)
     model = self.class
 
     prefix = "#{self.class.name.underscore}_"
@@ -26,28 +26,18 @@ module Indexable
         end
       end
 
-      # Check for value list records
-      if model.method_defined? :qualifications
-        value_list_items = self.qualifications.map { |q| q.value_list }
-      else
-        value_list_items = []
-      end
-
       # Index value list attributes
-      (value_list_fields[model_name] || []).each do |field_name|
-        matching = value_list_items.find { |v| v[:group] == field_name }
-        if matching
-          value = matching.human_name
-
+      if model.method_defined?(:value_lists)
+        self.value_lists.each do |vl|
           if omit_value_list_suffixes
             suffix = ''
           else
-            suffix = SUFFIXES[value.class.to_s.to_sym]
+            suffix = SUFFIXES[vl[:human_name].class.to_s.to_sym]
           end
 
           if suffix
             # Example key: visual_context_general_subject_genre_ssi
-            solr_obj["#{prefix}#{field_name.downcase.gsub(/[^0-9a-z]/i, "_")}#{suffix}"] = value
+            solr_obj["#{prefix}#{vl[:group].downcase.gsub(/[^0-9a-z]/i, "_")}#{suffix}"] = vl[:human_name]
           end
         end
       end

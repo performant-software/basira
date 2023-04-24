@@ -14,10 +14,10 @@ class VisualContext < ApplicationRecord
   # Resourceable parameters
   allow_params :physical_component_id, :name, :height, :width, :depth, :notes, :beta
 
-  def to_solr(value_list_fields, model_name)
+  def to_solr
     visual_context_solr = super
 
-    pc_solr = self.physical_component.to_solr(value_list_fields, 'Physical Component')
+    pc_solr = self.physical_component.to_solr
 
     if self.primary_attachment
       visual_context_solr['visual_context_img'] = self.primary_attachment.file_url
