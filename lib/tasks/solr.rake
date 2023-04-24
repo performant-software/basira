@@ -33,22 +33,22 @@ namespace :solr do
       end
 
       Document.preload(
-        primary_attachment: [file_attachment: :blob],
+        primary_attachment: { file_attachment: :blob} ,
         actions: { qualifications: :value_list },
-        visual_context: [
-          primary_attachment: [file_attachment: :blob],
-          physical_component: { primary_attachment: [file_attachment: :blob] },
+        visual_context: {
+          primary_attachment: { file_attachment: :blob },
+          physical_component: { primary_attachment: { file_attachment: :blob } },
           qualifications: :value_list
-        ],
-        artwork: [
-          primary_attachment: [file_attachment: :blob],
+        },
+        artwork: {
+          primary_attachment: { file_attachment: :blob },
           artwork_titles: { qualifications: :value_list },
-          participations: [
+          participations: {
             qualifications: :value_list,
-            person: { qualifications: :value_list }],
-          locations: [:place, qualifications: :value_list ],
+            person: { qualifications: :value_list } },
+          locations: [:place, qualifications: :value_list],
           qualifications: :value_list
-        ],
+        },
         qualifications: :value_list
       ).find_each(batch_size: 250).with_index do |doc, index|
         docs_to_index.push(doc.to_solr(value_list_fields, 'Document'))
