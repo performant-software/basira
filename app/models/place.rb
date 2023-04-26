@@ -1,5 +1,6 @@
 class Place < ApplicationRecord
   # Includes
+  include Indexable
   include Recordable
 
   # Relationships
@@ -7,6 +8,8 @@ class Place < ApplicationRecord
 
   # Nested attributes
   accepts_nested_attributes_for :locations, allow_destroy: :true
+
+  attributes_to_index name: nil, place_type: nil, lat: nil, long: nil, city: nil, state: nil, country: nil, database_value: nil, notes: nil
 
   # Resourceable parameters
   allow_params :name, :place_type, :lat, :long, :city, :state, :country, :url, :database_value, :notes, :same_as,

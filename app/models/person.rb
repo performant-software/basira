@@ -1,5 +1,6 @@
 class Person < ApplicationRecord
   # Includes
+  include Indexable
   include Locateable
   include Qualifiable
   include Recordable
@@ -9,6 +10,8 @@ class Person < ApplicationRecord
 
   # Nested attributes
   accepts_nested_attributes_for :participations, allow_destroy: :true
+
+  attributes_to_index display_name: nil, name: nil, person_type: nil, authorized_vocabulary: nil, database_value: nil, comment: nil, artist_birth_date: nil, artist_death_date: nil, years_active: nil
 
   # Resourceable parameters
   allow_params :name, :display_name, :person_type, :authorized_vocabulary, :url, :database_value, :comment, :part_of,
