@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-flow": "^7.21.4",
     "flow-bin": "^0.133.0"
   },
   "resolutions": {

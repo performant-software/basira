@@ -13,7 +13,10 @@ const App = () => (
     <Route exact path='/'>
       <Home images={6} />
     </Route>
-    <AuthenticatedRoute path='/admin' component={Admin} />
+    <AuthenticatedRoute
+      path='/admin'
+      component={Admin}
+    />
   </Router>
 );
 
