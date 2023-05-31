@@ -9,6 +9,7 @@ import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Document from './pages/Document';
 import Home from './pages/Home';
 import NotFound404 from './pages/404';
+import Person from './pages/Person';
 import PhysicalComponent from './pages/PhysicalComponent';
 import VisualContext from './pages/VisualContext';
 import './App.css';
@@ -30,6 +31,10 @@ const App = () => (
     <Route
       path='/documents/:id'
       component={Document}
+    />
+    <Route
+      path='/people/:id'
+      component={Person}
     />
     <Route
       path='/physical_components/:id'
