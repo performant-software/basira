@@ -3,50 +3,15 @@
 import React, { useCallback } from 'react';
 import { BooleanIcon, LazyImage } from 'react-components';
 import { useTranslation } from 'react-i18next';
-import {
-  Header,
-  Item,
-  Label,
-  Segment
-} from 'semantic-ui-react';
+import { Header, Segment } from 'semantic-ui-react';
 import _ from 'underscore';
 import AttributesGrid from '../components/AttributesGrid';
+import DocumentActions from '../components/DocumentActions';
 import DocumentsService from '../services/Documents';
 import RecordPage from '../components/RecordPage';
 import useCurrentRecord from '../hooks/CurrentRecord';
 
 const Document = () => {
-  /**
-   * Renders the descriptors for the passed action.
-   *
-   * @type {function(*, *, *): *}
-   */
-  const renderDescriptors = useCallback((action, group, color) => {
-    const descriptors = _.where(action.qualifications, {
-      value_list_object: 'Action',
-      value_list_group: group
-    });
-
-    return _.map(descriptors, (qualification) => (
-      <Label
-        color={color}
-        content={qualification.value_list.human_name}
-      />
-    ));
-  }, []);
-
-  /**
-   * Renders the text sentence for the passed action.
-   *
-   * @type {function(*): *}
-   */
-  const renderActionText = useCallback((action) => {
-    const verb = _.findWhere(action.qualifications, { value_list_object: 'Document', value_list_group: 'Action' });
-    const entity = _.findWhere(action.qualifications, { value_list_object: 'Action', value_list_group: 'Entity' });
-
-    return t('Document.labels.action', { verb: verb.value_list.human_name, entity: entity.value_list.human_name });
-  }, []);
-
   /**
    * Callback for loading the current document.
    *
@@ -131,26 +96,9 @@ const Document = () => {
           title={t('Document.tabs.actions')}
         >
           <Segment>
-            <Item.Group
-              divided
-            >
-              { _.map(item.actions, (action) => (
-                <Item>
-                  <Item.Content>
-                    <Item.Header>
-                      { renderActionText(action) }
-                    </Item.Header>
-                    <Item.Description>
-                      { action.notes }
-                    </Item.Description>
-                    <Item.Extra>
-                      { renderDescriptors(action, 'Characteristic', 'blue') }
-                      { renderDescriptors(action, 'Body', 'green') }
-                    </Item.Extra>
-                  </Item.Content>
-                </Item>
-              ))}
-            </Item.Group>
+            <DocumentActions
+              items={item.actions}
+            />
           </Segment>
         </RecordPage.Section>
       )}
