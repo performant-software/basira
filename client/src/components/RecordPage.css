@@ -20,3 +20,13 @@
   justify-content: center;
   font-weight: bold;
 }
+
+.record-page .image-container.ui.container {
+  display: flex;
+  justify-content: center;
+}
+
+.record-page .lazy-image {
+  width: fit-content;
+}
+

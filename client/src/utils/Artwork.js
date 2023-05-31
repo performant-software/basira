@@ -1,6 +1,7 @@
 // @flow
 
 import _ from 'underscore';
+import type { Artwork } from '../types/Artwork';
 
 /**
  * Returns a flat array of Visual Contexts
@@ -23,3 +24,8 @@ export const getVisualContexts = (artwork: any) => (
  * @returns {Array<PhysicalComponent>}
  */
 export const getPhysicalComponents = (artwork: any) => artwork.children;
+
+export const getPrimaryTitle = (artwork: Artwork) => {
+  const title = _.findWhere(artwork.artwork_titles, { primary: true });
+  return title && title.title;
+};

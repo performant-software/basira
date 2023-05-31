@@ -14,7 +14,6 @@ import AttributesGrid from '../components/AttributesGrid';
 import DocumentsService from '../services/Documents';
 import RecordPage from '../components/RecordPage';
 import useCurrentRecord from '../hooks/CurrentRecord';
-import './Document.css';
 
 const Document = () => {
   /**
@@ -48,6 +47,11 @@ const Document = () => {
     return t('Document.labels.action', { verb: verb.value_list.human_name, entity: entity.value_list.human_name });
   }, []);
 
+  /**
+   * Callback for loading the current document.
+   *
+   * @type {function(*): Promise<AxiosResponse<T>>|Promise<AxiosResponse<T>|unknown>|Promise<unknown>|*}
+   */
   const onLoad = useCallback((id) => (
     DocumentsService
       .fetchOne(id)

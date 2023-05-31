@@ -1,8 +1,0 @@
-.document .image-container.ui.container {
-  display: flex;
-  justify-content: center;
-}
-
-.document .image-container.ui.container > .lazy-image {
-  width: fit-content;
-}

@@ -83,6 +83,11 @@
       "objectWorkTypes": "Select object/work type...",
       "techniques": "Select technique(s)..."
     },
+    "sections": {
+      "creators": "Creators",
+      "locations": "Locations",
+      "titles": "Titles"
+    },
     "tabs": {
       "creators": "Creators",
       "images": "Images",
@@ -138,6 +143,7 @@
   "Common": {
     "buttons": {
       "cancel": "Cancel",
+      "viewSource": "View Source",
       "save": "Save"
     },
     "errors": {
