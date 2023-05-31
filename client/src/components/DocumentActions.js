@@ -7,6 +7,7 @@ import _ from 'underscore';
 import type { Action } from '../types/Action';
 
 type Props = {
+  // $FlowIgnore - Not sure why this is throwing a Flow error
   items: Array<Action>
 };
 
