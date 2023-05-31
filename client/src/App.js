@@ -8,6 +8,7 @@ import Artwork from './pages/Artwork';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Document from './pages/Document';
 import Home from './pages/Home';
+import NotFound404 from './pages/404';
 import PhysicalComponent from './pages/PhysicalComponent';
 import VisualContext from './pages/VisualContext';
 import './App.css';
@@ -37,6 +38,10 @@ const App = () => (
     <Route
       path='/visual_contexts/:id'
       component={VisualContext}
+    />
+    <Route
+      path='/404'
+      component={NotFound404}
     />
     <AuthenticatedRoute
       path='/admin'
