@@ -9,6 +9,7 @@ import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Document from './pages/Document';
 import Home from './pages/Home';
 import PhysicalComponent from './pages/PhysicalComponent';
+import VisualContext from './pages/VisualContext';
 import './App.css';
 
 const App = () => (
@@ -32,6 +33,10 @@ const App = () => (
     <Route
       path='/physical_components/:id'
       component={PhysicalComponent}
+    />
+    <Route
+      path='/visual_contexts/:id'
+      component={VisualContext}
     />
     <AuthenticatedRoute
       path='/admin'
