@@ -8,6 +8,7 @@ import Artwork from './pages/Artwork';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Document from './pages/Document';
 import Home from './pages/Home';
+import PhysicalComponent from './pages/PhysicalComponent';
 import './App.css';
 
 const App = () => (
@@ -27,6 +28,10 @@ const App = () => (
     <Route
       path='/documents/:id'
       component={Document}
+    />
+    <Route
+      path='/physical_components/:id'
+      component={PhysicalComponent}
     />
     <AuthenticatedRoute
       path='/admin'
