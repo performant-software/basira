@@ -1,0 +1,22 @@
+.record-page {
+  padding-bottom: 3em;
+}
+
+.record-page .ui.menu {
+  border-radius: 0;
+}
+
+.record-page .section {
+  margin-bottom: 2em;
+}
+
+.record-page .attributes-grid > .row:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+.record-page .attributes-grid > .row > .column.label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+}

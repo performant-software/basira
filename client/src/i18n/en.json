@@ -146,6 +146,7 @@
     "labels": {
       "artwork": "Artwork",
       "document": "Document",
+      "id": "ID",
       "physicalComponent": "Physical Component",
       "visualContext": "Visual Context"
     },
@@ -172,6 +173,7 @@
       }
     },
     "labels": {
+      "action": "The document {{verb}} {{entity}}",
       "aperture": "Aperture",
       "bindingColor": "Binding Color",
       "bindingIconography": "Binding Iconography",
