@@ -1,12 +1,12 @@
 // @flow
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import _ from 'underscore';
 import Artworks from '../components/Artworks';
 import AttributesGrid from '../components/AttributesGrid';
-import Locations from '../components/Locations';
 import People from '../services/People';
+import Places from '../components/Places';
 import RecordPage from '../components/RecordPage';
 import useCurrentRecord from '../hooks/CurrentRecord';
 
@@ -22,6 +22,13 @@ const Person = () => {
 
   const { item, loading } = useCurrentRecord(onLoad);
   const { t } = useTranslation();
+
+  /**
+   * Sets the related artworks.
+   */
+  const artworks = useMemo(() => (
+    _.map(_.where(item?.participations, { participateable_type: 'Artwork' }), (p) => p.participateable)
+  ), [item]);
 
   return (
     <RecordPage
@@ -61,7 +68,7 @@ const Person = () => {
           title={t('Person.tabs.artworks')}
         >
           <Artworks
-            items={_.where(item.participations, { participateable_type: 'Artwork' })}
+            artworks={artworks}
           />
         </RecordPage.Section>
       )}
@@ -69,8 +76,8 @@ const Person = () => {
         <RecordPage.Section
           title={t('Common.tabs.locations')}
         >
-          <Locations
-            items={item.locations}
+          <Places
+            places={_.map(item.locations, (location) => location.place)}
           />
         </RecordPage.Section>
       )}

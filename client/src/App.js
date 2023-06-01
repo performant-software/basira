@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import NotFound404 from './pages/404';
 import Person from './pages/Person';
 import PhysicalComponent from './pages/PhysicalComponent';
+import Place from './pages/Place';
 import VisualContext from './pages/VisualContext';
 import './App.css';
 
@@ -39,6 +40,10 @@ const App = () => (
     <Route
       path='/physical_components/:id'
       component={PhysicalComponent}
+    />
+    <Route
+      path='/places/:id'
+      component={Place}
     />
     <Route
       path='/visual_contexts/:id'

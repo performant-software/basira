@@ -4,15 +4,14 @@ import React from 'react';
 import { LazyImage } from 'react-components';
 import { Item } from 'semantic-ui-react';
 import _ from 'underscore';
-import CertaintyLabel from './CertaintyLabel';
-import type { Participation } from '../types/Participation';
+import type { Artwork } from '../types/Artwork';
 
 type Props = {
-  items: Array<Participation>
+  artworks: Array<Artwork>
 };
 
 const Artworks = (props: Props) => {
-  if (!props.items) {
+  if (!props.artworks) {
     return null;
   }
 
@@ -21,28 +20,25 @@ const Artworks = (props: Props) => {
       divided
       relaxed='very'
     >
-      { _.map(props.items, (item) => (
+      { _.map(props.artworks, (artwork) => (
         <Item>
-          <Item.Image>
-            <LazyImage
-              src={item.participateable?.primary_attachment?.thumbnail_url}
-            />
-          </Item.Image>
+          { artwork.primary_attachment && (
+            <Item.Image>
+              <LazyImage
+                src={artwork.primary_attachment.thumbnail_url}
+              />
+            </Item.Image>
+          )}
           <Item.Content>
             <Item.Header
-              content={item.participateable?.primary_title?.title}
+              content={artwork.primary_title?.title}
             />
             <Item.Meta
-              content={item.participateable?.date_descriptor}
+              content={artwork.date_descriptor}
             />
             <Item.Description
-              content={item.notes_external}
+              content={artwork.notes_external}
             />
-            <Item.Extra>
-              <CertaintyLabel
-                value={item.certainty}
-              />
-            </Item.Extra>
           </Item.Content>
         </Item>
       ))}

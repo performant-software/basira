@@ -4,12 +4,13 @@ import React, { useCallback } from 'react';
 import { LazyImage } from 'react-components';
 import { useTranslation } from 'react-i18next';
 import { Segment } from 'semantic-ui-react';
+import _ from 'underscore';
 import ArtworkCreators from '../components/ArtworkCreators';
 import ArtworkTitles from '../components/ArtworkTitles';
 import ArtworksService from '../services/Artworks';
 import AttributesGrid from '../components/AttributesGrid';
 import { getPrimaryTitle } from '../utils/Artwork';
-import Locations from '../components/Locations';
+import Places from '../components/Places';
 import RecordPage from '../components/RecordPage';
 import useCurrentRecord from '../hooks/CurrentRecord';
 
@@ -119,8 +120,8 @@ const Artwork = () => {
       <RecordPage.Section
         title={t('Artwork.sections.locations')}
       >
-        <Locations
-          items={item?.locations}
+        <Places
+          places={_.map(item?.locations, (location) => location.place)}
         />
       </RecordPage.Section>
     </RecordPage>
