@@ -91,7 +91,7 @@ const Document = () => {
           item={item}
         />
       </RecordPage.Section>
-      { item && !_.isEmpty(item.actions) && (
+      { !_.isEmpty(item?.actions) && (
         <RecordPage.Section
           title={t('Document.tabs.actions')}
         >

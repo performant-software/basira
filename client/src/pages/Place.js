@@ -37,7 +37,7 @@ const Place = () => {
       loading={loading}
       renderTitle={() => item.name}
     >
-      { item && (
+      { item && item.lat && item.long && (
         <RecordPage.Section>
           <GoogleMap
             googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
@@ -72,13 +72,15 @@ const Place = () => {
           item={item}
         />
       </RecordPage.Section>
-      <RecordPage.Section
-        title={t('Place.tabs.artworks')}
-      >
-        <Artworks
-          artworks={artworks}
-        />
-      </RecordPage.Section>
+      { !_.isEmpty(artworks) && (
+        <RecordPage.Section
+          title={t('Place.tabs.artworks')}
+        >
+          <Artworks
+            artworks={artworks}
+          />
+        </RecordPage.Section>
+      )}
     </RecordPage>
   );
 };

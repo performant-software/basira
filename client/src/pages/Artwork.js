@@ -43,15 +43,17 @@ const Artwork = () => {
           />
         </RecordPage.Section>
       )}
-      <RecordPage.Section
-        title={t('Artwork.sections.titles')}
-      >
-        <Segment>
-          <ArtworkTitles
-            items={item?.artwork_titles}
-          />
-        </Segment>
-      </RecordPage.Section>
+      { !_.isEmpty(item?.artwork_titles) && (
+        <RecordPage.Section
+          title={t('Artwork.sections.titles')}
+        >
+          <Segment>
+            <ArtworkTitles
+              items={item.artwork_titles}
+            />
+          </Segment>
+        </RecordPage.Section>
+      )}
       <RecordPage.Section>
         <AttributesGrid
           attributes={[{
@@ -110,20 +112,24 @@ const Artwork = () => {
           item={item}
         />
       </RecordPage.Section>
-      <RecordPage.Section
-        title={t('Artwork.sections.creators')}
-      >
-        <ArtworkCreators
-          items={item?.participations}
-        />
-      </RecordPage.Section>
-      <RecordPage.Section
-        title={t('Artwork.sections.locations')}
-      >
-        <Places
-          places={_.map(item?.locations, (location) => location.place)}
-        />
-      </RecordPage.Section>
+      { !_.isEmpty(item?.participations) && (
+        <RecordPage.Section
+          title={t('Artwork.sections.creators')}
+        >
+          <ArtworkCreators
+            items={item.participations}
+          />
+        </RecordPage.Section>
+      )}
+      { !_.isEmpty(item?.locations && (
+        <RecordPage.Section
+          title={t('Artwork.sections.locations')}
+        >
+          <Places
+            places={_.map(item.locations, (location) => location.place)}
+          />
+        </RecordPage.Section>
+      ))}
     </RecordPage>
   );
 };
