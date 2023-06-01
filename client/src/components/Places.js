@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Item, Label } from 'semantic-ui-react';
 import _ from 'underscore';
 import type { Place } from '../types/Place';
+import SimpleLink from './SimpleLink';
 
 type Props = {
   places: Array<Place>
@@ -25,9 +26,13 @@ const Places = (props: Props) => {
       { _.map(props.places, (place) => (
         <Item>
           <Item.Content>
-            <Item.Header
-              content={place.name}
-            />
+            <Item.Header>
+              <SimpleLink
+                url={`/places/${place.id}`}
+              >
+                { place.name }
+              </SimpleLink>
+            </Item.Header>
             <Item.Meta
               content={place.country}
             />

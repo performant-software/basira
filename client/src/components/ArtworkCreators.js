@@ -7,6 +7,7 @@ import type { Participation } from '../types/Participation';
 import Qualifiables from '../utils/Qualifiables';
 import CertaintyLabel from './CertaintyLabel';
 import RolesView from './RolesView';
+import SimpleLink from './SimpleLink';
 
 type Props = {
   items: Array<Participation>
@@ -25,9 +26,13 @@ const ArtworkCreators = (props: Props) => {
       { _.map(props.items, (item) => (
         <Item>
           <Item.Content>
-            <Item.Header
-              content={item.person.display_name}
-            />
+            <Item.Header>
+              <SimpleLink
+                url={`/people/${item.person.id}`}
+              >
+                { item.person.display_name }
+              </SimpleLink>
+            </Item.Header>
             <Item.Meta>
               <RolesView
                 value={[

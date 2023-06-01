@@ -5,6 +5,7 @@ import { LazyImage } from 'react-components';
 import { Item } from 'semantic-ui-react';
 import _ from 'underscore';
 import type { Artwork } from '../types/Artwork';
+import SimpleLink from './SimpleLink';
 
 type Props = {
   artworks: Array<Artwork>
@@ -30,9 +31,13 @@ const Artworks = (props: Props) => {
             </Item.Image>
           )}
           <Item.Content>
-            <Item.Header
-              content={artwork.primary_title?.title}
-            />
+            <Item.Header>
+              <SimpleLink
+                url={`/artworks/${artwork.id}`}
+              >
+                { artwork.primary_title?.title }
+              </SimpleLink>
+            </Item.Header>
             <Item.Meta
               content={artwork.date_descriptor}
             />
