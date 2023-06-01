@@ -2,7 +2,10 @@
 
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import _ from 'underscore';
+import Artworks from '../components/Artworks';
 import AttributesGrid from '../components/AttributesGrid';
+import Locations from '../components/Locations';
 import People from '../services/People';
 import RecordPage from '../components/RecordPage';
 import useCurrentRecord from '../hooks/CurrentRecord';
@@ -10,6 +13,7 @@ import useCurrentRecord from '../hooks/CurrentRecord';
 const Person = () => {
   /**
    * Callback to load the current person record.
+   *
    * @type {function(*): Promise<AxiosResponse<T>>|Promise<AxiosResponse<T>|unknown>|Promise<unknown>|*}
    */
   const onLoad = useCallback((id) => (
@@ -52,6 +56,24 @@ const Person = () => {
           item={item}
         />
       </RecordPage.Section>
+      { !_.isEmpty(item?.participations) && (
+        <RecordPage.Section
+          title={t('Person.tabs.artworks')}
+        >
+          <Artworks
+            items={_.where(item.participations, { participateable_type: 'Artwork' })}
+          />
+        </RecordPage.Section>
+      )}
+      { !_.isEmpty(item?.locations) && (
+        <RecordPage.Section
+          title={t('Common.tabs.locations')}
+        >
+          <Locations
+            items={item.locations}
+          />
+        </RecordPage.Section>
+      )}
     </RecordPage>
   );
 };

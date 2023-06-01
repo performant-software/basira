@@ -31,9 +31,7 @@ const Locations = (props: Props) => {
             <Item.Header
               content={item.place.name}
             />
-            <Item.Meta
-              content={item.place.country}
-            >
+            <Item.Meta>
               <List
                 divided
                 horizontal
