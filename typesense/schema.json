@@ -1,0 +1,15 @@
+{
+  "name": "documents",
+  "enable_nested_fields": true,
+  "fields": [
+    {
+      "name": ".*_facet",
+      "type": "auto",
+      "facet": true
+    },
+    {
+      "name": ".*",
+      "type": "auto"
+    }
+  ]
+}

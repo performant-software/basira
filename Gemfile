@@ -39,8 +39,8 @@ gem 'image_processing', '~> 1.0'
 # Data migration
 gem 'data_migrate', '~> 9.0'
 
-# Solr for indexing
-gem 'rsolr', '~> 2.5'
+# Typesense for search indexing
+gem 'typesense', '~> 0.14'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
