@@ -1,0 +1,111 @@
+{
+  "name": "documents",
+  "enable_nested_fields": true,
+  "fields": [
+    {
+      "name": "actions.verb_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "actions.entity_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "actions.entity_descriptors_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "actions.body_descriptors_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.date_end_facet",
+      "type": "string",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.date_start_facet",
+      "type": "string",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.techniques_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.object_work_type_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.artwork_titles.title_type_facet",
+      "type": "string",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.creators.nationality_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.city_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.state_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.country_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "visual_context.general_subject_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "visual_context.subject_cultural_context_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "visual_context.specific_subject_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": ".*_facet",
+      "type": "auto",
+      "facet": true
+    },
+    {
+      "name": ".*",
+      "type": "auto"
+    }
+  ]
+}

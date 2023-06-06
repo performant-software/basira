@@ -1,8 +1,8 @@
 class ArtworkTitle < ApplicationRecord
-  include Indexable
+  # Includes
   include Qualifiable
+  include Search::ArtworkTitle
 
+  # Relationships
   belongs_to :artwork
-
-  attributes_to_index title: nil, title_type: nil, notes: nil
 end
