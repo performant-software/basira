@@ -3,7 +3,7 @@ class Api::BaseController < Api::ResourceController
   include DeviseTokenAuth::Concerns::SetUserByToken
 
   # Actions
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
 
   protected
 

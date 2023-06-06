@@ -1,4 +1,12 @@
 {
+  "404": {
+    "messages": {
+      "notFound": {
+        "content": "We can't seem to find the page you're looking for. Try going back to the previous page or starting your search over.",
+        "header": "Page Not Found"
+      }
+    }
+  },
   "AccordionMenu": {
     "deleteContent": "Are you sure you want to remove {{name}}?",
     "deleteHeader": "Confirm Remove"
@@ -83,6 +91,11 @@
       "objectWorkTypes": "Select object/work type...",
       "techniques": "Select technique(s)..."
     },
+    "sections": {
+      "creators": "Creators",
+      "locations": "Locations",
+      "titles": "Titles"
+    },
     "tabs": {
       "creators": "Creators",
       "images": "Images",
@@ -137,7 +150,9 @@
   },
   "Common": {
     "buttons": {
+      "back": "Back",
       "cancel": "Cancel",
+      "viewSource": "View Source",
       "save": "Save"
     },
     "errors": {
@@ -146,6 +161,7 @@
     "labels": {
       "artwork": "Artwork",
       "document": "Document",
+      "id": "ID",
       "physicalComponent": "Physical Component",
       "visualContext": "Visual Context"
     },
@@ -172,6 +188,7 @@
       }
     },
     "labels": {
+      "action": "The document {{verb}} {{entity}}",
       "aperture": "Aperture",
       "bindingColor": "Binding Color",
       "bindingIconography": "Binding Iconography",

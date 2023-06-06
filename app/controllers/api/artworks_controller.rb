@@ -63,4 +63,10 @@ class Api::ArtworksController < Api::BaseController
 
     super.or(artist_query)
   end
+
+  def base_query
+    return super if current_user.present?
+
+    Artwork.where(published: true)
+  end
 end

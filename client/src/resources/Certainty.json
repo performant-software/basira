@@ -1,13 +1,16 @@
 [{
   "key": 1,
   "value": 1,
-  "text": "Unlikely"
+  "text": "Unlikely",
+  "color": "red"
 }, {
   "key": 2,
   "value": 2,
-  "text": "Likely"
+  "text": "Likely",
+  "color": "yellow"
 }, {
   "key": 3,
   "value": 3,
-  "text": "Certain"
+  "text": "Certain",
+  "color": "green"
 }]
