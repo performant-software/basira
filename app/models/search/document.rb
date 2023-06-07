@@ -2,6 +2,43 @@ module Search
   module Document
     extend ActiveSupport::Concern
 
+    class_methods do
+      def published
+        preload = {
+          **::Document.primary_attachment_preload,
+          actions: {
+            qualifications: :value_list
+          },
+          visual_context: {
+            **::VisualContext.primary_attachment_preload,
+            physical_component: {
+              **::PhysicalComponent.primary_attachment_preload
+            },
+            qualifications: :value_list
+          },
+          artwork: {
+            **::Artwork.primary_attachment_preload,
+            artwork_titles: {
+              qualifications: :value_list
+            },
+            participations: {
+              qualifications: :value_list,
+              person: {
+                qualifications: :value_list
+              }
+            },
+            locations: [:place, qualifications: :value_list],
+            qualifications: :value_list
+          },
+          qualifications: :value_list
+        }
+
+        preload(preload)
+          .joins(visual_context: { physical_component: :artwork })
+          .where(artworks: { published: true })
+      end
+    end
+
     included do
       # Includes
       include Base
