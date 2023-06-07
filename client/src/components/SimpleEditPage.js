@@ -1,7 +1,8 @@
 // @flow
 
 import React, { Component, createRef } from 'react';
-import { Element, Toaster } from 'react-components';
+import { Toaster } from '@performant-software/semantic-components';
+import { Element } from '@performant-software/shared-components';
 import { withRouter, RouterHistory } from 'react-router-dom';
 import {
   Button,

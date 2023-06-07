@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { ListTable } from 'react-components';
+import { ListTable } from '@performant-software/semantic-components';
 import { Container } from 'semantic-ui-react';
 import PlacesService from '../../services/Places';
 import withMenuBar from '../../hooks/MenuBar';

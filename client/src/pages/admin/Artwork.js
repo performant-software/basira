@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useCallback, useState } from 'react';
-import { BooleanIcon, EditModal, EmbeddedList } from 'react-components';
+import { BooleanIcon, EditModal, EmbeddedList } from '@performant-software/semantic-components';
 import { Card, Form, Header } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworkTitleModal from '../../components/ArtworkTitleModal';

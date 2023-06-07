@@ -1,7 +1,8 @@
 // @flow
 
 import React, { useCallback, useMemo } from 'react';
-import { GoogleMap } from 'react-components';
+import { GoogleMap } from '@performant-software/semantic-components';
+import { GoogleScript } from '@performant-software/shared-components';
 import { useTranslation } from 'react-i18next';
 import _ from 'underscore';
 import Artworks from '../components/Artworks';
@@ -39,10 +40,13 @@ const Place = () => {
     >
       { item && item.lat && item.long && (
         <RecordPage.Section>
-          <GoogleMap
+          <GoogleScript
             googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
-            position={{ lat: item.lat, lng: item.long }}
-          />
+          >
+            <GoogleMap
+              position={{ lat: item.lat, lng: item.long }}
+            />
+          </GoogleScript>
         </RecordPage.Section>
       )}
       <RecordPage.Section>

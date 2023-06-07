@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { LoginModal } from 'react-components';
+import { LoginModal } from '@performant-software/semantic-components';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import {

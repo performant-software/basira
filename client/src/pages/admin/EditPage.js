@@ -1,7 +1,7 @@
 // @flow
 
 import React, { type ComponentType } from 'react';
-import { useEditContainer } from 'react-components';
+import { useEditContainer } from '@performant-software/shared-components';
 import { useHistory, useParams } from 'react-router-dom';
 import _ from 'underscore';
 

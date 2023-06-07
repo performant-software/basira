@@ -3,7 +3,7 @@
 import React, {
   useCallback, useEffect, useMemo, useState
 } from 'react';
-import { LazyImage, NestedAccordion, Selectize } from 'react-components';
+import { LazyImage, NestedAccordion, Selectize } from '@performant-software/semantic-components';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import {

@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { LazyImage } from 'react-components';
+import { LazyImage } from '@performant-software/semantic-components';
 import { Item } from 'semantic-ui-react';
 import _ from 'underscore';
 import type { Artwork } from '../types/Artwork';

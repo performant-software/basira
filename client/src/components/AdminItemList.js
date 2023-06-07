@@ -1,7 +1,7 @@
 // @flow
 
 import React, { type ComponentType } from 'react';
-import { ItemList } from 'react-components';
+import { ItemList } from '@performant-software/semantic-components';
 import { withRouter, Location, RouterHistory } from 'react-router-dom';
 import _ from 'underscore';
 import { Container } from 'semantic-ui-react';

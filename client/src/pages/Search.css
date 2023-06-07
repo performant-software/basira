@@ -1,0 +1,23 @@
+.search > .ui.menu {
+  border-radius: 0;
+}
+
+.search .item-collection {
+  padding-bottom: 1em;
+}
+
+.search .item-collection .ui.cards > .card > .content > .description,
+.search .item-collection .ui.cards > .card > .content > .header,
+.search .item-collection .ui.cards > .card > .content > .meta,
+.search .item-collection .ui.cards > .card > .content.extra > div {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search .ui.grid > .row > .column.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
