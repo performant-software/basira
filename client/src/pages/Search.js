@@ -81,9 +81,14 @@ const Search = () => (
                 )}
                 renderMeta={(document) => document.artwork.name}
               />
-              <SearchPagination
-                scrollToTop
-              />
+              <Container
+                className='pagination'
+                fluid
+              >
+                <SearchPagination
+                  scrollToTop
+                />
+              </Container>
             </Grid.Column>
           </Grid.Row>
         </Grid>

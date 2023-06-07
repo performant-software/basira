@@ -6,16 +6,13 @@
   padding-bottom: 1em;
 }
 
-.search .item-collection .ui.cards > .card > .content > .description,
-.search .item-collection .ui.cards > .card > .content > .header,
-.search .item-collection .ui.cards > .card > .content > .meta,
-.search .item-collection .ui.cards > .card > .content.extra > div {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.search .item-collection .ui.items > .item > .image > img {
+  aspect-ratio: 1 / 1;
+  border: none;
+  object-fit: cover;
 }
 
-.search .ui.grid > .row > .column.results {
+.search .ui.grid > .row > .column.results > .pagination.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
