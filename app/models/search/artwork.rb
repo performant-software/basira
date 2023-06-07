@@ -15,6 +15,10 @@ module Search
       search_attribute :materials, object: 'Artwork', group: 'Materials', multiple: true, facet: true
       search_attribute :techniques, object: 'Artwork', group: 'Technique', multiple: true, facet: true
 
+      search_attribute(:name) do
+        primary_title&.title
+      end
+
       search_attribute(:image_url) do
         primary_attachment&.thumbnail_url
       end
