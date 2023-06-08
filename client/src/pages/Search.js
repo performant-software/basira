@@ -2,20 +2,20 @@
 
 import React from 'react';
 import { InstantSearch } from 'react-instantsearch-hooks-web';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Grid,
   Header,
-  Image,
   Menu
 } from 'semantic-ui-react';
 import searchClient from '../config/Search';
-import './Search.css';
 import SearchBox from '../components/SearchBox';
-import SearchResults from '../components/SearchResults';
-import { Link } from 'react-router-dom';
-import SearchResultDescription from '../components/SearchResultDescription';
 import SearchPagination from '../components/SearchPagination';
+import SearchResults from '../components/SearchResults';
+import SearchResultDescription from '../components/SearchResultDescription';
+import SearchThumbnail from '../components/SearchThumbnail';
+import './Search.css';
 
 const Search = () => (
   <Container
@@ -75,8 +75,8 @@ const Search = () => (
                 )}
                 renderHeader={(document) => document.name}
                 renderImage={(document) => (
-                  <Image
-                    src={document.image_url}
+                  <SearchThumbnail
+                    document={document}
                   />
                 )}
                 renderMeta={(document) => document.artwork.name}

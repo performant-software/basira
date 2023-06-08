@@ -3,9 +3,10 @@
 import React from 'react';
 import _ from 'underscore';
 import { List } from 'semantic-ui-react';
+import type { Artwork } from '../types/search/Artwork';
 
 type Props = {
-  artwork: any // TODO: Create search types
+  artwork: Artwork
 };
 
 const NAME_SEPARATOR = ', ';

@@ -419,6 +419,11 @@
       }
     }
   },
+  "SearchThumbnail": {
+    "labels": {
+      "imageCount": "+{{count}}"
+    }
+  },
   "SimpleEditPage": {
     "labels": {
       "add": "Add New {{type}}"
