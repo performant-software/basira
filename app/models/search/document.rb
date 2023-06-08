@@ -94,6 +94,10 @@ module Search
       search_attribute :illumination_iconography, object: 'Document', group: 'Iconography', form_field: 'illumination_iconography', multiple: true, facet: true
 
       search_attribute(:image_url) do
+        primary_attachment&.file_url
+      end
+
+      search_attribute(:thumbnail_url) do
         primary_attachment&.thumbnail_url
       end
 

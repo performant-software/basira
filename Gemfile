@@ -28,7 +28,7 @@ gem 'rack-cors'
 gem 'resource_api', git: 'https://github.com/performant-software/resource-api.git', tag: 'v0.4.2'
 
 # Airtable API integration for seeding and synchronizing data
-gem 'airrecord'
+gem 'airrecord', '~> 1.0.12'
 
 # Active storage service
 gem 'aws-sdk-s3'

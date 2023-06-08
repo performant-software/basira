@@ -20,6 +20,14 @@ module Search
       end
 
       search_attribute(:image_url) do
+        primary_attachment&.file_url
+      end
+
+      search_attribute(:image_urls) do
+        attachments.map{ |attachment| attachment.file_url }
+      end
+
+      search_attribute(:thumbnail_url) do
         primary_attachment&.thumbnail_url
       end
 
