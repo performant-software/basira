@@ -30,3 +30,8 @@
   width: fit-content;
 }
 
+.record-page .lazy-image img {
+  max-height: 500px;
+  object-fit: cover;
+}
+
