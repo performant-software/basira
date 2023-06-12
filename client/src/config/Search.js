@@ -1,6 +1,27 @@
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
-console.log(process.env.REACT_APP_TYPESENSE_API_KEY);
+const queryBy = [
+  'artwork.artwork_titles.title',
+  'artwork.creators.name',
+  'artwork.creators.display_name',
+  'artwork.locations.name',
+  'artwork.locations.city',
+  'artwork.locations.state',
+  'artwork.locations.country',
+  'artwork.name',
+  'fore_edge_text',
+  'identity',
+  'inscription_text',
+  'name',
+  'notes',
+  'physical_component.name',
+  'transcription',
+  'transcription_expanded',
+  'transcription_translation',
+  'visual_context.name'
+];
+
+const QUERY_BY_SEPARATOR = ',';
 
 const adapter = new TypesenseInstantSearchAdapter({
   server: {
@@ -12,7 +33,7 @@ const adapter = new TypesenseInstantSearchAdapter({
     }]
   },
   additionalSearchParameters: {
-    query_by: 'name',
+    query_by: queryBy.join(QUERY_BY_SEPARATOR),
   }
 });
 
