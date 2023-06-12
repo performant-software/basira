@@ -1,5 +1,6 @@
 // @flow
 
+import { LazyImage } from '@performant-software/semantic-components';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Label } from 'semantic-ui-react';
@@ -54,8 +55,8 @@ const SearchThumbnail = (props: Props) => {
         className='search-images'
         onClick={() => setModal(true)}
       >
-        <img
-          alt={props.document.name}
+        <LazyImage
+          dimmable={false}
           src={props.document.thumbnail_url}
         />
         { images.length > 1 && (

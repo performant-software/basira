@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.search-images.image > .lazy-image {
+  margin-bottom: 0;
+}
+
 .search-images.image > .label {
   position: absolute;
   bottom: 10px;
@@ -20,4 +24,8 @@
   aspect-ratio: 1 / 1;
   border: none;
   object-fit: cover;
+}
+
+.search-images.image .icon {
+  color: rgba(0, 0, 0, 0.87);
 }
