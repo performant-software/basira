@@ -27,14 +27,14 @@
       "optional": true
     },
     {
-      "name": "artwork.date_end_facet",
-      "type": "string",
+      "name": "artwork.date_range_facet",
+      "type": "int32[]",
       "facet": true,
       "optional": true
     },
     {
-      "name": "artwork.date_start_facet",
-      "type": "string",
+      "name": "artwork.materials_facet",
+      "type": "string[]",
       "facet": true,
       "optional": true
     },
@@ -57,7 +57,19 @@
       "optional": true
     },
     {
+      "name": "artwork.creators.display_name_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
       "name": "artwork.creators.nationality_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.name_facet",
       "type": "string[]",
       "facet": true,
       "optional": true

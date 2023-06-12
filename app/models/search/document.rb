@@ -108,6 +108,14 @@ module Search
       search_attribute(:actions) do
         actions.map{ |action| action.to_search_json }
       end
+
+      search_attribute(:physical_component) do
+        visual_context&.physical_component&.to_search_json
+      end
+
+      search_attribute(:visual_context) do
+        visual_context&.to_search_json
+      end
     end
   end
 end
