@@ -22,6 +22,7 @@ import SearchPagination from '../components/SearchPagination';
 import SearchResults from '../components/SearchResults';
 import SearchResultDescription from '../components/SearchResultDescription';
 import SearchResultsPerPage from '../components/SearchResultsPerPage';
+import SearchStats from '../components/SearchStats';
 import SearchThumbnail from '../components/SearchThumbnail';
 import searchClient from '../config/Search';
 import useFacetLabels from '../hooks/FacetLabels';
@@ -76,6 +77,11 @@ const Search = () => {
                   fluid
                   size='large'
                 />
+                <div
+                  className='stats-container'
+                >
+                  <SearchStats />
+                </div>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row
@@ -116,6 +122,7 @@ const Search = () => {
               >
                 <Segment
                   padded
+                  raised
                 >
                   <FacetSlider
                     attribute='artwork.date_range_facet'
