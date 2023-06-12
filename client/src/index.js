@@ -7,6 +7,7 @@ import './i18n/i18n';
 
 import '@performant-software/semantic-components/build/semantic-ui.css';
 import '@performant-software/semantic-components/build/main.css';
+import 'rc-slider/assets/index.css';
 import './index.css';
 
 ReactDOM.render(

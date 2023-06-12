@@ -1,100 +1,394 @@
 // @flow
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { InstantSearch } from 'react-instantsearch-hooks-web';
 import { Link } from 'react-router-dom';
 import {
   Container,
   Grid,
   Header,
-  Menu
+  Menu,
+  Segment
 } from 'semantic-ui-react';
-import searchClient from '../config/Search';
+import FacetList from '../components/FacetList';
+import FacetSlider from '../components/FacetSlider';
+import FacetToggle from '../components/FacetToggle';
 import SearchBox from '../components/SearchBox';
 import SearchPagination from '../components/SearchPagination';
 import SearchResults from '../components/SearchResults';
 import SearchResultDescription from '../components/SearchResultDescription';
 import SearchThumbnail from '../components/SearchThumbnail';
+import searchClient from '../config/Search';
 import './Search.css';
 
-const Search = () => (
-  <Container
-    className='search'
-    fluid
-  >
-    <Menu
-      inverted
-      size='large'
+const MAX_LIMIT = 100;
+const MAX_SHOW_MORE_LIMIT = 1000;
+
+const Search = () => {
+  const { t } = useTranslation();
+
+  return (
+    <Container
+      className='search'
+      fluid
     >
-      <Menu.Item>
-        <Header
-          content='B'
-          inverted
-        />
-      </Menu.Item>
-    </Menu>
-    <InstantSearch
-      indexName='documents'
-      searchClient={searchClient}
-    >
-      <Container>
-        <Grid>
-          <Grid.Row
-            columns={1}
+      <Menu
+        inverted
+        size='large'
+      >
+        <Menu.Item>
+          <Header
+            content='B'
+            inverted
+          />
+        </Menu.Item>
+      </Menu>
+      <InstantSearch
+        indexName='documents'
+        searchClient={searchClient}
+      >
+        <Container>
+          <Grid
+            padded
+            relaxed
           >
-            <Grid.Column>
-              <SearchBox
-                fluid
-                size='large'
-              />
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row
-            columns={1}
-          >
-            <Grid.Column
-              width={4}
+            <Grid.Row
+              columns={1}
             >
-              Facets
-            </Grid.Column>
-            <Grid.Column
-              className='results'
-              width={12}
-            >
-              <SearchResults
-                as={Link}
-                asProps={(document) => ({
-                  to: `/documents/${document.id}`
-                })}
-                link
-                renderDescription={(document) => document.artwork.date_descriptor}
-                renderExtra={(document) => (
-                  <SearchResultDescription
-                    artwork={document.artwork}
-                  />
-                )}
-                renderHeader={(document) => document.name}
-                renderImage={(document) => (
-                  <SearchThumbnail
-                    document={document}
-                  />
-                )}
-                renderMeta={(document) => document.artwork.name}
-              />
-              <Container
-                className='pagination'
-                fluid
-              >
-                <SearchPagination
-                  scrollToTop
+              <Grid.Column>
+                <SearchBox
+                  fluid
+                  size='large'
                 />
-              </Container>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
-    </InstantSearch>
-  </Container>
-);
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row
+              columns={1}
+            >
+              <Grid.Column
+                className='facets'
+                width={5}
+              >
+                <Segment
+                  padded
+                >
+                  <FacetSlider
+                    attribute='artwork.date_range_facet'
+                    title={t('Search.facets.date')}
+                  />
+                  <FacetList
+                    attribute='artwork.object_work_type_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.objectWorkType')}
+                  />
+                  <FacetList
+                    attribute='artwork.materials_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.materials')}
+                  />
+                  <FacetList
+                    attribute='artwork.techniques_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.techniques')}
+                  />
+                  <FacetList
+                    attribute='artwork.creators.display_name_facet'
+                    limit={5}
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    sortBy={['name']}
+                    title={t('Search.facets.creator')}
+                  />
+                  <FacetList
+                    attribute='artwork.creators.nationality_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.nationality')}
+                  />
+                  <FacetList
+                    attribute='artwork.locations.name_facet'
+                    limit={5}
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    sortBy={['name']}
+                    title={t('Search.facets.repository')}
+                  />
+                  <FacetList
+                    attribute='artwork.locations.country_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.repositoryCountry')}
+                  />
+                  <FacetList
+                    attribute='artwork.locations.state_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.repositoryState')}
+                  />
+                  <FacetList
+                    attribute='artwork.locations.city_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.repositoryCity')}
+                  />
+                  <FacetList
+                    attribute='visual_context.general_subject_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.generalSubject')}
+                  />
+                  <FacetList
+                    attribute='visual_context.subject_cultural_context_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.subjectCulturalContext')}
+                  />
+                  <FacetList
+                    attribute='visual_context.specific_subject_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.specificSubject')}
+                  />
+                  <FacetList
+                    attribute='document_format_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.documentFormat')}
+                  />
+                  <FacetList
+                    attribute='document_type_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.documentType')}
+                  />
+                  <FacetList
+                    attribute='orientation_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.orientation')}
+                  />
+                  <FacetList
+                    attribute='size_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.size')}
+                  />
+                  <FacetList
+                    attribute='aperture_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.aperture')}
+                  />
+                  <FacetList
+                    attribute='binding_type_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.bindingType')}
+                  />
+                  <FacetList
+                    attribute='binding_color_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.bindingColor')}
+                  />
+                  <FacetToggle
+                    attribute='sewing_supports_visible_facet'
+                    title={t('Search.facets.sewingSupportsVisible')}
+                  />
+                  <FacetSlider
+                    attribute='number_sewing_supports_facet'
+                    title={t('Search.facets.numberSewingSupports')}
+                  />
+                  <FacetList
+                    attribute='spine_features_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.spineFeatures')}
+                  />
+                  <FacetList
+                    attribute='furniture_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.furniture')}
+                  />
+                  <FacetList
+                    attribute='fastenings_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.fastenings')}
+                  />
+                  <FacetSlider
+                    attribute='number_fastenings_facet'
+                    title={t('Search.facets.numberFastenings')}
+                  />
+                  <FacetList
+                    attribute='location_fastenings_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.locationFastenings')}
+                  />
+                  <FacetToggle
+                    attribute='inscriptions_on_binding_facet'
+                    title={t('Search.facets.inscriptionsOnBinding')}
+                  />
+                  <FacetList
+                    attribute='binding_ornamentation_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.bindingOrnamentation')}
+                  />
+                  <FacetList
+                    attribute='binding_iconography_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.bindingIconography')}
+                  />
+                  <FacetToggle
+                    attribute='endband_present_facet'
+                    title={t('Search.facets.endbandPresent')}
+                  />
+                  <FacetList
+                    attribute='endband_colors_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.endbandColors')}
+                  />
+                  <FacetList
+                    attribute='endband_style_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.endbandStyle')}
+                  />
+                  <FacetList
+                    attribute='binding_relationship_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.bindingRelationship')}
+                  />
+                  <FacetList
+                    attribute='decorated_fore_edges_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.decoratedForeEdges')}
+                  />
+                  <FacetToggle
+                    attribute='uncut_fore_edges_facet'
+                    title={t('Search.facets.uncutForeEdges')}
+                  />
+                  <FacetList
+                    attribute='fore_edges_color_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.foreEdgesColor')}
+                  />
+                  <FacetSlider
+                    attribute='bookmarks_registers_facet'
+                    title={t('Search.facets.bookmarks')}
+                  />
+                  <FacetList
+                    attribute='bookmark_register_color_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.bookmarkColor')}
+                  />
+                  <FacetList
+                    attribute='bookmark_style_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.bookmarkStyle')}
+                  />
+                  <FacetList
+                    attribute='text_technology_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.textTechnology')}
+                  />
+                  <FacetList
+                    attribute='text_columns_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.textColumns')}
+                  />
+                  <FacetList
+                    attribute='page_contents_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.pageContents')}
+                  />
+                  <FacetToggle
+                    attribute='ruling_facet'
+                    title={t('Search.facets.ruling')}
+                  />
+                  <FacetList
+                    attribute='ruling_color_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.rulingColor')}
+                  />
+                  <FacetToggle
+                    attribute='rubrication_facet'
+                    title={t('Search.facets.rubrication')}
+                  />
+                  <FacetList
+                    attribute='rubrication_color_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.rubricationColor')}
+                  />
+                  <FacetList
+                    attribute='legibility_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.legibility')}
+                  />
+                  <FacetList
+                    attribute='script_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.script')}
+                  />
+                  <FacetList
+                    attribute='language_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.language')}
+                  />
+                  <FacetList
+                    attribute='simulated_script_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.simulatedScript')}
+                  />
+                  <FacetList
+                    attribute='illumination_type_facet'
+                    limit={MAX_LIMIT}
+                    title={t('Search.facets.illuminationType')}
+                  />
+                  <FacetList
+                    attribute='illumination_iconography_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={t('Search.facets.illuminationIconography')}
+                  />
+                </Segment>
+              </Grid.Column>
+              <Grid.Column
+                className='results'
+                width={11}
+              >
+                <SearchResults
+                  as={Link}
+                  asProps={(document) => ({
+                    to: `/documents/${document.id}`
+                  })}
+                  link
+                  renderDescription={(document) => document.artwork.date_descriptor}
+                  renderExtra={(document) => (
+                    <SearchResultDescription
+                      artwork={document.artwork}
+                    />
+                  )}
+                  renderHeader={(document) => document.name}
+                  renderImage={(document) => (
+                    <SearchThumbnail
+                      document={document}
+                    />
+                  )}
+                  renderMeta={(document) => document.artwork.name}
+                />
+                <Container
+                  className='pagination'
+                  fluid
+                >
+                  <SearchPagination
+                    scrollToTop
+                  />
+                </Container>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
+      </InstantSearch>
+    </Container>
+  );
+};
 
 export default Search;
