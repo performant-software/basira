@@ -399,6 +399,30 @@ const Search = () => {
                     showMoreLimit={MAX_SHOW_MORE_LIMIT}
                     title={getLabel('illumination_iconography_facet')}
                   />
+                  <FacetList
+                    attribute='actions.verb_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={getLabel('actions.verb_facet')}
+                  />
+                  <FacetList
+                    attribute='actions.entity_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={getLabel('actions.entity_facet')}
+                  />
+                  <FacetList
+                    attribute='actions.entity_descriptors_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={getLabel('actions.entity_descriptors_facet')}
+                  />
+                  <FacetList
+                    attribute='actions.body_descriptors_facet'
+                    showMore
+                    showMoreLimit={MAX_SHOW_MORE_LIMIT}
+                    title={getLabel('actions.body_descriptors_facet')}
+                  />
                 </Segment>
               </Grid.Column>
               <Grid.Column

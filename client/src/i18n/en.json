@@ -424,6 +424,12 @@
       "clearFacets": "Clear Facets"
     },
     "facets": {
+      "actions": {
+        "bodyDescriptors": "Body Descriptors",
+        "entity": "Entity",
+        "entityDescriptors": "Entity Descriptors",
+        "verb": "Verb"
+      },
       "aperture": "Aperture",
       "artwork": {
         "creators": {
