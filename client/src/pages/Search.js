@@ -62,6 +62,7 @@ const Search = () => {
       </Menu>
       <InstantSearch
         indexName='documents'
+        routing
         searchClient={searchClient}
       >
         <Container>
