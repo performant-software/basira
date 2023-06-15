@@ -12,12 +12,24 @@
   object-fit: cover;
 }
 
-.search .ui.grid > .row > .column.results > .pagination.container {
+.search .ui.grid > .row.results-container > .column .pagination.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+/*.search .ui.grid > .row.results-container > .column {*/
+/*  width: unset;*/
+/*}*/
+
+/*.search .ui.grid > .row.results-container > .column:empty {*/
+/*  width: inherit;*/
+/*}*/
+
+/*.search .ui.grid > .row.results-container > .column:nth-child(2) {*/
+/*  flex-grow: 1;*/
+/*}*/
 
 .search .stats-container {
   display: flex;

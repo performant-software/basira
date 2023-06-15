@@ -2645,15 +2645,16 @@
     "@stitches/react" "^1.2.7"
     react "^18.2.0"
 
-"@performant-software/semantic-components@^1.0.13-beta.6":
-  version "1.0.13-beta.6"
-  resolved "https://registry.yarnpkg.com/@performant-software/semantic-components/-/semantic-components-1.0.13-beta.6.tgz#791d185740c188f1170ffb12c3879f419025a8fa"
-  integrity sha512-Eb7R/N2ceXLeRqe+HaXu20isHpXsNlh06RkJpfBW5fuOa34D1t4tCeR01FvzNzU71n07diUugvc3sJGPcx5YZg==
+"@performant-software/semantic-components@^1.0.13-beta.12":
+  version "1.0.13-beta.12"
+  resolved "https://registry.yarnpkg.com/@performant-software/semantic-components/-/semantic-components-1.0.13-beta.12.tgz#79915f17f34d7d945f5a0750be24f64b2945042e"
+  integrity sha512-7GKaNZZ+4iAM+eNgnMz10AqLuzS6MGdIZtD5EywAy8TjsAiJ184Rfonfv44azYNimBNgVdueHIcgIQiJKWrY9w==
   dependencies:
-    "@performant-software/shared-components" "^1.0.13-beta.6"
+    "@performant-software/shared-components" "^1.0.13-beta.12"
     "@react-google-maps/api" "^2.8.1"
     axios "^0.26.1"
     i18next "^19.4.4"
+    rc-slider "^10.2.0"
     react-calendar "^3.3.0"
     react-color "^2.18.1"
     react-dnd "^11.1.3"
@@ -2668,10 +2669,10 @@
     zotero-api-client "^0.40.0"
     zotero-translation-client "^5.0.1"
 
-"@performant-software/shared-components@^1.0.13-beta.6":
-  version "1.0.13-beta.6"
-  resolved "https://registry.yarnpkg.com/@performant-software/shared-components/-/shared-components-1.0.13-beta.6.tgz#c96ae71cdf22b01ad598d7ba4fdfe9c3ec812668"
-  integrity sha512-VGOhT/yhgeIudlZxAcLKXXfRf3rggm+HKz6fnltiieD1Xd4Q8JLVRW1KufY7/BK9PmFrYT/5P8wlV4sdm2dptA==
+"@performant-software/shared-components@^1.0.13-beta.12":
+  version "1.0.13-beta.12"
+  resolved "https://registry.yarnpkg.com/@performant-software/shared-components/-/shared-components-1.0.13-beta.12.tgz#8039a19d59413e3d26da22da14fc1b97bd675790"
+  integrity sha512-v2sWvd/7hzVsU3P8NWduVB/7K/W9G6mQPUcjOCo/QiIlmEf722d8tN/+4dO9H0nCy+UH8BvIUOS1LYy5FYYIQw==
   dependencies:
     "@react-google-maps/api" "^2.8.1"
     "@samvera/clover-iiif" "^1.10.3"
