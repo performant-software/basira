@@ -7,7 +7,7 @@ module Search
       include Base
 
       # Search index attributes
-      search_attribute :name
+      search_attribute :name, facet: true
       search_attribute :place_type, facet: true
       search_attribute :city, facet: true
       search_attribute :state, facet: true

@@ -23,39 +23,9 @@ namespace :typesense do
   desc 'Index BASIRA documents into Typesense'
   task index: :environment do
     typesense = Typesense::Helper.create_client
-
-    preload = {
-      **Document.primary_attachment_preload,
-      actions: {
-        qualifications: :value_list
-      },
-      visual_context: {
-        **VisualContext.primary_attachment_preload,
-        physical_component: {
-          **PhysicalComponent.primary_attachment_preload
-        },
-        qualifications: :value_list
-      },
-      artwork: {
-        **Artwork.primary_attachment_preload,
-        artwork_titles: {
-          qualifications: :value_list
-        },
-        participations: {
-          qualifications: :value_list,
-          person: {
-            qualifications: :value_list
-          }
-        },
-        locations: [:place, qualifications: :value_list],
-        qualifications: :value_list
-      },
-      qualifications: :value_list
-    }
-
     collection = typesense.collections[ENV['TYPESENSE_COLLECTION_NAME']]
 
-    Document.preload(preload).find_each(batch_size: 500) do |document|
+    Document.published.find_each(batch_size: 500) do |document|
       collection.documents.upsert(document.to_search_json)
     end
   end

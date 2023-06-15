@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useCallback } from 'react';
-import { LazyImage } from 'react-components';
+import { LazyImage } from '@performant-software/semantic-components';
 import { useTranslation } from 'react-i18next';
 import { Segment } from 'semantic-ui-react';
 import _ from 'underscore';

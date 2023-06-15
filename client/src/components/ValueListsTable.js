@@ -5,8 +5,7 @@ import ValueListModal from './ValueListModal';
 import ValueListsFiltersModal from './ValueListsFiltersModal';
 import ValueListsService from '../services/ValueLists';
 import { withTranslation } from 'react-i18next';
-import { ListTable, useDataList } from 'react-components';
-import type { EditContainerProps } from 'react-components/types';
+import { ListTable, useDataList, type EditContainerProps } from '@performant-software/semantic-components';
 import type { ValueList as ValueListType } from '../types/ValueList';
 import type { Translateable } from '../types/Translateable';
 

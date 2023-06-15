@@ -1,0 +1,38 @@
+.search > .ui.menu {
+  border-radius: 0;
+}
+
+.search .item-collection {
+  padding-bottom: 1em;
+}
+
+.search .item-collection .ui.items > .item > .image > img {
+  aspect-ratio: 1 / 1;
+  border: none;
+  object-fit: cover;
+}
+
+.search .ui.grid > .row.results-container > .column .pagination.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*.search .ui.grid > .row.results-container > .column {*/
+/*  width: unset;*/
+/*}*/
+
+/*.search .ui.grid > .row.results-container > .column:empty {*/
+/*  width: inherit;*/
+/*}*/
+
+/*.search .ui.grid > .row.results-container > .column:nth-child(2) {*/
+/*  flex-grow: 1;*/
+/*}*/
+
+.search .stats-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5em;
+}

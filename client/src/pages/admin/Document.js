@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useEffect, useMemo } from 'react';
-import { EmbeddedList, LazyImage } from 'react-components';
+import { EmbeddedList, LazyImage } from '@performant-software/semantic-components';
 import { withRouter } from 'react-router-dom';
 import {
   Dropdown,

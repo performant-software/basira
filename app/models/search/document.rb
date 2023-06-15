@@ -2,6 +2,43 @@ module Search
   module Document
     extend ActiveSupport::Concern
 
+    class_methods do
+      def published
+        preload = {
+          **::Document.primary_attachment_preload,
+          actions: {
+            qualifications: :value_list
+          },
+          visual_context: {
+            **::VisualContext.primary_attachment_preload,
+            physical_component: {
+              **::PhysicalComponent.primary_attachment_preload
+            },
+            qualifications: :value_list
+          },
+          artwork: {
+            **::Artwork.primary_attachment_preload,
+            artwork_titles: {
+              qualifications: :value_list
+            },
+            participations: {
+              qualifications: :value_list,
+              person: {
+                qualifications: :value_list
+              }
+            },
+            locations: [:place, qualifications: :value_list],
+            qualifications: :value_list
+          },
+          qualifications: :value_list
+        }
+
+        preload(preload)
+          .joins(visual_context: { physical_component: :artwork })
+          .where(artworks: { published: true })
+      end
+    end
+
     included do
       # Includes
       include Base
@@ -57,6 +94,10 @@ module Search
       search_attribute :illumination_iconography, object: 'Document', group: 'Iconography', form_field: 'illumination_iconography', multiple: true, facet: true
 
       search_attribute(:image_url) do
+        primary_attachment&.file_url
+      end
+
+      search_attribute(:thumbnail_url) do
         primary_attachment&.thumbnail_url
       end
 
@@ -66,6 +107,14 @@ module Search
 
       search_attribute(:actions) do
         actions.map{ |action| action.to_search_json }
+      end
+
+      search_attribute(:physical_component) do
+        visual_context&.physical_component&.to_search_json
+      end
+
+      search_attribute(:visual_context) do
+        visual_context&.to_search_json
       end
     end
   end

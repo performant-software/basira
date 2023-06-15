@@ -8,7 +8,7 @@ module Search
 
       # Search index attributes
       search_attribute :name
-      search_attribute :display_name
+      search_attribute :display_name, facet: true
       search_attribute :nationality, object: 'Person', group: 'Nationality', facet: true
     end
   end

@@ -419,6 +419,86 @@
       }
     }
   },
+  "Search": {
+    "buttons": {
+      "clearFacets": "Clear Facets"
+    },
+    "facets": {
+      "actions": {
+        "bodyDescriptors": "Body Descriptors",
+        "entity": "Entity",
+        "entityDescriptors": "Entity Descriptors",
+        "verb": "Verb"
+      },
+      "aperture": "Aperture",
+      "artwork": {
+        "creators": {
+          "displayName": "Creator",
+          "nationality": "Creator Place of Origin"
+        },
+        "dateRange": "Date",
+        "materials": "Materials",
+        "locations": {
+          "name": "Repository",
+          "city": "Repository City",
+          "country": "Repository Country",
+          "state": "Repository State"
+        },
+        "objectWorkType": "Object Work/Type",
+        "techniques": "Techniques"
+      },
+      "bindingColor": "Binding Color",
+      "bindingIconography": "Binding Iconography",
+      "bindingOrnamentation": "Binding Ornamentation",
+      "bindingRelationship": "Binding Relationship to Textblock",
+      "bindingType": "Binding Type",
+      "bookmarkRegisterColor": "Color",
+      "bookmarkStyle": "Bookmark/Register Style",
+      "bookmarksRegisters": "Bookmarks/Registers",
+      "decoratedForeEdges": "Decorated Textblock Edges",
+      "documentFormat": "Document Format",
+      "documentType": "Document Type",
+      "endbandColors": "Endband Color(s)",
+      "endbandPresent": "Endband Present",
+      "endbandStyle": "Endband Style",
+      "fastenings": "Fastenings",
+      "foreEdgesColor": "Color of Textblock Edges",
+      "furniture": "Furniture",
+      "illuminationIconography": "Illumination Iconography",
+      "illuminationType": "Type of Illumination",
+      "inscriptionsOnBinding": "Inscriptions on Binding",
+      "language": "Language",
+      "legibility": "Legibility",
+      "locationFastenings": "Location of Fastenings",
+      "numberFastenings": "Number of Fastenings",
+      "numberSewingSupports": "Number of Sewing Supports Visible",
+      "objectWorkType": "Object Work/Type",
+      "orientation": "Orientation",
+      "pageContents": "Page Contents",
+      "rubrication": "Rubrication",
+      "rubricationColor": "Rubrication Color",
+      "ruling": "Ruling",
+      "rulingColor": "Ruling Color",
+      "sewingSupportsVisible": "Sewing Supports Visible",
+      "script": "Script",
+      "simulatedScript": "Simulated Script",
+      "size": "Size",
+      "spineFeatures": "Spine Features",
+      "textColumns": "Text Columns",
+      "textTechnology": "Text Technology",
+      "uncutForeEdges": "Uncut Fore-Edges",
+      "visualContext": {
+        "generalSubject": "General Subject",
+        "specificSubject": "Specific Subject/Iconography",
+        "subjectCulturalContext": "Subject Cultural Context"
+      }
+    }
+  },
+  "SearchThumbnail": {
+    "labels": {
+      "imageCount": "+{{count}}"
+    }
+  },
   "SimpleEditPage": {
     "labels": {
       "add": "Add New {{type}}"

@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { ListTable } from 'react-components';
+import { ListTable } from '@performant-software/semantic-components';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';

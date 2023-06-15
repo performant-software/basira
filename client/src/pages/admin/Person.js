@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { EmbeddedList, ItemCollection } from 'react-components';
+import { EmbeddedList, ItemCollection } from '@performant-software/semantic-components';
 import { Header, Image } from 'semantic-ui-react';
 import _ from 'underscore';
 import ParticipationModal, { ParticipationTypes } from '../../components/ParticipationModal';

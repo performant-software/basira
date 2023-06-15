@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useState } from 'react';
-import { FileUpload, PhotoViewer } from 'react-components';
+import { FileUpload, PhotoViewer } from '@performant-software/semantic-components';
 import { withTranslation } from 'react-i18next';
 import { Button, Card, Image } from 'semantic-ui-react';
 import _ from 'underscore';

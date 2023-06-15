@@ -1,7 +1,7 @@
 // @flow
 
+import { useDragDrop } from '@performant-software/shared-components';
 import React from 'react';
-import { useDragDrop } from 'react-components';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import Admin from './pages/admin/Admin';
 import Artwork from './pages/Artwork';
@@ -12,14 +12,20 @@ import NotFound404 from './pages/404';
 import Person from './pages/Person';
 import PhysicalComponent from './pages/PhysicalComponent';
 import Place from './pages/Place';
+import Search from './pages/Search';
 import VisualContext from './pages/VisualContext';
 import './App.css';
 
 const App = () => (
   <Router>
     <Route
-      exact
       path='/'
+      component={Search}
+      exact
+    />
+    <Route
+      exact
+      path='/login'
     >
       <Home
         images={6}

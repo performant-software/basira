@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { AssociatedDropdown } from 'react-components';
+import { AssociatedDropdown } from '@performant-software/semantic-components';
 import { withTranslation } from 'react-i18next';
 import { Form, Modal } from 'semantic-ui-react';
 import Artworks from '../services/Artworks';
