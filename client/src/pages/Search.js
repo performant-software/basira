@@ -60,7 +60,7 @@ const Search = () => {
       >
         <Menu.Item>
           <Header
-            content='B'
+            content='BASIRA'
             inverted
           />
         </Menu.Item>
