@@ -333,6 +333,91 @@
       "optional": true
     },
     {
+      "name": "artwork.artwork_titles.title",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.creators.name",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.creators.display_name",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.name",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.city",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.state",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.country",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.name",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "fore_edge_text",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "identity",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "inscription_text",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "physical_component.name",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "transcription",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "transcription_expanded",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "transcription_translation",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "visual_context.name",
+      "type": "string",
+      "optional": true
+    },
+    {
       "name": "visual_context.general_subject_facet",
       "type": "string[]",
       "facet": true,
