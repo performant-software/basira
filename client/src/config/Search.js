@@ -1,3 +1,5 @@
+// @flow
+
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 
 const queryBy = [
