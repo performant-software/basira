@@ -12,22 +12,22 @@ module Search
           visual_context: {
             **::VisualContext.primary_attachment_preload,
             physical_component: {
-              **::PhysicalComponent.primary_attachment_preload
-            },
-            qualifications: :value_list
-          },
-          artwork: {
-            **::Artwork.primary_attachment_preload,
-            artwork_titles: {
-              qualifications: :value_list
-            },
-            participations: {
-              qualifications: :value_list,
-              person: {
+              **::PhysicalComponent.primary_attachment_preload,
+              artwork: {
+                **::Artwork.primary_attachment_preload,
+                artwork_titles: {
+                  qualifications: :value_list
+                },
+                participations: {
+                  qualifications: :value_list,
+                  person: {
+                    qualifications: :value_list
+                  }
+                },
+                locations: [:place, qualifications: :value_list],
                 qualifications: :value_list
-              }
+              },
             },
-            locations: [:place, qualifications: :value_list],
             qualifications: :value_list
           },
           qualifications: :value_list
