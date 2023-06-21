@@ -284,11 +284,10 @@ const SearchFacets = (props: any) => {
         title={getLabel('text_technology_facet')}
         useRefinementList={useRefinementList}
       />
-      <FacetList
+      <FacetSlider
         attribute='text_columns_facet'
-        limit={MAX_LIMIT}
         title={getLabel('text_columns_facet')}
-        useRefinementList={useRefinementList}
+        useRangeSlider={useRange}
       />
       <FacetList
         attribute='page_contents_facet'
