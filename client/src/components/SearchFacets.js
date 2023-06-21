@@ -57,6 +57,7 @@ const SearchFacets = (props: any) => {
       <FacetList
         attribute='artwork.creators.display_name_facet'
         limit={5}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         sortBy={['name']}
@@ -73,6 +74,7 @@ const SearchFacets = (props: any) => {
       <FacetList
         attribute='artwork.locations.name_facet'
         limit={5}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         sortBy={['name']}
@@ -365,6 +367,7 @@ const SearchFacets = (props: any) => {
       />
       <FacetList
         attribute='actions.entity_facet'
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('actions.entity_facet')}
