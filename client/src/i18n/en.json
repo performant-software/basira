@@ -447,6 +447,14 @@
         "objectWorkType": "Object Work/Type",
         "techniques": "Techniques"
       },
+      "headers": {
+        "artwork": "Artwork",
+        "documentActions": "Document Actions",
+        "documentDetails": "Document Details",
+        "externalFeatures": "Document External Features",
+        "internalFeatures": "Document Internal Features",
+        "visualContext": "Visual Context"
+      },
       "bindingColor": "Binding Color",
       "bindingIconography": "Binding Iconography",
       "bindingOrnamentation": "Binding Ornamentation",
