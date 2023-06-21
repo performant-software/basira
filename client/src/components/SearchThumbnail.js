@@ -1,12 +1,11 @@
 // @flow
 
-import { LazyImage } from '@performant-software/semantic-components';
+import { ImageCarousel, LazyImage } from '@performant-software/semantic-components';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Image, Label } from 'semantic-ui-react';
 import _ from 'underscore';
 import { type Document } from '../types/search/Document';
-import ImageCarousel from './ImageCarousel';
 import './SearchThumbnail.css';
 
 type Props = {
