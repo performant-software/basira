@@ -1,9 +1,10 @@
-.record-page {
-  padding-bottom: 3em;
-}
-
 .record-page .ui.menu {
   border-radius: 0;
+  margin-bottom: 0;
+}
+
+.record-page > .pushable > .pusher {
+  margin-top: 1em;
 }
 
 .record-page .section {

@@ -7,7 +7,7 @@
       }
     }
   },
-  "AccordionMenu": {
+  "AdminArtworkMenu": {
     "deleteContent": "Are you sure you want to remove {{name}}?",
     "deleteHeader": "Confirm Remove"
   },

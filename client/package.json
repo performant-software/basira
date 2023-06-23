@@ -12,6 +12,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
+    "classnames": "^2.3.2",
     "i18next": "^20.2.1",
     "instantsearch.js": "^4.56.1",
     "rc-slider": "^10.2.0",
