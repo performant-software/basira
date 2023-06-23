@@ -262,7 +262,7 @@
     },
     {
       "name": "text_columns_facet",
-      "type": "string",
+      "type": "int32",
       "facet": true,
       "optional": true
     },
