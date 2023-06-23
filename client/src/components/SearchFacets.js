@@ -70,6 +70,7 @@ const SearchFacets = (props: any) => {
         attribute='artwork.creators.display_name_facet'
         defaultActive={false}
         limit={5}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         sortBy={['name']}
@@ -88,6 +89,7 @@ const SearchFacets = (props: any) => {
         attribute='artwork.locations.name_facet'
         defaultActive={false}
         limit={5}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         sortBy={['name']}
@@ -448,6 +450,7 @@ const SearchFacets = (props: any) => {
       <FacetList
         attribute='actions.entity_facet'
         defaultActive={false}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('actions.entity_facet')}
