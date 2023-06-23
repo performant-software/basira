@@ -76,7 +76,7 @@ const AttributesGrid = (props: Props) => {
    *
    * @type {(function(*): (null|*))|*}
    */
-  const renderRow = useCallback((attribute) => {
+  const renderRow = useCallback((attribute, index) => {
     const value = renderAttributeValue(attribute);
 
     // By default, hide any attribute with an empty value, unless otherwise specified
@@ -87,6 +87,7 @@ const AttributesGrid = (props: Props) => {
     return (
       <Grid.Row
         columns='equal'
+        key={index}
       >
         <Grid.Column
           className='label'
