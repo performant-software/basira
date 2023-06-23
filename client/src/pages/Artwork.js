@@ -121,7 +121,7 @@ const Artwork = () => {
           />
         </RecordPage.Section>
       )}
-      { !_.isEmpty(item?.locations && (
+      { !_.isEmpty(item?.locations) && (
         <RecordPage.Section
           title={t('Artwork.sections.locations')}
         >
@@ -129,7 +129,7 @@ const Artwork = () => {
             places={_.map(item.locations, (location) => location.place)}
           />
         </RecordPage.Section>
-      ))}
+      )}
     </RecordPage>
   );
 };
