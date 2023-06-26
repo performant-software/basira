@@ -7,7 +7,7 @@
       }
     }
   },
-  "AccordionMenu": {
+  "AdminArtworkMenu": {
     "deleteContent": "Are you sure you want to remove {{name}}?",
     "deleteHeader": "Confirm Remove"
   },
@@ -500,6 +500,11 @@
         "specificSubject": "Specific Subject/Iconography",
         "subjectCulturalContext": "Subject Cultural Context"
       }
+    }
+  },
+  "SearchLink": {
+    "buttons": {
+      "back": "Back to Search"
     }
   },
   "SearchThumbnail": {

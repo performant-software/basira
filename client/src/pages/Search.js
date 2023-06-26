@@ -9,7 +9,8 @@ import {
   SearchResultsPerPage,
   SearchStats
 } from '@performant-software/semantic-components';
-import React, { useCallback } from 'react';
+import { history as historyConfig } from 'instantsearch.js/es/lib/routers';
+import React, { useCallback, useContext, useEffect } from 'react';
 import {
   InstantSearch,
   useClearRefinements,
@@ -20,7 +21,7 @@ import {
   useSearchBox,
   useStats
 } from 'react-instantsearch-hooks-web';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import {
   Container,
   Grid,
@@ -28,6 +29,7 @@ import {
   Menu
 } from 'semantic-ui-react';
 import _ from 'underscore';
+import SearchContext from '../context/Search';
 import SearchFacets from '../components/SearchFacets';
 import SearchResultDescription from '../components/SearchResultDescription';
 import SearchThumbnail from '../components/SearchThumbnail';
@@ -37,6 +39,10 @@ import { useTranslation } from 'react-i18next';
 import './Search.css';
 
 const Search = () => {
+  const history = useHistory();
+  const location = useLocation();
+
+  const { setSearch } = useContext(SearchContext);
   const { getLabel } = useFacetLabels();
   const { t } = useTranslation();
 
@@ -48,6 +54,11 @@ const Search = () => {
   const transformCurrentFacets = useCallback((items) => (
     _.map(items, (item) => ({ ...item, label: getLabel(item.label) }))
   ), []);
+
+  /**
+   * Set the search in the context when the location.search attribute changes.
+   */
+  useEffect(() => setSearch(location.search), [location.search]);
 
   return (
     <Container
@@ -67,7 +78,14 @@ const Search = () => {
       </Menu>
       <InstantSearch
         indexName='documents'
-        routing
+        routing={{
+          router: historyConfig({
+            push: (url) => {
+              const { pathname, search } = new URL(url);
+              history.push(`${pathname}${search}`);
+            }
+          })
+        }}
         searchClient={searchClient}
       >
         <Container>

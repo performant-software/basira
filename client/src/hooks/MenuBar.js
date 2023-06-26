@@ -1,7 +1,6 @@
 // @flow
 
 import React, {
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -17,18 +16,19 @@ import {
   Segment,
   Sidebar
 } from 'semantic-ui-react';
-import AccordionMenu from '../components/AccordionMenu';
+import AdminArtworkMenu from '../components/AdminArtworkMenu';
 import Authentication from '../services/Authentication';
 import Session from '../services/Session';
 import './MenuBar.css';
+import useSidebar from './Sidebar';
 
 const ARTWORKS_REGEX = '/admin/(artworks|physical_components|visual_contexts|documents)';
 
 const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(withRouter((props) => {
-  const menuBarRef = useRef();
-
-  const [sidebarHeight, setSidebarHeight] = useState(0);
   const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  const menuBarRef = useRef(null);
+  const { height: minHeight } = useSidebar(menuBarRef);
 
   /**
    * Returns the ID for the currently selected artwork.
@@ -44,15 +44,6 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
 
     return id;
   }, [props.getArtworkId, props.item]);
-
-  useEffect(() => {
-    const menuBarInstance = menuBarRef.current;
-
-    if (menuBarInstance) {
-      const { clientHeight } = menuBarInstance;
-      setSidebarHeight(`calc(100vh - ${clientHeight}px`);
-    }
-  }, []);
 
   return (
     <div
@@ -152,7 +143,7 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
       </Ref>
       <Sidebar.Pushable
         style={{
-          minHeight: sidebarHeight
+          minHeight
         }}
       >
         { artworkId && (
@@ -167,8 +158,8 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
               width: '50%'
             }}
           >
-            <AccordionMenu
-              id={artworkId}
+            <AdminArtworkMenu
+              artworkId={artworkId}
             />
           </Sidebar>
         )}

@@ -1,0 +1,29 @@
+.artwork-menu .ui.accordion .accordion {
+  margin-top: 0;
+}
+
+.artwork-menu .item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.artwork-menu .item .label {
+  margin-right: 1em;
+}
+
+.artwork-menu .item .image {
+  height: 40px;
+  margin-right: 0.5em;
+  object-fit: cover;
+  width: 40px;
+}
+
+.artwork-menu .nested-accordion .item-container .title {
+  white-space: normal;
+}
+
+.artwork-menu .nested-accordion .title > .container > .right-container {
+  padding-left: 1em;
+}
+

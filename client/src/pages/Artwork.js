@@ -31,6 +31,7 @@ const Artwork = () => {
 
   return (
     <RecordPage
+      artworkId={item?.id}
       loading={loading}
       renderTitle={() => getPrimaryTitle(item)}
     >

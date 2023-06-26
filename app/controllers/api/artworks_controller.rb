@@ -3,6 +3,9 @@ class Api::ArtworksController < Api::BaseController
   include Api::Filterable
   include Api::Qualifiable
 
+  # Actions
+  skip_before_action :authenticate_user!, only: :nested
+
   # Search columns
   search_attributes 'artwork_titles.title', :date_descriptor, :notes_external, :notes_internal
 

@@ -13,15 +13,50 @@ import Person from './pages/Person';
 import PhysicalComponent from './pages/PhysicalComponent';
 import Place from './pages/Place';
 import Search from './pages/Search';
+import SearchContextProvider from './components/SearchContextProvider';
 import VisualContext from './pages/VisualContext';
 import './App.css';
 
 const App = () => (
   <Router>
+    <SearchContextProvider>
+      <Route
+        path='/'
+        component={Search}
+        exact
+      />
+      <Route
+        path='/artworks/:id'
+        component={Artwork}
+      />
+      <Route
+        path='/documents/:id'
+        component={Document}
+      />
+      <Route
+        path='/people/:id'
+        component={Person}
+      />
+      <Route
+        path='/physical_components/:id'
+        component={PhysicalComponent}
+      />
+      <Route
+        path='/places/:id'
+        component={Place}
+      />
+      <Route
+        path='/visual_contexts/:id'
+        component={VisualContext}
+      />
+    </SearchContextProvider>
     <Route
-      path='/'
-      component={Search}
-      exact
+      path='/404'
+      component={NotFound404}
+    />
+    <AuthenticatedRoute
+      path='/admin'
+      component={Admin}
     />
     <Route
       exact
@@ -31,38 +66,6 @@ const App = () => (
         images={6}
       />
     </Route>
-    <Route
-      path='/artworks/:id'
-      component={Artwork}
-    />
-    <Route
-      path='/documents/:id'
-      component={Document}
-    />
-    <Route
-      path='/people/:id'
-      component={Person}
-    />
-    <Route
-      path='/physical_components/:id'
-      component={PhysicalComponent}
-    />
-    <Route
-      path='/places/:id'
-      component={Place}
-    />
-    <Route
-      path='/visual_contexts/:id'
-      component={VisualContext}
-    />
-    <Route
-      path='/404'
-      component={NotFound404}
-    />
-    <AuthenticatedRoute
-      path='/admin'
-      component={Admin}
-    />
   </Router>
 );
 

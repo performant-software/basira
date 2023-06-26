@@ -29,7 +29,7 @@ const useCurrentRecord = (onLoad) => {
       .then((record) => setItem(record))
       .catch(onError)
       .finally(() => setLoading(false));
-  }, []);
+  }, [id]);
 
   return {
     item,
