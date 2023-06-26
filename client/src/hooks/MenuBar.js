@@ -142,7 +142,7 @@ const withMenuBar = (WrappedComponent: ComponentType<any>) => withTranslation()(
                     .logout()
                     .then(() => {
                       Session.destroy();
-                      props.history.push('/');
+                      props.history.push('/login');
                     })
                 )}
               />
