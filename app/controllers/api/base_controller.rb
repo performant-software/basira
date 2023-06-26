@@ -5,6 +5,12 @@ class Api::BaseController < Api::ResourceController
   # Actions
   before_action :authenticate_user!, except: :show
 
+  def destroy
+    render json: { errors: I18n.t('errors.unauthorized') }, status: :unauthorized and return unless current_user.admin?
+
+    super
+  end
+
   protected
 
   def prepare_params
