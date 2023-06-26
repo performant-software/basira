@@ -514,6 +514,7 @@
   },
   "UserModal": {
     "labels": {
+      "admin": "Administrator",
       "email": "Email",
       "name": "Name",
       "password": "Password",

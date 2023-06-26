@@ -10,14 +10,15 @@ class Session {
    * @param response
    */
   create(response: any) {
-    const { name, uid } = response.data.data;
+    const { name, uid, admin } = response.data.data;
 
     sessionStorage.setItem('user',
       JSON.stringify({
         'access-token': response.headers['access-token'],
         client: response.headers.client,
         name,
-        uid
+        uid,
+        admin
       }));
   }
 
@@ -34,10 +35,18 @@ class Session {
    * @returns {*}
    */
   getName() {
-    const userString = sessionStorage.getItem('user') || '{}';
-    const user = JSON.parse(userString);
-
+    const user = this.parseUser();
     return user.name;
+  }
+
+  /**
+   * Returns true if the currently logged in user is an admin.
+   *
+   * @returns {*}
+   */
+  isAdmin() {
+    const user = this.parseUser();
+    return user.admin;
   }
 
   /**
@@ -47,6 +56,17 @@ class Session {
    */
   isAuthenticated() {
     return !!sessionStorage.getItem('user');
+  }
+
+  // private
+
+  /**
+   * Parses the session storage user.
+   *
+   * @returns {*}
+   */
+  parseUser() {
+    return JSON.parse(sessionStorage.getItem('user') || '{}');
   }
 }
 

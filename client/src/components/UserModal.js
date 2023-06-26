@@ -3,8 +3,9 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import { Form, Message, Modal } from 'semantic-ui-react';
+import Session from '../services/Session';
 
-import type { EditContainerProps } from 'react-components/types';
+import type { EditContainerProps } from '@performant-software/shared-components/types';
 import type { Translateable } from '../types/Translateable';
 import type { User } from '../types/User';
 
@@ -39,6 +40,13 @@ const UserModal = (props: Props) => (
         onChange={props.onTextInputChange.bind(this, 'email')}
         value={props.item.email || ''}
       />
+      { Session.isAdmin() && (
+        <Form.Checkbox
+          checked={props.item.admin}
+          label={props.t('UserModal.labels.admin')}
+          onChange={props.onCheckboxInputChange.bind(this, 'admin')}
+        />
+      )}
       <Message
         content={props.t('UserModal.labels.passwordPolicy.content')}
         header={props.t('UserModal.labels.passwordPolicy.header')}
