@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
   type Element,
-  type Node,
+  type Node
 } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -19,8 +19,9 @@ import {
   Sidebar
 } from 'semantic-ui-react';
 import ArtworkMenu from './ArtworkMenu';
-import './RecordPage.css';
+import SearchLink from './SearchLink';
 import useSidebar from '../hooks/Sidebar';
+import './RecordPage.css';
 
 type Props = {
   artworkId?: number,
@@ -31,10 +32,10 @@ type Props = {
 };
 
 const RecordPage = (props: Props) => {
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
   const menuBarRef = useRef(null);
   const { height: minHeight } = useSidebar(menuBarRef);
-
-  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   return (
     <Container
@@ -72,6 +73,11 @@ const RecordPage = (props: Props) => {
               { props.renderTitle() }
             </Menu.Item>
           )}
+          <Menu.Item
+            position='right'
+          >
+            <SearchLink />
+          </Menu.Item>
         </Menu>
       </Ref>
       <Sidebar.Pushable

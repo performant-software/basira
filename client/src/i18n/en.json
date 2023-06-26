@@ -502,6 +502,11 @@
       }
     }
   },
+  "SearchLink": {
+    "buttons": {
+      "back": "Back to Search"
+    }
+  },
   "SearchThumbnail": {
     "labels": {
       "imageCount": "+{{count}}"
