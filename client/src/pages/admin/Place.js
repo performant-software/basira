@@ -5,10 +5,12 @@ import { EmbeddedList, ItemCollection } from '@performant-software/semantic-comp
 import { withTranslation } from 'react-i18next';
 import { Header, Image } from 'semantic-ui-react';
 import _ from 'underscore';
+import Authorization from '../../utils/Authorization';
 import LocationModal, { LocationTypes } from '../../components/LocationModal';
 import PlaceForm from '../../components/PlaceForm';
 import PlacesService from '../../services/Places';
 import Qualifiables from '../../utils/Qualifiables';
+import Session from '../../services/Session';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
 import useEditPage from './EditPage';
@@ -52,6 +54,7 @@ const Place = (props: Props) => (
         actions={[{
           name: 'edit'
         }, {
+          accept: () => Session.isAdmin(),
           name: 'delete'
         }]}
         items={_.filter(props.item.locations, (l) => l.locateable_type === 'Artwork' && !l._destroy)}
@@ -96,6 +99,7 @@ const Place = (props: Props) => (
         }, {
           name: 'copy'
         }, {
+          accept: () => Session.isAdmin(),
           name: 'delete'
         }]}
         columns={[{
@@ -134,5 +138,6 @@ const Place = (props: Props) => (
 export default withTranslation()(useEditPage(withMenuBar(Place), {
   onLoad: (id) => PlacesService.fetchOne(id).then(({ data }) => data.place),
   onSave: (place) => PlacesService.save(place).then(({ data }) => data.place),
-  required: ['name']
+  required: ['name'],
+  resolveValidationError: (e) => Authorization.resolveUpdateError(e)
 }));

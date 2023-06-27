@@ -1,5 +1,6 @@
 // @flow
 
+import type { EditContainerProps } from '@performant-software/shared-components/types';
 import React, { useEffect, useState } from 'react';
 import ValueListsTable from '../../components/ValueListsTable';
 import withMenuBar from '../../hooks/MenuBar';
@@ -10,7 +11,6 @@ import {
   Tab
 } from 'semantic-ui-react';
 
-import type { EditContainerProps } from 'react-components/types';
 import type { ValueList as ValueListType } from '../../types/ValueList';
 import type { Translateable } from '../../types/Translateable';
 

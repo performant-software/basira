@@ -18,6 +18,7 @@ import DocumentsService from '../services/Documents';
 import { getPhysicalComponents, getVisualContexts } from '../utils/Artwork';
 import ItemLabel from './ItemLabel';
 import PhysicalComponentsService from '../services/PhysicalComponents';
+import Session from '../services/Session';
 import VisualContextsService from '../services/VisualContexts';
 import './AdminArtworkMenu.css';
 
@@ -172,7 +173,7 @@ const AdminArtworkMenu = (props: Props) => {
           to={`/admin${path}`}
         />
       )}
-      { onDelete && (
+      { Session.isAdmin() && onDelete && (
         <Button
           icon='times'
           onClick={(e) => {
