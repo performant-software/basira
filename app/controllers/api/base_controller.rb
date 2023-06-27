@@ -4,12 +4,8 @@ class Api::BaseController < Api::ResourceController
 
   # Actions
   before_action :authenticate_user!, except: :show
-
-  def destroy
-    render json: { errors: I18n.t('errors.unauthorized') }, status: :unauthorized and return unless current_user.admin?
-
-    super
-  end
+  before_action :validate_delete_authorization, only: :destroy
+  before_action :validate_update_authorization, only: :update
 
   protected
 
@@ -23,5 +19,35 @@ class Api::BaseController < Api::ResourceController
     end
 
     super
+  end
+
+  private
+
+  def validate_delete_authorization
+    render json: { errors: [I18n.t('errors.unauthorized')] }, status: :unauthorized unless current_user.admin?
+  end
+
+  def validate_update_authorization
+    return if current_user.admin?
+
+    unauthorized = false
+
+    item_class.nested_attributes_options.keys.each do |key|
+      nested_attributes = params[param_name][key]
+      next unless nested_attributes.present?
+
+      # Handle JSON and FormData parameters
+      if nested_attributes.is_a?(Array)
+        attrs = nested_attributes
+      elsif nested_attributes.is_a?(ActionController::Parameters) && nested_attributes.keys.all?(&:is_integer?)
+        attrs = nested_attributes.keys.map{ |index| nested_attributes[index] }
+      end
+
+      attrs.each do |attr|
+        unauthorized = true if attr['_destroy'].to_s.to_bool
+      end
+    end
+
+    render json: { errors: [{ base: I18n.t('errors.unauthorized') }] }, status: :unauthorized if unauthorized
   end
 end
