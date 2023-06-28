@@ -156,7 +156,8 @@
       "save": "Save"
     },
     "errors": {
-      "header": "Oops!"
+      "header": "Oops!",
+      "unauthorized": "You do not have permission to delete records."
     },
     "labels": {
       "artwork": "Artwork",
@@ -519,6 +520,7 @@
   },
   "UserModal": {
     "labels": {
+      "admin": "Administrator",
       "email": "Email",
       "name": "Name",
       "password": "Password",

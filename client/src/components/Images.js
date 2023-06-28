@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { FileUpload, PhotoViewer } from '@performant-software/semantic-components';
 import { withTranslation } from 'react-i18next';
 import { Button, Card, Image } from 'semantic-ui-react';
@@ -10,6 +10,7 @@ import './Images.css';
 import type { Translateable } from '../types/Translateable';
 
 type Action = {
+  accept?: (item: any) => boolean,
   color?: (item: any) => ?string,
   icon: string,
   name: string,
@@ -26,6 +27,15 @@ type Props = Translateable & {
 const Images = (props: Props) => {
   const [currentImage, setCurrentImage] = useState(null);
   const [fileUpload, setFileUpload] = useState(false);
+
+  /**
+   * Returns the list of available actions for the passed item.
+   *
+   * @type {function(*): *}
+   */
+  const getActions = useCallback((item) => (
+    _.filter(props.actions, (action) => !action.accept || action.accept(item))
+  ), [props.actions]);
 
   return (
     <div
@@ -72,7 +82,7 @@ const Images = (props: Props) => {
                 extra
                 textAlign='center'
               >
-                { _.map(props.actions, (action) => (
+                { _.map(getActions(item), (action) => (
                   <Button
                     basic
                     color={action.color && action.color(item)}

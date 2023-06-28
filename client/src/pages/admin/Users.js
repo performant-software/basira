@@ -1,8 +1,10 @@
 // @flow
 
-import React from 'react';
 import { ListTable } from '@performant-software/semantic-components';
+import React from 'react';
 import { Container } from 'semantic-ui-react';
+import Authorization from '../../utils/Authorization';
+import Session from '../../services/Session';
 import UserModal from '../../components/UserModal';
 import UsersService from '../../services/Users';
 import withMenuBar from '../../hooks/MenuBar';
@@ -21,6 +23,7 @@ const Users = (props: Translateable) => (
       }, {
         name: 'copy'
       }, {
+        accept: () => Session.isAdmin(),
         name: 'delete'
       }]}
       addButton={{
@@ -73,6 +76,8 @@ const Users = (props: Translateable) => (
       onDelete={(user) => UsersService.delete(user)}
       onLoad={(params) => UsersService.fetchAll(params)}
       onSave={(user) => UsersService.save(user)}
+      resolveErrors={(error) => Authorization.resolveDeleteError(error)}
+      searchable
     />
   </Container>
 );
