@@ -28,6 +28,7 @@ const Document = () => {
 
   return (
     <RecordPage
+      artworkId={item?.artwork_id}
       className='document'
       loading={loading}
       renderTitle={() => item.name}

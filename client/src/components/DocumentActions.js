@@ -53,8 +53,10 @@ const DocumentActions = (props: Props) => {
     <Item.Group
       divided
     >
-      { _.map(props.items, (item) => (
-        <Item>
+      { _.map(props.items, (item, index) => (
+        <Item
+          key={index}
+        >
           <Item.Content>
             <Item.Header>
               { renderActionText(item) }

@@ -25,6 +25,7 @@ const VisualContext = () => {
 
   return (
     <RecordPage
+      artworkId={item?.artwork_id}
       loading={loading}
       renderTitle={() => item.name}
     >
