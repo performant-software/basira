@@ -1,15 +1,15 @@
 // @flow
 
+import { useEditContainer } from '@performant-software/shared-components';
+import type { EditContainerProps } from '@performant-software/shared-components/types';
 import React, { type ComponentType } from 'react';
-import { useEditContainer } from 'react-components';
 import { useHistory, useParams } from 'react-router-dom';
 import _ from 'underscore';
-
-import type { EditContainerProps } from 'react-components/types';
 
 type Config = {
   onLoad: (params: any) => Promise<any>,
   onSave: (item: any) => Promise<any>,
+  resolveValidationError?: (error: any) => Array<string>,
   validate?: (item: any) => any
 };
 
@@ -62,6 +62,7 @@ const useEditPage = (WrappedComponent: ComponentType<any>, config: Config) => (
             }
           })}
         onSave={(item) => config.onSave(item).then(afterSave)}
+        resolveValidationError={config.resolveValidationError}
       />
     );
   }

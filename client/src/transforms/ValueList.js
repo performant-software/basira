@@ -9,7 +9,7 @@ import type { ValueList as ValueListType } from '../types/ValueList';
  * Class for handling transforming value_list records.
  */
 class ValueList extends BaseTransform {
-  PARAM_NAME = 'value_lists'
+  PARAM_NAME = 'value_lists';
 
   PAYLOAD_KEYS = [
     'id',

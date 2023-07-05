@@ -12,7 +12,7 @@ type Props = {
 
 const SimpleLink = (props: Props) => (
   <Link
-    className='link'
+    className='simple-link'
     to={props.url}
   >
     { props.content || props.children }

@@ -3,6 +3,9 @@ class Api::ArtworksController < Api::BaseController
   include Api::Filterable
   include Api::Qualifiable
 
+  # Actions
+  skip_before_action :authenticate_user!, only: :nested
+
   # Search columns
   search_attributes 'artwork_titles.title', :date_descriptor, :notes_external, :notes_internal
 
@@ -13,7 +16,7 @@ class Api::ArtworksController < Api::BaseController
   preloads :primary_title, only: :index
   preloads Artwork.primary_attachment_preload, only: :index
 
-  preloads :artwork_titles, only: :show
+  preloads qualifications: :value_list
   preloads Artwork.attachments_preload, only: :show
   preloads locations: :place, only: :show
   preloads participations: :person, only: :show
@@ -62,5 +65,11 @@ class Api::ArtworksController < Api::BaseController
     )
 
     super.or(artist_query)
+  end
+
+  def base_query
+    return super if current_user.present?
+
+    Artwork.where(published: true)
   end
 end

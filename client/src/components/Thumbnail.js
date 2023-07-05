@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useEffect, useState } from 'react';
-import { LazyImage } from 'react-components';
+import { LazyImage } from '@performant-software/semantic-components';
 import { Image, Loader } from 'semantic-ui-react';
 
 type Props = {

@@ -36,7 +36,9 @@ class FormDataTransform extends BaseTransform {
     const formData = new FormData();
 
     _.each(this.getPayloadKeys(), (key) => {
-      formData.append(`${this.getParameterName()}[${key}]`, String.toString(record[key]));
+      if (Object.hasOwn(record, key)) {
+        formData.append(`${this.getParameterName()}[${key}]`, String.toString(record[key]));
+      }
     });
 
     return formData;

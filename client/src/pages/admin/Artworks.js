@@ -1,22 +1,25 @@
 // @flow
 
+import { FilterTypes, ItemList, ListFilters } from '@performant-software/semantic-components';
 import React from 'react';
-import { FilterTypes, ItemList, ListFilters } from 'react-components';
 import { withRouter } from 'react-router-dom';
 import { Container, Header } from 'semantic-ui-react';
 import _ from 'underscore';
-import Thumbnail from '../../components/Thumbnail';
 import ArtworksService from '../../services/Artworks';
-import Users from '../../services/Users';
+import Authorization from '../../utils/Authorization';
+import Session from '../../services/Session';
+import Thumbnail from '../../components/Thumbnail';
 import User from '../../transforms/User';
+import Users from '../../services/Users';
 import withMenuBar from '../../hooks/MenuBar';
 import './Artworks.css';
 
-import type { ListProps } from 'react-components/types';
+import type { ListProps } from '@performant-software/semantic-components/types';
 import type { Routeable } from '../../types/Routeable';
+import type { Translateable } from '../../types/Translateable';
 import type { User as UserType } from '../../types/User';
 
-type Props = ListProps & Routeable;
+type Props = ListProps & Routeable & Translateable;
 
 const Artworks = (props: Props) => (
   <Container>
@@ -25,6 +28,7 @@ const Artworks = (props: Props) => (
         name: 'edit',
         onClick: (item) => props.history.push(`/admin/artworks/${item.id}`)
       }, {
+        accept: () => Session.isAdmin(),
         icon: 'times',
         name: 'delete'
       }, {
@@ -172,6 +176,7 @@ const Artworks = (props: Props) => (
           </div>
         </>
       )}
+      resolveErrors={(error) => Authorization.resolveDeleteError(error)}
       session={{
         key: 'artworks',
         storage: sessionStorage

@@ -1,12 +1,13 @@
 // @flow
 
 import React, { useCallback, useState } from 'react';
-import { BooleanIcon, EditModal, EmbeddedList } from 'react-components';
+import { BooleanIcon, EditModal, EmbeddedList } from '@performant-software/semantic-components';
 import { Card, Form, Header } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworkTitleModal from '../../components/ArtworkTitleModal';
 import ArtworksService from '../../services/Artworks';
 import AttachmentModal from '../../components/AttachmentModal';
+import Authorization from '../../utils/Authorization';
 import File from '../../transforms/File';
 import i18n from '../../i18n/i18n';
 import Images from '../../components/Images';
@@ -16,6 +17,7 @@ import Number from '../../utils/Number';
 import ParticipationModal, { ParticipationTypes } from '../../components/ParticipationModal';
 import Qualifiables from '../../utils/Qualifiables';
 import RecordHeader from '../../components/RecordHeader';
+import Session from '../../services/Session';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
 import Validations from '../../utils/Validations';
@@ -155,6 +157,7 @@ const Artwork = (props: Props) => {
           }, {
             name: 'copy'
           }, {
+            accept: () => Session.isAdmin(),
             name: 'delete'
           }]}
           columns={[{
@@ -162,7 +165,8 @@ const Artwork = (props: Props) => {
             label: props.t('Artwork.titles.columns.title')
           }, {
             name: 'title_type',
-            label: props.t('Artwork.titles.columns.titleType')
+            label: props.t('Artwork.titles.columns.titleType'),
+            resolve: (at) => Qualifiables.getValueListValue(at, 'Artwork', 'Title Type')
           }, {
             name: 'primary',
             label: props.t('Artwork.titles.columns.primary'),
@@ -303,6 +307,7 @@ const Artwork = (props: Props) => {
             name: 'edit',
             onClick: (item) => setSelectedImage(item)
           }, {
+            accept: () => Session.isAdmin(),
             color: () => 'red',
             icon: 'times',
             name: 'delete',
@@ -342,6 +347,7 @@ const Artwork = (props: Props) => {
           }, {
             name: 'copy'
           }, {
+            accept: () => Session.isAdmin(),
             name: 'delete'
           }]}
           columns={[{
@@ -355,7 +361,8 @@ const Artwork = (props: Props) => {
             )
           }, {
             name: 'role',
-            label: props.t('Artwork.participations.columns.role')
+            label: props.t('Artwork.participations.columns.role'),
+            resolve: (pa) => Qualifiables.getValueListValue(pa, 'Person', 'Participation Role')
           }]}
           items={props.item.participations}
           key='participations'
@@ -392,6 +399,7 @@ const Artwork = (props: Props) => {
           }, {
             name: 'copy'
           }, {
+            accept: () => Session.isAdmin(),
             name: 'delete'
           }]}
           columns={[{
@@ -434,6 +442,7 @@ export default useEditPage(withMenuBar(Artwork), {
   onLoad: (id) => ArtworksService.fetchOne(id).then(({ data }) => data.artwork),
   onSave: (artwork) => ArtworksService.save(artwork).then(({ data }) => data.artwork),
   required: ['date_descriptor'],
+  resolveValidationError: (e) => Authorization.resolveUpdateError(e),
   validate: (artwork) => {
     let validationErrors = {};
 

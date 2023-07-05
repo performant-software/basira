@@ -3,6 +3,7 @@ class VisualContext < ApplicationRecord
   include Attachable
   include Qualifiable
   include Recordable
+  include Search::VisualContext
 
   # Relationships
   belongs_to :physical_component

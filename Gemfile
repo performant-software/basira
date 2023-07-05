@@ -1,19 +1,19 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '3.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.6'
+gem 'rails', '~> 7.0.4'
 
 # Use PostgreSQL as the database for Active Record
 gem 'pg'
 
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 6.1'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap', '~> 1.16', require: false
 
 # Devise token authentication
 gem 'devise_token_auth'
@@ -21,17 +21,14 @@ gem 'devise_token_auth'
 # Use .env files for environment variables
 gem 'dotenv-rails'
 
-# Pagination
-gem 'pagy', '~> 3.5'
-
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
 # Resource API
-gem 'resource_api', git: 'git@resource-api:performant-software/resource-api.git', tag: 'v0.3.0'
+gem 'resource_api', git: 'https://github.com/performant-software/resource-api.git', tag: 'v0.4.2'
 
 # Airtable API integration for seeding and synchronizing data
-gem 'airrecord'
+gem 'airrecord', '~> 1.0.12'
 
 # Active storage service
 gem 'aws-sdk-s3'
@@ -40,7 +37,10 @@ gem 'aws-sdk-s3'
 gem 'image_processing', '~> 1.0'
 
 # Data migration
-gem 'data_migrate'
+gem 'data_migrate', '~> 9.0'
+
+# Typesense for search indexing
+gem 'typesense', '~> 0.14'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,7 +51,7 @@ group :development do
   gem 'listen', '~> 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen', '~> 2.1.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

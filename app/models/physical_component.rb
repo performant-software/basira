@@ -2,6 +2,7 @@ class PhysicalComponent < ApplicationRecord
   # Includes
   include Attachable
   include Recordable
+  include Search::PhysicalComponent
 
   # Relationships
   belongs_to :artwork

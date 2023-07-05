@@ -1,14 +1,16 @@
 // @flow
 
 import React from 'react';
-import { EmbeddedList, ItemCollection } from 'react-components';
+import { EmbeddedList, ItemCollection } from '@performant-software/semantic-components';
 import { Header, Image } from 'semantic-ui-react';
 import _ from 'underscore';
+import Authorization from '../../utils/Authorization';
 import ParticipationModal, { ParticipationTypes } from '../../components/ParticipationModal';
 import PeopleService from '../../services/People';
 import PersonForm from '../../components/PersonForm';
 import LocationModal, { LocationTypes } from '../../components/LocationModal';
 import Qualifiables from '../../utils/Qualifiables';
+import Session from '../../services/Session';
 import SimpleEditPage from '../../components/SimpleEditPage';
 import SimpleLink from '../../components/SimpleLink';
 import withMenuBar from '../../hooks/MenuBar';
@@ -52,6 +54,7 @@ const Person = (props: Props) => (
         actions={[{
           name: 'edit'
         }, {
+          accept: () => Session.isAdmin(),
           name: 'delete'
         }]}
         items={_.filter(props.item.participations, (p) => !p._destroy)}
@@ -96,6 +99,7 @@ const Person = (props: Props) => (
         }, {
           name: 'copy'
         }, {
+          accept: () => Session.isAdmin(),
           name: 'delete'
         }]}
         columns={[{
@@ -135,5 +139,6 @@ const Person = (props: Props) => (
 export default useEditPage(withMenuBar(Person), {
   onLoad: (id) => PeopleService.fetchOne(id).then(({ data }) => data.person),
   onSave: (person) => PeopleService.save(person).then(({ data }) => data.person),
-  required: ['name', 'display_name']
+  required: ['name', 'display_name'],
+  resolveValidationError: (e) => Authorization.resolveUpdateError(e)
 });

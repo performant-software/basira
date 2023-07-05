@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useState, type Element } from 'react';
-import { FileInputButton, LazyImage } from 'react-components';
+import { FileInputButton, LazyImage } from '@performant-software/semantic-components';
 import { withTranslation } from 'react-i18next';
 import {
   Button,

@@ -1,9 +1,13 @@
 // @flow
 
 import React, { useEffect, useMemo } from 'react';
-import { EmbeddedList, LazyImage } from 'react-components';
+import { EmbeddedList, LazyImage } from '@performant-software/semantic-components';
 import { withRouter } from 'react-router-dom';
-import { Dropdown, Form, Grid } from 'semantic-ui-react';
+import {
+  Dropdown,
+  Form,
+  Grid,
+} from 'semantic-ui-react';
 import _ from 'underscore';
 import ActionModal from '../../components/ActionModal';
 import Action from '../../transforms/Action';
@@ -485,11 +489,27 @@ const Document = (props: Props) => {
               />
               <Form.TextArea
                 error={props.isError('transcription')}
-                label={props.t('Document.labels.transcription')}
+                label={props.t('Document.labels.transcriptionDiplomatic')}
                 onChange={props.onTextInputChange.bind(this, 'transcription')}
                 required={props.isRequired('transcription')}
                 rows={5}
                 value={props.item.transcription || ''}
+              />
+              <Form.TextArea
+                error={props.isError('transcription_expanded')}
+                label={props.t('Document.labels.transcriptionExpanded')}
+                onChange={props.onTextInputChange.bind(this, 'transcription_expanded')}
+                required={props.isRequired('transcription_expanded')}
+                rows={5}
+                value={props.item.transcription_expanded || ''}
+              />
+              <Form.TextArea
+                error={props.isError('transcription_translation')}
+                label={props.t('Document.labels.transcriptionTranslation')}
+                onChange={props.onTextInputChange.bind(this, 'transcription_translation')}
+                required={props.isRequired('transcription_translation')}
+                rows={5}
+                value={props.item.transcription_translation || ''}
               />
               <ValueListDropdown
                 {...props}

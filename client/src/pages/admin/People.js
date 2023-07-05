@@ -1,12 +1,14 @@
 // @flow
 
 import React from 'react';
-import { ListTable } from 'react-components';
+import { ListTable } from '@performant-software/semantic-components';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
+import Authorization from '../../utils/Authorization';
 import PeopleService from '../../services/People';
 import Qualifiables from '../../utils/Qualifiables';
+import Session from '../../services/Session';
 import withMenuBar from '../../hooks/MenuBar';
 
 import type { Routeable } from '../../types/Routeable';
@@ -19,6 +21,7 @@ const People = (props: Translateable & Routeable) => (
         name: 'edit',
         onClick: (item) => props.history.push(`/admin/people/${item.id}`)
       }, {
+        accept: () => Session.isAdmin(),
         name: 'delete'
       }]}
       addButton={{
@@ -46,6 +49,8 @@ const People = (props: Translateable & Routeable) => (
       onDelete={(person) => PeopleService.delete(person)}
       onLoad={(params) => PeopleService.fetchAll(params)}
       onSave={(person) => PeopleService.save(person)}
+      resolveErrors={(error) => Authorization.resolveDeleteError(error)}
+      searchable
     />
   </Container>
 );

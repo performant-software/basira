@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { LoginModal } from 'react-components';
+import { LoginModal } from '@performant-software/semantic-components';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import {
@@ -39,7 +39,7 @@ const Home = (props: Props) => {
 
   useEffect(() => {
     HomeService
-      .fetchAll({ limit: props.images })
+      .fetchAll()
       .then(({ data }) => {
         setImages(_.map(data.homes, (item) => item.primary_attachment.thumbnail_url));
       });

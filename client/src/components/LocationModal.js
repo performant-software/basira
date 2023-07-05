@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { AssociatedDropdown } from 'react-components';
+import { AssociatedDropdown } from '@performant-software/semantic-components';
 import { withTranslation } from 'react-i18next';
 import { Form, Modal } from 'semantic-ui-react';
 import Artworks from '../services/Artworks';
@@ -109,12 +109,11 @@ const LocationModal = (props: Props) => (
         label={props.t('LocationModal.labels.role')}
         object='Location'
       />
-      <Form.Input
-        error={props.isError('subrole')}
+      <ValueListDropdown
+        {...props}
+        group='Subrole'
         label={props.t('LocationModal.labels.subrole')}
-        onChange={props.onTextInputChange.bind(this, 'subrole')}
-        required={props.isRequired('subrole')}
-        value={props.item.subrole || ''}
+        object='Location'
       />
       <Form.Input
         error={props.isError('repository_work_url')}

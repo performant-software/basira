@@ -1,0 +1,448 @@
+{
+  "name": "documents",
+  "enable_nested_fields": true,
+  "fields": [
+    {
+      "name": "actions.verb_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "actions.entity_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "actions.entity_descriptors_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "actions.body_descriptors_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.date_range_facet",
+      "type": "int32[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.materials_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.techniques_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.object_work_type_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.artwork_titles.title_type_facet",
+      "type": "string",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.creators.display_name_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.creators.nationality_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.name_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.city_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.state_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.country_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "document_format_facet",
+      "type": "string",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "document_type_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "orientation_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "size_facet",
+      "type": "string",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "aperture_facet",
+      "type": "string",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "binding_type_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "binding_color_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "sewing_supports_visible_facet",
+      "type": "bool",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "number_sewing_supports_visible_facet",
+      "type": "int32[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "spine_features_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "furniture_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "fastenings_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "number_fastenings_facet",
+      "type": "int32",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "location_fastenings_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "inscriptions_on_binding_facet",
+      "type": "bool",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "binding_ornamentation_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "binding_iconography_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "endband_present_facet",
+      "type": "bool",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "endband_colors_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "endband_style_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "endband_relationship_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "decorated_fore_edges_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "uncut_fore_edges_facet",
+      "type": "bool",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "fore_edges_color_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "bookmark_registers_facet",
+      "type": "int32",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "bookmark_registers_color_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "bookmark_style_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "text_technology_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "text_columns_facet",
+      "type": "int32",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "page_contents_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "ruling_facet",
+      "type": "bool",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "ruling_color_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "rubrication_facet",
+      "type": "bool",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "rubrication_color_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "legibility_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "script_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "language_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "simulated_script_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "illumination_type_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "illumination_iconography_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "artwork.artwork_titles.title",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.creators.name",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.creators.display_name",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.name",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.city",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.state",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.locations.country",
+      "type": "string[]",
+      "optional": true
+    },
+    {
+      "name": "artwork.name",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "fore_edge_text",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "identity",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "inscription_text",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "physical_component.name",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "transcription",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "transcription_expanded",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "transcription_translation",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "visual_context.name",
+      "type": "string",
+      "optional": true
+    },
+    {
+      "name": "visual_context.general_subject_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "visual_context.subject_cultural_context_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "visual_context.specific_subject_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": ".*_facet",
+      "type": "auto",
+      "facet": true
+    },
+    {
+      "name": ".*",
+      "type": "auto"
+    }
+  ]
+}

@@ -1,5 +1,13 @@
 {
-  "AccordionMenu": {
+  "404": {
+    "messages": {
+      "notFound": {
+        "content": "We can't seem to find the page you're looking for. Try going back to the previous page or starting your search over.",
+        "header": "Page Not Found"
+      }
+    }
+  },
+  "AdminArtworkMenu": {
     "deleteContent": "Are you sure you want to remove {{name}}?",
     "deleteHeader": "Confirm Remove"
   },
@@ -83,6 +91,11 @@
       "objectWorkTypes": "Select object/work type...",
       "techniques": "Select technique(s)..."
     },
+    "sections": {
+      "creators": "Creators",
+      "locations": "Locations",
+      "titles": "Titles"
+    },
     "tabs": {
       "creators": "Creators",
       "images": "Images",
@@ -137,15 +150,19 @@
   },
   "Common": {
     "buttons": {
+      "back": "Back",
       "cancel": "Cancel",
+      "viewSource": "View Source",
       "save": "Save"
     },
     "errors": {
-      "header": "Oops!"
+      "header": "Oops!",
+      "unauthorized": "You do not have permission to delete records."
     },
     "labels": {
       "artwork": "Artwork",
       "document": "Document",
+      "id": "ID",
       "physicalComponent": "Physical Component",
       "visualContext": "Visual Context"
     },
@@ -172,6 +189,7 @@
       }
     },
     "labels": {
+      "action": "The document {{verb}} {{entity}}",
       "aperture": "Aperture",
       "bindingColor": "Binding Color",
       "bindingIconography": "Binding Iconography",
@@ -217,9 +235,17 @@
       "spineFeatures": "Spine Features",
       "textColumns": "Text Columns",
       "textTechnology": "Text Technology",
-      "transcription": "Transcription",
+      "transcriptionDiplomatic": "Transcription: Diplomatic",
+      "transcriptionExpanded": "Transcription: Expanded",
+      "transcriptionTranslation": "Transcription: Translation",
       "typeOfIllumination": "Type of Illumination",
       "uncutForeEdges": "Uncut Fore-Edges"
+    },
+    "popups": {
+      "changeVisualContext": {
+        "header": "Select Parent Visual Context",
+        "content": "Change the parent visual context for this document."
+      }
     },
     "sections": {
       "binding": "Binding",
@@ -394,6 +420,99 @@
       }
     }
   },
+  "Search": {
+    "buttons": {
+      "clearFacets": "Clear Facets"
+    },
+    "facets": {
+      "actions": {
+        "bodyDescriptors": "Body Descriptors",
+        "entity": "Entity",
+        "entityDescriptors": "Entity Descriptors",
+        "verb": "Verb"
+      },
+      "aperture": "Aperture",
+      "artwork": {
+        "creators": {
+          "displayName": "Creator",
+          "nationality": "Creator Place of Origin"
+        },
+        "dateRange": "Date",
+        "materials": "Materials",
+        "locations": {
+          "name": "Repository",
+          "city": "Repository City",
+          "country": "Repository Country",
+          "state": "Repository State"
+        },
+        "objectWorkType": "Object Work/Type",
+        "techniques": "Techniques"
+      },
+      "headers": {
+        "artwork": "Artwork",
+        "documentActions": "Document Actions",
+        "documentDetails": "Document Details",
+        "externalFeatures": "Document External Features",
+        "internalFeatures": "Document Internal Features",
+        "visualContext": "Visual Context"
+      },
+      "bindingColor": "Binding Color",
+      "bindingIconography": "Binding Iconography",
+      "bindingOrnamentation": "Binding Ornamentation",
+      "bindingRelationship": "Binding Relationship to Textblock",
+      "bindingType": "Binding Type",
+      "bookmarkRegisterColor": "Color",
+      "bookmarkStyle": "Bookmark/Register Style",
+      "bookmarksRegisters": "Bookmarks/Registers",
+      "decoratedForeEdges": "Decorated Textblock Edges",
+      "documentFormat": "Document Format",
+      "documentType": "Document Type",
+      "endbandColors": "Endband Color(s)",
+      "endbandPresent": "Endband Present",
+      "endbandStyle": "Endband Style",
+      "fastenings": "Fastenings",
+      "foreEdgesColor": "Color of Textblock Edges",
+      "furniture": "Furniture",
+      "illuminationIconography": "Illumination Iconography",
+      "illuminationType": "Type of Illumination",
+      "inscriptionsOnBinding": "Inscriptions on Binding",
+      "language": "Language",
+      "legibility": "Legibility",
+      "locationFastenings": "Location of Fastenings",
+      "numberFastenings": "Number of Fastenings",
+      "numberSewingSupports": "Number of Sewing Supports Visible",
+      "objectWorkType": "Object Work/Type",
+      "orientation": "Orientation",
+      "pageContents": "Page Contents",
+      "rubrication": "Rubrication",
+      "rubricationColor": "Rubrication Color",
+      "ruling": "Ruling",
+      "rulingColor": "Ruling Color",
+      "sewingSupportsVisible": "Sewing Supports Visible",
+      "script": "Script",
+      "simulatedScript": "Simulated Script",
+      "size": "Size",
+      "spineFeatures": "Spine Features",
+      "textColumns": "Text Columns",
+      "textTechnology": "Text Technology",
+      "uncutForeEdges": "Uncut Fore-Edges",
+      "visualContext": {
+        "generalSubject": "General Subject",
+        "specificSubject": "Specific Subject/Iconography",
+        "subjectCulturalContext": "Subject Cultural Context"
+      }
+    }
+  },
+  "SearchLink": {
+    "buttons": {
+      "back": "Back to Search"
+    }
+  },
+  "SearchThumbnail": {
+    "labels": {
+      "imageCount": "+{{count}}"
+    }
+  },
   "SimpleEditPage": {
     "labels": {
       "add": "Add New {{type}}"
@@ -401,6 +520,7 @@
   },
   "UserModal": {
     "labels": {
+      "admin": "Administrator",
       "email": "Email",
       "name": "Name",
       "password": "Password",
@@ -476,6 +596,12 @@
       "details": "Details",
       "notes": "Notes",
       "subjectMatter": "Subject Matter"
+    },
+    "popups": {
+      "changePhysicalComponent": {
+        "header": "Select Parent Physical Component",
+        "content": "Change the parent physical component for this visual context."
+      }
     }
   }
 }

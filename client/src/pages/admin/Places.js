@@ -1,9 +1,11 @@
 // @flow
 
 import React from 'react';
-import { ListTable } from 'react-components';
+import { ListTable } from '@performant-software/semantic-components';
 import { Container } from 'semantic-ui-react';
+import Authorization from '../../utils/Authorization';
 import PlacesService from '../../services/Places';
+import Session from '../../services/Session';
 import withMenuBar from '../../hooks/MenuBar';
 
 import type { Routeable } from '../../types/Routeable';
@@ -16,6 +18,7 @@ const Places = (props: Routeable & Translateable) => (
         name: 'edit',
         onClick: (item) => props.history.push(`/admin/places/${item.id}`)
       }, {
+        accept: () => Session.isAdmin(),
         name: 'delete'
       }]}
       addButton={{
@@ -50,6 +53,8 @@ const Places = (props: Routeable & Translateable) => (
       onDelete={(place) => PlacesService.delete(place)}
       onLoad={(params) => PlacesService.fetchAll(params)}
       onSave={(place) => PlacesService.save(place)}
+      resolveErrors={(error) => Authorization.resolveDeleteError(error)}
+      searchable
     />
   </Container>
 );

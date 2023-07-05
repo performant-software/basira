@@ -2,24 +2,24 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_07_171525) do
-
+ActiveRecord::Schema[7.0].define(version: 2023_06_26_153029) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
     t.bigint "document_id", null: false
     t.text "notes"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["document_id"], name: "index_actions_on_document_id"
   end
 
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -39,9 +39,16 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.string "content_type"
     t.text "metadata"
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
+    t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "artwork_titles", force: :cascade do |t|
@@ -50,8 +57,8 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.string "title_type"
     t.boolean "primary", default: false, null: false
     t.text "notes"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.index ["artwork_id"], name: "index_artwork_titles_on_artwork_id"
@@ -72,13 +79,13 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.string "repository_work_url"
     t.string "accession_number"
     t.string "airtable_id"
-    t.datetime "airtable_timestamp"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "created_by_id"
-    t.bigint "updated_by_id"
+    t.datetime "airtable_timestamp", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "number_documents_visible"
     t.integer "documents_count", default: 0, null: false
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
     t.index ["created_by_id"], name: "index_artworks_on_created_by_id"
     t.index ["updated_by_id"], name: "index_artworks_on_updated_by_id"
   end
@@ -88,9 +95,9 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.bigint "attachable_id", null: false
     t.boolean "primary", default: false, null: false
     t.string "airtable_id"
-    t.datetime "airtable_timestamp"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "airtable_timestamp", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
@@ -120,12 +127,14 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.text "identity"
     t.text "transcription"
     t.string "airtable_id"
-    t.datetime "airtable_timestamp"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "airtable_timestamp", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "artwork_id"
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
-    t.bigint "artwork_id"
+    t.text "transcription_expanded"
+    t.text "transcription_translation"
     t.index ["artwork_id"], name: "index_documents_on_artwork_id"
     t.index ["created_by_id"], name: "index_documents_on_created_by_id"
     t.index ["updated_by_id"], name: "index_documents_on_updated_by_id"
@@ -137,12 +146,11 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.string "locateable_type", null: false
     t.bigint "locateable_id", null: false
     t.string "role"
-    t.string "subrole"
     t.text "description"
     t.integer "certainty"
     t.text "notes"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.string "repository_work_url"
@@ -156,13 +164,11 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.bigint "person_id", null: false
     t.string "participateable_type", null: false
     t.bigint "participateable_id", null: false
-    t.string "role"
-    t.string "subrole"
     t.text "description"
     t.integer "certainty"
     t.text "notes"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.index ["created_by_id"], name: "index_participations_on_created_by_id"
@@ -182,9 +188,9 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.integer "part_of"
     t.integer "same_as"
     t.string "airtable_id"
-    t.datetime "airtable_timestamp"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "airtable_timestamp", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "artist_birth_date"
     t.string "artist_death_date"
     t.string "years_active"
@@ -202,9 +208,9 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.string "depth"
     t.string "notes"
     t.string "airtable_id"
-    t.datetime "airtable_timestamp"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "airtable_timestamp", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.index ["artwork_id"], name: "index_physical_components_on_artwork_id"
@@ -226,9 +232,9 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.integer "same_as"
     t.integer "part_of"
     t.string "airtable_id"
-    t.datetime "airtable_timestamp"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "airtable_timestamp", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
     t.index ["created_by_id"], name: "index_places_on_created_by_id"
@@ -251,16 +257,16 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
+    t.datetime "reset_password_sent_at", precision: nil
     t.boolean "allow_password_change", default: false
-    t.datetime "remember_created_at"
+    t.datetime "remember_created_at", precision: nil
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "name"
@@ -268,8 +274,9 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.string "image"
     t.string "email"
     t.text "tokens"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -284,9 +291,9 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.text "comment"
     t.string "authorized_vocabulary"
     t.string "airtable_id"
-    t.datetime "airtable_timestamp"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "airtable_timestamp", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "qualifications_count", default: 0, null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
@@ -302,9 +309,9 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
     t.string "depth"
     t.string "notes"
     t.string "airtable_id"
-    t.datetime "airtable_timestamp"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "airtable_timestamp", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "beta", default: false, null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
@@ -315,6 +322,7 @@ ActiveRecord::Schema.define(version: 2021_12_07_171525) do
 
   add_foreign_key "actions", "documents"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "artwork_titles", "artworks"
   add_foreign_key "artwork_titles", "users", column: "created_by_id"
   add_foreign_key "artwork_titles", "users", column: "updated_by_id"

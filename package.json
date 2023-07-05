@@ -2,13 +2,12 @@
   "name": "BASIRA",
   "license": "MIT",
   "engines": {
-    "node": "14.15.x",
+    "node": "18.15.0",
     "yarn": "1.x"
   },
   "scripts": {
     "build": "yarn --cwd client install && yarn --cwd client run build && cd ..",
     "deploy": "cp -a client/build/. public/",
-    "heroku-prebuild": "bash ./scripts/preinstall.sh",
     "heroku-postbuild": "yarn build && yarn deploy"
   }
 }

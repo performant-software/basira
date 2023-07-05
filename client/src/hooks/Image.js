@@ -6,12 +6,12 @@ import React, {
   useState,
   type ComponentType
 } from 'react';
-import { EditModal } from 'react-components';
+import { EditModal } from '@performant-software/semantic-components';
+import { type EditContainerProps } from '@performant-software/shared-components/types';
 import _ from 'underscore';
 import AttachmentModal from '../components/AttachmentModal';
 import File from '../transforms/File';
 
-import type { EditContainerProps } from 'react-components/types';
 import type { Attachable } from '../types/concerns/Attachable';
 import type { Attachment } from '../types/Attachment';
 

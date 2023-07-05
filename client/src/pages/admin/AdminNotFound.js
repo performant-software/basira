@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { RouterHistory, withRouter } from 'react-router-dom';
 import {
   Button, Container, Message
 } from 'semantic-ui-react';
@@ -9,7 +9,9 @@ import withMenuBar from '../../hooks/MenuBar';
 
 import type { Translateable } from '../../types/Translateable';
 
-type Props = Translateable;
+type Props = Translateable & {
+  history: typeof RouterHistory,
+};
 
 const AdminNotFound = (props: Props) => (
   <Container>

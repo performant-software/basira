@@ -1,6 +1,7 @@
 class Place < ApplicationRecord
   # Includes
   include Recordable
+  include Search::Place
 
   # Relationships
   has_many :locations, dependent: :destroy
@@ -10,6 +11,6 @@ class Place < ApplicationRecord
 
   # Resourceable parameters
   allow_params :name, :place_type, :lat, :long, :city, :state, :country, :url, :database_value, :notes, :same_as,
-               :part_of, locations_attributes: [:id, :locateable_id, :locateable_type, :subrole, :description, :certainty,
+               :part_of, locations_attributes: [:id, :locateable_id, :locateable_type, :description, :certainty,
                                                 :notes, :_destroy, qualifications_attributes: [:id, :value_list_id, :notes, :persistent, :_destroy]]
 end

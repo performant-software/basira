@@ -1,14 +1,16 @@
 // @flow
 
+import { ListTable, useDataList } from '@performant-software/semantic-components';
+import type { EditContainerProps } from '@performant-software/shared-components/types';
 import React from 'react';
+import { withTranslation } from 'react-i18next';
+import Authorization from '../utils/Authorization';
+import Session from '../services/Session';
+import type { Translateable } from '../types/Translateable';
+import type { ValueList as ValueListType } from '../types/ValueList';
 import ValueListModal from './ValueListModal';
 import ValueListsFiltersModal from './ValueListsFiltersModal';
 import ValueListsService from '../services/ValueLists';
-import { withTranslation } from 'react-i18next';
-import { ListTable, useDataList } from 'react-components';
-import type { EditContainerProps } from 'react-components/types';
-import type { ValueList as ValueListType } from '../types/ValueList';
-import type { Translateable } from '../types/Translateable';
 
 type Props = EditContainerProps & Translateable & {
   item: ValueListType,
@@ -23,7 +25,7 @@ const ValueListsTable = (props: Props) => (
       name: 'copy'
     }, {
       name: 'delete',
-      accept: (item) => item.qualifications_count === 0
+      accept: (item) => Session.isAdmin() && item.qualifications_count === 0
     }]}
     className='value-lists-table'
     collectionName='value_lists'
@@ -65,6 +67,8 @@ const ValueListsTable = (props: Props) => (
       per_page: 25
     })}
     onSave={(params) => ValueListsService.save(params)}
+    resolveErrors={(error) => Authorization.resolveDeleteError(error)}
+    searchable
   />
 );
 
