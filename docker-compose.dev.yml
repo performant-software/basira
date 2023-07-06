@@ -1,0 +1,49 @@
+version: "3"
+services:
+  db:
+    container_name: basira-db
+    environment:
+      POSTGRES_USER: basira
+      POSTGRES_PASSWORD: basira
+      POSTGRES_DB: basira_develop
+    image: postgres:12.2
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    working_dir: /app
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bundle exec rails s -p 3001 -b '0.0.0.0'
+    container_name: basira-api
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: basira
+      DATABASE_PASSWORD: basira
+      DATABASE_NAME: basira_develop
+    entrypoint: /app/docker-entrypoint.sh
+    ports:
+      - "3001:3001"
+    working_dir: /app
+  web:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile.dev
+    command: /bin/sh -c 'cd client && yarn start'
+    container_name: basira-web
+    depends_on:
+      - api
+    environment:
+      NODE_ENV: development
+      REACT_APP_API_URL: http://localhost:3001
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    volumes:
+      - ./:/client
+    working_dir: /client

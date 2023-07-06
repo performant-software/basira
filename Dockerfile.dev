@@ -1,0 +1,19 @@
+# Use the Ruby 3.2.2 image from Docker Hub as the base image (https://hub.docker.com/_/ruby)
+FROM ruby:3.2.2
+
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client git
+
+WORKDIR /app
+
+# Add Rails gems
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
+
+RUN bundle install
+
+COPY . .
+
+EXPOSE 3001
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
