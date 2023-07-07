@@ -2,26 +2,83 @@
 
 BASIRA is **B**ooks **a**s **S**ymbols **i**n **R**enaissance **A**rt. This README is the place for important information on running the app, etc.
 
-## Solr
+## Requirements
 
-BASIRA's [Solr](https://solr.apache.org/guide/solr/latest/index.html) instance lives on its own DigitalOcean droplet.
+- PostgreSQL
+- Ruby
+- NodeJS
+- Yarn
+- ImageMagick/GraphicsMagick or libvips
+- Typesense
+- Heroku (optional)
 
-### Web Interface
+## Installation
 
-A lot of Solr's functionality can be configured via a web interface. You can access the control panel [here](http://143.198.179.92/solr). The login credentials are available in the server's MOTD, or you can ask another developer for them.
+Clone the repository
+```bash
+$ mkdir basira
+$ git clone https://github.com/performant-software/basira basira
+$ cd basira
+```
 
-### Server Setup
+Install Ruby dependencies
+```bash
+$ bundle install
+```
 
-The server was configured using the fairly simple instructions from [Installing Solr](https://solr.apache.org/guide/solr/latest/deployment-guide/installing-solr.html) and [Taking Solr to Production](https://solr.apache.org/guide/solr/latest/deployment-guide/taking-solr-to-production.html).
+Install React dependencies
+```bash
+$ cd client && yarn install
+```
 
-`solr` is a `systemd` service that you can access with `systemctl [action] solr`, such as `systemctl restart solr` or `systemctl status solr`. It runs under its own user (named `solr`, of course) but you shouldn't ever need to log in as `solr`.
+## Running the application
 
-Logs are available in `/var/solr/logs` and the Solr binaries are stored in `/opt/solr`. This separation of logs from the program itself allows easier upgrading, which is important because releases seem to come [every few months](https://archive.apache.org/dist/solr/solr/).
+#### Heroku
+The simplest way to run the application is using Heroku `local` and the `Procfile` to start all services:
+```bash
+$ heroku local -f Procfile.dev
+```
 
-### A Note about Locations
+#### Stand-alone
+We can also start the application by starting the services independently.
 
-If you're working on Solr configuration in the future, such as upgrades or additions, please make sure to use the default settings. The Solr documentation has a lot of stuff like "the `a` file can be found in `/foo/bar`, unless you passed the `-b` flag when running `c.sh`". It makes the docs annoying to follow even if you stick to the defaults! So please, keep files and folders in the default locations to make it easier for future developers to find.
+Start the API:
+```bash
+$ bundle exec rails s -p <port>
+```
 
-# Installing JavaScript dependencies
+Start the client:
+```bash
+$ yarn --cwd client start -p <port>
+```
 
-If `yarn install` fails with an OpenSSL error, try running `yarn install --openssl-legacy-provider`. Node 18 switched to OpenSSL 3 which broke some packages that relied on older versions. We've upgraded the most likely culprit, `react-scripts`, but the error persists without the `--openssl-legacy-provider` flag. Eventually in the future as more packages are updated, the issue should go away.
+**Note**: When running the client in `development` mode, all requests will automatically be proxied to `http://localhost:3001` unless a `REACT_APP_API_URL` environment variable is provided. This defined in `/client/package.json` under the `proxy` property.
+
+## Docker
+The application can also be started in a Docker container:
+
+```bash
+$ docker compose -f docker-compose.dev.yml up --build
+```
+
+The above command will build the Docker images and start up a service for each of the following:
+- PostgreSQL
+- Rails API
+- React
+
+## Typesense
+BASIRA uses Typesense as a search index. Typesense can be run locally or in the cloud, just provide the appropriate `TYPESENSE_*` and `REACT_APP_TYPESENSE_*` environment variables. 
+
+The `TYPESENSE_API_KEY` will be used on the server side to reindex data and should be an admin key.
+
+The `REACT_APP_TYPESENSE_API_KEY` will be used on the client side to make search requests and should be a search-only key.'
+
+To initialize an new search index:
+```bash
+$ bundle exec rake typesense:reset
+```
+
+To update an existing search index:
+```bash
+$ bundle exec rake typesense:index
+```
