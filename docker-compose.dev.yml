@@ -51,4 +51,4 @@ services:
       - "8108:8108"
     restart: on-failure
     volumes:
-      - ./typesense/data:/data
+      - ./tmp/typesense/data:/data
