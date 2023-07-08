@@ -36,6 +36,10 @@
 
 # Ignore env
 .env
+.env.docker
 
 # Image Magick
 Magick-0.log
+
+# Typesense data
+/typesense/data

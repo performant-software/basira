@@ -2,6 +2,7 @@ version: "3"
 services:
   db:
     container_name: basira-db
+    env_file: .env.docker
     environment:
       POSTGRES_USER: basira
       POSTGRES_PASSWORD: basira
@@ -21,11 +22,8 @@ services:
     container_name: basira-api
     depends_on:
       - db
-    environment:
-      DATABASE_HOST: db
-      DATABASE_USER: basira
-      DATABASE_PASSWORD: basira
-      DATABASE_NAME: basira_develop
+      - typesense
+    env_file: .env.docker
     entrypoint: /app/docker-entrypoint.dev.sh
     ports:
       - "3001:3001"
@@ -38,12 +36,19 @@ services:
     container_name: basira-web
     depends_on:
       - api
-    environment:
-      NODE_ENV: development
-      REACT_APP_API_URL: http://localhost:3001
+    env_file: .env.docker
     ports:
       - "3000:3000"
     stdin_open: true
     volumes:
       - ./:/client
     working_dir: /client
+  typesense:
+    command: '--data-dir /data --api-key=xyz --enable-cors'
+    container_name: basira-typesense
+    image: typesense/typesense:0.24.1
+    ports:
+      - "8108:8108"
+    restart: on-failure
+    volumes:
+      - ./typesense/data:/data
