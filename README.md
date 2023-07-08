@@ -11,6 +11,7 @@ BASIRA is **B**ooks **a**s **S**ymbols **i**n **R**enaissance **A**rt. This READ
 - ImageMagick/GraphicsMagick or libvips
 - Typesense
 - Heroku (optional)
+- Docker (optional)
 
 ## Installation
 
