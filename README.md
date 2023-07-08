@@ -65,6 +65,7 @@ The above command will build the Docker images and start up a service for each o
 - PostgreSQL
 - Rails API
 - React
+- Typesense
 
 ## Typesense
 BASIRA uses Typesense as a search index. Typesense can be run locally or in the cloud, just provide the appropriate `TYPESENSE_*` and `REACT_APP_TYPESENSE_*` environment variables. 
