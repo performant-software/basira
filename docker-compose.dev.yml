@@ -2,7 +2,7 @@ version: "3"
 services:
   db:
     container_name: basira-db
-    env_file: .env.docker
+    env_file: .env.docker.dev
     environment:
       POSTGRES_USER: basira
       POSTGRES_PASSWORD: basira
@@ -23,7 +23,7 @@ services:
     depends_on:
       - db
       - typesense
-    env_file: .env.docker
+    env_file: .env.docker.dev
     entrypoint: /app/docker-entrypoint.dev.sh
     ports:
       - "3001:3001"
@@ -36,7 +36,7 @@ services:
     container_name: basira-web
     depends_on:
       - api
-    env_file: .env.docker
+    env_file: .env.docker.dev
     ports:
       - "3000:3000"
     stdin_open: true
