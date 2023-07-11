@@ -39,3 +39,12 @@ services:
     restart: on-failure
     volumes:
       - ./tmp/typesense/data:/data
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: basira-nginx
+    depends_on:
+      - app
+    ports:
+      - 80:80
