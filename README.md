@@ -59,7 +59,7 @@ $ yarn --cwd client start -p <port>
 The application can also be started in a Docker container:
 
 ```bash
-$ docker compose -f docker-compose.dev.yml up --build
+$ docker compose -f docker-compose.dev.yml --env-file .env.docker.dev up --build
 ```
 
 The above command will build the Docker images and start up a service for each of the following:
@@ -74,6 +74,8 @@ BASIRA uses Typesense as a search index. Typesense can be run locally or in the 
 The `TYPESENSE_API_KEY` will be used on the server side to reindex data and should be an admin key.
 
 The `REACT_APP_TYPESENSE_API_KEY` will be used on the client side to make search requests and should be a search-only key.'
+
+In order to setup Typesense in a production environment, the admin API key should be used on the server, and a search-only API key should be used on the client. When starting a new Typesense instance, only the admin key is provided and can be known before. After initially starting the instance, the Typesense [API](https://typesense.org/docs/0.19.0/api/api-keys.html) can be used to create a search-only key, which can be added as the `REACT_APP_TYPESENSE_API_KEY` environment variable.
 
 To initialize an new search index:
 ```bash

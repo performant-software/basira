@@ -44,8 +44,8 @@ services:
       - ./:/client
     working_dir: /client
   typesense:
-    command: '--data-dir /data --api-key=xyz --enable-cors'
     container_name: basira-typesense
+    env_file: .env.docker.dev
     image: typesense/typesense:0.24.1
     ports:
       - "8108:8108"
