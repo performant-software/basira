@@ -42,7 +42,7 @@ const DocumentActions = (props: Props) => {
     const verb = _.findWhere(action.qualifications, { value_list_object: 'Document', value_list_group: 'Action' });
     const entity = _.findWhere(action.qualifications, { value_list_object: 'Action', value_list_group: 'Entity' });
 
-    return t('Document.labels.action', { verb: verb.value_list.human_name, entity: entity.value_list.human_name });
+    return t('Document.labels.action', { verb: verb?.value_list?.human_name, entity: entity?.value_list?.human_name });
   }, []);
 
   if (!props.items) {
