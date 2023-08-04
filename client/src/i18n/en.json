@@ -276,6 +276,13 @@
     "subtitle": "Books as Symbols in Renaissance Art",
     "description": "The BASIRA Project, a digital humanities research effort, explores interconnections of book history and European art during the Renaissance. As a database of visual images, tagged with structured details, the project may be useful for studies of art history, material culture, religious history, printing technology, iconography, and history of literacy."
   },
+  "ImageInfo": {
+    "labels": {
+      "imageRights": "Image Rights",
+      "imageSource": "Image Source",
+      "photographer": "Photographer"
+    }
+  },
   "Images": {
     "buttons": {
       "close": "Close",
