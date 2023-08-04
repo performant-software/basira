@@ -11,6 +11,7 @@ import {
 import _ from 'underscore';
 import ActionModal from '../../components/ActionModal';
 import Action from '../../transforms/Action';
+import Authorization from '../../utils/Authorization';
 import DocumentsService from '../../services/Documents';
 import ItemLabel from '../../components/ItemLabel';
 import Qualifiables from '../../utils/Qualifiables';
@@ -589,5 +590,6 @@ const Document = (props: Props) => {
 export default useEditPage(withRouter(withMenuBar(withSingleImage(Document))), {
   getArtworkId: (item) => item.artwork_id,
   onLoad: (id) => DocumentsService.fetchOne(id).then(({ data }) => data.document),
-  onSave: (doc) => DocumentsService.save(doc).then(({ data }) => data.document)
+  onSave: (doc) => DocumentsService.save(doc).then(({ data }) => data.document),
+  resolveValidationError: (e) => Authorization.resolveUpdateError(e)
 });

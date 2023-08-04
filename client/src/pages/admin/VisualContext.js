@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Form } from 'semantic-ui-react';
+import Authorization from '../../utils/Authorization';
 import ItemLabel from '../../components/ItemLabel';
 import RecordHeader from '../../components/RecordHeader';
 import SimpleEditPage from '../../components/SimpleEditPage';
@@ -158,5 +159,6 @@ export default useEditPage(withRouter(withMenuBar(withSingleImage(VisualContext)
   getArtworkId: (item) => item.artwork_id,
   onLoad: (id) => VisualContextsService.fetchOne(id).then(({ data }) => data.visual_context),
   onSave: (pc) => VisualContextsService.save(pc).then(({ data }) => data.visual_context),
+  resolveValidationError: (e) => Authorization.resolveUpdateError(e),
   validate: Validations.validateDimensions.bind(this)
 });
