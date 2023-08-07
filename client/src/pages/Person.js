@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import _ from 'underscore';
 import Artworks from '../components/Artworks';
 import AttributesGrid from '../components/AttributesGrid';
+import Locations from '../components/Locations';
 import People from '../services/People';
-import Places from '../components/Places';
 import RecordPage from '../components/RecordPage';
 import useCurrentRecord from '../hooks/CurrentRecord';
 
@@ -76,8 +76,8 @@ const Person = () => {
         <RecordPage.Section
           title={t('Common.tabs.locations')}
         >
-          <Places
-            places={_.map(item.locations, (location) => location.place)}
+          <Locations
+            items={item.locations}
           />
         </RecordPage.Section>
       )}

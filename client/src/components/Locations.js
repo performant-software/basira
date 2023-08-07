@@ -1,19 +1,22 @@
 // @flow
 
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Item } from 'semantic-ui-react';
 import _ from 'underscore';
-import type { Participation } from '../types/Participation';
-import Qualifiables from '../utils/Qualifiables';
 import CertaintyLabel from './CertaintyLabel';
+import type { Location } from '../types/Location';
 import RolesView from './RolesView';
+import Qualifiables from '../utils/Qualifiables';
 import SimpleLink from './SimpleLink';
 
 type Props = {
-  items: Array<Participation>
+  items: Array<Location>
 };
 
-const ArtworkCreators = (props: Props) => {
+const Locations = (props: Props) => {
+  const { t } = useTranslation();
+
   if (!props.items) {
     return null;
   }
@@ -28,19 +31,19 @@ const ArtworkCreators = (props: Props) => {
           <Item.Content>
             <Item.Header>
               <SimpleLink
-                url={`/people/${item.person.id}`}
+                url={`/places/${item.place_id}`}
               >
-                { item.person.display_name }
+                { item.place?.name }
               </SimpleLink>
             </Item.Header>
-            <Item.Meta>
-              { Qualifiables.getValueListValue(item.person, 'Person', 'Nationality') }
-            </Item.Meta>
+            <Item.Meta
+              content={item.place?.country}
+            />
             <Item.Description>
               <RolesView
                 value={[
-                  Qualifiables.getValueListValue(item, 'Person', 'Participation Role'),
-                  Qualifiables.getValueListValue(item, 'Person', 'Participation Subrole')
+                  Qualifiables.getValueListValue(item, 'Location', 'Role'),
+                  Qualifiables.getValueListValue(item, 'Location', 'Subrole')
                 ]}
               />
             </Item.Description>
@@ -57,6 +60,17 @@ const ArtworkCreators = (props: Props) => {
                 />
               </Item.Extra>
             )}
+            { item.repository_work_url && (
+              <Item.Extra>
+                <a
+                  href={item.repository_work_url}
+                  rel='noreferrer'
+                  target='_blank'
+                >
+                  { t('Common.buttons.viewSource') }
+                </a>
+              </Item.Extra>
+            )}
           </Item.Content>
         </Item>
       ))}
@@ -64,4 +78,4 @@ const ArtworkCreators = (props: Props) => {
   );
 };
 
-export default ArtworkCreators;
+export default Locations;
