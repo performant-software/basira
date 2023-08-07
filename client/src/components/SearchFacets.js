@@ -109,6 +109,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
+        sortBy={['name']}
         title={getLabel('artwork.locations.state_facet')}
         useRefinementList={useRefinementList}
       />
