@@ -48,6 +48,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.object_work_type_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -56,6 +57,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.materials_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -64,6 +66,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.techniques_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -75,6 +78,7 @@ const SearchFacets = (props: any) => {
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         sortBy={['name']}
         title={getLabel('artwork.creators.display_name_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -83,6 +87,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.creators.nationality_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -94,6 +99,7 @@ const SearchFacets = (props: any) => {
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         sortBy={['name']}
         title={getLabel('artwork.locations.name_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -102,6 +108,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.locations.country_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -110,6 +117,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.locations.state_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -118,6 +126,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.locations.city_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <Header
@@ -130,6 +139,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('visual_context.general_subject_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -138,6 +148,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('visual_context.subject_cultural_context_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -146,6 +157,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('visual_context.specific_subject_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <Header
@@ -157,6 +169,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('document_format_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -164,6 +177,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('document_type_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -171,6 +185,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('orientation_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -178,6 +193,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('size_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -185,6 +201,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('aperture_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <Header
@@ -196,6 +213,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('binding_type_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -203,6 +221,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('binding_color_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetToggle
@@ -222,6 +241,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('spine_features_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -229,6 +249,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('furniture_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -236,6 +257,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('fastenings_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetSlider
@@ -249,6 +271,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('location_fastenings_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetToggle
@@ -262,6 +285,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('binding_ornamentation_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -270,6 +294,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('binding_iconography_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetToggle
@@ -283,6 +308,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('endband_colors_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -290,6 +316,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('endband_style_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -297,6 +324,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('binding_relationship_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -304,6 +332,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('decorated_fore_edges_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetToggle
@@ -317,6 +346,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('fore_edges_color_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetSlider
@@ -330,6 +360,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('bookmark_register_color_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -338,6 +369,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('bookmark_style_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <Header
@@ -349,6 +381,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('text_technology_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetSlider
@@ -363,6 +396,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('page_contents_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetToggle
@@ -376,6 +410,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('ruling_color_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetToggle
@@ -389,6 +424,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('rubrication_color_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -396,6 +432,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('legibility_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -403,6 +440,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('script_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -411,6 +449,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('language_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -418,6 +457,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('simulated_script_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -425,6 +465,7 @@ const SearchFacets = (props: any) => {
         defaultActive={false}
         limit={MAX_LIMIT}
         title={getLabel('illumination_type_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -433,6 +474,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('illumination_iconography_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <Header
@@ -445,6 +487,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('actions.verb_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -454,6 +497,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('actions.entity_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -462,6 +506,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('actions.entity_descriptors_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
       <FacetList
@@ -470,6 +515,7 @@ const SearchFacets = (props: any) => {
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('actions.body_descriptors_facet')}
+        toggleable
         useRefinementList={useRefinementList}
       />
     </Segment>
