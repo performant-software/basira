@@ -1,0 +1,11 @@
+.banner.ui.container {
+  margin-bottom: 1.5em;
+}
+
+.banner.ui.container .message > .header > .sub.header {
+  font-size: 1.10rem;
+}
+
+.banner.ui.container .message > .content {
+  padding-top: 1em;
+}
