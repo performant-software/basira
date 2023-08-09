@@ -503,6 +503,12 @@
       }
     }
   },
+  "SearchFacets": {
+    "buttons": {
+      "collapse": "Collapse All",
+      "expand": "Expand All"
+    }
+  },
   "SearchLink": {
     "buttons": {
       "back": "Back to Search"

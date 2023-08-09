@@ -1,3 +1,7 @@
 .search-facets h3.header {
   margin-bottom: 1em;
 }
+
+.search-facets .link-button.ui.button.basic.compact {
+  margin-right: 1em;
+}
