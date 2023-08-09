@@ -436,6 +436,16 @@
       "optional": true
     },
     {
+      "name": "date_start",
+      "type": "int32",
+      "optional": true
+    },
+    {
+      "name": "created_at",
+      "type": "int32",
+      "optional": true
+    },
+    {
       "name": ".*_facet",
       "type": "auto",
       "facet": true
