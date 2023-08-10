@@ -9,7 +9,7 @@ import ArtworkTitles from '../components/ArtworkTitles';
 import ArtworksService from '../services/Artworks';
 import AttributesGrid from '../components/AttributesGrid';
 import { getPrimaryTitle } from '../utils/Artwork';
-import Places from '../components/Places';
+import Locations from '../components/Locations';
 import RecordPage from '../components/RecordPage';
 import useCurrentRecord from '../hooks/CurrentRecord';
 
@@ -123,8 +123,8 @@ const Artwork = () => {
         <RecordPage.Section
           title={t('Artwork.sections.locations')}
         >
-          <Places
-            places={_.map(item.locations, (location) => location.place)}
+          <Locations
+            items={item.locations}
           />
         </RecordPage.Section>
       )}
