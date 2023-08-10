@@ -514,6 +514,21 @@
         "specificSubject": "Specific Subject/Iconography",
         "subjectCulturalContext": "Subject Cultural Context"
       }
+    },
+    "sort": {
+      "artworkDate": {
+        "label": "Artwork Date",
+        "descriptionAsc": "Artwork Date asc.",
+        "descriptionDesc": "Artwork Date desc."
+      },
+      "creationDate": {
+        "label": "Date Added",
+        "descriptionAsc": "Date Added asc.",
+        "descriptionDesc": "Date Added desc."
+      },
+      "relevance": {
+        "label": "Relevance"
+      }
     }
   },
   "SearchLink": {
