@@ -1,5 +1,6 @@
 // @flow
 
+import { LazyImage } from '@performant-software/semantic-components';
 import classNames from 'classnames';
 import React, {
   useRef,
@@ -19,6 +20,8 @@ import {
   Sidebar
 } from 'semantic-ui-react';
 import ArtworkMenu from './ArtworkMenu';
+import type { Attachment } from '../types/Attachment';
+import ImageInfo from './ImageInfo';
 import SearchLink from './SearchLink';
 import useSidebar from '../hooks/Sidebar';
 import './RecordPage.css';
@@ -153,5 +156,24 @@ Section.defaultProps = {
 };
 
 RecordPage.Section = Section;
+
+type ImageProps = {
+  item: Attachment
+};
+
+const Image = (props: ImageProps) => (
+  <div
+    className='record-page-image'
+  >
+    <LazyImage
+      src={props.item.file_url}
+    />
+    <ImageInfo
+      item={props.item}
+    />
+  </div>
+);
+
+RecordPage.Image = Image;
 
 export default RecordPage;

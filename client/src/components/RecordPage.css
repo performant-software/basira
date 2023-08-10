@@ -22,9 +22,10 @@
   font-weight: bold;
 }
 
-.record-page .image-container.ui.container {
+.record-page .record-page-image {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .record-page .lazy-image {

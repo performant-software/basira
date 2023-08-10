@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useCallback } from 'react';
-import { BooleanIcon, LazyImage } from '@performant-software/semantic-components';
+import { BooleanIcon } from '@performant-software/semantic-components';
 import { useTranslation } from 'react-i18next';
 import { Header, Segment } from 'semantic-ui-react';
 import _ from 'underscore';
@@ -34,11 +34,9 @@ const Document = () => {
       renderTitle={() => item.name}
     >
       { item && item.primary_attachment && (
-        <RecordPage.Section
-          className='image-container'
-        >
-          <LazyImage
-            src={item.primary_attachment.file_url}
+        <RecordPage.Section>
+          <RecordPage.Image
+            item={item.primary_attachment}
           />
         </RecordPage.Section>
       )}
