@@ -6,7 +6,7 @@ import {
   FacetToggle,
   LinkButton
 } from '@performant-software/semantic-components';
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   useHits,
@@ -30,14 +30,14 @@ const SearchFacets = (props: any) => {
   const refs = useRef([]);
 
   /**
-   * Returns the array of facet refs.
+   * Returns a list of the facet ref objects.
    *
-   * @type {unknown}
+   * @returns {*|*[]}
    */
-  const facetRefs = useMemo(() => {
+  const getFacetRefs = () => {
     const { current: instances } = refs;
     return _.compact(instances) || [];
-  }, []);
+  };
 
   /**
    * Collapses all of the facets.
@@ -45,7 +45,7 @@ const SearchFacets = (props: any) => {
    * @type {(function(): void)|*}
    */
   const onCollapse = useCallback(() => {
-    _.each(facetRefs, (instance) => {
+    _.each(getFacetRefs(), (instance) => {
       instance.collapse();
     });
   }, []);
@@ -56,7 +56,7 @@ const SearchFacets = (props: any) => {
    * @type {(function(): void)|*}
    */
   const onExpand = useCallback(() => {
-    _.each(facetRefs, (instance) => {
+    _.each(getFacetRefs(), (instance) => {
       instance.expand();
     });
   }, []);
