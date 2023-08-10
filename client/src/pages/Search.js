@@ -11,6 +11,7 @@ import {
 } from '@performant-software/semantic-components';
 import { history as historyConfig } from 'instantsearch.js/es/lib/routers';
 import React, { useCallback, useContext, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   InstantSearch,
   useClearRefinements,
@@ -29,13 +30,13 @@ import {
   Menu
 } from 'semantic-ui-react';
 import _ from 'underscore';
+import Banner from '../components/Banner';
 import SearchContext from '../context/Search';
 import SearchFacets from '../components/SearchFacets';
 import SearchResultDescription from '../components/SearchResultDescription';
 import SearchThumbnail from '../components/SearchThumbnail';
 import searchClient from '../config/Search';
 import useFacetLabels from '../hooks/FacetLabels';
-import { useTranslation } from 'react-i18next';
 import './Search.css';
 
 const Search = () => {
@@ -76,6 +77,7 @@ const Search = () => {
           />
         </Menu.Item>
       </Menu>
+      <Banner />
       <InstantSearch
         indexName='documents'
         routing={{
@@ -90,7 +92,6 @@ const Search = () => {
       >
         <Container>
           <Grid
-            padded
             relaxed
           >
             <Grid.Row

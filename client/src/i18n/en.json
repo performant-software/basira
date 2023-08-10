@@ -148,6 +148,12 @@
       "edit": "Edit Image"
     }
   },
+  "Banner": {
+    "content": "BASIRA is an open-access database of representations of books and other documents in art. Begin your search by choosing facets from the list on the left, or enter any combination of keywords. Click on any result to view more details, and use the menu in the upper-left corner of any detail page to explore more aspects of that artwork.",
+    "footer": "Learn more at the BASIRA Project homepage: <1>https://basiraproject.org/</1>",
+    "subtitle": "Books as Symbols in Renaissance Art",
+    "title": "BASIRA"
+  },
   "Common": {
     "buttons": {
       "back": "Back",
