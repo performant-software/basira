@@ -295,6 +295,13 @@
       "upload": "Upload images"
     }
   },
+  "LinksMenu": {
+    "labels": {
+      "basira": "BASIRA Project Home",
+      "contact": "Contact Us",
+      "contribute": "Contribute Content"
+    }
+  },
   "LocationModal": {
     "labels": {
       "artwork": "Artwork",
