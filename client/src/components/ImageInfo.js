@@ -29,6 +29,7 @@ const Item = (props: ItemProps) => {
         { props.icon && (
           <Icon
             circular
+            color='grey'
             inverted
             name={props.icon}
             size='large'
