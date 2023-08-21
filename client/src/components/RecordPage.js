@@ -22,6 +22,7 @@ import {
 import ArtworkMenu from './ArtworkMenu';
 import type { Attachment } from '../types/Attachment';
 import ImageInfo from './ImageInfo';
+import PageFooter from './PageFooter';
 import SearchLink from './SearchLink';
 import useSidebar from '../hooks/Sidebar';
 import './RecordPage.css';
@@ -116,6 +117,7 @@ const RecordPage = (props: Props) => {
         )}
         <Sidebar.Pusher>
           { !props.loading && props.children }
+          { !props.loading && <PageFooter /> }
         </Sidebar.Pusher>
       </Sidebar.Pushable>
     </Container>

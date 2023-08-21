@@ -33,6 +33,8 @@ import {
 } from 'semantic-ui-react';
 import _ from 'underscore';
 import Banner from '../components/Banner';
+import LinksMenu from '../components/LinksMenu';
+import PageFooter from '../components/PageFooter';
 import SearchContext from '../context/Search';
 import SearchFacets from '../components/SearchFacets';
 import SearchResultDescription from '../components/SearchResultDescription';
@@ -78,6 +80,9 @@ const Search = () => {
             inverted
           />
         </Menu.Item>
+        <LinksMenu
+          position='right'
+        />
       </Menu>
       <Banner />
       <InstantSearch
@@ -217,6 +222,7 @@ const Search = () => {
           </Grid>
         </Container>
       </InstantSearch>
+      <PageFooter />
     </Container>
   );
 };
