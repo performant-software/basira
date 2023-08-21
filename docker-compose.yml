@@ -1,0 +1,50 @@
+version: "3"
+services:
+  db:
+    container_name: basira-db
+    env_file: .env.docker
+    image: postgres:12.2
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    working_dir: /app
+  app:
+    build:
+      args:
+        REACT_APP_GOOGLE_MAPS_API_KEY: ${REACT_APP_GOOGLE_MAPS_API_KEY}
+        REACT_APP_TYPESENSE_API_KEY: ${REACT_APP_TYPESENSE_API_KEY}
+        REACT_APP_TYPESENSE_HOST: ${REACT_APP_TYPESENSE_HOST}
+        REACT_APP_TYPESENSE_PORT: ${REACT_APP_TYPESENSE_PORT}
+        REACT_APP_TYPESENSE_PROTOCOL: ${REACT_APP_TYPESENSE_PROTOCOL}
+      context: .
+      dockerfile: Dockerfile
+    command: bundle exec puma -C config/puma.rb
+    container_name: basira-app
+    depends_on:
+      - db
+      - typesense
+    entrypoint: /app/docker-entrypoint.sh
+    env_file: .env.docker
+    ports:
+      - "3000:3000"
+    working_dir: /app
+  typesense:
+    container_name: basira-typesense
+    env_file: .env.docker
+    image: typesense/typesense:0.24.1
+    ports:
+      - "8108:8108"
+    restart: on-failure
+    volumes:
+      - ./tmp/typesense/data:/data
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: basira-nginx
+    depends_on:
+      - app
+    ports:
+      - 80:80

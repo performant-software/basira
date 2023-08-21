@@ -1,0 +1,11 @@
+FROM node:18.15.0
+
+RUN apt-get update -qq && apt-get install -y yarn
+
+WORKDIR /client
+
+COPY ./client/ .
+
+RUN yarn install
+
+EXPOSE 3000
