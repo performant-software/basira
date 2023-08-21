@@ -2,7 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Container, Header, Message } from 'semantic-ui-react';
+import {
+  Container,
+  Header,
+  Icon,
+  Message
+} from 'semantic-ui-react';
 import './Banner.css';
 
 const BANNER_KEY = 'VWspR3ltX8_basira_banner_status';
@@ -50,7 +55,18 @@ const Banner = () => {
           </Header.Subheader>
         </Message.Header>
         <Message.Content>
-          { t('Banner.content') }
+          <Trans
+            i18nKey='Banner.content'
+          >
+            {/* eslint-disable-next-line max-len */}
+            BASIRA is an open-access database of representations of books and other documents in art. Begin your search by choosing facets from the list on the left, or enter any combination of keywords. Click on any result to view more details, and use the
+            <Icon
+              bordered
+              inverted
+              name='bars'
+            />
+            menu in the upper-left corner of any detail page to explore more aspects of that artwork.
+          </Trans>
         </Message.Content>
         <Message.Content>
           <Trans
