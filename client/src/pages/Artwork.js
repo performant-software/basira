@@ -1,7 +1,6 @@
 // @flow
 
 import React, { useCallback } from 'react';
-import { LazyImage } from '@performant-software/semantic-components';
 import { useTranslation } from 'react-i18next';
 import { Segment } from 'semantic-ui-react';
 import _ from 'underscore';
@@ -10,7 +9,7 @@ import ArtworkTitles from '../components/ArtworkTitles';
 import ArtworksService from '../services/Artworks';
 import AttributesGrid from '../components/AttributesGrid';
 import { getPrimaryTitle } from '../utils/Artwork';
-import Places from '../components/Places';
+import Locations from '../components/Locations';
 import RecordPage from '../components/RecordPage';
 import useCurrentRecord from '../hooks/CurrentRecord';
 
@@ -36,11 +35,9 @@ const Artwork = () => {
       renderTitle={() => getPrimaryTitle(item)}
     >
       { item && item.primary_attachment && (
-        <RecordPage.Section
-          className='image-container'
-        >
-          <LazyImage
-            src={item.primary_attachment.file_url}
+        <RecordPage.Section>
+          <RecordPage.Image
+            item={item.primary_attachment}
           />
         </RecordPage.Section>
       )}
@@ -126,8 +123,8 @@ const Artwork = () => {
         <RecordPage.Section
           title={t('Artwork.sections.locations')}
         >
-          <Places
-            places={_.map(item.locations, (location) => location.place)}
+          <Locations
+            items={item.locations}
           />
         </RecordPage.Section>
       )}

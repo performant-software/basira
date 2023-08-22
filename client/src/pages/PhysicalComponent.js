@@ -1,7 +1,6 @@
 // @flow
 
 import React, { useCallback } from 'react';
-import { LazyImage } from '@performant-software/semantic-components';
 import { useTranslation } from 'react-i18next';
 import AttributesGrid from '../components/AttributesGrid';
 import PhysicalComponentsService from '../services/PhysicalComponents';
@@ -31,11 +30,9 @@ const PhysicalComponent = () => {
     >
       <RecordPage.Section>
         { item && item.primary_attachment && (
-          <RecordPage.Section
-            className='image-container'
-          >
-            <LazyImage
-              src={item.primary_attachment.file_url}
+          <RecordPage.Section>
+            <RecordPage.Image
+              item={item.primary_attachment}
             />
           </RecordPage.Section>
         )}

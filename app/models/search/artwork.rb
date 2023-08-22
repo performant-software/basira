@@ -9,6 +9,7 @@ module Search
       # Search index attributes
       search_attribute :id
       search_attribute :date_descriptor
+      search_attribute :date_start
       search_attribute :object_work_type, object: 'Artwork', group: 'Object/Work Type', multiple: true, facet: true
       search_attribute :materials, object: 'Artwork', group: 'Material', multiple: true, facet: true
       search_attribute :techniques, object: 'Artwork', group: 'Technique', multiple: true, facet: true
@@ -46,6 +47,10 @@ module Search
 
       search_attribute(:locations) do
         locations&.map{ |location| location.place.to_search_json }
+      end
+
+      search_attribute(:created_at) do
+        created_at.to_i
       end
     end
   end

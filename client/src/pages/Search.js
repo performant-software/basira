@@ -7,10 +7,12 @@ import {
   SearchPagination,
   SearchResults,
   SearchResultsPerPage,
+  SearchResultsSort,
   SearchStats
 } from '@performant-software/semantic-components';
 import { history as historyConfig } from 'instantsearch.js/es/lib/routers';
 import React, { useCallback, useContext, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   InstantSearch,
   useClearRefinements,
@@ -19,6 +21,7 @@ import {
   useHitsPerPage,
   usePagination,
   useSearchBox,
+  useSortBy,
   useStats
 } from 'react-instantsearch-hooks-web';
 import { Link, useHistory, useLocation } from 'react-router-dom';
@@ -29,13 +32,15 @@ import {
   Menu
 } from 'semantic-ui-react';
 import _ from 'underscore';
+import Banner from '../components/Banner';
+import LinksMenu from '../components/LinksMenu';
+import PageFooter from '../components/PageFooter';
 import SearchContext from '../context/Search';
 import SearchFacets from '../components/SearchFacets';
 import SearchResultDescription from '../components/SearchResultDescription';
 import SearchThumbnail from '../components/SearchThumbnail';
 import searchClient from '../config/Search';
 import useFacetLabels from '../hooks/FacetLabels';
-import { useTranslation } from 'react-i18next';
 import './Search.css';
 
 const Search = () => {
@@ -75,7 +80,11 @@ const Search = () => {
             inverted
           />
         </Menu.Item>
+        <LinksMenu
+          position='right'
+        />
       </Menu>
+      <Banner />
       <InstantSearch
         indexName='documents'
         routing={{
@@ -90,7 +99,6 @@ const Search = () => {
       >
         <Container>
           <Grid
-            padded
             relaxed
           >
             <Grid.Row
@@ -125,7 +133,7 @@ const Search = () => {
                 />
               </Grid.Column>
               <Grid.Column
-                width={10}
+                width={7}
               >
                 <CurrentFacets
                   limit={6}
@@ -135,8 +143,31 @@ const Search = () => {
               </Grid.Column>
               <Grid.Column
                 textAlign='right'
-                width={3}
+                width={6}
               >
+                <SearchResultsSort
+                  items={[{
+                    label: t('Search.sort.relevance.label'),
+                    value: 'documents/sort/_text_match:desc'
+                  }, {
+                    label: t('Search.sort.artworkDate.label'),
+                    description: t('Search.sort.artworkDate.descriptionAsc'),
+                    value: 'documents/sort/artwork.date_start:asc'
+                  }, {
+                    label: t('Search.sort.artworkDate.label'),
+                    description: t('Search.sort.artworkDate.descriptionDesc'),
+                    value: 'documents/sort/artwork.date_start:desc'
+                  }, {
+                    label: t('Search.sort.creationDate.label'),
+                    description: t('Search.sort.creationDate.descriptionAsc'),
+                    value: 'documents/sort/artwork.created_at:asc'
+                  }, {
+                    label: t('Search.sort.creationDate.label'),
+                    description: t('Search.sort.creationDate.descriptionDesc'),
+                    value: 'documents/sort/artwork.created_at:desc'
+                  }]}
+                  useSortBy={useSortBy}
+                />
                 <SearchResultsPerPage
                   options={[10, 25, 50]}
                   useHitsPerPage={useHitsPerPage}
@@ -191,6 +222,7 @@ const Search = () => {
           </Grid>
         </Container>
       </InstantSearch>
+      <PageFooter />
     </Container>
   );
 };

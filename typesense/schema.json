@@ -333,6 +333,24 @@
       "optional": true
     },
     {
+      "name": "number_sewing_supports_facet",
+      "type": "int32",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "binding_relationship_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
+      "name": "bookmark_register_color_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
       "name": "artwork.artwork_titles.title",
       "type": "string[]",
       "optional": true
@@ -418,6 +436,11 @@
       "optional": true
     },
     {
+      "name": "notes",
+      "type": "string",
+      "optional": true
+    },
+    {
       "name": "visual_context.general_subject_facet",
       "type": "string[]",
       "facet": true,
@@ -433,6 +456,16 @@
       "name": "visual_context.specific_subject_facet",
       "type": "string[]",
       "facet": true,
+      "optional": true
+    },
+    {
+      "name": "date_start",
+      "type": "int32",
+      "optional": true
+    },
+    {
+      "name": "created_at",
+      "type": "int32",
       "optional": true
     },
     {
