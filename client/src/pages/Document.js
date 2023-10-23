@@ -179,7 +179,8 @@ const Document = () => {
             label: t('Document.labels.bindingIconography'),
             qualification: {
               object: 'Document',
-              group: 'Iconography'
+              group: 'Iconography',
+              formField: 'binding_iconography'
             }
           }]}
           item={item}
@@ -379,7 +380,7 @@ const Document = () => {
             label: t('Document.labels.illuminationIconography'),
             qualification: {
               object: 'Document',
-              group: 'Illumination Iconography',
+              group: 'Iconography',
               formField: 'illumination_iconography'
             }
           }]}
