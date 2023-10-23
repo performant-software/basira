@@ -5,3 +5,7 @@
 .page-footer > .menu {
   justify-content: center;
 }
+
+.page-footer .performant-menu.ui.text.menu {
+  margin-top: -0.5em;
+}
