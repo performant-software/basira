@@ -2645,12 +2645,12 @@
     "@stitches/react" "^1.2.7"
     react "^18.2.0"
 
-"@performant-software/semantic-components@^1.0.25-beta.0":
-  version "1.0.25-beta.0"
-  resolved "https://registry.yarnpkg.com/@performant-software/semantic-components/-/semantic-components-1.0.25-beta.0.tgz#1127fb0ff791ae215d70ab651d8123781e588ca8"
-  integrity sha512-3TNcr8Pjx7GAtMstPG/mcyvd8PlMMY+eD+Sw3DxuyxM6EoZ5QcGiQBu67SL2xBwknzipoCfEiClEKqDllCOGXQ==
+"@performant-software/semantic-components@^1.0.25":
+  version "1.0.25"
+  resolved "https://registry.yarnpkg.com/@performant-software/semantic-components/-/semantic-components-1.0.25.tgz#38f32e45891a31b10068d7a51b3952c9faa076db"
+  integrity sha512-DtkaL95fIkioglPbplh9TZfVEvmLh7zj3zky0ihzOC4TM0hvs7WyXhpQg9SMBIOerdS6OhGPH2HoS3L19zIP1Q==
   dependencies:
-    "@performant-software/shared-components" "^1.0.25-beta.0"
+    "@performant-software/shared-components" "^1.0.25"
     "@react-google-maps/api" "^2.8.1"
     axios "^0.26.1"
     i18next "^19.4.4"
@@ -2669,10 +2669,10 @@
     zotero-api-client "^0.40.0"
     zotero-translation-client "^5.0.1"
 
-"@performant-software/shared-components@^1.0.25-beta.0":
-  version "1.0.25-beta.0"
-  resolved "https://registry.yarnpkg.com/@performant-software/shared-components/-/shared-components-1.0.25-beta.0.tgz#36361a884e2e7a44ae93ba2a08f1f7891f3fda3d"
-  integrity sha512-dBMm6E6bzWqNYQK8UgJdRE4yo9BfQuIDbPjoaEiZ0yJDQK4xZwb8mApCouBGIOujGHBDtXPDyXO37zX2j0bKmA==
+"@performant-software/shared-components@^1.0.25":
+  version "1.0.25"
+  resolved "https://registry.yarnpkg.com/@performant-software/shared-components/-/shared-components-1.0.25.tgz#465e1f037b65454160b0e04786b396a2162c965f"
+  integrity sha512-nEha+uulFd7Qgysoy+WsMNHxWZ0ogtymrxKFhstWb8/VPclg05POxJQulrxmQ+uanCJw23L3DYw3a0e+ooBV8g==
   dependencies:
     "@react-google-maps/api" "^2.8.1"
     "@samvera/clover-iiif" "^1.10.3"
