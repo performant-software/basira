@@ -6,8 +6,8 @@
   "dependencies": {
     "@babel/eslint-parser": "^7.21.3",
     "@babel/runtime": "^7.22.3",
-    "@performant-software/semantic-components": "^1.0.18",
-    "@performant-software/shared-components": "^1.0.18",
+    "@performant-software/semantic-components": "^1.0.25",
+    "@performant-software/shared-components": "^1.0.25",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
