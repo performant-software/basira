@@ -86,7 +86,7 @@ const Search = () => {
       </Menu>
       <Banner />
       <InstantSearch
-        indexName='documents'
+        indexName={process.env.REACT_APP_TYPESENSE_COLLECTION_NAME}
         routing={{
           router: historyConfig({
             push: (url) => {
