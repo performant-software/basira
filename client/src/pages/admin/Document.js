@@ -352,10 +352,12 @@ const Document = (props: Props) => {
                 required={props.isRequired('bookmarks_registers')}
               >
                 <Dropdown
+                  defaultValue={0}
+                  fluid
                   onChange={props.onTextInputChange.bind(this, 'bookmarks_registers')}
                   options={zeroToTenRangeOptionsList}
                   selection
-                  value={props.item.bookmarks_registers || ''}
+                  value={props.item.bookmarks_registers}
                 />
               </Form.Input>
               <ValueListDropdown
