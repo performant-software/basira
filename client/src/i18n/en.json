@@ -239,7 +239,7 @@
       "simulatedScript": "Simulated Script",
       "size": "Size",
       "spineFeatures": "Spine Features",
-      "textColumns": "Text Columns",
+      "textColumns": "Number of Text Columns Visible",
       "textTechnology": "Text Technology",
       "transcriptionDiplomatic": "Transcription: Diplomatic",
       "transcriptionExpanded": "Transcription: Expanded",
@@ -513,7 +513,7 @@
       "simulatedScript": "Simulated Script",
       "size": "Size",
       "spineFeatures": "Spine Features",
-      "textColumns": "Text Columns",
+      "textColumns": "Number of Text Columns Visible",
       "textTechnology": "Text Technology",
       "uncutForeEdges": "Uncut Fore-Edges",
       "visualContext": {

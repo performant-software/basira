@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_26_153029) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_27_011227) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -121,7 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_153029) do
     t.boolean "uncut_fore_edges", default: false, null: false
     t.text "fore_edge_text"
     t.integer "bookmarks_registers", default: 0
-    t.integer "text_columns", default: 1
+    t.integer "text_columns", default: 0, null: false
     t.boolean "ruling", default: false, null: false
     t.boolean "rubrication", default: false, null: false
     t.text "identity"

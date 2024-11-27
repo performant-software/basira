@@ -408,10 +408,11 @@ const Document = (props: Props) => {
                 required={props.isRequired('text_columns')}
               >
                 <Dropdown
+                  defaultValue={0}
                   onChange={props.onTextInputChange.bind(this, 'text_columns')}
                   options={zeroToTenRangeOptionsList}
                   selection
-                  value={props.item.text_columns || ''}
+                  value={props.item.text_columns}
                 />
               </Form.Input>
               <ValueListDropdown
