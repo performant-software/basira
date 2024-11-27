@@ -123,10 +123,6 @@ const Document = () => {
               group: 'Binding Color'
             }
           }, {
-            name: 'sewing_supports_visible',
-            label: t('Document.labels.sewingSupportsVisible'),
-            renderValue: () => <BooleanIcon value={item.sewing_supports_visible} />
-          }, {
             name: 'number_sewing_supports',
             label: t('Document.labels.numberSewingSupports')
           }, {

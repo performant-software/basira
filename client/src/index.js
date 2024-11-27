@@ -5,8 +5,8 @@ import App from './App';
 import './config/Api';
 import './i18n/i18n';
 
-import '@performant-software/semantic-components/build/semantic-ui.css';
-import '@performant-software/semantic-components/build/main.css';
+import '@performant-software/semantic-components/style.css';
+import '@performant-software/shared-components/style.css';
 import 'rc-slider/assets/index.css';
 import './index.css';
 

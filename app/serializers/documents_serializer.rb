@@ -5,10 +5,10 @@ class DocumentsSerializer < BaseSerializer
 
   index_attributes :id, :name
 
-  show_attributes :id, :name, :visual_context_id, :notes, :sewing_supports_visible, :number_sewing_supports,
-                  :number_fastenings, :inscriptions_on_binding, :inscription_text, :endband_present,
-                  :uncut_fore_edges, :fore_edge_text, :bookmarks_registers, :text_columns, :ruling, :rubrication,
-                  :transcription, :transcription_expanded, :transcription_translation, :identity,
+  show_attributes :id, :name, :visual_context_id, :notes, :number_sewing_supports, :number_fastenings,
+                  :inscriptions_on_binding, :inscription_text, :endband_present, :uncut_fore_edges, :fore_edge_text,
+                  :bookmarks_registers, :text_columns, :ruling, :rubrication, :transcription, :transcription_expanded,
+                  :transcription_translation, :identity,
                   qualifications: QualificationsSerializer, actions: [:id, :document_id, :notes,
                   qualifications: QualificationsSerializer]
 

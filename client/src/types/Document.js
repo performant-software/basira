@@ -6,7 +6,6 @@ export type Document = {
   artwork_id: number,
   name: string,
   notes: string,
-  sewing_supports_visible: boolean,
   number_sewing_supports: number,
   number_fastenings: number,
   location_of_fastenings: string,
