@@ -229,10 +229,12 @@ const Document = (props: Props) => {
                 required={props.isRequired('number_fastenings')}
               >
                 <Dropdown
+                  defaultValue={0}
+                  fluid
                   onChange={props.onTextInputChange.bind(this, 'number_fastenings')}
                   options={zeroToTenRangeOptionsList}
                   selection
-                  value={props.item.number_fastenings || ''}
+                  value={props.item.number_fastenings}
                 />
               </Form.Input>
               <ValueListDropdown
