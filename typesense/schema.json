@@ -119,7 +119,7 @@
     },
     {
       "name": "aperture_facet",
-      "type": "string",
+      "type": "string[]",
       "facet": true,
       "optional": true
     },
