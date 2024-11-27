@@ -40,7 +40,7 @@ const ActionModal = (props: Props) => (
           className='action-description'
           size='medium'
         >
-          <div>{ props.t('ActionModal.labels.book') }</div>
+          <div>{ props.t('ActionModal.labels.document') }</div>
           <ValueListDropdown
             {...props}
             object='Document'

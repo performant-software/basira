@@ -14,8 +14,8 @@
   "ActionModal": {
     "labels": {
       "body": "Body descriptors",
-      "book": "The book",
       "descriptors": "Entity descriptors",
+      "document": "The document",
       "notes": "Notes"
     },
     "title": {
@@ -188,11 +188,11 @@
   },
   "Document": {
     "actions": {
-      "book": "The book",
       "columns": {
         "entity": "Entity",
         "verb": "Verb"
-      }
+      },
+      "document": "The document"
     },
     "labels": {
       "action": "The document {{verb}} {{entity}}",
@@ -352,7 +352,7 @@
       "name": "Name",
       "nationality": "Nationality",
       "type": "Type",
-      "url": "URL",
+      "url": "Authorized Vocabulary URL",
       "yearOfBirth": "Year of birth",
       "yearOfDeath": "Year of death",
       "yearsOfActivity": "Years of activity"
@@ -390,7 +390,7 @@
       "notes": "Notes",
       "state": "State",
       "type": "Type",
-      "url": "URL"
+      "url": "Authorized Vocabulary URL"
     },
     "locations": {
       "columns": {

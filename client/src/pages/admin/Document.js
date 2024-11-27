@@ -563,7 +563,7 @@ const Document = (props: Props) => {
           columns={[{
             name: 'book',
             label: '',
-            resolve: () => props.t('Document.actions.book'),
+            resolve: () => props.t('Document.actions.document'),
             sortable: false
           }, {
             name: 'verb',
