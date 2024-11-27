@@ -53,7 +53,6 @@ module Search
       search_attribute :aperture, object: 'Document', group: 'Aperture', facet: true
       search_attribute :binding_type, object: 'Document', group: 'Binding Type', multiple: true, facet: true
       search_attribute :binding_color, object: 'Document', group: 'Color', form_field: 'binding_color', multiple: true, facet: true
-      search_attribute :sewing_supports_visible, facet: true
       search_attribute :number_sewing_supports, facet: true
       search_attribute :spine_features, object: 'Document', group: 'Spine Features', multiple: true, facet: true
       search_attribute :furniture, object: 'Document', group: 'Furniture', multiple: true, facet: true

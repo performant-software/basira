@@ -299,13 +299,6 @@ const SearchFacets = (props: any) => {
         toggleable
         useRefinementList={useRefinementList}
       />
-      <FacetToggle
-        attribute='sewing_supports_visible_facet'
-        defaultActive={false}
-        ref={setRef}
-        title={getLabel('sewing_supports_visible_facet')}
-        useToggleRefinement={useToggleRefinement}
-      />
       <FacetSlider
         attribute='number_sewing_supports_facet'
         defaultActive={false}

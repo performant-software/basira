@@ -188,24 +188,18 @@ const Document = (props: Props) => {
                 multiple
                 object='Document'
               />
-              <Form.Checkbox
-                checked={props.item.sewing_supports_visible}
-                error={props.isError('sewing_supports_visible')}
-                label={props.t('Document.labels.sewingSupportsVisible')}
-                onChange={props.onCheckboxInputChange.bind(this, 'sewing_supports_visible')}
-                required={props.isRequired('sewing_supports_visible')}
-                toggle
-              />
               <Form.Input
                 error={props.isError('number_sewing_supports')}
                 label={props.t('Document.labels.numberSewingSupports')}
                 required={props.isRequired('number_sewing_supports')}
               >
                 <Dropdown
+                  defaultValue={0}
+                  fluid
                   onChange={props.onTextInputChange.bind(this, 'number_sewing_supports')}
                   options={zeroToTenRangeOptionsList}
                   selection
-                  value={props.item.number_sewing_supports || ''}
+                  value={props.item.number_sewing_supports}
                 />
               </Form.Input>
               <ValueListDropdown
@@ -409,6 +403,7 @@ const Document = (props: Props) => {
               >
                 <Dropdown
                   defaultValue={0}
+                  fluid
                   onChange={props.onTextInputChange.bind(this, 'text_columns')}
                   options={zeroToTenRangeOptionsList}
                   selection

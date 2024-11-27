@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_27_011227) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_27_121542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -112,8 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_27_011227) do
     t.bigint "visual_context_id", null: false
     t.string "name"
     t.string "notes"
-    t.boolean "sewing_supports_visible", default: false
-    t.integer "number_sewing_supports"
+    t.integer "number_sewing_supports", default: 0, null: false
     t.integer "number_fastenings"
     t.boolean "inscriptions_on_binding", default: false, null: false
     t.text "inscription_text"

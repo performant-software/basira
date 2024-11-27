@@ -31,7 +31,6 @@ class Document extends FormDataTransform {
       'visual_context_id',
       'name',
       'notes',
-      'sewing_supports_visible',
       'number_sewing_supports',
       'number_fastenings',
       'inscriptions_on_binding',

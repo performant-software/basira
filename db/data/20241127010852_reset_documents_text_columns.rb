@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ResetDocumentTextColumns < ActiveRecord::Migration[7.0]
+class ResetDocumentsTextColumns < ActiveRecord::Migration[7.0]
   def up
     execute <<-SQL.squish
       UPDATE documents
