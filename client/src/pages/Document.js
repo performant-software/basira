@@ -252,7 +252,7 @@ const Document = () => {
             label: t('Document.labels.bookmarksRegisters')
           }, {
             name: 'bookmark_register_color',
-            label: t('Document.labels.color'),
+            label: t('Document.labels.bookmarksRegisterColor'),
             qualification: {
               object: 'Document',
               group: 'Color',

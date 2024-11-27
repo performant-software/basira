@@ -366,7 +366,7 @@ const Document = (props: Props) => {
                 {...props}
                 formField='bookmark_register_color'
                 group='Color'
-                label={props.t('Document.labels.color')}
+                label={props.t('Document.labels.bookmarksRegisterColor')}
                 multiple
                 object='Document'
               />
