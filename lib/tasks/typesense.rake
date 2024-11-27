@@ -6,6 +6,8 @@ namespace :typesense do
     typesense = Typesense::Helper.create_client
 
     schema = Typesense::Helper.load_json('typesense/schema.json')
+    schema['name'] = ENV['TYPESENSE_COLLECTION_NAME']
+
     typesense.collections.create(schema)
   end
 

@@ -30,7 +30,8 @@
       "name": "artwork.date_range_facet",
       "type": "int32[]",
       "facet": true,
-      "optional": true
+      "optional": true,
+      "range_index": true
     },
     {
       "name": "artwork.materials_facet",
@@ -168,7 +169,8 @@
       "name": "number_fastenings_facet",
       "type": "int32",
       "facet": true,
-      "optional": true
+      "optional": true,
+      "range_index": true
     },
     {
       "name": "location_fastenings_facet",
@@ -240,7 +242,8 @@
       "name": "bookmark_registers_facet",
       "type": "int32",
       "facet": true,
-      "optional": true
+      "optional": true,
+      "range_index": true
     },
     {
       "name": "bookmark_registers_color_facet",
@@ -264,7 +267,8 @@
       "name": "text_columns_facet",
       "type": "int32",
       "facet": true,
-      "optional": true
+      "optional": true,
+      "range_index": true
     },
     {
       "name": "page_contents_facet",
@@ -336,7 +340,8 @@
       "name": "number_sewing_supports_facet",
       "type": "int32",
       "facet": true,
-      "optional": true
+      "optional": true,
+      "range_index": true
     },
     {
       "name": "binding_relationship_facet",
