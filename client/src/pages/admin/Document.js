@@ -366,7 +366,7 @@ const Document = (props: Props) => {
                 {...props}
                 formField='bookmark_register_color'
                 group='Color'
-                label={props.t('Document.labels.color')}
+                label={props.t('Document.labels.bookmarksRegisterColor')}
                 multiple
                 object='Document'
               />
@@ -563,7 +563,7 @@ const Document = (props: Props) => {
           columns={[{
             name: 'book',
             label: '',
-            resolve: () => props.t('Document.actions.book'),
+            resolve: () => props.t('Document.actions.document'),
             sortable: false
           }, {
             name: 'verb',

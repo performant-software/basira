@@ -14,8 +14,8 @@
   "ActionModal": {
     "labels": {
       "body": "Body descriptors",
-      "book": "The book",
       "descriptors": "Entity descriptors",
+      "document": "The document",
       "notes": "Notes"
     },
     "title": {
@@ -188,11 +188,11 @@
   },
   "Document": {
     "actions": {
-      "book": "The book",
       "columns": {
         "entity": "Entity",
         "verb": "Verb"
-      }
+      },
+      "document": "The document"
     },
     "labels": {
       "action": "The document {{verb}} {{entity}}",
@@ -202,10 +202,9 @@
       "bindingOrnamentation": "Binding Ornamentation",
       "bindingRelationshipToTextBlock": "Binding Relationship to Text Block",
       "bindingType": "Binding Type",
-      "bookmarksRegisterColor": "Bookmark/Register Color",
+      "bookmarksRegisterColor": "Color of Bookmarks/Registers",
       "bookmarksRegisters": "Number of Bookmarks/Registers Visible",
       "bookmarkRegisterStyle": "Bookmark/Register Style",
-      "color": "Color",
       "colorOfForeEdges": "Color of Textblock Edges",
       "decoratedForeEdges": "Decorated Textblock Edges",
       "documentFormat": "Document Format",
@@ -228,7 +227,7 @@
       "notes": "Notes",
       "numberFastenings": "Number of Fastenings",
       "numberSewingSupports": "Number of Sewing Supports Visible",
-      "orientation": "Orientation",
+      "orientation": "Orientation of Spine",
       "pageContents": "Page Contents",
       "rubrication": "Rubrication",
       "rubricationColor": "Rubrication Color",
@@ -353,7 +352,7 @@
       "name": "Name",
       "nationality": "Nationality",
       "type": "Type",
-      "url": "URL",
+      "url": "Authorized Vocabulary URL",
       "yearOfBirth": "Year of birth",
       "yearOfDeath": "Year of death",
       "yearsOfActivity": "Years of activity"
@@ -391,7 +390,7 @@
       "notes": "Notes",
       "state": "State",
       "type": "Type",
-      "url": "URL"
+      "url": "Authorized Vocabulary URL"
     },
     "locations": {
       "columns": {
@@ -455,7 +454,7 @@
       "artwork": {
         "creators": {
           "displayName": "Creator",
-          "nationality": "Creator Place of Origin"
+          "nationality": "Creator Origin"
         },
         "dateRange": "Date",
         "materials": "Materials",
@@ -481,7 +480,7 @@
       "bindingOrnamentation": "Binding Ornamentation",
       "bindingRelationship": "Binding Relationship to Textblock",
       "bindingType": "Binding Type",
-      "bookmarkRegisterColor": "Color",
+      "bookmarkRegisterColor": "Color of Bookmarks/Registers",
       "bookmarkStyle": "Bookmark/Register Style",
       "bookmarksRegisters": "Number of Bookmarks/Registers Visible",
       "decoratedForeEdges": "Decorated Textblock Edges",
@@ -502,7 +501,7 @@
       "numberFastenings": "Number of Fastenings",
       "numberSewingSupports": "Number of Sewing Supports Visible",
       "objectWorkType": "Object Work/Type",
-      "orientation": "Orientation",
+      "orientation": "Orientation of Spine",
       "pageContents": "Page Contents",
       "rubrication": "Rubrication",
       "rubricationColor": "Rubrication Color",
