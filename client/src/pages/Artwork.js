@@ -55,6 +55,10 @@ const Artwork = () => {
       <RecordPage.Section>
         <AttributesGrid
           attributes={[{
+            name: 'id',
+            label: t('Common.labels.id'),
+            renderValue: () => t('Artwork.labels.id', { id: item.id })
+          }, {
             name: 'date_start',
             label: t('Artwork.labels.startDate')
           }, {

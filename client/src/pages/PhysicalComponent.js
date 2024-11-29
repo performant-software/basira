@@ -40,6 +40,10 @@ const PhysicalComponent = () => {
       <RecordPage.Section>
         <AttributesGrid
           attributes={[{
+            name: 'id',
+            label: t('Common.labels.id'),
+            renderValue: () => t('PhysicalComponent.labels.id', { id: item.id })
+          }, {
             name: 'height',
             label: t('PhysicalComponent.labels.height')
           }, {
