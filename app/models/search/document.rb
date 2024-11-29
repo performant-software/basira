@@ -50,7 +50,7 @@ module Search
       search_attribute :document_type, object: 'Document', group: 'Document Type', multiple: true, facet: true
       search_attribute :orientation, object: 'Document', group: 'Orientation (spine)', multiple: true, facet: true
       search_attribute :size, object: 'Document', group: 'Size', facet: true
-      search_attribute :aperture, object: 'Document', group: 'Aperture', facet: true
+      search_attribute :aperture, object: 'Document', group: 'Aperture', multiple: true, facet: true
       search_attribute :binding_type, object: 'Document', group: 'Binding Type', multiple: true, facet: true
       search_attribute :binding_color, object: 'Document', group: 'Color', form_field: 'binding_color', multiple: true, facet: true
       search_attribute :number_sewing_supports, facet: true
