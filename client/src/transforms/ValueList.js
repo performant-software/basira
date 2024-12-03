@@ -17,7 +17,8 @@ class ValueList extends BaseTransform {
     'group',
     'human_name',
     'authorized_vocabulary',
-    'url_database_value',
+    'authorized_vocabulary_url',
+    'database_value',
     'comment',
     '_destroy'
   ];
