@@ -339,6 +339,20 @@ const Document = () => {
               group: 'Script'
             }
           }, {
+            name: 'script_type',
+            label: t('Document.labels.scriptType'),
+            qualification: {
+              object: 'Document',
+              group: 'Script Type'
+            }
+          }, {
+            name: 'simulated_script',
+            label: t('Document.labels.simulatedScript'),
+            qualification: {
+              object: 'Document',
+              group: 'Simulated Script'
+            }
+          }, {
             name: 'language',
             label: t('Document.labels.language'),
             qualification: {
@@ -357,13 +371,6 @@ const Document = () => {
           }, {
             name: 'transcription_translation',
             label: t('Document.labels.transcriptionTranslation')
-          }, {
-            name: 'simulated_script',
-            label: t('Document.labels.simulatedScript'),
-            qualification: {
-              object: 'Document',
-              group: 'Simulated Script'
-            }
           }, {
             name: 'type_of_illumination',
             label: t('Document.labels.typeOfIllumination'),
