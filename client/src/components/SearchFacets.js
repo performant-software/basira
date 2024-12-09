@@ -536,12 +536,11 @@ const SearchFacets = (props: any) => {
         useRefinementList={useRefinementList}
       />
       <FacetList
-        attribute='language_facet'
+        attribute='script_type_facet'
         defaultActive={false}
+        limit={MAX_LIMIT}
         ref={setRef}
-        showMore
-        showMoreLimit={MAX_SHOW_MORE_LIMIT}
-        title={getLabel('language_facet')}
+        title={getLabel('script_type_facet')}
         toggleable
         useRefinementList={useRefinementList}
       />
@@ -551,6 +550,16 @@ const SearchFacets = (props: any) => {
         limit={MAX_LIMIT}
         ref={setRef}
         title={getLabel('simulated_script_facet')}
+        toggleable
+        useRefinementList={useRefinementList}
+      />
+      <FacetList
+        attribute='language_facet'
+        defaultActive={false}
+        ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
+        title={getLabel('language_facet')}
         toggleable
         useRefinementList={useRefinementList}
       />

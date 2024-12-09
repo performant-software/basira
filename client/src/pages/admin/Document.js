@@ -473,7 +473,20 @@ const Document = (props: Props) => {
                 multiple
                 object='Document'
               />
-
+              <ValueListDropdown
+                {...props}
+                group='Script Type'
+                label={props.t('Document.labels.scriptType')}
+                multiple
+                object='Document'
+              />
+              <ValueListDropdown
+                {...props}
+                group='Simulated Script'
+                label={props.t('Document.labels.simulatedScript')}
+                multiple
+                object='Document'
+              />
               <ValueListDropdown
                 {...props}
                 group='Language'
@@ -511,13 +524,6 @@ const Document = (props: Props) => {
                 required={props.isRequired('transcription_translation')}
                 rows={5}
                 value={props.item.transcription_translation || ''}
-              />
-              <ValueListDropdown
-                {...props}
-                group='Simulated Script'
-                label={props.t('Document.labels.simulatedScript')}
-                multiple
-                object='Document'
               />
               <ValueListDropdown
                 {...props}

@@ -83,6 +83,7 @@ module Search
       search_attribute :rubrication_color, object: 'Document', group: 'Color', form_field: 'rubrication_color', multiple: true, facet: true
       search_attribute :legibility, object: 'Document', group: 'Legibility', multiple: true, facet: true
       search_attribute :script, object: 'Document', group: 'Script', multiple: true, facet: true
+      search_attribute :script_type, object: 'Document', group: 'Script Type', multiple: true, facet: true
       search_attribute :language, object: 'Document', group: 'Language', multiple: true, facet: true
       search_attribute :identity
       search_attribute :transcription
