@@ -116,7 +116,9 @@ const RecordPage = (props: Props) => {
           </Sidebar>
         )}
         <Sidebar.Pusher>
-          { !props.loading && props.children }
+          <main>
+            { !props.loading && props.children }
+          </main>
           { !props.loading && <PageFooter /> }
         </Sidebar.Pusher>
       </Sidebar.Pushable>

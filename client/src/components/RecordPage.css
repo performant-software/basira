@@ -3,8 +3,20 @@
   margin-bottom: 0;
 }
 
+.record-page > .pushable {
+  display: flex;
+  flex-direction: column;
+}
+
 .record-page > .pushable > .pusher {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   margin-top: 1em;
+}
+
+.record-page > .pushable > .pusher > main {
+  flex-grow: 1;
 }
 
 .record-page .section {
