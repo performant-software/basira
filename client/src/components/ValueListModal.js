@@ -78,11 +78,18 @@ const ValueListModal = (props: Props) => {
           />
         </Form.Input>
         <Form.Input
-          error={props.isError('url_database_value')}
-          label={props.t('ValueList.labels.urlDatabaseValue')}
-          onChange={props.onTextInputChange.bind(this, 'url_database_value')}
-          required={props.isRequired('url_database_value')}
-          value={props.item.url_database_value || ''}
+          error={props.isError('authorized_vocabulary_url')}
+          label={props.t('ValueList.labels.authorizedVocabularyUrl')}
+          onChange={props.onTextInputChange.bind(this, 'authorized_vocabulary_url')}
+          required={props.isRequired('authorized_vocabulary_url')}
+          value={props.item.authorized_vocabulary_url || ''}
+        />
+        <Form.Input
+          error={props.isError('database_value')}
+          label={props.t('ValueList.labels.databaseValue')}
+          onChange={props.onTextInputChange.bind(this, 'database_value')}
+          required={props.isRequired('database_value')}
+          value={props.item.database_value || ''}
         />
         <Form.TextArea
           error={props.isError('comment')}

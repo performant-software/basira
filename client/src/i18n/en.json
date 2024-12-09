@@ -593,12 +593,13 @@
   "ValueList": {
     "labels": {
       "authorizedVocabulary": "Authorized vocabulary",
+      "authorizedVocabularyUrl": "Authorized vocabulary URL",
       "comment": "Comment",
+      "databaseValue": "Database value",
       "groupName": "Group name",
       "humanName": "Human name",
       "linkedRecords": "Linked records",
-      "objectName": "Object name",
-      "urlDatabaseValue": "URL/Database value"
+      "objectName": "Object name"
     },
     "title": {
       "add": "Add value list item",

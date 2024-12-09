@@ -22,7 +22,7 @@ module AirtableImporter
           attribute_name: :authorized_vocabulary,
           airtable_name: 'Authorized vocabulary'
         }, {
-          attribute_name: :url_database_value,
+          attribute_name: :authorized_vocabulary_url,
           airtable_name: 'URL/Database value (if applicable)'
         }, {
           attribute_name: :comment,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_27_155237) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_03_181033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -286,7 +286,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_27_155237) do
     t.string "object"
     t.string "group"
     t.string "human_name"
-    t.string "url_database_value"
+    t.string "authorized_vocabulary_url"
     t.text "comment"
     t.string "authorized_vocabulary"
     t.string "airtable_id"
@@ -296,6 +296,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_27_155237) do
     t.integer "qualifications_count", default: 0, null: false
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
+    t.string "database_value"
     t.index ["created_by_id"], name: "index_value_lists_on_created_by_id"
     t.index ["updated_by_id"], name: "index_value_lists_on_updated_by_id"
   end
