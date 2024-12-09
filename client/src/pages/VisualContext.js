@@ -30,60 +30,56 @@ const VisualContext = () => {
       renderTitle={() => item.name}
     >
       <RecordPage.Section>
-        { item && item.primary_attachment && (
-          <RecordPage.Section>
-            <RecordPage.Image
-              item={item.primary_attachment}
-            />
-          </RecordPage.Section>
-        )}
-      </RecordPage.Section>
-      <RecordPage.Section>
-        <AttributesGrid
-          attributes={[{
-            name: 'id',
-            label: t('Common.labels.id'),
-            renderValue: () => t('VisualContext.labels.id', { id: item.id })
-          }, {
-            name: 'height',
-            label: t('VisualContext.labels.height')
-          }, {
-            name: 'width',
-            label: t('VisualContext.labels.width')
-          }, {
-            name: 'depth',
-            label: t('VisualContext.labels.depth')
-          }, {
-            name: 'notes',
-            label: t('VisualContext.labels.notes')
-          }, {
-            name: 'general_subject_genre',
-            label: t('VisualContext.labels.generalSubjectGenre'),
-            qualification: {
-              object: 'Visual Context',
-              group: 'General Subject/Genre'
-            }
-          }, {
-            name: 'subject_cultural_context',
-            label: t('VisualContext.labels.subjectCulturalContext'),
-            qualification: {
-              object: 'Visual Context',
-              group: 'Subject Cultural Context'
-            }
-          }, {
-            name: 'subject_iconography',
-            label: t('VisualContext.labels.specificSubjectIconography'),
-            qualification: {
-              object: 'Visual Context',
-              group: 'Specific Subject/Iconography'
-            }
-          }, {
-            name: 'beta',
-            label: t('VisualContext.labels.beta'),
-            renderValue: () => <BooleanIcon value={item.beta} />
-          }]}
-          item={item}
-        />
+        <RecordPage.Header
+          image={item?.primary_attachment}
+        >
+          <AttributesGrid
+            attributes={[{
+              name: 'id',
+              label: t('Common.labels.id'),
+              renderValue: () => t('VisualContext.labels.id', { id: item.id })
+            }, {
+              name: 'height',
+              label: t('VisualContext.labels.height')
+            }, {
+              name: 'width',
+              label: t('VisualContext.labels.width')
+            }, {
+              name: 'depth',
+              label: t('VisualContext.labels.depth')
+            }, {
+              name: 'notes',
+              label: t('VisualContext.labels.notes')
+            }, {
+              name: 'general_subject_genre',
+              label: t('VisualContext.labels.generalSubjectGenre'),
+              qualification: {
+                object: 'Visual Context',
+                group: 'General Subject/Genre'
+              }
+            }, {
+              name: 'subject_cultural_context',
+              label: t('VisualContext.labels.subjectCulturalContext'),
+              qualification: {
+                object: 'Visual Context',
+                group: 'Subject Cultural Context'
+              }
+            }, {
+              name: 'subject_iconography',
+              label: t('VisualContext.labels.specificSubjectIconography'),
+              qualification: {
+                object: 'Visual Context',
+                group: 'Specific Subject/Iconography'
+              }
+            }, {
+              name: 'beta',
+              label: t('VisualContext.labels.beta'),
+              renderValue: () => <BooleanIcon value={item.beta} />
+            }]}
+            item={item}
+            title={t('Common.labels.details')}
+          />
+        </RecordPage.Header>
       </RecordPage.Section>
     </RecordPage>
   );

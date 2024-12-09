@@ -168,6 +168,7 @@
     },
     "labels": {
       "artwork": "Artwork",
+      "details": "Details",
       "document": "Document",
       "id": "ID",
       "physicalComponent": "Physical Component",

@@ -2,13 +2,14 @@
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Item } from 'semantic-ui-react';
+import { Header, Item } from 'semantic-ui-react';
 import _ from 'underscore';
 import CertaintyLabel from './CertaintyLabel';
 import type { Location } from '../types/Location';
 import RolesView from './RolesView';
 import Qualifiables from '../utils/Qualifiables';
 import SimpleLink from './SimpleLink';
+import './Locations.css';
 
 type Props = {
   items: Array<Location>
@@ -23,6 +24,7 @@ const Locations = (props: Props) => {
 
   return (
     <Item.Group
+      className='locations'
       divided
       relaxed='very'
     >
@@ -30,11 +32,15 @@ const Locations = (props: Props) => {
         <Item>
           <Item.Content>
             <Item.Header>
-              <SimpleLink
-                url={`/places/${item.place_id}`}
+              <Header
+                size='tiny'
               >
-                { item.place?.name }
-              </SimpleLink>
+                <SimpleLink
+                  url={`/places/${item.place_id}`}
+                >
+                  { item.place?.name }
+                </SimpleLink>
+              </Header>
             </Item.Header>
             <Item.Meta
               content={item.place?.country}

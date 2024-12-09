@@ -11,8 +11,8 @@ import React, {
 import { Link } from 'react-router-dom';
 import {
   Button,
-  Container,
-  Header,
+  Container, Grid,
+  Header as SemanticHeader,
   Loader,
   Menu,
   Ref,
@@ -142,10 +142,10 @@ const Section = (props: SectionProps) => (
     className={`section ${props.className ? props.className : ''}`}
   >
     { props.title && (
-      <Header
+      <SemanticHeader
         content={props.title}
         dividing
-        size='large'
+        size='small'
       />
     )}
     { props.children }
@@ -177,5 +177,33 @@ const Image = (props: ImageProps) => (
 );
 
 RecordPage.Image = Image;
+
+type HeaderProps = {
+  children: Node,
+  image: Attachment
+};
+
+const Header = (props: HeaderProps) => (
+  <Grid
+    columns={2}
+  >
+    { props.image && (
+      <Grid.Column
+        width={4}
+      >
+        <RecordPage.Image
+          item={props.image}
+        />
+      </Grid.Column>
+    )}
+    <Grid.Column
+      width={12}
+    >
+      { props.children }
+    </Grid.Column>
+  </Grid>
+);
+
+RecordPage.Header = Header;
 
 export default RecordPage;

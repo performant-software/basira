@@ -1,3 +1,7 @@
 .artwork-titles .icon.white {
   color: #FFFFFF;
 }
+
+.artwork-titles.list > .item > .content > .description {
+  margin-top: 0.5rem;
+}
