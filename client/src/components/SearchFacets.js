@@ -9,7 +9,6 @@ import {
 import React, { useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  useHits,
   useRange,
   useRefinementList,
   useToggleRefinement
@@ -24,7 +23,6 @@ const MAX_SHOW_MORE_LIMIT = 1000;
 
 const SearchFacets = (props: any) => {
   const { getLabel } = useFacetLabels();
-  const { hits } = useHits(props);
   const { t } = useTranslation();
 
   const refs = useRef([]);
@@ -68,10 +66,6 @@ const SearchFacets = (props: any) => {
    */
   const setRef = useCallback((element) => refs.current.push(element), [refs]);
 
-  if (_.isEmpty(hits)) {
-    return null;
-  }
-
   return (
     <Segment
       className='search-facets'
@@ -93,6 +87,7 @@ const SearchFacets = (props: any) => {
       <FacetSlider
         attribute='artwork.date_range_facet'
         defaultActive={false}
+        editable
         ref={setRef}
         title={getLabel('artwork.date_range_facet')}
         useRangeSlider={useRange}

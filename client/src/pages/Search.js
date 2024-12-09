@@ -148,23 +148,23 @@ const Search = () => {
                 <SearchResultsSort
                   items={[{
                     label: t('Search.sort.relevance.label'),
-                    value: 'documents/sort/_text_match:desc'
+                    value: `${process.env.REACT_APP_TYPESENSE_COLLECTION_NAME}/sort/_text_match:desc`
                   }, {
                     label: t('Search.sort.artworkDate.label'),
                     description: t('Search.sort.artworkDate.descriptionAsc'),
-                    value: 'documents/sort/artwork.date_start:asc'
+                    value: `${process.env.REACT_APP_TYPESENSE_COLLECTION_NAME}/sort/artwork.date_start:asc`
                   }, {
                     label: t('Search.sort.artworkDate.label'),
                     description: t('Search.sort.artworkDate.descriptionDesc'),
-                    value: 'documents/sort/artwork.date_start:desc'
+                    value: `${process.env.REACT_APP_TYPESENSE_COLLECTION_NAME}/sort/artwork.date_start:desc`
                   }, {
                     label: t('Search.sort.creationDate.label'),
                     description: t('Search.sort.creationDate.descriptionAsc'),
-                    value: 'documents/sort/artwork.created_at:asc'
+                    value: `${process.env.REACT_APP_TYPESENSE_COLLECTION_NAME}/sort/artwork.created_at:asc`
                   }, {
                     label: t('Search.sort.creationDate.label'),
                     description: t('Search.sort.creationDate.descriptionDesc'),
-                    value: 'documents/sort/artwork.created_at:desc'
+                    value: `${process.env.REACT_APP_TYPESENSE_COLLECTION_NAME}/sort/artwork.created_at:desc`
                   }]}
                   useSortBy={useSortBy}
                 />
