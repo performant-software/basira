@@ -62,6 +62,7 @@
       "documentsVisible": "Documents Visible",
       "endDate": "End date",
       "height": "Height",
+      "id": "Artworks/{{id}}",
       "objectWorkTypes": "Object/Work Type(s)",
       "materials": "Material(s)",
       "notes": "Notes",
@@ -376,6 +377,7 @@
     "labels": {
       "depth": "Depth",
       "height": "Height",
+      "id": "Physical_Components/{{id}}",
       "name": "Name",
       "notes": "Notes",
       "width": "Width"
@@ -626,6 +628,7 @@
       "depth": "Depth",
       "generalSubjectGenre": "General Subject/Genre",
       "height": "Height",
+      "id": "Visual_Contexts/{{id}}",
       "name": "Name",
       "notes": "Notes",
       "specificSubjectIconography": "Specific Subject/Iconography",

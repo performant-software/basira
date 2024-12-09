@@ -41,17 +41,21 @@ const VisualContext = () => {
       <RecordPage.Section>
         <AttributesGrid
           attributes={[{
+            name: 'id',
+            label: t('Common.labels.id'),
+            renderValue: () => t('VisualContext.labels.id', { id: item.id })
+          }, {
             name: 'height',
-            label: t('PhysicalComponent.labels.height')
+            label: t('VisualContext.labels.height')
           }, {
             name: 'width',
-            label: t('PhysicalComponent.labels.width')
+            label: t('VisualContext.labels.width')
           }, {
             name: 'depth',
-            label: t('PhysicalComponent.labels.depth')
+            label: t('VisualContext.labels.depth')
           }, {
             name: 'notes',
-            label: t('PhysicalComponent.labels.notes')
+            label: t('VisualContext.labels.notes')
           }, {
             name: 'general_subject_genre',
             label: t('VisualContext.labels.generalSubjectGenre'),
