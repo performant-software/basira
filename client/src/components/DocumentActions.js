@@ -2,12 +2,12 @@
 
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Item, Label } from 'semantic-ui-react';
+import { Card, Header, Label } from 'semantic-ui-react';
 import _ from 'underscore';
 import type { Action } from '../types/Action';
+import './DocumentActions.css';
 
 type Props = {
-  // $FlowIgnore - Not sure why this is throwing a Flow error
   items: Array<Action>
 };
 
@@ -50,28 +50,37 @@ const DocumentActions = (props: Props) => {
   }
 
   return (
-    <Item.Group
-      divided
+    <Card.Group
+      className='document-actions'
+      itemsPerRow={4}
     >
       { _.map(props.items, (item, index) => (
-        <Item
+        <Card
           key={index}
         >
-          <Item.Content>
-            <Item.Header>
-              { renderActionText(item) }
-            </Item.Header>
-            <Item.Description>
-              { item.notes }
-            </Item.Description>
-            <Item.Extra>
-              { renderDescriptors(item, 'Characteristic', 'blue') }
-              { renderDescriptors(item, 'Body', 'green') }
-            </Item.Extra>
-          </Item.Content>
-        </Item>
+          <Card.Content>
+            <Card.Header
+            >
+              <Header
+                content={renderActionText(item)}
+                size='tiny'
+              />
+            </Card.Header>
+            { item.notes && (
+              <Card.Description
+                content={item.notes}
+              />
+            )}
+          </Card.Content>
+          <Card.Content
+            extra
+          >
+            { renderDescriptors(item, 'Characteristic', 'blue') }
+            { renderDescriptors(item, 'Body', 'green') }
+          </Card.Content>
+        </Card>
       ))}
-    </Item.Group>
+    </Card.Group>
   );
 };
 

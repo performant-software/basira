@@ -1,0 +1,28 @@
+.attributes-grid.ui.segment {
+  font-size: 13px;
+}
+
+.attributes-grid.ui.segment .ui[class*="vertically divided"].grid > .row {
+  padding: 0px;
+}
+
+.attributes-grid.ui.segment .ui[class*="vertically divided"].grid > .row:before {
+  width: 100%;
+  margin: 0px;
+}
+
+.attributes-grid.ui.segment .ui[class*="vertically divided"].grid > .row:first-child > .column {
+  margin-top: 1rem;
+}
+
+.attributes-grid.ui.segment .ui[class*="vertically divided"].grid > .row > .column {
+  margin: 0.5rem 0px;
+}
+
+.attributes-grid.ui.segment .ui[class*="vertically divided"].grid > .row > .column.label {
+  color: #6c757d;
+}
+
+.attributes-grid.ui.segment .ui[class*="vertically divided"].grid > .row > .column.value {
+  font-weight: 400;
+}

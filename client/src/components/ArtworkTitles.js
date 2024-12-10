@@ -27,7 +27,6 @@ const ArtworkTitles = (props: Props) => {
           <List.Icon
             color={item.primary ? 'green' : 'white'}
             name='check circle'
-            verticalAlign='middle'
           />
           <List.Content>
             <List.Header

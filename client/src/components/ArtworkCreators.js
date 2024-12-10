@@ -1,13 +1,14 @@
 // @flow
 
 import React from 'react';
-import { Item } from 'semantic-ui-react';
+import { Header, Item } from 'semantic-ui-react';
 import _ from 'underscore';
 import type { Participation } from '../types/Participation';
 import Qualifiables from '../utils/Qualifiables';
 import CertaintyLabel from './CertaintyLabel';
 import RolesView from './RolesView';
 import SimpleLink from './SimpleLink';
+import './ArtworkCreators.css';
 
 type Props = {
   items: Array<Participation>
@@ -20,6 +21,7 @@ const ArtworkCreators = (props: Props) => {
 
   return (
     <Item.Group
+      className='artwork-creators'
       divided
       relaxed='very'
     >
@@ -27,11 +29,15 @@ const ArtworkCreators = (props: Props) => {
         <Item>
           <Item.Content>
             <Item.Header>
-              <SimpleLink
-                url={`/people/${item.person.id}`}
+              <Header
+                className='tiny'
               >
-                { item.person.display_name }
-              </SimpleLink>
+                <SimpleLink
+                  url={`/people/${item.person.id}`}
+                >
+                  { item.person.display_name }
+                </SimpleLink>
+              </Header>
             </Item.Header>
             <Item.Meta>
               { Qualifiables.getValueListValue(item.person, 'Person', 'Nationality') }

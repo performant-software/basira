@@ -29,35 +29,31 @@ const PhysicalComponent = () => {
       renderTitle={() => item.name}
     >
       <RecordPage.Section>
-        { item && item.primary_attachment && (
-          <RecordPage.Section>
-            <RecordPage.Image
-              item={item.primary_attachment}
-            />
-          </RecordPage.Section>
-        )}
-      </RecordPage.Section>
-      <RecordPage.Section>
-        <AttributesGrid
-          attributes={[{
-            name: 'id',
-            label: t('Common.labels.id'),
-            renderValue: () => t('PhysicalComponent.labels.id', { id: item.id })
-          }, {
-            name: 'height',
-            label: t('PhysicalComponent.labels.height')
-          }, {
-            name: 'width',
-            label: t('PhysicalComponent.labels.width')
-          }, {
-            name: 'depth',
-            label: t('PhysicalComponent.labels.depth')
-          }, {
-            name: 'notes',
-            label: t('PhysicalComponent.labels.notes')
-          }]}
-          item={item}
-        />
+        <RecordPage.Header
+          image={item?.primary_attachment}
+        >
+          <AttributesGrid
+            attributes={[{
+              name: 'id',
+              label: t('Common.labels.id'),
+              renderValue: () => t('PhysicalComponent.labels.id', { id: item.id })
+            }, {
+              name: 'height',
+              label: t('PhysicalComponent.labels.height')
+            }, {
+              name: 'width',
+              label: t('PhysicalComponent.labels.width')
+            }, {
+              name: 'depth',
+              label: t('PhysicalComponent.labels.depth')
+            }, {
+              name: 'notes',
+              label: t('PhysicalComponent.labels.notes')
+            }]}
+            item={item}
+            title={t('Common.labels.details')}
+          />
+        </RecordPage.Header>
       </RecordPage.Section>
     </RecordPage>
   );
