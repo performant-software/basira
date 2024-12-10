@@ -461,6 +461,7 @@
           "nationality": "Creator Origin"
         },
         "dateRange": "Date",
+        "documentsCount": "Number of Documents",
         "materials": "Materials",
         "locations": {
           "name": "Repository",

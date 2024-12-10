@@ -189,6 +189,14 @@ const SearchFacets = (props: any) => {
         toggleable
         useRefinementList={useRefinementList}
       />
+      <FacetSlider
+        attribute='artwork.documents_count_facet'
+        defaultActive={false}
+        editable
+        ref={setRef}
+        title={getLabel('artwork.documents_count_facet')}
+        useRangeSlider={useRange}
+      />
       <Header
         as='h3'
         content={t('Search.facets.headers.visualContext')}

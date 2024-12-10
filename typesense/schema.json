@@ -34,6 +34,13 @@
       "range_index": true
     },
     {
+      "name": "artwork.documents_count_facet",
+      "type": "int32",
+      "facet": true,
+      "optional": true,
+      "range_index": true
+    },
+    {
       "name": "artwork.materials_facet",
       "type": "string[]",
       "facet": true,

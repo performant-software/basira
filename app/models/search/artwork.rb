@@ -10,6 +10,7 @@ module Search
       search_attribute :id
       search_attribute :date_descriptor
       search_attribute :date_start
+      search_attribute :documents_count, facet: true
       search_attribute :object_work_type, object: 'Artwork', group: 'Object/Work Type', multiple: true, facet: true
       search_attribute :materials, object: 'Artwork', group: 'Material', multiple: true, facet: true
       search_attribute :techniques, object: 'Artwork', group: 'Technique', multiple: true, facet: true
