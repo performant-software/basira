@@ -313,6 +313,12 @@
       "optional": true
     },
     {
+      "name": "script_type_facet",
+      "type": "string[]",
+      "facet": true,
+      "optional": true
+    },
+    {
       "name": "language_facet",
       "type": "string[]",
       "facet": true,
