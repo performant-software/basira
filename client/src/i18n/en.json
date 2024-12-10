@@ -168,10 +168,12 @@
     },
     "labels": {
       "artwork": "Artwork",
+      "created": "Record created",
       "details": "Details",
       "document": "Document",
       "id": "ID",
       "physicalComponent": "Physical Component",
+      "updated": "Record updated",
       "visualContext": "Visual Context"
     },
     "messages": {

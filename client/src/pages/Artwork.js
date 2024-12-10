@@ -7,6 +7,7 @@ import ArtworkCreators from '../components/ArtworkCreators';
 import ArtworkTitles from '../components/ArtworkTitles';
 import ArtworksService from '../services/Artworks';
 import AttributesGrid from '../components/AttributesGrid';
+import { getDateTimeView } from '../utils/Date';
 import { getPrimaryTitle } from '../utils/Artwork';
 import Locations from '../components/Locations';
 import RecordPage from '../components/RecordPage';
@@ -42,6 +43,14 @@ const Artwork = () => {
               name: 'id',
               label: t('Common.labels.id'),
               renderValue: () => t('Artwork.labels.id', { id: item.id })
+            }, {
+              name: 'created_at',
+              label: t('Common.labels.created'),
+              renderValue: () => getDateTimeView(item.created_at)
+            }, {
+              name: 'updated_at',
+              label: t('Common.labels.updated'),
+              renderValue: () => getDateTimeView(item.updated_at)
             }, {
               name: 'date_start',
               label: t('Artwork.labels.startDate')

@@ -4,9 +4,10 @@ import React, { useCallback } from 'react';
 import { BooleanIcon } from '@performant-software/semantic-components';
 import { useTranslation } from 'react-i18next';
 import AttributesGrid from '../components/AttributesGrid';
-import VisualContextsService from '../services/VisualContexts';
+import { getDateTimeView } from '../utils/Date';
 import RecordPage from '../components/RecordPage';
 import useCurrentRecord from '../hooks/CurrentRecord';
+import VisualContextsService from '../services/VisualContexts';
 
 const VisualContext = () => {
   /**
@@ -38,6 +39,14 @@ const VisualContext = () => {
               name: 'id',
               label: t('Common.labels.id'),
               renderValue: () => t('VisualContext.labels.id', { id: item.id })
+            }, {
+              name: 'created_at',
+              label: t('Common.labels.created'),
+              renderValue: () => getDateTimeView(item.created_at)
+            }, {
+              name: 'updated_at',
+              label: t('Common.labels.updated'),
+              renderValue: () => getDateTimeView(item.updated_at)
             }, {
               name: 'height',
               label: t('VisualContext.labels.height')

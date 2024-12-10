@@ -8,6 +8,7 @@ import _ from 'underscore';
 import AttributesGrid from '../components/AttributesGrid';
 import DocumentActions from '../components/DocumentActions';
 import DocumentsService from '../services/Documents';
+import { getDateTimeView } from '../utils/Date';
 import RecordPage from '../components/RecordPage';
 import useCurrentRecord from '../hooks/CurrentRecord';
 
@@ -44,6 +45,14 @@ const Document = () => {
             }, {
               name: 'name',
               label: t('Document.labels.name')
+            }, {
+              name: 'created_at',
+              label: t('Common.labels.created'),
+              renderValue: () => getDateTimeView(item.created_at)
+            }, {
+              name: 'updated_at',
+              label: t('Common.labels.updated'),
+              renderValue: () => getDateTimeView(item.updated_at)
             }, {
               name: 'document_type',
               label: t('Document.labels.documentType'),
