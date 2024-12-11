@@ -8,7 +8,7 @@ class DocumentsSerializer < BaseSerializer
   show_attributes :id, :name, :visual_context_id, :notes, :number_sewing_supports, :number_fastenings,
                   :inscriptions_on_binding, :inscription_text, :endband_present, :uncut_fore_edges, :fore_edge_text,
                   :bookmarks_registers, :text_columns, :ruling, :rubrication, :transcription, :transcription_expanded,
-                  :transcription_translation, :identity,
+                  :transcription_translation, :identity, :created_at, :updated_at,
                   qualifications: QualificationsSerializer, actions: [:id, :document_id, :notes,
                   qualifications: QualificationsSerializer]
 

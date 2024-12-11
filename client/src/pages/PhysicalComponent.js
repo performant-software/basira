@@ -3,6 +3,7 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import AttributesGrid from '../components/AttributesGrid';
+import { getDateTimeView } from '../utils/Date';
 import PhysicalComponentsService from '../services/PhysicalComponents';
 import RecordPage from '../components/RecordPage';
 import useCurrentRecord from '../hooks/CurrentRecord';
@@ -37,6 +38,14 @@ const PhysicalComponent = () => {
               name: 'id',
               label: t('Common.labels.id'),
               renderValue: () => t('PhysicalComponent.labels.id', { id: item.id })
+            }, {
+              name: 'created_at',
+              label: t('Common.labels.created'),
+              renderValue: () => getDateTimeView(item.created_at)
+            }, {
+              name: 'updated_at',
+              label: t('Common.labels.updated'),
+              renderValue: () => getDateTimeView(item.updated_at)
             }, {
               name: 'height',
               label: t('PhysicalComponent.labels.height')

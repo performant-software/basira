@@ -5,7 +5,9 @@ class VisualContextsSerializer < BaseSerializer
 
   index_attributes :id, :name
 
-  show_attributes :id, :physical_component_id, :name, :height, :width, :depth, :notes, :beta, qualifications: QualificationsSerializer
+  show_attributes :id, :physical_component_id, :name, :height, :width, :depth, :notes, :beta, :created_at, :updated_at,
+                  qualifications: QualificationsSerializer
+
   show_attributes(:artwork_id) { |visual_context| visual_context.physical_component&.artwork_id }
 
   nested_attributes :id, :physical_component_id, :name,
