@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { AssociatedDropdown } from '@performant-software/semantic-components';
 import { withTranslation } from 'react-i18next';
 import { Form, Modal } from 'semantic-ui-react';
@@ -30,125 +30,135 @@ const LocationTypes = {
   place: 2
 };
 
-const LocationModal = (props: Props) => (
-  <Modal
-    as={Form}
-    centered={false}
-    open
-    noValidate
-  >
-    <Modal.Header
-      content={props.item.id
-        ? props.t('LocationModal.title.edit')
-        : props.t('LocationModal.title.add')}
-    />
-    <Modal.Content>
-      { props.type === LocationTypes.place && (
+const LocationModal = (props: Props) => {
+  /**
+   * Memo-izes the search function.
+   *
+   * @type {function(): function(*): *}
+   */
+  const onSearch = useCallback(() => (search) => Places.fetchAll({ search, sort_by: 'name' }), []);
+
+  return (
+    <Modal
+      as={Form}
+      centered={false}
+      open
+      noValidate
+    >
+      <Modal.Header
+        content={props.item.id
+          ? props.t('LocationModal.title.edit')
+          : props.t('LocationModal.title.add')}
+      />
+      <Modal.Content>
+        { props.type === LocationTypes.place && (
+          <Form.Input
+            error={props.isError('place_id')}
+            label={props.t('LocationModal.labels.place')}
+            required={props.isRequired('place_id')}
+          >
+            <AssociatedDropdown
+              collectionName='places'
+              modal={{
+                component: PlaceModal,
+                onSave: (place) => Places.save(place).then(({ data }) => data.place)
+              }}
+              onSearch={onSearch}
+              onSelection={props.onAssociationInputChange.bind(this, 'place_id', 'place')}
+              renderOption={Place.toDropdown.bind(this)}
+              searchQuery={props.item.place && props.item.place.name}
+              value={props.item.place_id || ''}
+            />
+          </Form.Input>
+        )}
+        { props.type === LocationTypes.artwork && (
+          <Form.Input
+            error={props.isError('locateable_id')}
+            label={props.t('LocationModal.labels.artwork')}
+            required={props.isRequired('locateable_id')}
+          >
+            <AssociatedDropdown
+              collectionName='artworks'
+              onSearch={(search) => Artworks.fetchAll({ search, sort_by: 'artwork_titles.title' })}
+              onSelection={props.onAssociationInputChange.bind(this, 'locateable_id', 'locateable')}
+              renderOption={Artwork.toDropdown.bind(this)}
+              searchQuery={(
+                props.item.locateable
+                && props.item.locateable.primary_title
+                && props.item.locateable.primary_title.title
+              )}
+              value={props.item.locateable_id || ''}
+            />
+          </Form.Input>
+        )}
+        { props.type === LocationTypes.person && (
+          <Form.Input
+            error={props.isError('locateable_id')}
+            label={props.t('LocationModal.labels.person')}
+            required={props.isRequired('locateable_id')}
+          >
+            <AssociatedDropdown
+              collectionName='people'
+              modal={{
+                component: PersonModal,
+                onSave: (person) => People.save(person).then(({ data }) => data.person)
+              }}
+              onSearch={(search) => People.fetchAll({ search, sort_by: 'display_name' })}
+              onSelection={props.onAssociationInputChange.bind(this, 'locateable_id', 'locateable')}
+              renderOption={Person.toDropdown.bind(this)}
+              searchQuery={props.item.locateable && props.item.locateable.display_name}
+              value={props.item.locateable_id || ''}
+            />
+          </Form.Input>
+        )}
+        <ValueListDropdown
+          {...props}
+          group='Role'
+          label={props.t('LocationModal.labels.role')}
+          object='Location'
+        />
+        <ValueListDropdown
+          {...props}
+          group='Subrole'
+          label={props.t('LocationModal.labels.subrole')}
+          object='Location'
+        />
         <Form.Input
-          error={props.isError('place_id')}
-          label={props.t('LocationModal.labels.place')}
-          required={props.isRequired('place_id')}
-        >
-          <AssociatedDropdown
-            collectionName='places'
-            modal={{
-              component: PlaceModal,
-              onSave: (place) => Places.save(place).then(({ data }) => data.place)
-            }}
-            onSearch={(search) => Places.fetchAll({ search, sort_by: 'name' })}
-            onSelection={props.onAssociationInputChange.bind(this, 'place_id', 'place')}
-            renderOption={Place.toDropdown.bind(this)}
-            searchQuery={props.item.place && props.item.place.name}
-            value={props.item.place_id || ''}
-          />
-        </Form.Input>
-      )}
-      { props.type === LocationTypes.artwork && (
-        <Form.Input
-          error={props.isError('locateable_id')}
-          label={props.t('LocationModal.labels.artwork')}
-          required={props.isRequired('locateable_id')}
-        >
-          <AssociatedDropdown
-            collectionName='artworks'
-            onSearch={(search) => Artworks.fetchAll({ search, sort_by: 'artwork_titles.title' })}
-            onSelection={props.onAssociationInputChange.bind(this, 'locateable_id', 'locateable')}
-            renderOption={Artwork.toDropdown.bind(this)}
-            searchQuery={(
-              props.item.locateable
-              && props.item.locateable.primary_title
-              && props.item.locateable.primary_title.title
-            )}
-            value={props.item.locateable_id || ''}
-          />
-        </Form.Input>
-      )}
-      { props.type === LocationTypes.person && (
-        <Form.Input
-          error={props.isError('locateable_id')}
-          label={props.t('LocationModal.labels.person')}
-          required={props.isRequired('locateable_id')}
-        >
-          <AssociatedDropdown
-            collectionName='people'
-            modal={{
-              component: PersonModal,
-              onSave: (person) => People.save(person).then(({ data }) => data.person)
-            }}
-            onSearch={(search) => People.fetchAll({ search, sort_by: 'display_name' })}
-            onSelection={props.onAssociationInputChange.bind(this, 'locateable_id', 'locateable')}
-            renderOption={Person.toDropdown.bind(this)}
-            searchQuery={props.item.locateable && props.item.locateable.display_name}
-            value={props.item.locateable_id || ''}
-          />
-        </Form.Input>
-      )}
-      <ValueListDropdown
-        {...props}
-        group='Role'
-        label={props.t('LocationModal.labels.role')}
-        object='Location'
-      />
-      <ValueListDropdown
-        {...props}
-        group='Subrole'
-        label={props.t('LocationModal.labels.subrole')}
-        object='Location'
-      />
-      <Form.Input
-        error={props.isError('repository_work_url')}
-        label={props.t('LocationModal.labels.repositoryWorkUrl')}
-        onChange={props.onTextInputChange.bind(this, 'repository_work_url')}
-        required={props.isRequired('repository_work_url')}
-        value={props.item.repository_work_url || ''}
-      />
-      <Form.TextArea
-        error={props.isError('description')}
-        label={props.t('LocationModal.labels.description')}
-        onChange={props.onTextInputChange.bind(this, 'description')}
-        required={props.isRequired('description')}
-        value={props.item.description || ''}
-      />
-      <Form.Dropdown
-        error={props.isError('certainty')}
-        label={props.t('LocationModal.labels.certainty')}
-        onChange={props.onTextInputChange.bind(this, 'certainty')}
-        options={Certainty}
-        required={props.isRequired('certainty')}
-        selection
-        value={props.item.certainty || ''}
-      />
-      <Form.TextArea
-        error={props.isError('notes')}
-        label={props.t('LocationModal.labels.notes')}
-        onChange={props.onTextInputChange.bind(this, 'notes')}
-        required={props.isRequired('notes')}
-        value={props.item.notes || ''}
-      />
-    </Modal.Content>
-    { props.children }
-  </Modal>
-);
+          error={props.isError('repository_work_url')}
+          label={props.t('LocationModal.labels.repositoryWorkUrl')}
+          onChange={props.onTextInputChange.bind(this, 'repository_work_url')}
+          required={props.isRequired('repository_work_url')}
+          value={props.item.repository_work_url || ''}
+        />
+        <Form.TextArea
+          error={props.isError('description')}
+          label={props.t('LocationModal.labels.description')}
+          onChange={props.onTextInputChange.bind(this, 'description')}
+          required={props.isRequired('description')}
+          value={props.item.description || ''}
+        />
+        <Form.Dropdown
+          clearable
+          error={props.isError('certainty')}
+          label={props.t('LocationModal.labels.certainty')}
+          onChange={props.onTextInputChange.bind(this, 'certainty')}
+          options={Certainty}
+          required={props.isRequired('certainty')}
+          selection
+          value={props.item.certainty || ''}
+        />
+        <Form.TextArea
+          error={props.isError('notes')}
+          label={props.t('LocationModal.labels.notes')}
+          onChange={props.onTextInputChange.bind(this, 'notes')}
+          required={props.isRequired('notes')}
+          value={props.item.notes || ''}
+        />
+      </Modal.Content>
+      { props.children }
+    </Modal>
+  );
+};
 
 export default withTranslation()(LocationModal);
 
