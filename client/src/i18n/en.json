@@ -396,7 +396,9 @@
       "notes": "Notes",
       "state": "State",
       "type": "Type",
-      "url": "Institutional URL"
+      "url": "Institutional URL",
+      "authorizedVocabulary": "Authorized vocabulary",
+      "authorizedVocabularyUrl": "Authorized vocabulary URL"
     },
     "locations": {
       "columns": {
