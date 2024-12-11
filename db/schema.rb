@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_03_181033) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_11_201922) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -180,7 +180,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_03_181033) do
     t.string "name"
     t.string "display_name"
     t.string "person_type"
-    t.string "authorized_vocabulary"
     t.string "url"
     t.string "database_value"
     t.string "comment"
@@ -288,7 +287,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_03_181033) do
     t.string "human_name"
     t.string "authorized_vocabulary_url"
     t.text "comment"
-    t.string "authorized_vocabulary"
     t.string "airtable_id"
     t.datetime "airtable_timestamp", precision: nil
     t.datetime "created_at", null: false
