@@ -2,6 +2,9 @@ class Api::ValueListsController < Api::BaseController
   # Search columns
   search_attributes :object, :group, :human_name, :comment
 
+  # Preloads
+  preloads :qualifications, only: [:index, :show]
+
   def objects_list
     objects_list = ValueList
                      .all
@@ -23,18 +26,6 @@ class Api::ValueListsController < Api::BaseController
 
     render json: {
       groups: groups_list
-    }
-  end
-
-  def authorized_vocabularies
-    vocabs_list = ValueList
-                    .where.not(authorized_vocabulary: nil)
-                    .order(:authorized_vocabulary)
-                    .distinct
-                    .pluck(:authorized_vocabulary)
-
-    render json: {
-      authorized_vocabularies: vocabs_list
     }
   end
 

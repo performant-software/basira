@@ -14,6 +14,7 @@ export type Place = {
   notes: string,
   same_as: number,
   part_of: number,
+  authorized_vocabulary_url,
 
   locations: Array<Location>
 };

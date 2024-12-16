@@ -1,0 +1,4 @@
+.value-lists > .tab > .ui.menu {
+  overflow: auto;
+  padding-bottom: 0.25em;
+}
