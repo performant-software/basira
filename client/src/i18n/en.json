@@ -32,8 +32,8 @@
     },
     "menu": {
       "artworks": "Artworks",
-      "people": "People",
-      "places": "Places",
+      "people": "Creators",
+      "places": "Repositories",
       "users": "Users",
       "valueLists": "Value Lists"
     }
