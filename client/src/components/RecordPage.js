@@ -11,7 +11,8 @@ import React, {
 import { Link } from 'react-router-dom';
 import {
   Button,
-  Container, Grid,
+  Container,
+  Grid,
   Header as SemanticHeader,
   Loader,
   Menu,
@@ -172,9 +173,6 @@ const Image = (props: ImageProps) => (
     <LazyImage
       src={props.item.file_url}
     />
-    <ImageInfo
-      item={props.item}
-    />
   </div>
 );
 
@@ -202,6 +200,13 @@ const Header = (props: HeaderProps) => (
       width={12}
     >
       { props.children }
+    </Grid.Column>
+    <Grid.Column
+      width={16}
+    >
+      <ImageInfo
+        item={props.image}
+      />
     </Grid.Column>
   </Grid>
 );
