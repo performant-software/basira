@@ -1,23 +1,28 @@
 // @flow
 
 import React from 'react';
+import { Label } from 'semantic-ui-react';
 import _ from 'underscore';
 
 type Props = {
-  value: Array<string>
+  items: Array<string>
 };
 
-const ROLES_SEPARATOR = ', ';
-
 const RolesView = (props: Props) => {
-  const value = _.compact(props.value);
+  const items = _.compact(props.items);
 
-  if (_.isEmpty(value)) {
+  if (_.isEmpty(items)) {
     return null;
   }
 
   return (
-    <span>{ value.join(ROLES_SEPARATOR) }</span>
+    <Label.Group>
+      { _.map(items, (item) => (
+        <Label
+          content={item}
+        />
+      ))}
+    </Label.Group>
   );
 };
 

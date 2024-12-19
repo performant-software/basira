@@ -159,7 +159,6 @@
     "buttons": {
       "back": "Back",
       "cancel": "Cancel",
-      "viewSource": "View Source",
       "save": "Save"
     },
     "errors": {
@@ -321,6 +320,11 @@
     "title": {
       "add": "Add Location",
       "edit": "Edit Location"
+    }
+  },
+  "Locations": {
+    "labels": {
+      "viewInstitution": "View Institution"
     }
   },
   "NotesModal": {
