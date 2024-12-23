@@ -2549,10 +2549,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@performant-software/semantic-components@^2.2.18":
-  version "2.2.18"
-  resolved "https://registry.yarnpkg.com/@performant-software/semantic-components/-/semantic-components-2.2.18.tgz#14ab574484afdc07c19e8ee6717b6e656e02e72e"
-  integrity sha512-Ejz5kUQMViDizkPwG2wFWO6LIc977WAnzSnmU0D6ZEpTdQT8Dxarz9beKJN4p2nBr/WCFHBbMx2XqRjMx8uW8A==
+"@performant-software/semantic-components@^2.2.20-beta.6":
+  version "2.2.20-beta.6"
+  resolved "https://registry.yarnpkg.com/@performant-software/semantic-components/-/semantic-components-2.2.20-beta.6.tgz#69aab752d5d80a20d5d8034f1a631dbe7186f5b7"
+  integrity sha512-9c+zlyEvwZZ4/RltGWMC9HDlpqaSJPPCrRSasuxzkabbxZgQf/jR87r3M5RvZ0CNObtyRjdGPqzFIm3iqR6TMg==
   dependencies:
     "@react-google-maps/api" "^2.8.1"
     axios "^0.26.1"
@@ -2570,10 +2570,10 @@
     zotero-api-client "^0.40.0"
     zotero-translation-client "^5.0.1"
 
-"@performant-software/shared-components@^2.2.18":
-  version "2.2.18"
-  resolved "https://registry.yarnpkg.com/@performant-software/shared-components/-/shared-components-2.2.18.tgz#8c32e889606debd59aecb12de6d297fafad0d0dc"
-  integrity sha512-N/WDflcliCGRl9urVYFEw5oiEbVMEGc/RyYigsa9ozWAbUscmKUXdwsZxJ9ydqrmj+Q1DCCMiezNycXgaY3WAQ==
+"@performant-software/shared-components@^2.2.20-beta.6":
+  version "2.2.20-beta.6"
+  resolved "https://registry.yarnpkg.com/@performant-software/shared-components/-/shared-components-2.2.20-beta.6.tgz#69e344095316b52ce0a03864b0bfcc052229a335"
+  integrity sha512-7jxuKZ8L3SU6VD9B0ZLaJJ7tpeKg191sweIoMi6918ioima2GUQ7O+rzfuo0CQe+DiOJ4yoiK3gDZZWk3QN7WQ==
   dependencies:
     "@react-google-maps/api" "^2.8.1"
     axios "^0.26.1"
