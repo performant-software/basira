@@ -5,6 +5,9 @@ class Api::ValueListsController < Api::BaseController
   # Preloads
   preloads :qualifications, only: [:index, :show]
 
+  # Actions
+  skip_before_action :authenticate_user!, only: :index
+
   def objects_list
     objects_list = ValueList
                      .all
