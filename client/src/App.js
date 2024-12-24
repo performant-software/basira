@@ -14,6 +14,7 @@ import PhysicalComponent from './pages/PhysicalComponent';
 import Place from './pages/Place';
 import Search from './pages/Search';
 import SearchContextProvider from './components/SearchContextProvider';
+import SearchHistory from './pages/SearchHistory';
 import VisualContext from './pages/VisualContext';
 import './App.css';
 
@@ -23,6 +24,11 @@ const App = () => (
       <Route
         path='/'
         component={Search}
+        exact
+      />
+      <Route
+        path='/search_history'
+        component={SearchHistory}
         exact
       />
       <Route

@@ -1,0 +1,3 @@
+.search-history > .ui.container > .search-list > .table > tbody > tr > td:first-child {
+  white-space: nowrap;
+}
