@@ -1,0 +1,15 @@
+.search-facet.facet-list .facet-label {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0.5em;
+  width: 100%;
+}
+
+.search-facet.facet-list .facet-label > .label {
+  padding-right: 1em;
+}
+
+.search-facet.facet-list .facet-label .info-button {
+  margin-left: 0.5em;
+  padding: 0.5em;
+}
