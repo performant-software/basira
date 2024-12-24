@@ -80,7 +80,9 @@ const RecordPage = (props: Props) => {
           <Menu.Item
             position='right'
           >
-            <SearchLink />
+            <SearchLink
+              inverted
+            />
           </Menu.Item>
         </Menu>
       </Ref>

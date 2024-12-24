@@ -531,6 +531,9 @@
         "subjectCulturalContext": "Subject Cultural Context"
       }
     },
+    "labels": {
+      "viewRecent": "View Recent"
+    },
     "sort": {
       "artworkDate": {
         "label": "Artwork Date",
@@ -551,6 +554,19 @@
     "buttons": {
       "collapse": "Collapse All",
       "expand": "Expand All"
+    }
+  },
+  "SearchHistory": {
+    "buttons": {
+      "clear": "Clear"
+    },
+    "columns": {
+      "created": "Created",
+      "facets": "Facets",
+      "query": "Query"
+    },
+    "messages": {
+      "copy": "Copied URL to clipboard"
     }
   },
   "SearchLink": {

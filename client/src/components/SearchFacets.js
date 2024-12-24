@@ -8,11 +8,7 @@ import {
 } from '@performant-software/semantic-components';
 import React, { useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  useRange,
-  useRefinementList,
-  useToggleRefinement
-} from 'react-instantsearch-hooks-web';
+import { useRange, useRefinementList, useToggleRefinement } from 'react-instantsearch-hooks-web';
 import { Header, Segment } from 'semantic-ui-react';
 import _ from 'underscore';
 import useFacetLabels from '../hooks/FacetLabels';
