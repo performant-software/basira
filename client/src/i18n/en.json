@@ -306,6 +306,14 @@
       "contribute": "Contribute Content"
     }
   },
+  "ListPage": {
+    "actions": {
+      "navigate": {
+        "content": "Navigate to the detail page for this record",
+        "title": "Navigate"
+      }
+    }
+  },
   "LocationModal": {
     "labels": {
       "artwork": "Artwork",
@@ -327,6 +335,13 @@
     "labels": {
       "viewInstitution": "View Institution"
     }
+  },
+  "NavBar": {
+    "menu": {
+      "creators": "Creators",
+      "repositories": "Repositories"
+    },
+    "title": "BASIRA"
   },
   "NotesModal": {
     "title": "Internal Notes"
