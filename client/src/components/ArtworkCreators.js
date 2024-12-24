@@ -39,12 +39,9 @@ const ArtworkCreators = (props: Props) => {
                 </SimpleLink>
               </Header>
             </Item.Header>
-            <Item.Meta>
-              { Qualifiables.getValueListValue(item.person, 'Person', 'Nationality') }
-            </Item.Meta>
             <Item.Description>
               <RolesView
-                value={[
+                items={[
                   Qualifiables.getValueListValue(item, 'Person', 'Participation Role'),
                   Qualifiables.getValueListValue(item, 'Person', 'Participation Subrole')
                 ]}
@@ -53,9 +50,6 @@ const ArtworkCreators = (props: Props) => {
             <Item.Description
               content={item.description}
             />
-            <Item.Description
-              content={item.notes}
-            />
             { item.certainty && (
               <Item.Extra>
                 <CertaintyLabel
@@ -63,6 +57,9 @@ const ArtworkCreators = (props: Props) => {
                 />
               </Item.Extra>
             )}
+            <Item.Extra
+              content={item.notes}
+            />
           </Item.Content>
         </Item>
       ))}

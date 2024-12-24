@@ -1,5 +1,10 @@
-.artwork-titles .icon.white {
-  color: #FFFFFF;
+.artwork-titles.list > .item > .content > .list-header {
+  display: flex;
+  align-items: center;
+}
+
+.artwork-titles.list > .item > .content > .list-header > .icon {
+  margin-left: 0.5em;
 }
 
 .artwork-titles.list > .item > .content > .description {
