@@ -32,8 +32,8 @@
     },
     "menu": {
       "artworks": "Artworks",
-      "people": "People",
-      "places": "Places",
+      "people": "Creators",
+      "places": "Repositories",
       "users": "Users",
       "valueLists": "Value Lists"
     }
@@ -221,7 +221,7 @@
       "furniture": "Furniture",
       "iconography": "Iconography",
       "id": "Documents/{{id}}",
-      "illuminationIconography": "Illumination Iconography",
+      "illuminationIconography": "Decoration Iconography",
       "identity": "Identity of Work",
       "inscriptionsOnBinding": "Inscriptions on Binding",
       "inscriptionText": "Binding Inscription Text",
@@ -249,7 +249,7 @@
       "transcriptionDiplomatic": "Transcription: Diplomatic",
       "transcriptionExpanded": "Transcription: Expanded",
       "transcriptionTranslation": "Transcription: Translation",
-      "typeOfIllumination": "Type of Illumination",
+      "typeOfIllumination": "Type of Decoration",
       "uncutForeEdges": "Uncut Fore-Edges"
     },
     "popups": {
@@ -502,8 +502,8 @@
       "fastenings": "Fastenings",
       "foreEdgesColor": "Color of Textblock Edges",
       "furniture": "Furniture",
-      "illuminationIconography": "Illumination Iconography",
-      "illuminationType": "Type of Illumination",
+      "illuminationIconography": "Decoration Iconography",
+      "illuminationType": "Type of Decoration",
       "inscriptionsOnBinding": "Inscriptions on Binding",
       "language": "Language",
       "legibility": "Legibility",
