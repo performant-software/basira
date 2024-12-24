@@ -41,7 +41,8 @@ const Document = () => {
           <AttributesGrid
             attributes={[{
               name: 'id',
-              label: t('Common.labels.id')
+              label: t('Common.labels.id'),
+              renderValue: () => t('Document.labels.id', { id: item.id })
             }, {
               name: 'name',
               label: t('Document.labels.name')

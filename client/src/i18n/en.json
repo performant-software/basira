@@ -220,6 +220,7 @@
       "foreEdgeText": "Fore-Edge Text",
       "furniture": "Furniture",
       "iconography": "Iconography",
+      "id": "Documents/{{id}}",
       "illuminationIconography": "Decoration Iconography",
       "identity": "Identity of Work",
       "inscriptionsOnBinding": "Inscriptions on Binding",
