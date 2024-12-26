@@ -23,4 +23,7 @@ class Artwork < ApplicationRecord
                :published, :repository_work_url, :accession_number, :number_documents_visible, images: [],
                 artwork_titles_attributes: [:id, :title, :notes, :primary, :_destroy,
                 qualifications_attributes: [:id, :value_list_id, :notes, :persistent, :_destroy]]
+
+  # Attachable methods
+  allow_multiple true
 end
