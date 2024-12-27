@@ -8,12 +8,12 @@ import React, {
   useState,
   type Node
 } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Image, Loader } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworksService from '../services/Artworks';
 import DocumentsService from '../services/Documents';
 import ItemLabel from './ItemLabel';
-import { useLocation } from 'react-router-dom';
 import './ArtworkMenu.css';
 
 type ItemType = {
@@ -159,14 +159,13 @@ const ArtworkMenu = (props: Props) => {
    * level: number, name, id, type: string}}
    */
   const transformDocument = useCallback((parent, doc) => ({
-    id: doc.id,
-    name: doc.name,
+    ..._.pick(doc, 'id', 'name', 'created_by_id'),
     image: doc.primary_attachment && doc.primary_attachment.thumbnail_url,
     type: ItemTypes.document,
     level: 3,
     path: `/documents/${doc.id}`,
     parent: { ...parent, path: `/admin/visual_contexts/${parent.id}` },
-    onDelete: () => DocumentsService.delete(doc)
+    onDelete: () => DocumentsService.delete(doc),
   }), []);
 
   /**
@@ -179,14 +178,13 @@ const ArtworkMenu = (props: Props) => {
    * level: number, children, name, id, type: string, onAdd: (function(): *)}}
    */
   const transformVisualContext = useCallback((parent, vc) => ({
-      id: vc.id,
-      name: vc.name,
-      image: vc.primary_attachment && vc.primary_attachment.thumbnail_url,
-      type: ItemTypes.visualContext,
-      level: 2,
-      path: `/visual_contexts/${vc.id}`,
-      parent: { ...parent, path: `/physical_components/${parent.id}` },
-      children: _.map(vc.documents, transformDocument.bind(this, vc))
+    ..._.pick(vc, 'id', 'name', 'created_by_id'),
+    image: vc.primary_attachment && vc.primary_attachment.thumbnail_url,
+    type: ItemTypes.visualContext,
+    level: 2,
+    path: `/visual_contexts/${vc.id}`,
+    parent: { ...parent, path: `/physical_components/${parent.id}` },
+    children: _.map(vc.documents, transformDocument.bind(this, vc))
   }), [transformDocument]);
 
   /**
@@ -199,8 +197,7 @@ const ArtworkMenu = (props: Props) => {
    * level: number, children, name, id, type: string, onAdd: (function(): *)}}
    */
   const transformPhysicalComponent = useCallback((parent, pc) => ({
-    id: pc.id,
-    name: pc.name,
+    ..._.pick(pc, 'id', 'name', 'created_by_id'),
     image: pc.primary_attachment && pc.primary_attachment.thumbnail_url,
     type: ItemTypes.physicalComponent,
     level: 1,
@@ -218,8 +215,7 @@ const ArtworkMenu = (props: Props) => {
    * level: number, children, name: *, id, type: string, onAdd: (function(): *)}}
    */
   const transformArtwork = useCallback((a) => ({
-    id: a.id,
-    name: a.primary_title && a.primary_title.title,
+    ..._.pick(a, 'id', 'name', 'created_by_id'),
     image: a.primary_attachment && a.primary_attachment.thumbnail_url,
     type: ItemTypes.artwork,
     level: 0,
