@@ -10,7 +10,7 @@ class Session {
    * @param response
    */
   create(response: any) {
-    const { name, uid, admin } = response.data.data;
+    const { name, uid, admin, id } = response.data.data;
 
     sessionStorage.setItem('user',
       JSON.stringify({
@@ -18,7 +18,8 @@ class Session {
         client: response.headers.client,
         name,
         uid,
-        admin
+        admin,
+        id
       }));
   }
 
@@ -37,6 +38,16 @@ class Session {
   getName() {
     const user = this.parseUser();
     return user.name;
+  }
+
+  /**
+   * Returns the ID of the current user.
+   *
+   * @returns {*}
+   */
+  getUserId() {
+    const user = this.parseUser();
+    return user.id;
   }
 
   /**

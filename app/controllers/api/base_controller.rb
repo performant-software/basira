@@ -23,12 +23,17 @@ class Api::BaseController < Api::ResourceController
 
   private
 
+  def is_owned?
+    item = item_class.find(params[:id])
+    item.created_by_id == current_user.id
+  end
+
   def validate_delete_authorization
-    render json: { errors: [I18n.t('errors.unauthorized')] }, status: :unauthorized unless current_user.admin?
+    render json: { errors: [I18n.t('errors.unauthorized')] }, status: :unauthorized unless current_user.admin? || is_owned?
   end
 
   def validate_update_authorization
-    return if current_user.admin?
+    return if current_user.admin? || is_owned?
 
     unauthorized = false
 

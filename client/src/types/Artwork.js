@@ -21,6 +21,7 @@ export type Artwork = Attachable & Locateable & Participateable & {
   accession_number: string,
   documents_count: number,
   number_documents_visible: number,
+  created_by_id: number,
   created_by: User,
   updated_by: User,
   created_at: string,

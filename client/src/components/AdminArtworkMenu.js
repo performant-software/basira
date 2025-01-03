@@ -17,6 +17,7 @@ import ArtworksService from '../services/Artworks';
 import DocumentsService from '../services/Documents';
 import { getPhysicalComponents, getVisualContexts } from '../utils/Artwork';
 import ItemLabel from './ItemLabel';
+import PermissionsService from '../services/Permissions';
 import PhysicalComponentsService from '../services/PhysicalComponents';
 import Session from '../services/Session';
 import VisualContextsService from '../services/VisualContexts';
@@ -173,7 +174,7 @@ const AdminArtworkMenu = (props: Props) => {
           to={`/admin${path}`}
         />
       )}
-      { Session.isAdmin() && onDelete && (
+      { onDelete && (
         <Button
           icon='times'
           onClick={(e) => {
@@ -241,6 +242,11 @@ const AdminArtworkMenu = (props: Props) => {
   const renderRight = useCallback((item: ItemType) => {
     // Artwork type
     if (item.type === ItemTypes.artwork) {
+      const onDelete = () => setDeleteItem({
+        ...item,
+        onDelete: () => ArtworksService.delete(item)
+      });
+
       return renderActions({
         addPath: {
           pathname: '/admin/physical_components/new',
@@ -248,16 +254,18 @@ const AdminArtworkMenu = (props: Props) => {
             artwork_id: item.id
           }
         },
-        onDelete: () => setDeleteItem({
-          ...item,
-          onDelete: () => ArtworksService.delete(item)
-        }),
+        onDelete: PermissionsService.canDeleteArtwork(item) ? onDelete : undefined,
         path: item.path
       });
     }
 
     // Physical component type
     if (item.type === ItemTypes.physicalComponent) {
+      const onDelete = () => setDeleteItem({
+        ...item,
+        onDelete: () => PhysicalComponentsService.delete(item)
+      });
+
       return renderActions({
         addPath: {
           pathname: '/admin/visual_contexts/new',
@@ -266,16 +274,18 @@ const AdminArtworkMenu = (props: Props) => {
             physical_component_id: item.id
           }
         },
-        onDelete: () => setDeleteItem({
-          ...item,
-          onDelete: () => PhysicalComponentsService.delete(item)
-        }),
+        onDelete: PermissionsService.canDeletePhysicalComponent(item) ? onDelete : undefined,
         path: item.path
       });
     }
 
     // Visual context type
     if (item.type === ItemTypes.visualContext) {
+      const onDelete = () => setDeleteItem({
+        ...item,
+        onDelete: () => VisualContextsService.delete(item)
+      });
+
       return renderActions({
         addPath: {
           pathname: '/admin/documents/new',
@@ -284,10 +294,7 @@ const AdminArtworkMenu = (props: Props) => {
             visual_context_id: item.id
           }
         },
-        onDelete: () => setDeleteItem({
-          ...item,
-          onDelete: () => VisualContextsService.delete(item)
-        }),
+        onDelete: PermissionsService.canDeleteVisualContext(item) ? onDelete : undefined,
         onReorder: () => setReorderItem({
           ...item,
           onReorder: (parentId) => VisualContextsService.save({
@@ -301,11 +308,13 @@ const AdminArtworkMenu = (props: Props) => {
 
     // Document type
     if (item.type === ItemTypes.document) {
+      const onDelete = () => setDeleteItem({
+        ...item,
+        onDelete: () => DocumentsService.delete(item)
+      });
+
       return renderActions({
-        onDelete: () => setDeleteItem({
-          ...item,
-          onDelete: () => DocumentsService.delete(item)
-        }),
+        onDelete: PermissionsService.canDeleteDocument(item) ? onDelete : undefined,
         onReorder: () => setReorderItem({
           ...item,
           onReorder: (parentId) => DocumentsService.save({

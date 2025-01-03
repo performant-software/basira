@@ -8,5 +8,6 @@ export type VisualContext = Attachable & {
   height: number,
   width: number,
   depth: number,
-  beta: boolean
+  beta: boolean,
+  created_by_id: number
 };

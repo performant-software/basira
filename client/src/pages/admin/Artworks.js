@@ -7,7 +7,7 @@ import { Container, Header } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworksService from '../../services/Artworks';
 import Authorization from '../../utils/Authorization';
-import Session from '../../services/Session';
+import PermissionsService from '../../services/Permissions';
 import Thumbnail from '../../components/Thumbnail';
 import User from '../../transforms/User';
 import Users from '../../services/Users';
@@ -28,7 +28,7 @@ const Artworks = (props: Props) => (
         name: 'edit',
         onClick: (item) => props.history.push(`/admin/artworks/${item.id}`)
       }, {
-        accept: () => Session.isAdmin(),
+        accept: (item) => PermissionsService.canDeleteArtwork(item),
         icon: 'times',
         name: 'delete'
       }, {

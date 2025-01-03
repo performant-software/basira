@@ -21,5 +21,6 @@ export type Document = {
   identity: string,
   transcription: string,
   transcription_expanded: string,
-  transcription_translation: string
+  transcription_translation: string,
+  created_by_id: number
 };
