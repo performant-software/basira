@@ -4,4 +4,7 @@ class Api::PlacesController < Api::BaseController
 
   # Preloads
   preloads :qualifications, only: :show
+
+  # Actions
+  skip_before_action :authenticate_user!, only: :index
 end

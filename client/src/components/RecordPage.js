@@ -8,7 +8,7 @@ import React, {
   type Element,
   type Node
 } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Button,
   Container,
@@ -38,9 +38,12 @@ type Props = {
 
 const RecordPage = (props: Props) => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
+  const location = useLocation();
 
   const menuBarRef = useRef(null);
   const { height: minHeight } = useSidebar(menuBarRef);
+
+  const { state: { fromSearch } = {} } = location;
 
   return (
     <Container
@@ -78,13 +81,15 @@ const RecordPage = (props: Props) => {
               { props.renderTitle() }
             </Menu.Item>
           )}
-          <Menu.Item
-            position='right'
-          >
-            <SearchLink
-              inverted
-            />
-          </Menu.Item>
+          { fromSearch && (
+            <Menu.Item
+              position='right'
+            >
+              <SearchLink
+                inverted
+              />
+            </Menu.Item>
+          )}
         </Menu>
       </Ref>
       <Sidebar.Pushable
