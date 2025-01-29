@@ -1,10 +1,11 @@
 // @flow
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { BooleanIcon, EditModal, EmbeddedList } from '@performant-software/semantic-components';
 import { Card, Form, Header } from 'semantic-ui-react';
 import _ from 'underscore';
 import ArtworkTitleModal from '../../components/ArtworkTitleModal';
+import ArtworkTitle from '../../transforms/ArtworkTitle';
 import ArtworksService from '../../services/Artworks';
 import AttachmentModal from '../../components/AttachmentModal';
 import Authorization from '../../utils/Authorization';
@@ -182,6 +183,7 @@ const Artwork = (props: Props) => {
               required: ['title']
             }
           }}
+          onCopy={ArtworkTitle.toCopy.bind(this)}
           onDelete={props.onDeleteChildAssociation.bind(this, 'artwork_titles')}
           onDrag={(dragIndex, hoverIndex) => {
             const items = [...props.item.artwork_titles];

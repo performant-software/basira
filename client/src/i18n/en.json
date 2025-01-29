@@ -14,8 +14,8 @@
   "ActionModal": {
     "labels": {
       "body": "Body descriptors",
-      "book": "The book",
       "descriptors": "Entity descriptors",
+      "document": "The document",
       "notes": "Notes"
     },
     "title": {
@@ -32,8 +32,8 @@
     },
     "menu": {
       "artworks": "Artworks",
-      "people": "People",
-      "places": "Places",
+      "people": "Creators",
+      "places": "Repositories",
       "users": "Users",
       "valueLists": "Value Lists"
     }
@@ -62,6 +62,7 @@
       "documentsVisible": "Documents Visible",
       "endDate": "End date",
       "height": "Height",
+      "id": "Artworks/{{id}}",
       "objectWorkTypes": "Object/Work Type(s)",
       "materials": "Material(s)",
       "notes": "Notes",
@@ -158,7 +159,6 @@
     "buttons": {
       "back": "Back",
       "cancel": "Cancel",
-      "viewSource": "View Source",
       "save": "Save"
     },
     "errors": {
@@ -167,9 +167,12 @@
     },
     "labels": {
       "artwork": "Artwork",
+      "created": "Record created",
+      "details": "Details",
       "document": "Document",
       "id": "ID",
       "physicalComponent": "Physical Component",
+      "updated": "Record updated",
       "visualContext": "Visual Context"
     },
     "messages": {
@@ -188,11 +191,11 @@
   },
   "Document": {
     "actions": {
-      "book": "The book",
       "columns": {
         "entity": "Entity",
         "verb": "Verb"
-      }
+      },
+      "document": "The document"
     },
     "labels": {
       "action": "The document {{verb}} {{entity}}",
@@ -202,10 +205,9 @@
       "bindingOrnamentation": "Binding Ornamentation",
       "bindingRelationshipToTextBlock": "Binding Relationship to Text Block",
       "bindingType": "Binding Type",
-      "bookmarksRegisterColor": "Bookmark/Register Color",
-      "bookmarksRegisters": "Bookmarks/Registers",
+      "bookmarksRegisterColor": "Color of Bookmarks/Registers",
+      "bookmarksRegisters": "Number of Bookmarks/Registers Visible",
       "bookmarkRegisterStyle": "Bookmark/Register Style",
-      "color": "Color",
       "colorOfForeEdges": "Color of Textblock Edges",
       "decoratedForeEdges": "Decorated Textblock Edges",
       "documentFormat": "Document Format",
@@ -217,7 +219,8 @@
       "foreEdgeText": "Fore-Edge Text",
       "furniture": "Furniture",
       "iconography": "Iconography",
-      "illuminationIconography": "Illumination Iconography",
+      "id": "Documents/{{id}}",
+      "illuminationIconography": "Decoration Iconography",
       "identity": "Identity of Work",
       "inscriptionsOnBinding": "Inscriptions on Binding",
       "inscriptionText": "Binding Inscription Text",
@@ -228,23 +231,24 @@
       "notes": "Notes",
       "numberFastenings": "Number of Fastenings",
       "numberSewingSupports": "Number of Sewing Supports Visible",
-      "orientation": "Orientation",
+      "orientation": "Orientation of Spine",
       "pageContents": "Page Contents",
       "rubrication": "Rubrication",
       "rubricationColor": "Rubrication Color",
       "ruling": "Ruling",
       "rulingColor": "Ruling Color",
       "script": "Script",
+      "scriptType": "Script Type",
       "sewingSupportsVisible": "Sewing Supports Visible",
       "simulatedScript": "Simulated Script",
       "size": "Size",
       "spineFeatures": "Spine Features",
-      "textColumns": "Text Columns",
+      "textColumns": "Number of Text Columns Visible",
       "textTechnology": "Text Technology",
       "transcriptionDiplomatic": "Transcription: Diplomatic",
       "transcriptionExpanded": "Transcription: Expanded",
       "transcriptionTranslation": "Transcription: Translation",
-      "typeOfIllumination": "Type of Illumination",
+      "typeOfIllumination": "Type of Decoration",
       "uncutForeEdges": "Uncut Fore-Edges"
     },
     "popups": {
@@ -302,6 +306,14 @@
       "contribute": "Contribute Content"
     }
   },
+  "ListPage": {
+    "actions": {
+      "navigate": {
+        "content": "Navigate to the detail page for this record",
+        "title": "Navigate"
+      }
+    }
+  },
   "LocationModal": {
     "labels": {
       "artwork": "Artwork",
@@ -318,6 +330,18 @@
       "add": "Add Location",
       "edit": "Edit Location"
     }
+  },
+  "Locations": {
+    "labels": {
+      "viewInstitution": "View Institution"
+    }
+  },
+  "NavBar": {
+    "menu": {
+      "creators": "Creators",
+      "repositories": "Repositories"
+    },
+    "title": "BASIRA"
   },
   "NotesModal": {
     "title": "Internal Notes"
@@ -353,7 +377,7 @@
       "name": "Name",
       "nationality": "Nationality",
       "type": "Type",
-      "url": "URL",
+      "url": "Authorized Vocabulary URL",
       "yearOfBirth": "Year of birth",
       "yearOfDeath": "Year of death",
       "yearsOfActivity": "Years of activity"
@@ -377,6 +401,7 @@
     "labels": {
       "depth": "Depth",
       "height": "Height",
+      "id": "Physical_Components/{{id}}",
       "name": "Name",
       "notes": "Notes",
       "width": "Width"
@@ -391,7 +416,9 @@
       "notes": "Notes",
       "state": "State",
       "type": "Type",
-      "url": "URL"
+      "url": "Institutional URL",
+      "authorizedVocabulary": "Authorized vocabulary",
+      "authorizedVocabularyUrl": "Authorized vocabulary URL"
     },
     "locations": {
       "columns": {
@@ -455,9 +482,10 @@
       "artwork": {
         "creators": {
           "displayName": "Creator",
-          "nationality": "Creator Place of Origin"
+          "nationality": "Creator Origin"
         },
         "dateRange": "Date",
+        "documentsCount": "Number of Documents",
         "materials": "Materials",
         "locations": {
           "name": "Repository",
@@ -481,9 +509,9 @@
       "bindingOrnamentation": "Binding Ornamentation",
       "bindingRelationship": "Binding Relationship to Textblock",
       "bindingType": "Binding Type",
-      "bookmarkRegisterColor": "Color",
+      "bookmarkRegisterColor": "Color of Bookmarks/Registers",
       "bookmarkStyle": "Bookmark/Register Style",
-      "bookmarksRegisters": "Bookmarks/Registers",
+      "bookmarksRegisters": "Number of Bookmarks/Registers Visible",
       "decoratedForeEdges": "Decorated Textblock Edges",
       "documentFormat": "Document Format",
       "documentType": "Document Type",
@@ -493,8 +521,8 @@
       "fastenings": "Fastenings",
       "foreEdgesColor": "Color of Textblock Edges",
       "furniture": "Furniture",
-      "illuminationIconography": "Illumination Iconography",
-      "illuminationType": "Type of Illumination",
+      "illuminationIconography": "Decoration Iconography",
+      "illuminationType": "Type of Decoration",
       "inscriptionsOnBinding": "Inscriptions on Binding",
       "language": "Language",
       "legibility": "Legibility",
@@ -502,7 +530,7 @@
       "numberFastenings": "Number of Fastenings",
       "numberSewingSupports": "Number of Sewing Supports Visible",
       "objectWorkType": "Object Work/Type",
-      "orientation": "Orientation",
+      "orientation": "Orientation of Spine",
       "pageContents": "Page Contents",
       "rubrication": "Rubrication",
       "rubricationColor": "Rubrication Color",
@@ -510,10 +538,11 @@
       "rulingColor": "Ruling Color",
       "sewingSupportsVisible": "Sewing Supports Visible",
       "script": "Script",
+      "scriptType": "Script Type",
       "simulatedScript": "Simulated Script",
       "size": "Size",
       "spineFeatures": "Spine Features",
-      "textColumns": "Text Columns",
+      "textColumns": "Number of Text Columns Visible",
       "textTechnology": "Text Technology",
       "uncutForeEdges": "Uncut Fore-Edges",
       "visualContext": {
@@ -521,6 +550,9 @@
         "specificSubject": "Specific Subject/Iconography",
         "subjectCulturalContext": "Subject Cultural Context"
       }
+    },
+    "labels": {
+      "viewRecent": "View Recent"
     },
     "sort": {
       "artworkDate": {
@@ -542,6 +574,19 @@
     "buttons": {
       "collapse": "Collapse All",
       "expand": "Expand All"
+    }
+  },
+  "SearchHistory": {
+    "buttons": {
+      "clear": "Clear"
+    },
+    "columns": {
+      "created": "Created",
+      "facets": "Facets",
+      "query": "Query"
+    },
+    "messages": {
+      "copy": "Copied URL to clipboard"
     }
   },
   "SearchLink": {
@@ -590,12 +635,13 @@
   "ValueList": {
     "labels": {
       "authorizedVocabulary": "Authorized vocabulary",
+      "authorizedVocabularyUrl": "Authorized vocabulary URL",
       "comment": "Comment",
+      "databaseValue": "Database value",
       "groupName": "Group name",
       "humanName": "Human name",
       "linkedRecords": "Linked records",
-      "objectName": "Object name",
-      "urlDatabaseValue": "URL/Database value"
+      "objectName": "Object name"
     },
     "title": {
       "add": "Add value list item",
@@ -627,6 +673,7 @@
       "depth": "Depth",
       "generalSubjectGenre": "General Subject/Genre",
       "height": "Height",
+      "id": "Visual_Contexts/{{id}}",
       "name": "Name",
       "notes": "Notes",
       "specificSubjectIconography": "Specific Subject/Iconography",

@@ -3,6 +3,7 @@
 import _ from 'underscore';
 import BaseTransform from './BaseTransform';
 import Locations from './Locations';
+import Qualifications from './Qualifications';
 
 import type { Place as PlaceType } from '../types/Place';
 
@@ -28,7 +29,8 @@ class Place extends BaseTransform {
       'database_value',
       'notes',
       'same_as',
-      'part_of'
+      'part_of',
+      'authorized_vocabulary_url'
     ];
   }
 
@@ -59,7 +61,8 @@ class Place extends BaseTransform {
     return {
       place: {
         ..._.pick(place, this.getPayloadKeys()),
-        ...Locations.toPayload(place)
+        ...Locations.toPayload(place),
+        ...Qualifications.toPayload(place)
       }
     };
   }

@@ -1,10 +1,10 @@
 // @flow
 
 import React from 'react';
-import { List } from 'semantic-ui-react';
+import { Header, Icon, List } from 'semantic-ui-react';
 import _ from 'underscore';
-import Qualifiables from '../utils/Qualifiables';
 import type { ArtworkTitle } from '../types/ArtworkTitle';
+import Qualifiables from '../utils/Qualifiables';
 import './ArtworkTitles.css';
 
 type Props = {
@@ -24,15 +24,22 @@ const ArtworkTitles = (props: Props) => {
     >
       { _.map(props.items, (item) => (
         <List.Item>
-          <List.Icon
-            color={item.primary ? 'green' : 'white'}
-            name='check circle'
-            verticalAlign='middle'
-          />
           <List.Content>
             <List.Header
+              className='list-header'
               content={item.title}
-            />
+            >
+              <Header
+                content={item.title}
+                size='small'
+              />
+              { item.primary && (
+                <Icon
+                  color='green'
+                  name='check circle'
+                />
+              )}
+            </List.Header>
             <List.Description
               content={Qualifiables.getValueListValue(item, 'Artwork', 'Title Type')}
             />

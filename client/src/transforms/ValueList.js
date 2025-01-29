@@ -2,6 +2,7 @@
 
 import _ from 'underscore';
 import BaseTransform from './BaseTransform';
+import Qualifications from './Qualifications';
 
 import type { ValueList as ValueListType } from '../types/ValueList';
 
@@ -17,7 +18,8 @@ class ValueList extends BaseTransform {
     'group',
     'human_name',
     'authorized_vocabulary',
-    'url_database_value',
+    'authorized_vocabulary_url',
+    'database_value',
     'comment',
     '_destroy'
   ];
@@ -51,12 +53,16 @@ class ValueList extends BaseTransform {
   /**
    * Returns the value_list object to be sent to the server on POST/PUT requests.
    *
-   * @param option
+   * @param valueList
    *
    * @returns {*}
    */
-  toPayload(option: ValueListType) {
-    return { value_list: _.pick(option, this.PAYLOAD_KEYS) };
+  toPayload(valueList: ValueListType) {
+    return {
+      value_list: {
+        ..._.pick(valueList, this.PAYLOAD_KEYS),
+        ...Qualifications.toPayload(valueList)
+    }};
   }
 }
 

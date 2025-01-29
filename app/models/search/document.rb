@@ -50,10 +50,9 @@ module Search
       search_attribute :document_type, object: 'Document', group: 'Document Type', multiple: true, facet: true
       search_attribute :orientation, object: 'Document', group: 'Orientation (spine)', multiple: true, facet: true
       search_attribute :size, object: 'Document', group: 'Size', facet: true
-      search_attribute :aperture, object: 'Document', group: 'Aperture', facet: true
+      search_attribute :aperture, object: 'Document', group: 'Aperture', multiple: true, facet: true
       search_attribute :binding_type, object: 'Document', group: 'Binding Type', multiple: true, facet: true
       search_attribute :binding_color, object: 'Document', group: 'Color', form_field: 'binding_color', multiple: true, facet: true
-      search_attribute :sewing_supports_visible, facet: true
       search_attribute :number_sewing_supports, facet: true
       search_attribute :spine_features, object: 'Document', group: 'Spine Features', multiple: true, facet: true
       search_attribute :furniture, object: 'Document', group: 'Furniture', multiple: true, facet: true
@@ -84,6 +83,7 @@ module Search
       search_attribute :rubrication_color, object: 'Document', group: 'Color', form_field: 'rubrication_color', multiple: true, facet: true
       search_attribute :legibility, object: 'Document', group: 'Legibility', multiple: true, facet: true
       search_attribute :script, object: 'Document', group: 'Script', multiple: true, facet: true
+      search_attribute :script_type, object: 'Document', group: 'Script Type', multiple: true, facet: true
       search_attribute :language, object: 'Document', group: 'Language', multiple: true, facet: true
       search_attribute :identity
       search_attribute :transcription

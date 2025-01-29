@@ -17,7 +17,7 @@ class Document < ApplicationRecord
   after_create :set_actor_type
 
   # Resourceable parameters
-  allow_params :visual_context_id, :name, :notes, :sewing_supports_visible, :number_sewing_supports, :number_fastenings,
+  allow_params :visual_context_id, :name, :notes, :number_sewing_supports, :number_fastenings,
                :inscriptions_on_binding, :inscription_text, :endband_present, :uncut_fore_edges, :fore_edge_text,
                :bookmarks_registers, :text_columns, :ruling, :rubrication, :identity, :transcription, :transcription_expanded,
                :transcription_translation, :artwork_id, actions_attributes: [:id, :notes, :_destroy,

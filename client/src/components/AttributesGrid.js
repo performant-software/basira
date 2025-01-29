@@ -1,8 +1,9 @@
 // @flow
 
 import React, { useCallback, type Element } from 'react';
-import { Grid, Segment } from 'semantic-ui-react';
+import { Grid, Header, Segment } from 'semantic-ui-react';
 import _ from 'underscore';
+import './AttributesGrid.css';
 
 type Attribute = {
   name: string,
@@ -91,13 +92,12 @@ const AttributesGrid = (props: Props) => {
       >
         <Grid.Column
           className='label'
-          floated='right'
-          textAlign='right'
           width={8}
         >
           { attribute.label }
         </Grid.Column>
         <Grid.Column
+          className='value'
           width={8}
           floated='left'
           textAlign='left'
@@ -109,11 +109,24 @@ const AttributesGrid = (props: Props) => {
   }, [renderAttributeValue]);
 
   return (
-    <Segment>
+    <Segment
+      className='attributes-grid'
+    >
       <Grid
-        className='attributes-grid'
-        divided
+        divided='vertically'
       >
+        { props.title && (
+          <Grid.Row
+            className='title'
+          >
+            <Grid.Column>
+              <Header
+                content={props.title}
+                size='tiny'
+              />
+            </Grid.Column>
+          </Grid.Row>
+        )}
         { _.map(props.attributes, renderRow.bind(this)) }
       </Grid>
     </Segment>

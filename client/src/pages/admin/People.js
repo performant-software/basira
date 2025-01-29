@@ -7,52 +7,57 @@ import { withRouter } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import Authorization from '../../utils/Authorization';
 import PeopleService from '../../services/People';
-import Qualifiables from '../../utils/Qualifiables';
 import Session from '../../services/Session';
+import useQualifiable from '../../hooks/Qualifiable';
 import withMenuBar from '../../hooks/MenuBar';
 
 import type { Routeable } from '../../types/Routeable';
 import type { Translateable } from '../../types/Translateable';
 
-const People = (props: Translateable & Routeable) => (
-  <Container>
-    <ListTable
-      actions={[{
-        name: 'edit',
-        onClick: (item) => props.history.push(`/admin/people/${item.id}`)
-      }, {
-        accept: () => Session.isAdmin(),
-        name: 'delete'
-      }]}
-      addButton={{
-        basic: false,
-        color: 'green',
-        location: 'top',
-        onClick: () => props.history.push('/admin/people/new')
-      }}
-      className='people'
-      collectionName='people'
-      columns={[{
-        name: 'display_name',
-        label: props.t('People.columns.name'),
-        sortable: true
-      }, {
-        name: 'person_type',
-        label: props.t('People.columns.type'),
-        sortable: true
-      }, {
-        name: 'nationality',
-        label: props.t('People.columns.nationality'),
-        resolve: (person) => Qualifiables.getValueListValue(person, 'Person', 'Nationality'),
-        sortable: true
-      }]}
-      onDelete={(person) => PeopleService.delete(person)}
-      onLoad={(params) => PeopleService.fetchAll(params)}
-      onSave={(person) => PeopleService.save(person)}
-      resolveErrors={(error) => Authorization.resolveDeleteError(error)}
-      searchable
-    />
-  </Container>
-);
+const People = (props: Translateable & Routeable) => {
+  const { columns, getParameters } = useQualifiable([{
+    name: 'display_name',
+    label: props.t('People.columns.name'),
+    sortable: true
+  }, {
+    name: 'person_type',
+    label: props.t('People.columns.type'),
+    sortable: true
+  }, {
+    name: 'nationality',
+    label: props.t('People.columns.nationality'),
+    object: 'Person',
+    group: 'Nationality',
+    sortable: true
+  }]);
+
+  return (
+    <Container>
+      <ListTable
+        actions={[{
+          name: 'edit',
+          onClick: (item) => props.history.push(`/admin/people/${item.id}`)
+        }, {
+          accept: () => Session.isAdmin(),
+          name: 'delete'
+        }]}
+        addButton={{
+          basic: false,
+          color: 'green',
+          location: 'top',
+          onClick: () => props.history.push('/admin/people/new')
+        }}
+        className='people'
+        collectionName='people'
+        columns={columns}
+        onDelete={(person) => PeopleService.delete(person)}
+        onLoad={(params) => PeopleService.fetchAll(getParameters(params))}
+        onSave={(person) => PeopleService.save(person)}
+        resolveErrors={(error) => Authorization.resolveDeleteError(error)}
+        searchable
+      />
+    </Container>
+  );
+};
 
 export default withTranslation()(withRouter(withMenuBar(People)));

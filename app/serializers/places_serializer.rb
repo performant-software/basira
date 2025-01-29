@@ -1,6 +1,7 @@
 class PlacesSerializer < BaseSerializer
-  index_attributes :id, :name, :place_type, :lat, :long, :city, :state, :country
-  show_attributes :id, :name, :place_type, :lat, :long, :city, :state, :country, :url, :database_value, :notes, :same_as, :part_of
+  index_attributes :id, :name, :place_type, :lat, :long, :city, :state, :country, :url
+  show_attributes :id, :name, :place_type, :lat, :long, :city, :state, :country, :url, :database_value, :notes,
+                  :same_as, :part_of, :authorized_vocabulary_url, qualifications: QualificationsSerializer
 
   # For unauthenticated users, only display locations for artworks that are published
   show_attributes(:locations) do |place, current_user|

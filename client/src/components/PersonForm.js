@@ -63,12 +63,11 @@ const PersonForm = (props: Props) => (
       required={props.isRequired('years_active')}
       value={props.item.years_active || ''}
     />
-    <Form.Input
-      error={props.isError('authorized_vocabulary')}
+    <ValueListDropdown
+      {...props}
+      group='Authorized Vocabulary'
       label={props.t('Person.labels.authorizedVocabulary')}
-      onChange={props.onTextInputChange.bind(this, 'authorized_vocabulary')}
-      required={props.isRequired('authorized_vocabulary')}
-      value={props.item.authorized_vocabulary || ''}
+      object='General'
     />
     <Form.Input
       error={props.isError('url')}

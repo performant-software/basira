@@ -8,11 +8,12 @@ import React, {
   type Element,
   type Node
 } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   Button,
   Container,
-  Header,
+  Grid,
+  Header as SemanticHeader,
   Loader,
   Menu,
   Ref,
@@ -37,9 +38,12 @@ type Props = {
 
 const RecordPage = (props: Props) => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
+  const location = useLocation();
 
   const menuBarRef = useRef(null);
   const { height: minHeight } = useSidebar(menuBarRef);
+
+  const { state: { fromSearch } = {} } = location;
 
   return (
     <Container
@@ -77,11 +81,15 @@ const RecordPage = (props: Props) => {
               { props.renderTitle() }
             </Menu.Item>
           )}
-          <Menu.Item
-            position='right'
-          >
-            <SearchLink />
-          </Menu.Item>
+          { fromSearch && (
+            <Menu.Item
+              position='right'
+            >
+              <SearchLink
+                inverted
+              />
+            </Menu.Item>
+          )}
         </Menu>
       </Ref>
       <Sidebar.Pushable
@@ -116,7 +124,9 @@ const RecordPage = (props: Props) => {
           </Sidebar>
         )}
         <Sidebar.Pusher>
-          { !props.loading && props.children }
+          <main>
+            { !props.loading && props.children }
+          </main>
           { !props.loading && <PageFooter /> }
         </Sidebar.Pusher>
       </Sidebar.Pushable>
@@ -142,10 +152,10 @@ const Section = (props: SectionProps) => (
     className={`section ${props.className ? props.className : ''}`}
   >
     { props.title && (
-      <Header
+      <SemanticHeader
         content={props.title}
         dividing
-        size='large'
+        size='small'
       />
     )}
     { props.children }
@@ -170,12 +180,44 @@ const Image = (props: ImageProps) => (
     <LazyImage
       src={props.item.file_url}
     />
-    <ImageInfo
-      item={props.item}
-    />
   </div>
 );
 
 RecordPage.Image = Image;
+
+type HeaderProps = {
+  children: Node,
+  image: Attachment
+};
+
+const Header = (props: HeaderProps) => (
+  <Grid
+    columns={2}
+  >
+    { props.image && (
+      <Grid.Column
+        width={4}
+      >
+        <RecordPage.Image
+          item={props.image}
+        />
+      </Grid.Column>
+    )}
+    <Grid.Column
+      width={12}
+    >
+      { props.children }
+    </Grid.Column>
+    <Grid.Column
+      width={16}
+    >
+      <ImageInfo
+        item={props.image}
+      />
+    </Grid.Column>
+  </Grid>
+);
+
+RecordPage.Header = Header;
 
 export default RecordPage;

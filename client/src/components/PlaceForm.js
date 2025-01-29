@@ -6,6 +6,7 @@ import { GoogleScript } from '@performant-software/shared-components';
 import { Form, Grid } from 'semantic-ui-react';
 import _ from 'underscore';
 import Countries from '../resources/Countries.json';
+import ValueListDropdown from './ValueListDropdown';
 
 import type { EditContainerProps } from 'react-components/types';
 import type { Translateable } from '../types/Translateable';
@@ -109,6 +110,19 @@ const PlaceForm = (props: Props) => {
             required={props.isRequired('url')}
             onChange={props.onTextInputChange.bind(this, 'url')}
             value={props.item.url || ''}
+          />
+          <ValueListDropdown
+            {...props}
+            group='Authorized Vocabulary'
+            label={props.t('Place.labels.authorizedVocabulary')}
+            object='General'
+          />
+          <Form.Input
+            error={props.isError('authorized_vocabulary_url')}
+            label={props.t('Place.labels.authorizedVocabularyUrl')}
+            required={props.isRequired('authorized_vocabulary_url')}
+            onChange={props.onTextInputChange.bind(this, 'authorized_vocabulary_url')}
+            value={props.item.authorized_vocabulary_url || ''}
           />
           <Form.Input
             error={props.isError('database_value')}

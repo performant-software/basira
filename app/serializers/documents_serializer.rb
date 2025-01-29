@@ -3,12 +3,12 @@ class DocumentsSerializer < BaseSerializer
   include AttachableSerializer
   include NestableSerializer
 
-  index_attributes :id, :name
+  index_attributes :id, :name, :created_by_id
 
-  show_attributes :id, :name, :visual_context_id, :notes, :sewing_supports_visible, :number_sewing_supports,
-                  :number_fastenings, :inscriptions_on_binding, :inscription_text, :endband_present,
-                  :uncut_fore_edges, :fore_edge_text, :bookmarks_registers, :text_columns, :ruling, :rubrication,
-                  :transcription, :transcription_expanded, :transcription_translation, :identity,
+  show_attributes :id, :name, :visual_context_id, :notes, :number_sewing_supports, :number_fastenings,
+                  :inscriptions_on_binding, :inscription_text, :endband_present, :uncut_fore_edges, :fore_edge_text,
+                  :bookmarks_registers, :text_columns, :ruling, :rubrication, :transcription, :transcription_expanded,
+                  :transcription_translation, :identity, :created_at, :updated_at, :created_by_id,
                   qualifications: QualificationsSerializer, actions: [:id, :document_id, :notes,
                   qualifications: QualificationsSerializer]
 
@@ -23,5 +23,6 @@ class DocumentsSerializer < BaseSerializer
     }
   end
 
-  nested_attributes :id, :visual_context_id, :name, primary_attachment: [:id, :file_url, :primary, :thumbnail_url]
+  nested_attributes :id, :visual_context_id, :name, :created_by_id,
+                    primary_attachment: [:id, :file_url, :primary, :thumbnail_url]
 end

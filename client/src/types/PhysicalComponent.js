@@ -7,5 +7,6 @@ export type PhysicalComponent = Attachable & {
   name: string,
   height: number,
   width: number,
-  depth: number
+  depth: number,
+  created_by_id: number
 };

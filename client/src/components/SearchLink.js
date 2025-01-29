@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import SearchContext from '../context/Search';
 
-const SearchLink = () => {
+type Props = {
+  inverted?: boolean
+};
+
+const SearchLink = (props: Props) => {
   const { search } = useContext(SearchContext);
   const { t } = useTranslation();
 
@@ -16,7 +20,7 @@ const SearchLink = () => {
       basic
       content={t('SearchLink.buttons.back')}
       icon='arrow alternate circle left outline'
-      inverted
+      inverted={props.inverted}
       to={`/${search || ''}`}
     />
   );
