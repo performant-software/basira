@@ -20,6 +20,7 @@ type Props = {
   defaultActive?: boolean,
   group: string,
   object: string,
+  searchable?: boolean,
   showMore?: boolean,
   title?: string,
   toggleable: boolean
@@ -114,6 +115,7 @@ const SearchFacet = forwardRef((props: Props, ref: HTMLElement) => {
       onActive={onActive}
       ref={ref}
       renderLabel={renderLabel}
+      searchable={props.searchable}
       showMore={props.showMore}
       showMoreLimit={MAX_SHOW_MORE_LIMIT}
       title={props.title}
