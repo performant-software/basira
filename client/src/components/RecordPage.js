@@ -43,7 +43,7 @@ const RecordPage = (props: Props) => {
   const menuBarRef = useRef(null);
   const { height: minHeight } = useSidebar(menuBarRef);
 
-  const { state: { fromSearch } = {} } = location;
+  const { state: { fromList } = {} } = location;
 
   return (
     <Container
@@ -81,7 +81,7 @@ const RecordPage = (props: Props) => {
               { props.renderTitle() }
             </Menu.Item>
           )}
-          { fromSearch && (
+          { !fromList && (
             <Menu.Item
               position='right'
             >
