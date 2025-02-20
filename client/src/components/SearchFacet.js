@@ -8,7 +8,7 @@ import React, {
   useState
 } from 'react';
 import { useRefinementList } from 'react-instantsearch-hooks-web';
-import { Button, Popup } from 'semantic-ui-react';
+import { Icon, Popup } from 'semantic-ui-react';
 import _ from 'underscore';
 import ValueLists from '../services/ValueLists';
 import './SearchFacet.css';
@@ -91,12 +91,11 @@ const SearchFacet = forwardRef((props: Props, ref: HTMLElement) => {
               mouseLeaveDelay={500}
               on='hover'
               trigger={(
-                <Button
-                  basic
+                <Icon
                   className='info-button'
                   circular
-                  size='mini'
-                  icon='info'
+                  size='small'
+                  name='info'
                 />
               )}
             />
