@@ -177,14 +177,7 @@ const Search = () => {
               >
                 <SearchResults
                   as={Link}
-                  asProps={(document) => ({
-                    to: {
-                      pathname: `/documents/${document.id}`,
-                      state: {
-                        fromSearch: true
-                      }
-                    }
-                  })}
+                  asProps={(document) => ({ to: `/documents/${document.id}` })}
                   link
                   renderDescription={(document) => document.artwork.date_descriptor}
                   renderEmptyList={() => null}
