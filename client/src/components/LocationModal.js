@@ -36,7 +36,7 @@ const LocationModal = (props: Props) => {
    *
    * @type {function(): function(*): *}
    */
-  const onSearch = useCallback(() => (search) => Places.fetchAll({ search, sort_by: 'name' }), []);
+  const onSearch = useCallback((search) => Places.fetchAll({ search, sort_by: 'name' }), []);
 
   return (
     <Modal
