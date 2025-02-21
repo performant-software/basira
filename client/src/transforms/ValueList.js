@@ -59,10 +59,11 @@ class ValueList extends BaseTransform {
    */
   toPayload(valueList: ValueListType) {
     return {
-      value_list: {
-        ..._.pick(valueList, this.PAYLOAD_KEYS),
-        ...Qualifications.toPayload(valueList)
-    }};
+        value_list: {
+          ..._.pick(valueList, this.PAYLOAD_KEYS),
+          ...Qualifications.toPayload(valueList)
+      }
+    };
   }
 }
 

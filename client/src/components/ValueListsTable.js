@@ -1,6 +1,7 @@
 // @flow
 
 import { ListTable, useDataList } from '@performant-software/semantic-components';
+import { ObjectJs as ObjectUtils } from '@performant-software/shared-components';
 import type { EditContainerProps } from '@performant-software/shared-components/types';
 import React from 'react';
 import { withTranslation } from 'react-i18next';
@@ -60,6 +61,8 @@ const ValueListsTable = (props: Props) => (
         required: ['object', 'group', 'human_name']
       }
     }}
+    // on copy, strip both ValueList id and any Qualifications id
+    onCopy={(item) => ObjectUtils.without(item, 'id')}
     onDelete={(params) => ValueListsService.delete(params)}
     onLoad={(params) => ValueListsService.fetchAll({
       ...params,
