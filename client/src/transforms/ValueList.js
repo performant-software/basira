@@ -58,11 +58,17 @@ class ValueList extends BaseTransform {
    * @returns {*}
    */
   toPayload(valueList: ValueListType) {
+    // if duplicating a ValueList record, Qualifications payload will include IDs
+    // of original record's Qualifications. remove IDs so we can create new ones
+    const qualificationsPayload = Qualifications.toPayload(valueList);
+    // eslint-disable-next-line no-param-reassign
+    qualificationsPayload.qualifications?.forEach((q) => { delete q.id; });
     return {
-      value_list: {
-        ..._.pick(valueList, this.PAYLOAD_KEYS),
-        ...Qualifications.toPayload(valueList)
-    }};
+        value_list: {
+          ..._.pick(valueList, this.PAYLOAD_KEYS),
+          ...qualificationsPayload
+      }
+    };
   }
 }
 
