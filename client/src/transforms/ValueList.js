@@ -3,7 +3,6 @@
 import _ from 'underscore';
 import BaseTransform from './BaseTransform';
 import Qualifications from './Qualifications';
-import { ObjectJs as ObjectUtils } from '@performant-software/shared-components';
 
 import type { ValueList as ValueListType } from '../types/ValueList';
 
@@ -59,16 +58,10 @@ class ValueList extends BaseTransform {
    * @returns {*}
    */
   toPayload(valueList: ValueListType) {
-    let qualificationsPayload = Qualifications.toPayload(valueList);
-    // if duplicating a ValueList record, Qualifications payload will include IDs
-    // of original record's Qualifications. remove IDs so we can create new ones
-    if (!valueList.id) {
-      qualificationsPayload = ObjectUtils.without(qualificationsPayload, 'id');
-    }
     return {
         value_list: {
           ..._.pick(valueList, this.PAYLOAD_KEYS),
-          ...qualificationsPayload
+          ...Qualifications.toPayload(valueList)
       }
     };
   }
