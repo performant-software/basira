@@ -215,11 +215,12 @@ const ArtworkMenu = (props: Props) => {
    * level: number, children, name: *, id, type: string, onAdd: (function(): *)}}
    */
   const transformArtwork = useCallback((a) => ({
-    ..._.pick(a, 'id', 'name', 'created_by_id'),
+    ..._.pick(a, 'id', 'created_by_id'),
     image: a.primary_attachment && a.primary_attachment.thumbnail_url,
     type: ItemTypes.artwork,
     level: 0,
     path: `/artworks/${a.id}`,
+    name: a.primary_title?.title,
     children: _.map(a.physical_components, transformPhysicalComponent.bind(this, a))
   }), [transformPhysicalComponent]);
 
