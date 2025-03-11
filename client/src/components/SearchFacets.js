@@ -90,6 +90,7 @@ const SearchFacets = () => {
         group='Object/Work Type'
         object='Artwork'
         ref={setRef}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.object_work_type_facet')}
@@ -101,6 +102,7 @@ const SearchFacets = () => {
         group='Material'
         object='Artwork'
         ref={setRef}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.materials_facet')}
@@ -113,6 +115,7 @@ const SearchFacets = () => {
         group='Technique'
         object='Artwork'
         ref={setRef}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.techniques_facet')}
@@ -138,6 +141,7 @@ const SearchFacets = () => {
         group='Nationality'
         object='Person'
         ref={setRef}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.creators.nationality_facet')}
@@ -161,6 +165,7 @@ const SearchFacets = () => {
         attribute='artwork.locations.country_facet'
         defaultActive={false}
         ref={setRef}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.locations.country_facet')}
@@ -171,6 +176,7 @@ const SearchFacets = () => {
         attribute='artwork.locations.state_facet'
         defaultActive={false}
         ref={setRef}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         sortBy={['name']}
@@ -182,6 +188,7 @@ const SearchFacets = () => {
         attribute='artwork.locations.city_facet'
         defaultActive={false}
         ref={setRef}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('artwork.locations.city_facet')}
@@ -230,6 +237,7 @@ const SearchFacets = () => {
         group='Specific Subject/Iconography'
         object='Visual Context'
         ref={setRef}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('visual_context.specific_subject_facet')}
@@ -692,6 +700,7 @@ const SearchFacets = () => {
         group='Characteristic'
         object='Action'
         ref={setRef}
+        searchable
         showMore
         showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('actions.entity_descriptors_facet')}

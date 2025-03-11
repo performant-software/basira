@@ -59,8 +59,7 @@ const DocumentActions = (props: Props) => {
           key={index}
         >
           <Card.Content>
-            <Card.Header
-            >
+            <Card.Header>
               <Header
                 content={renderActionText(item)}
                 size='tiny'
@@ -75,8 +74,10 @@ const DocumentActions = (props: Props) => {
           <Card.Content
             extra
           >
-            { renderDescriptors(item, 'Characteristic', 'blue') }
-            { renderDescriptors(item, 'Body', 'green') }
+            <Label.Group>
+              { renderDescriptors(item, 'Characteristic', 'blue') }
+              { renderDescriptors(item, 'Body', 'green') }
+            </Label.Group>
           </Card.Content>
         </Card>
       ))}

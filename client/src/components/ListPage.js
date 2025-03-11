@@ -29,7 +29,12 @@ const ListPage = (props: Props) => {
           actions={[{
             as: Link,
             asProps: (item) => ({
-              to: `${location.pathname}/${item.id}`
+              to: {
+                pathname: `${location.pathname}/${item.id}`,
+                state: {
+                  fromList: true,
+                }
+              }
             }),
             name: 'navigate',
             icon: 'arrow alternate circle right outline',
