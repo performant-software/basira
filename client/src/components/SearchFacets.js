@@ -255,6 +255,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('document_format_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -266,6 +268,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('document_type_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -277,6 +281,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('orientation_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -288,6 +294,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('size_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -299,6 +307,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('aperture_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -314,6 +324,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('binding_type_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -325,6 +337,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('binding_color_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -343,6 +357,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('spine_features_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -354,6 +370,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('furniture_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -365,6 +383,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('fastenings_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -383,6 +403,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('location_fastenings_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -401,6 +423,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('binding_ornamentation_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -431,6 +455,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('endband_colors_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -442,6 +468,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('endband_style_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -453,6 +481,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('binding_relationship_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -464,6 +494,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('decorated_fore_edges_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -482,6 +514,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('fore_edges_color_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -500,6 +534,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('bookmark_register_color_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -527,6 +563,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('text_technology_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -546,6 +584,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('page_contents_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -564,6 +604,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('ruling_color_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -582,6 +624,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('rubrication_color_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -593,6 +637,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('legibility_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -604,6 +650,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('script_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -615,6 +663,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('script_type_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -626,6 +676,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('simulated_script_facet')}
         toggleable
         useRefinementList={useRefinementList}
@@ -649,6 +701,8 @@ const SearchFacets = () => {
         limit={MAX_LIMIT}
         object='Document'
         ref={setRef}
+        showMore
+        showMoreLimit={MAX_SHOW_MORE_LIMIT}
         title={getLabel('illumination_type_facet')}
         toggleable
         useRefinementList={useRefinementList}
