@@ -50,12 +50,14 @@ const ValueListModal = (props: Props) => (
         required={props.isRequired('human_name')}
         value={props.item.human_name || ''}
       />
-      <ValueListDropdown
-        {...props}
-        group='Authorized Vocabulary'
-        label={props.t('ValueList.labels.authorizedVocabulary')}
-        object='General'
-      />
+      { props.item.group !== 'Authorized Vocabulary' && (
+        <ValueListDropdown
+          {...props}
+          group='Authorized Vocabulary'
+          label={props.t('ValueList.labels.authorizedVocabulary')}
+          object='General'
+        />
+      )}
       <Form.Input
         error={props.isError('authorized_vocabulary_url')}
         label={props.t('ValueList.labels.authorizedVocabularyUrl')}
