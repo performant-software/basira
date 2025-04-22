@@ -31,4 +31,8 @@
 
 en:
   errors:
+
+    qualification:
+      self_reference: "can't reference self"
+
     unauthorized: "Unauthorized"
