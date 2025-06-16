@@ -127,7 +127,8 @@ const Document = () => {
                 label: t('Document.labels.bindingColor'),
                 qualification: {
                   object: 'Document',
-                  group: 'Binding Color'
+                  group: 'Color',
+                  formField: 'binding_color'
                 }
               }, {
                 name: 'number_sewing_supports',
