@@ -35,6 +35,9 @@ const PhysicalComponent = () => {
         >
           <AttributesGrid
             attributes={[{
+              name: 'name',
+              label: t('Common.labels.name')
+            }, {
               name: 'id',
               label: t('Common.labels.id'),
               renderValue: () => t('PhysicalComponent.labels.id', { id: item.id })
