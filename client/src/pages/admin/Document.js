@@ -107,7 +107,7 @@ const Document = (props: Props) => {
             >
               <Form.Input
                 error={props.isError('name')}
-                label={props.t('Document.labels.name')}
+                label={props.t('Common.labels.name')}
                 onChange={props.onTextInputChange.bind(this, 'name')}
                 required={props.isRequired('name')}
                 value={props.item.name || ''}

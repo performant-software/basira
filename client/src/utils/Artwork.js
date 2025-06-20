@@ -26,6 +26,6 @@ export const getVisualContexts = (artwork: any) => (
 export const getPhysicalComponents = (artwork: any) => artwork.children;
 
 export const getPrimaryTitle = (artwork: Artwork) => {
-  const title = _.findWhere(artwork.artwork_titles, { primary: true });
+  const title = _.findWhere(artwork?.artwork_titles, { primary: true });
   return title && title.title;
 };

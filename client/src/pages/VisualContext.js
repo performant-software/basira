@@ -36,6 +36,9 @@ const VisualContext = () => {
         >
           <AttributesGrid
             attributes={[{
+              name: 'name',
+              label: t('Common.labels.name')
+            }, {
               name: 'id',
               label: t('Common.labels.id'),
               renderValue: () => t('VisualContext.labels.id', { id: item.id })

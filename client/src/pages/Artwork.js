@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import _ from 'underscore';
 import ArtworkCreators from '../components/ArtworkCreators';
@@ -28,11 +28,16 @@ const Artwork = () => {
   const { item, loading } = useCurrentRecord(onLoad);
   const { t } = useTranslation();
 
+  /**
+   * Memo-izes the primary name of the artwork.
+   */
+  const name = useMemo(() => getPrimaryTitle(item), [item]);
+
   return (
     <RecordPage
       artworkId={item?.id}
       loading={loading}
-      renderTitle={() => getPrimaryTitle(item)}
+      renderTitle={() => name}
     >
       <RecordPage.Section>
         <RecordPage.Header
@@ -40,6 +45,10 @@ const Artwork = () => {
         >
           <AttributesGrid
             attributes={[{
+              name: 'name',
+              label: t('Common.labels.name'),
+              renderValue: () => name,
+            }, {
               name: 'id',
               label: t('Common.labels.id'),
               renderValue: () => t('Artwork.labels.id', { id: item.id })

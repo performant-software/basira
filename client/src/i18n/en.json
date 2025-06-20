@@ -171,6 +171,7 @@
       "details": "Details",
       "document": "Document",
       "id": "ID",
+      "name": "Name",
       "physicalComponent": "Physical Component",
       "updated": "Record updated",
       "visualContext": "Visual Context"
